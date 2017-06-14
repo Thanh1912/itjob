@@ -1063,7 +1063,7 @@ ul.mj_joblist li a:hover, ul.mj_joblist.nav-tabs > li.active > a, ul.mj_joblist.
     display: inline-block;
 }
 .mj_clientlogo .img-responsive {
-	display: initial;.mj_clientlogo
+	display: initial;
 }
 .mj_clientlogo span {
 	position: absolute;
@@ -2108,7 +2108,7 @@ ul.mj_joblist li a:hover, ul.mj_joblist.nav-tabs > li.active > a, ul.mj_joblist.
 #map {
 	display: block;
 	width: 100%;
-	height: 600px;
+	height: 160px;
 	margin: 0 auto;
 }
 #map.large {

@@ -17,7 +17,7 @@
                 <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
                     <div class="collapse navbar-collapse mj_navmenu" id="mj_menu">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="index.html">home</a>
+                            <li class="active"><a routerLink="/pages/home">home</a>
                             </li>
                             <li><a href="#">Jobs</a>
                                 <ul class="sub_menu">
@@ -31,18 +31,7 @@
                             </li>
                             <li><a href="post_job.html">Post a Job</a>
                             </li>
-                            <li><a href="#">Post a Resume</a>
-                                <ul class="sub_menu">
-                                    <li><a href="post_resume.html">Post a Resume</a>
-                                    </li>
-                                    <li><a href="resume_preview.html">Resume Preview</a>
-                                    </li>
-                                    <li><a href="choose_package.html">choose package</a>
-                                    </li>
-                                    <li><a href="cart.html">Cart Page</a>
-                                    </li>
-                                </ul>
-                            </li>
+                          
                             <li><a href="#">Candidates</a>
                                 <ul class="sub_menu">
                                     <li><a href="candidates.html">Candidates</a>
@@ -51,42 +40,7 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li><a href="#">Pages</a>
-                                <ul class="sub_menu">
-                                    <li><a href="blog_fullwidth.html">blog fullwidth</a>
-                                    </li>
-                                    <li><a href="blog_sidebar.html">blog sidebar</a>
-                                    </li>
-                                    <li><a href="blog_single.html">blog single</a>
-                                    </li>
-                                    <li><a href="gallery.html">gallery</a>
-                                    </li>
-                                    <li><a href="team.html">team</a>
-                                    </li>
-                                    <li><a href="work.html">work</a>
-                                    </li>
-                                    <li><a href="companies.html">companies</a>
-                                    </li>
-                                    <li><a href="contact.html">contact</a>
-                                    </li>
-									<li><a href="shop_index.html">Shop home</a>
-                                    </li>
-									<li><a href="product.html">product</a>
-                                    </li>
-									<li><a href="product_single.html">product single</a>
-                                    </li>
-                                    <li><a href="create_account.html">create account</a>
-                                    </li>
-                                    <li><a href="freelancer_account.html">freelancer account</a>
-                                    </li>
-                                    <li><a href="signup.html">sign up</a>
-                                    </li>
-                                    <li><a href="login.html">login</a>
-                                    </li>
-                                    <li><a href="error.html">error</a>
-                                    </li>
-                                </ul>
-                            </li>
+                            
                         </ul>
                         <ul class="nav navbar-nav navbar-right mj_right_menu mj_withoutlogin_menu">
                             <li class="mj_searchbtn"><a href="#"><i class="fa fa-search"></i></a>
@@ -102,9 +56,9 @@
                                     </form>
                                 </div>
                             </li>
-                            <li><a href="signup.html"><i class="fa fa-lock"></i> Sign Up</a>
+                            <li><a routerLink="/pages/register"><i class="fa fa-lock"></i> Sign Up</a>
                             </li>
-                            <li><a class="mj_logintoggle" onclick="show_my_div('my_profile_div_login' , 'id')"><i class="fa fa-user"></i> Login</a>
+                            <li><a class="mj_logintoggle" routerLink="/pages/login" onclick="show_my_div('my_profile_div_login' , 'id')"><i class="fa fa-user"></i> Login</a>
                             </li>
                         </ul>
                         <div class="mj_profilediv" id="my_profile_div_login">

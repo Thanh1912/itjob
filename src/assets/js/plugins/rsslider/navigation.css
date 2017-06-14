@@ -758,8 +758,8 @@ opacity:1
     font-size:13px;
     font-weight:700;
     text-transform:uppercase;
-    font-family:"Roboto Slab"
-    margin-bottom:5px;
+  
+  
 }
 
 .erinyen .tp-tab-desc {
@@ -767,7 +767,8 @@ opacity:1
     font-weight:400;
     color:#fff;
     line-height:25px;
-	font-family:"Roboto Slab";
+
+
 }
       
 
@@ -920,7 +921,8 @@ website:    http://www.themepunch.com
   opacity:1;      
   padding:10px;
   box-sizing:border-box;
-  font-family: "Roboto", sans-serif;
+
+
   border-bottom: 1px solid rgba(255,255,255,0.15);
  }
 .gyges .tp-tab-image 
@@ -1419,8 +1421,8 @@ border-radius:6px;
     font-size:13px;
     font-weight:700;
     text-transform:uppercase;
-    font-family:"Roboto Slab"
-    margin-bottom:5px;
+  
+  
 }
 
 .hebe .tp-tab-desc {
@@ -1428,7 +1430,8 @@ border-radius:6px;
     font-weight:400;
     color:#fff;
     line-height:25px;
-	font-family:"Roboto Slab";
+
+
 }
 
 
@@ -1863,7 +1866,8 @@ website:    http://www.themepunch.com
   opacity:1;      
   padding:10px;
   box-sizing:border-box;
-  font-family: "Roboto", sans-serif;
+ 
+ 
   border-bottom: 1px solid #e5e5e5;
  }
 .hesperiden .tp-tab-image 
@@ -2460,7 +2464,7 @@ opacity:1
 display: block;
 text-align: center;
 background: rgba(0,0,0,0.25);
-font-family: "Roboto Slab", serif; 
+
 font-weight: 700; 
 font-size: 13px; 
 line-height: 13px;
