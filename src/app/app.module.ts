@@ -5,11 +5,13 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { routing } from './app.routing';
+import { Search2Component } from './search2/search2.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    Search2Component,
   
   ],
   imports: [

@@ -8,6 +8,8 @@ import { SearchJobsComponent } from './search-jobs/search-jobs.component';
 import { DetailJobComponent } from './detail-job/detail-job.component';
 import { SearchCompanyComponent } from './search-company/search-company.component';
 import { DetailCompanyComponent } from './detail-company/detail-company.component';
+import { ManagerAccountComponent } from './manager-account/manager-account.component';
+import { ManagerJobApplyComponent } from './manager-job-apply/manager-job-apply.component';
 export const routes: Routes = [
   /* {
      path: 'login',
@@ -29,6 +31,8 @@ export const routes: Routes = [
       { path: 'search-company', component: SearchCompanyComponent },
       { path: 'detail-jobs', component: DetailJobComponent },
       { path: 'detail-company', component: DetailCompanyComponent },
+      { path: 'Manager-Account', component: ManagerAccountComponent },
+      { path: 'Manager-JobApply', component: ManagerJobApplyComponent },
 
 
     ]
