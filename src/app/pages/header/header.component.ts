@@ -31,6 +31,14 @@ export class HeaderComponent implements OnInit {
     this.mj_profilediv = false
     this.mj_notification_detail = false
   }
+  login(){
+     if (this.islogin) {
+      this.islogin = false
+    } else {
+      this.islogin = true
+    }
+}
+
   clickmj_likedetails() {
     if (this.mj_likedetails) {
       this.mj_likedetails = false

@@ -10,6 +10,7 @@ import { SearchCompanyComponent } from './search-company/search-company.componen
 import { DetailCompanyComponent } from './detail-company/detail-company.component';
 import { ManagerAccountComponent } from './manager-account/manager-account.component';
 import { ManagerJobApplyComponent } from './manager-job-apply/manager-job-apply.component';
+import { LoginEmployeeComponent } from './login-employee/login-employee.component';
 export const routes: Routes = [
   /* {
      path: 'login',
@@ -26,6 +27,7 @@ export const routes: Routes = [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home', component: HomeComponent },
       { path: 'login', component: LoginComponent },
+      { path: 'login-employee', component: LoginEmployeeComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'search-jobs', component: SearchJobsComponent },
       { path: 'search-company', component: SearchCompanyComponent },

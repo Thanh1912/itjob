@@ -14,10 +14,11 @@ import { DetailCompanyComponent } from './detail-company/detail-company.componen
 import { ManagerAccountComponent } from './manager-account/manager-account.component';
 import { ManagerJobApplyComponent } from './manager-job-apply/manager-job-apply.component';
 import { Home2Component } from './home2/home2.component';
+import { LoginEmployeeComponent } from './login-employee/login-employee.component';
 
 @NgModule({
   imports: [CommonModule ,routing],
-  declarations: [Pages, HomeComponent, LoginComponent, RegisterComponent, HeaderComponent, FooterComponent, SearchJobsComponent, DetailJobComponent, SearchCompanyComponent, DetailCompanyComponent, ManagerAccountComponent, ManagerJobApplyComponent, Home2Component]
+  declarations: [Pages, HomeComponent, LoginComponent, RegisterComponent, HeaderComponent, FooterComponent, SearchJobsComponent, DetailJobComponent, SearchCompanyComponent, DetailCompanyComponent, ManagerAccountComponent, ManagerJobApplyComponent, Home2Component, LoginEmployeeComponent]
 })
 export class PagesModule {
 }

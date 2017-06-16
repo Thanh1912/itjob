@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit, HostBinding } from '@angular/core';
+import { slideInDownAnimation } from '../../animations';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -15,7 +15,9 @@ import { Component, OnInit } from '@angular/core';
 ,'../../../assets/js/plugins/owl/owl.carousel.css']
 })
 export class LoginComponent implements OnInit {
-
+  @HostBinding('@routeAnimation') routeAnimation = true;
+  @HostBinding('style.display')   display = 'block';
+  @HostBinding('style.position')  position = 'absolute';
   constructor() { }
 
   ngOnInit() {
