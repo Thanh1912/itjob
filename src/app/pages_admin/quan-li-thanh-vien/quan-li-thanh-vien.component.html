@@ -1,0 +1,109 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <h1>
+      Thanh vien quan tri
+      <small>it all starts here</small>
+    </h1>
+  </section>
+  <!-- Main content -->
+  <section class="content">
+    <!-- Default box -->
+    <div class="box">
+      <div class="box-header with-border">
+
+        <div class="box-tools pull-right">
+          <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+          <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
+        </div>
+      </div>
+      <div class="box-body">
+        <div class="card" *ngIf="isLoading">
+          <h4 class="card-header">Loading...</h4>
+          <div class="card-block text-xs-center">
+            <i class="fa fa-circle-o-notch fa-spin fa-3x"></i>
+          </div>
+        </div>
+        <!-- *ngIf="!isLoading"-->
+        <div class="card">
+          <h4 class="card-header">Current ({{cats.length}})</h4>
+          <div class="card-block">
+            <table class="table table-bordered table-striped">
+              <thead class="thead-default">
+                <tr>
+                  <th>Fullname</th>
+                  <th>email</th>
+                  <th>createddate</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody *ngIf="cats.length === 0">
+                <tr>
+                  <td colspan="4">There are no cats in the DB. Add a new cat below.</td>
+                </tr>
+              </tbody>
+              <tbody *ngIf="!isEditing">
+                <tr *ngFor="let cat of cats">
+                  <td>{{cat.fullname}}</td>
+                  <td>{{cat.email}}</td>
+                  <td>{{cat.createddate}}</td>
+                  <td>
+                    <button class="btn btn-sm btn-warning" (click)="enableEditing(cat)"><i class="fa fa-pencil"></i> Edit</button>                    <button class="btn btn-sm btn-danger" (click)="deleteCat(cat)"><i class="fa fa-trash"></i> Delete</button>
+                  </td>
+                </tr>
+              </tbody>
+              <tbody *ngIf="isEditing">
+                <tr>
+                  <td colspan="4">
+                    <form class="form-inline" #form="ngForm" (ngSubmit)="editCat(cat)" style="display:inline">
+                      <div class="form-group">
+                        <input class="form-control" type="text" name="fullname" [(ngModel)]="cat.fullname" placeholder="fullname" required>
+                      </div>
+                      <div class="form-group">
+                        <input class="form-control" type="text" name="email" [(ngModel)]="cat.email" placeholder="email" required>
+                      </div>
+                      <div class="form-group">
+                        <input class="form-control" type="text" name="password" [(ngModel)]="cat.password" placeholder="password" required>
+                      </div>
+                      <button class="btn btn-sm btn-primary" type="submit" [disabled]="!form.form.valid"><i class="fa fa-floppy-o"></i> Save</button>
+                    </form>
+                    <button class="btn btn-sm btn-warning" (click)="cancelEditing()"><i class="fa fa-times"></i> Cancel</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card" *ngIf="!isEditing">
+          <h4 class="card-header">Add new </h4>
+          <div class="card-block">
+            <form class="form-inline" [formGroup]="addCatForm" (ngSubmit)="addCat()" style="text-align:center">
+              <div class="form-group">
+                <input class="form-control" type="text" name="fullname" formControlName="fullname" placeholder="fullname">
+              </div>
+                <div class="form-group">
+                <input class="form-control" type="text" name="email" formControlName="email" placeholder="email">
+              </div>
+                <div class="form-group">
+                <input class="form-control" type="text" name="email" formControlName="password" placeholder="password">
+              </div>
+
+              <button class="btn btn-primary" type="submit" [disabled]="!addCatForm.valid"><i class="fa fa-floppy-o"></i> Add</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- /.box-body -->
+      <div class="box-footer">
+
+      </div>
+      <!-- /.box-footer-->
+    </div>
+    <!-- /.box -->
+
+  </section>
+  <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

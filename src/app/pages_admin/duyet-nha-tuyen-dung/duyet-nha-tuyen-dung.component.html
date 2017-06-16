@@ -1,0 +1,207 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="box-header">
+      <h3 class="box-title">Nhà Tuyển Dụng</h3>
+      <div class="box-tools">
+        <div class="input-group" style="width: 150px;">
+          <input type="text" name="table_search" [(ngModel)]="query" class="form-control input-sm pull-right" placeholder="Search">
+          <div class="input-group-btn">
+            <button class="btn btn-sm btn-default" (click)="search()"><i class="fa fa-search"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Main content -->
+  <section class="content">
+    <!-- Default box -->
+    <div class="box">
+
+      <div class="box-body">
+        <div class="card" *ngIf="isLoading">
+          <h4 class="card-header">Loading...</h4>
+          <div class="card-block text-xs-center">
+            <i class="fa fa-circle-o-notch fa-spin fa-3x"></i>
+          </div>
+        </div>
+        <!-- *ngIf="!isLoading"-->
+        <div class="card">
+          <h4 class="card-header">Current ({{cats.length}})</h4>
+          <div class="card-block">
+            <table class="table table-bordered table-striped" *ngIf="!isEditing">
+              <thead class="thead-default">
+                <tr>
+                  <th>Fullname</th>
+                  <th>email</th>
+                  <th>Createddate</th>
+                  <th>Namecompany</th>
+                  <th>Phone</th>
+                  <th>Active</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody *ngIf="cats.length === 0">
+                <tr>
+                  <td colspan="4">There are no in the DB. Add a new cat below.</td>
+                </tr>
+              </tbody>
+              <tbody *ngIf="!isEditing">
+                <tr *ngFor="let cat of pagedItems">
+                  <td>{{cat.fullname}}</td>
+                  <td>{{cat.email}}</td>
+                  <td>{{cat.createddate |date}}</td>
+                  <td>{{cat.info_recruiter.namecompany}}</td>
+                  <td>{{cat.info_recruiter.phone}}</td>
+                  <td>
+                    <span *ngIf="cat.info_recruiter.active==false" class="label label-warning">Pending</span>
+                    <span class="label label-primary" *ngIf="cat.info_recruiter.active==true">Approved</span>
+                  </td>
+                  <td>
+                    <button class="btn btn-sm btn-warning" (click)="enableEditing(cat)"><i class="fa fa-pencil"></i> Edit</button>                    <button class="btn btn-sm btn-danger" (click)="deleteCat(cat)"><i class="fa fa-trash"></i> Delete</button>
+                  </td>
+                </tr>
+              </tbody>
+             
+            </table>
+          </div>
+        </div>
+           <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+                  <li [ngClass]="{disabled:pager.currentPage === 1}">
+                    <a (click)="setPage(1)">First</a>
+                  </li>
+                  <li [ngClass]="{disabled:pager.currentPage === 1}">
+                    <a (click)="setPage(pager.currentPage - 1)">Previous</a>
+                  </li>
+                  <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                    <a (click)="setPage(page)">{{page}}</a>
+                  </li>
+                  <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                    <a (click)="setPage(pager.currentPage + 1)">Next</a>
+                  </li>
+                  <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                    <a (click)="setPage(pager.totalPages)">Last</a>
+                  </li>
+                </ul>
+
+        <div class="box box-primary" *ngIf="isEditing">
+          <div class="box-header with-border">
+            <h3 class="box-title">Thông tin chi tiết </h3>
+
+          </div>
+          <!-- /.box-header -->
+          <div class="box-body no-padding">
+            <div class="mailbox-read-info">
+              <h3>Công Ty: <span style="color:red;font-family: 'Book Antiqua'">{{cat.info_recruiter.namecompany}}</span> </h3>
+              <h5>From: <span style="color:blue">{{cat.email}}</span> <span class="mailbox-read-time pull-right">{{cat.createddate | date}}</span></h5>
+            </div>
+            <!-- /.mailbox-read-info -->
+            <div class="mailbox-controls with-border text-center">
+              <div class="btn-group">
+                <button class="btn btn-default btn-sm" (click)="khongduyet()" data-toggle="tooltip" title="">Không Duyệt</button>
+                <button class="btn btn-primary btn-sm" (click)="duyet()" data-toggle="tooltip" title=""> Duyệt</button>
+                <button class="btn btn-default btn-sm" (click)="cancelEditing()" data-toggle="tooltip" title="" data-original-title="Forward"><i class="fa fa-share"></i></button>
+              </div>
+              <!-- /.btn-group -->
+
+            </div>
+            <!-- /.mailbox-controls -->
+            <div class="mailbox-read-message">
+              <p>Hello Admin,</p>
+              <form #form="ngForm" (ngSubmit)="editCat(cat)">
+                <!-- text input -->
+                <div class="form-group">
+                  <label>FullName</label>
+                  <input type="text" class="form-control" name="fullname" [(ngModel)]="cat.fullname" placeholder="Enter ...">
+                </div>
+                <div class="form-group">
+                  <label>Image</label>
+                  <div class="mailbox-attachment-info">
+                    <img src="http://localhost:3000/uploads/forms/image/{{cat.info_recruiter.profileimage}}">
+
+                  </div>
+                </div>
+                <!-- textarea -->
+                <div class="form-group">
+                  <label>Mô Tả</label>
+                  <textarea [(ngModel)]="cat.info_recruiter.introduction" name="mota" class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                </div>
+                <div class="form-group">
+                  <label>Website</label>
+                  <input type="text" class="form-control" name="website" [(ngModel)]="cat.info_recruiter.website" placeholder="Enter ...">
+                </div>
+
+                <!-- input states -->
+                <div class="form-group has-success">
+                  <label class="control-label" for="inputSuccess">facebook</label>
+                  <input type="text" class="form-control" name="facebook" [(ngModel)]="cat.info_recruiter.facebook" id="inputSuccess" placeholder="Enter ...">
+                </div>
+                <div class="form-group has-warning">
+                  <label class="control-label" for="inputWarning"><i class="fa fa-bell-o"></i>phone</label>
+                  <input type="text" class="form-control" name="phone" [(ngModel)]="cat.info_recruiter.phone" id="inputWarning" placeholder="Enter ...">
+                </div>
+                <div class="form-group has-error">
+                  <label class="control-label" for="inputError">Logo</label>
+                  <div class="mailbox-attachment-info">
+                    <img src="http://localhost:3000/uploads/forms/logo/{{cat.info_recruiter.logo}}">
+
+
+                  </div>
+                </div>
+
+                <div class="form-group ">
+                  <label class="control-label" for="inputError"> Companysize</label>
+                  <select [ngModel]="selectedItem" name="select" class="form-control">
+
+                       <option *ngFor="let item of companysize" [selected]="item._id==cat.info_recruiter.companysizeid" [value]="item._id">{{item.name}}</option>
+                 </select>
+                </div>
+                <div class="form-group ">
+                  <label class="control-label" for="inputError"> Country</label>
+                  <select [ngModel]="selectedcountry" name="country" class="form-control">
+                       <option *ngFor="let item of country" [selected]="cat.info_recruiter.countryid==item._id" [value]="item._id">{{item.name}}</option>
+                 </select> {{cat.info_recruiter.countryid}}
+                </div>
+                <!-- checkbox -->
+                <div class="box-footer">
+                  <div class="pull-right">
+                    <!--    <button class="btn btn-sm btn-primary" type="submit" [disabled]="!form.form.valid"><i class="fa fa-floppy-o"></i> Save</button>
+                      <button class="btn btn-sm btn-warning" (click)="cancelEditing()"><i class="fa fa-times"></i> Cancel</button>-->
+                  </div>
+
+                </div>
+              </form>
+
+            </div>
+            <!-- /.mailbox-read-message -->
+          </div>
+          <!-- /.box-body -->
+          <div class="box-footer">
+
+          </div>
+          <!-- /.box-footer -->
+
+          <!-- /.box-footer -->
+        </div>
+
+
+
+
+
+
+
+
+      </div>
+      <!-- /.box-body -->
+      <div class="box-footer">
+        Footer
+      </div>
+      <!-- /.box-footer-->
+    </div>
+    <!-- /.box -->
+
+  </section>
+  <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

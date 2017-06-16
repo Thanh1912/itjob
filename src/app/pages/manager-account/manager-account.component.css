@@ -1,0 +1,21 @@
+.a-underline{
+text-decoration: underline;
+}
+.image-profile{
+    border-radius: 200px 200px 200px 200px;
+-moz-border-radius: 200px 200px 200px 200px;
+-webkit-border-radius: 200px 200px 200px 200px;
+border: 0px solid #000000;
+height: 150px;
+}
+.form-profile{
+        margin-top: 20px;
+    margin-left: -23px;
+    margin-right: 16px;
+}
+::-webkit-file-upload-button {
+     border-color: #00bff3;
+    color: #fff;
+    text-align: center;
+    background-color: #00bff3;
+}

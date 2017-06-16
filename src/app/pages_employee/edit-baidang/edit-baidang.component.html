@@ -1,0 +1,154 @@
+<div class="content-wrapper" style="min-height:600px;">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <h1>
+      Đăng Bài
+    </h1>
+  </section>
+  <!-- Main content -->
+  <section class="content">
+    <div class="row">
+      <!-- left column -->
+      <div class="col-md-12">
+        <!-- general form elements -->
+        <div class="box box-primary">
+          <div class="box-header with-border">
+
+          </div>
+          <!-- /.box-header -->
+          <!-- form start -->
+          <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm.value)">
+            <div class="box-body">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Tiêu đề *</label>
+                <input type="text" class="form-control"  [(ngModel)]="title" name="title" placeholder="" required >
+              </div>
+              <div class="form-group">
+                <div class="col-xs-6">
+                  <div class="form-group">
+                    <label>Mức lương *  </label>
+                    <select [(ngModel)]="select_Luong" name="select" name="select_Luong" (ngModelChange)="onChange($event)" class="form-control">
+                        <option value="true" selected>Thỏa Thuận</option>
+                        <option value="false">Mức Lương</option>
+                      </select>
+                  </div>
+
+                </div>
+                <div class="col-xs-6">
+                  <div class="form-group">
+                    <label>Đơn Vị * </label>
+                    <select name="donvi" (change)="onchange_dv($event.target.value)" class="form-control" >
+                        <option value="VND" selected>VND</option>
+                        <option value="USD">USD</option>
+                      </select>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group" *ngIf="select_Luong=='false'">
+                <label for="">Mức lương Từ *</label>
+                <div class="row">
+                  <div class="col-xs-3">
+                    <input type="text" class="form-control" (keyup)="onKeyto($event)"  name="salarybegin" [(ngModel)]="salarybegin" placeholder="">
+                  </div>
+                  <div class="col-xs-4">
+                    <input type="text" class="form-control"  (keyup)="onKeytfrom($event)"  name="salaryend" [(ngModel)]="salaryend" placeholder="">
+                  </div>
+                  <div class="col-xs-5">
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group" *ngIf="select_Luong=='false'">
+                <label for="exampleInputPassword1">Lương</label>
+                <input type="text" disabled="disabled" name="salary" [(ngModel)]="Viewsalary"  class="form-control" placeholder="Lương">
+              </div>
+           <div class="form-group">
+                <label for="exampleInputPassword1">Mô tả công việc *</label>
+                <ckeditor name="ckeditorContent" [(ngModel)]="descriptionwork" name="descriptionwork"  (change)="onChangemotta($event)"
+                  debounce="500" required>
+                </ckeditor>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Yêu Cầu công việc *</label>
+                <ckeditor name="ckeditorContent" [(ngModel)]="requirementwork" name="requirementwork" (change)="onChangeYeucau($event)"
+                 debounce="500" required>
+                </ckeditor>
+              </div>
+
+              <div class="form-group">
+                <label>Tu khoa Tim kiem</label>
+                <div class="form-group">
+                  <ss-multiselect-dropdown [options]="myOptions" [(ngModel)]="keyword"  name="keywords" name="aa" (ngModelChange)="onChange1($event)" required></ss-multiselect-dropdown>
+                </div>
+              </div>
+              <!-- /.form-group -->
+              <div class="form-group">
+                <label for="">Tỉnh Thành </label>
+                <select [(ngModel)]="tinhthanh" (change)="change_workplace($event.target.value)" name="tp" class="form-control" required>
+                       <option *ngFor="let item of listWorkplace" [selected]=" id_workplace==item._id"   [value]="item._id">{{item.name}}</option>
+                 </select>
+              </div>
+              <div class="form-group">
+                <label for="examplep">Quận </label>
+                <select [(ngModel)]="quan" name="quan" (change)="change_dictrict($event.target.value)" required  class="form-control">
+                       <option *ngFor="let item of listDistrict" [selected]="id_dictrict==item._id" [value]="item._id">{{item.name}}</option>
+                 </select>
+
+              </div>
+
+              <div class="form-group">
+                <label for="exanonch">Ảnh đại diện
+chuẩn(.jpg, .png, .gif)
+dưới 2MB
+kích thước : 1200px : 400px</label>
+<input type="file" id="imgInp"  name="photo" ng2FileSelect [uploader]="uploader" />
+
+                  <img id="blah" style="width:100px;height:100px;" src="http://localhost:3000/uploads/forms/post/{{imageurl}}" alt="your image" />
+                 <button type="button" (click)="uploader.uploadAll();" [disabled]="!uploader.getNotUploadedItems().length" class="btn btn-primary" >UpLoad Image</button>
+
+              </div>
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer">
+
+              <button type="submit"   class="btn btn-primary">Cập Nhật</button>
+            </div>
+          </form>
+        </div>
+        <!-- /.box -->
+      </div>
+      <!-- /.col-6 -->
+    </div>
+    <!-- /.row -->
+    <!-- Your Page Content Here -->
+  </section>
+  <!-- /.content -->
+</div>
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h4 class="modal-title">Modal Default</h4>
+      </div>
+      <div class="modal-body">
+     <!-- File input for the file-upload plugin, with special ng2-file-upload directive called ng2FileSelect -->
+
+
+
+<!-- File input for upload without using the plugin. -->
+<input id="photo" type="file" />
+<!-- button to trigger the file upload when submitted -->
+<button type="button" class="btn btn-success btn-s" (click)="upload()">
+Upload with method 2
+</button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+</div>
