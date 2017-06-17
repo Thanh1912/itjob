@@ -3,8 +3,8 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-CATALOG JOBS
-  
+      CATALOG JOBS
+
     </h1>
 
   </section>
@@ -15,9 +15,9 @@ CATALOG JOBS
     <!-- Default box -->
     <div class="box">
       <div class="box-header with-border">
-     
+
         <div class="box-tools pull-right">
-         
+
         </div>
       </div>
       <div class="box-body">
@@ -40,7 +40,7 @@ CATALOG JOBS
               <thead class="thead-default">
                 <tr>
                   <th>Name Job</th>
-<th>Keyword</th>
+                  <th>Keyword</th>
                   <th>Actions</th>
                 </tr>
               </thead>
@@ -52,25 +52,26 @@ CATALOG JOBS
               <tbody *ngIf="!isEditing">
                 <tr *ngFor="let cat of pagedItems">
                   <td>{{cat.name}}</td>
-                    <td>
-                       <select  class="form-control">
+                  <td>
+                    <select class="form-control">
                        <option *ngFor="let item of item_Workplace" disabled [selected]="cat.workplace==item._id" [value]="item._id">{{item.name}}</option>
                  </select>
-                     </td>
+                  </td>
                   <td>
                     <button class="btn btn-sm btn-warning" (click)="enableEditing(cat)"><i class="fa fa-pencil"></i> Edit</button>                    <button class="btn btn-sm btn-danger" (click)="deleteCat(cat)"><i class="fa fa-trash"></i> Delete</button>
                   </td>
                 </tr>
 
               </tbody>
-              <tbody>      <!-- pager -->
+              <tbody>
+                <!-- pager -->
 
 
               </tbody>
               <tbody *ngIf="isEditing">
                 <tr>
                   <td colspan="4">
-                    <select [(ngModel)]="id_w" (change)="changeedit($event.target.value)"    class="form-control">
+                    <select [(ngModel)]="id_w" (change)="changeedit($event.target.value)" class="form-control">
                        <option *ngFor="let item of item_Workplace"  [selected]="item._id==cat.workplace" [value]="item._id">{{item.name}}</option>
                  </select>
                     <form class="form-inline" #form="ngForm" (ngSubmit)="editCat(cat)" style="display:inline">
@@ -89,38 +90,54 @@ CATALOG JOBS
             </table>
           </div>
         </div>
-  <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
-                <li [ngClass]="{disabled:pager.currentPage === 1}">
-                    <a (click)="setPage(1)">First</a>
-                </li>
-                <li [ngClass]="{disabled:pager.currentPage === 1}">
-                    <a (click)="setPage(pager.currentPage - 1)">Previous</a>
-                </li>
-                <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
-                    <a (click)="setPage(page)">{{page}}</a>
-                </li>
-                <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-                    <a (click)="setPage(pager.currentPage + 1)">Next</a>
-                </li>
-                <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-                    <a (click)="setPage(pager.totalPages)">Last</a>
-                </li>
-            </ul>
+        <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+          <li [ngClass]="{disabled:pager.currentPage === 1}">
+            <a (click)="setPage(1)">First</a>
+          </li>
+          <li [ngClass]="{disabled:pager.currentPage === 1}">
+            <a (click)="setPage(pager.currentPage - 1)">Previous</a>
+          </li>
+          <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+            <a (click)="setPage(page)">{{page}}</a>
+          </li>
+          <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+            <a (click)="setPage(pager.currentPage + 1)">Next</a>
+          </li>
+          <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+            <a (click)="setPage(pager.totalPages)">Last</a>
+          </li>
+        </ul>
         <div class="card" *ngIf="!isEditing">
           <h4 class="card-header">Add new </h4>
           <div class="card-block">
 
-           <div class="form-group col-md-6">
-               <select [ngModel]="selectedItem"  (change)="onChange($event.target.value)" class="form-control">
+            <div class="form-group col-md-6">
+              <select [ngModel]="selectedItem" (change)="onChange($event.target.value)" class="form-control">
 
                        <option *ngFor="let item of item_Workplace" [value]="item._id">{{item.name}}</option>
                  </select>
+            </div>
+
+
+            <form role="form">
+              <div class="box-body">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Title</label>
+                  <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Icon</label>
+                  <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Mô tả</label>
+                  <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                </div>
               </div>
-            <form class="form-inline col-md-6" [formGroup]="addCatForm" (ngSubmit)="addCat()" style="text-align:center">
-              <div class="form-group">
-                <input class="form-control" type="text" name="name" formControlName="name" placeholder="Name">
+              <!-- /.box-body -->
+              <div class="box-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
               </div>
-              <button class="btn btn-primary" type="submit" [disabled]="!addCatForm.valid"><i class="fa fa-floppy-o"></i> Add</button>
             </form>
 
 

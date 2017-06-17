@@ -110,9 +110,6 @@ this.addCatForm.value.workplace=this.selectedItem;
   cancelEditing() {
     this.isEditing = false;
     this.cat = {};
-    alert('item editing cancelled. ')
-    // this.toast.setMessage('item editing cancelled.', 'warning');
-    // reload the cats to reset the editing
     this.getall();
   }
   editCat(cat) {

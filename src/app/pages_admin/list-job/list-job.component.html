@@ -1,37 +1,31 @@
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
-  <section class="content-header">
-    <h1>
-      Thành Phố
-
-    </h1>
-
-  </section>
-<div class="box box-danger">
-                <div class="box-header with-border">
-                  <h3 class="box-title">Different Width</h3>
-                </div>
-                <div class="box-body">
-                  <div class="row">
-                    <div class="col-xs-3">
-                      <input type="text" class="form-control" placeholder=".col-xs-3">
-                    </div>
-                    <div class="col-xs-4">
-                     <select class="form-control">
+  <div class="box box-danger">
+    <div class="box-header with-border">
+      <h3 class="box-title">List Jobs</h3>
+    </div>
+    <div class="box-body">
+      <div class="row">
+        <div class="col-xs-3">
+          <input type="text" class="form-control" placeholder="Search Job">
+        </div>
+        <div class="col-xs-4">
+          <select class="form-control">
                         <option>option 1</option>
                         <option>option 2</option>
                         <option>option 3</option>
                         <option>option 4</option>
                         <option>option 5</option>
                       </select>
-                    </div>
-                    <div class="col-xs-5">
-                      <input type="text" class="form-control" placeholder=".col-xs-5">
-                    </div>
-                  </div>
-                </div><!-- /.box-body -->
-              </div>
+        </div>
+        <div class="col-xs-5">
+          <button style="margin-top: 0px;" class="btn bg-olive btn-flat margin">Search</button>
+        </div>
+      </div>
+    </div>
+    <!-- /.box-body -->
+  </div>
   <!-- Main content -->
   <section class="content">
 
@@ -75,10 +69,10 @@
               <tbody *ngIf="!isEditing">
                 <tr *ngFor="let cat of pagedItems">
                   <td>{{cat.name}}</td>
-                   <td>{{cat.name}}</td>
-                   <td>{{cat.name}}</td>
+                  <td>{{cat.name}}</td>
+                  <td>{{cat.name}}</td>
                   <td>
-                       <button class="btn btn-sm btn-warning" (click)="enableEditing(cat)"><i class="fa fa-pencil"></i> Edit</button>                    <button class="btn btn-sm btn-danger" (click)="deleteCat(cat)"><i class="fa fa-trash"></i> Edit</button>
+                    <button class="btn btn-sm btn-warning" (click)="enableEditing(cat)"><i class="fa fa-pencil"></i> Edit</button>                    <button class="btn btn-sm btn-danger" (click)="deleteCat(cat)"><i class="fa fa-trash"></i> Edit</button>
                     <button class="btn btn-sm btn-warning" (click)="enableEditing(cat)"><i class="fa fa-pencil"></i> Edit</button>                    <button class="btn btn-sm btn-danger" (click)="deleteCat(cat)"><i class="fa fa-trash"></i> Delete</button>
                   </td>
                 </tr>
@@ -130,13 +124,14 @@
                   <label for="exampleInputEmail1">Title Job</label>
                   <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
                 </div>
-                    <div class="form-group">
+                <div class="form-group">
                   <label for="exampleInputEmail1">Company Job</label>
                   <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
                 </div>
-                   <div class="form-group">
+                <div class="form-group">
                   <label for="exampleInputEmail1">Icon</label>
-                  <img style="width:110px;height:100px;" src="https://preview.ibb.co/bCY62k/logo_homepage_1473333920343_04fd13.png" alt="logo_homepage_1473333920343_04fd13" border="0">
+                  <img style="width:110px;height:100px;" src="https://preview.ibb.co/bCY62k/logo_homepage_1473333920343_04fd13.png" alt="logo_homepage_1473333920343_04fd13"
+                    border="0">
 
                 </div>
                 <div class="form-group">

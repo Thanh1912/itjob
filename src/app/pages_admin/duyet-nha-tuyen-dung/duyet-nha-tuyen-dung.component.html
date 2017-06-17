@@ -1,26 +1,31 @@
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
-  <section class="content-header">
-    <div class="box-header">
-      <h3 class="box-title">Nhà Tuyển Dụng</h3>
-      <div class="box-tools">
-        <div class="input-group" style="width: 150px;">
-          <input type="text" name="table_search" [(ngModel)]="query" class="form-control input-sm pull-right" placeholder="Search">
-         <select class="form-control">
-                        <option>option 1</option>
-                        <option>option 2</option>
+  <div class="box box-danger">
+    <div class="box-header with-border">
+    
+    </div>
+    <div class="box-body">
+      <div class="row">
+        <div class="col-xs-3">
+          <input type="text" class="form-control" placeholder="Search Job">
+        </div>
+        <div class="col-xs-4">
+          <select class="form-control">
+                        <option>Email</option>
+                        <option>Company</option>
                         <option>option 3</option>
                         <option>option 4</option>
                         <option>option 5</option>
                       </select>
-          <div class="input-group-btn">
-            <button class="btn btn-sm btn-default" (click)="search()"><i class="fa fa-search"></i></button>
-          </div>
+        </div>
+        <div class="col-xs-5">
+          <button style="margin-top: 0px;" class="btn bg-olive btn-flat margin">Search</button>
         </div>
       </div>
     </div>
-  </section>
+    <!-- /.box-body -->
+  </div>
   <!-- Main content -->
   <section class="content">
     <!-- Default box -->
