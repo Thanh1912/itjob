@@ -13,7 +13,7 @@ export class NhatuyendungComponent  implements OnInit {
 
   ngOnInit(){
  if (localStorage.getItem('id_token') != null) {
-       this.username=localStorage.getItem('username');
+       this.username=localStorage.getItem('username_ntd');
        this.islogin = true;
     }
   }

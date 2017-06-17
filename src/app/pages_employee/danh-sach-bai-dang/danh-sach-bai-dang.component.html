@@ -28,7 +28,8 @@
               <tr>
 
                 <th>Tiêu đề</th>
-                 <th>Ngày</th>
+                 <th>Ngày start</th>
+                  <th>Ngày End</th>
                 <th>Action</th>
               </tr>
               <tr *ngFor="let item of list_post">
@@ -40,6 +41,10 @@
                   <div class="pull-right">
                     <a class="btn btn-primary btn-sm btn-flat"   [routerLink]="['/nhatuyendung/edit-baidang', item._id]"><div class="tools">
                         <i class="fa fa-edit"></i>
+
+                      </div></a>
+                        <a class="btn btn-primary btn-sm btn-flat"   [routerLink]="['/nhatuyendung/edit-baidang', item._id]"><div class="tools">
+                        <i class="fa fa-edit">Show (4)</i>
 
                       </div></a>
                       <a class="btn btn-danger btn-sm btn-flat" (click)="delete(item)"><div class="tools">

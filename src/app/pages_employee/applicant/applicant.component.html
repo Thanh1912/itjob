@@ -5,31 +5,24 @@
       Danh SachUng Tuyen
 
     </h1>
-    <ol class="breadcrumb">
-      <li><a href="#"><i class="fa fa-dashboard"></i> Level</a>
-      </li>
-      <li class="active">Here</li>
-    </ol>
+
   </section>
   <!-- Main content -->
   <section class="content">
 
-    <div class="container">
-      <!-- Table -->
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6">
-            <select class="form-control select2" style="width: 100%;">
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-6">
+          <select class="form-control select2" style="width: 100%;">
               <option selected="selected">Alabama</option>
               <option value="">Newest first</option>
               <option value="name">Sort by name</option>
               <option value="rating">Sort by rating</option>
             </select>
-          </div>
-          <!-- /.form-group -->
-          <div class="col-md-6">
-            <select class="form-control select2" style="width: 100%;">
-              <option selected="selected">Alabama</option>
+        </div>
+        <!-- /.form-group -->
+        <div class="col-md-6">
+          <select class="form-control select2" style="width: 100%;">
               <option value="">Filter by status</option>
               <option value="new">New</option>
               <option value="interviewed">Interviewed</option>
@@ -37,52 +30,53 @@
               <option value="hired">Hired</option>
               <option value="archived">Archived</option>
             </select>
-          </div>
-          <!-- /.form-group -->
         </div>
+        <!-- /.form-group -->
       </div>
+      <!-- Line chart -->
+      <div class="box box-primary" style="margin-top: 20px;">
+        <div class="box-body">
+          <div class="container">
+            <!-- Table -->
+            <!-- Applications -->
+            <div class="sixteen columns">
 
+              <!-- Application #1 -->
+              <div class="application">
+                <div class="app-content">
 
+                  <!-- Name / Avatar -->
+                  <div class="info">
+                    <img src="assets/images/profilepic2.jpg" alt="">
+                    <span>John Doe</span>
+                    <ul>
+                      <li><a href="#"><i class="fa fa-file-text"></i> Download CV</a>
+                      </li>
+                      <li><a href="#"><i class="fa fa-envelope"></i> Contact</a>
+                      </li>
+                    </ul>
+                  </div>
 
-      <!-- Applications -->
-      <div class="sixteen columns">
+                  <!-- Buttons -->
+                  <div class="buttons">
+                    <a (click)="edit()" class="btn btn-primary app-link"><i class="fa fa-pencil"></i> Edit</a>
+                    <a href="#two-1" class="btn btn-primary app-link"><i class="fa fa-sticky-note"></i> Add Note</a>
+                    <a href="#three-1" class="btn btn-primary app-link"><i class="fa fa-plus-circle"></i> Show Details</a>
+                  </div>
+                  <div class="clearfix"></div>
 
-        <!-- Application #1 -->
-        <div class="application">
-          <div class="app-content">
+                </div>
 
-            <!-- Name / Avatar -->
-            <div class="info">
-              <img src="assets/images/profilepic2.jpg" alt="">
-              <span>John Doe</span>
-              <ul>
-                <li><a href="#"><i class="fa fa-file-text"></i> Download CV</a>
-                </li>
-                <li><a href="#"><i class="fa fa-envelope"></i> Contact</a>
-                </li>
-              </ul>
-            </div>
+                <!--  Hidden Tabs -->
+                <div class="app-tabs" *ngIf="isedit">
 
-            <!-- Buttons -->
-            <div class="buttons">
-              <a href="#one-1" class="button gray app-link"><i class="fa fa-pencil"></i> Edit</a>
-              <a href="#two-1" class="button gray app-link"><i class="fa fa-sticky-note"></i> Add Note</a>
-              <a href="#three-1" class="button gray app-link"><i class="fa fa-plus-circle"></i> Show Details</a>
-            </div>
-            <div class="clearfix"></div>
+                  <a class="close-tab btn btn-primary" (click)="remove()"><i class="fa fa-close"></i></a>
 
-          </div>
+                  <!-- First Tab --> 
+                  <div class="app-tab-content col-lg-10" id="one-1">
 
-          <!--  Hidden Tabs -->
-          <div class="app-tabs">
-
-            <a href="#" class="close-tab button gray"><i class="fa fa-close"></i></a>
-
-            <!-- First Tab -->
-            <div class="app-tab-content" id="one-1">
-
-              <div class="select-grid">
-                <select data-placeholder="Application Status" class="chosen-select-no-single form-control select2">
+                    <div class="select-grid">
+                      <select data-placeholder="Application Status" class="chosen-select-no-single form-control select2">
                   <option value="">Application Status</option>
                   <option value="new">New</option>
                   <option value="interviewed">Interviewed</option>
@@ -90,95 +84,90 @@
                   <option value="hired">Hired</option>
                   <option value="archived">Archived</option>
                 </select>
+                    </div>
+
+                    <div class="select-grid">
+
+                    </div>
+
+                    <div class="clearfix"></div>
+                    <a href="#" class="button margin-top-15btn btn-primary">Save</a>
+                    <a href="#" class="btn btn-primary margin-top-15 delete-application">Delete this application</a>
+
+                  </div>
+
+                  <!-- Second Tab -->
+                  <div class="app-tab-content col-lg-10" id="two-1">
+                    <textarea placeholder="Private note regarding this application" class="form-control"></textarea>
+                    <a href="#" class="button margin-top-15 btn ">Add Note</a>
+                  </div>
+
+
+                  <!-- Third Tab -->
+                  <div class="app-tab-content col-lg-10" id="three-1">
+                    <i>Full Name:</i>
+                    <span>John Doe</span>
+
+                    <i>Email:</i>
+                    <span><a href="/cdn-cgi/l/email-protection#a4cecbccca8ac0cbc1e4c1dcc5c9d4c8c18ac7cbc9"><span class="__cf_email__" data-cfemail="73191c1b1d5d171c1633160b121e031f165d101c1e">[email&#160;protected]</span>
+
+                    </a>
+                    </span>
+
+                    <i>Message:</i>
+                    <span>Praesent efficitur dui eget condimentum viverra. Sed non maximus ipsum, non consequat nulla. Vivamus nec convallis nisi, sit amet egestas magna. Quisque vulputate lorem sit amet ornare efficitur. Duis aliquam est elit, sed tincidunt enim commodo sed. Fusce tempus magna id sagittis laoreet. Proin porta luctus ante eu ultrices. Sed porta consectetur purus, rutrum tincidunt magna dictum tempus. </span>
+                  </div>
+
+                </div>
+
+                <!-- Footer -->
+
+                <div class="app-footer box-footer ">
+                  <ul style="margin-right:72px;">
+                    <li><i class="fa fa-file-text-o"></i> New</li>
+                    <li><i class="fa fa-calendar"></i> September 24, 2015</li>
+                  </ul>
+                  <div class="clearfix"></div>
+                </div>
               </div>
 
-              <div class="select-grid">
-                <input type="number" min="1" max="5" class="form-control" placeholder="Rating (out of 5)">
-              </div>
 
-              <div class="clearfix"></div>
-              <a href="#" class="button margin-top-15btn btn-primary">Save</a>
-              <a href="#" class="button gray margin-top-15 delete-application">Delete this application</a>
+              <!-- Application #2 -->
+              <div class="application">
+                <div class="app-content">
 
-            </div>
+                  <!-- Name / Avatar -->
+                  <div class="info">
+                    <img src="assets/images/profilepic2.jpg" alt="">
+                    <span><a href="#">Tom Smith</a></span>
+                    <ul>
+                      <li><a href="#"><i class="fa fa-file-text"></i> Download CV</a>
+                      </li>
+                      <li><a href="#"><i class="fa fa-envelope"></i> Contact</a>
+                      </li>
+                    </ul>
+                  </div>
 
-            <!-- Second Tab -->
-            <div class="app-tab-content" id="two-1">
-              <textarea placeholder="Private note regarding this application"></textarea>
-              <a href="#" class="button margin-top-15 btn ">Add Note</a>
-            </div>
+                  <!-- Buttons -->
+                  <div class="buttons">
+                    <a href="#one-2" class="btn btn-primary app-link"><i class="fa fa-pencil"></i> Edit</a>
+                    <a href="#two-2" class="btn btn-primary app-link"><i class="fa fa-sticky-note"></i> Add Note</a>
+                    <a href="#three-2" class="btn btn-primary app-link"><i class="fa fa-plus-circle"></i> Show Details</a>
+                  </div>
+                  <div class="clearfix"></div>
 
-            <!-- Third Tab -->
-            <div class="app-tab-content" id="three-1">
-              <i>Full Name:</i>
-              <span>John Doe</span>
+                </div>
 
-              <i>Email:</i>
-              <span><a href="/cdn-cgi/l/email-protection#a4cecbccca8ac0cbc1e4c1dcc5c9d4c8c18ac7cbc9"><span class="__cf_email__" data-cfemail="73191c1b1d5d171c1633160b121e031f165d101c1e">[email&#160;protected]</span>
-          
-              </a>
-              </span>
+                <!--  Hidden Tabs -->
+                <div class="app-tabs">
 
-              <i>Message:</i>
-              <span>Praesent efficitur dui eget condimentum viverra. Sed non maximus ipsum, non consequat nulla. Vivamus nec convallis nisi, sit amet egestas magna. Quisque vulputate lorem sit amet ornare efficitur. Duis aliquam est elit, sed tincidunt enim commodo sed. Fusce tempus magna id sagittis laoreet. Proin porta luctus ante eu ultrices. Sed porta consectetur purus, rutrum tincidunt magna dictum tempus. </span>
-            </div>
+                  <a href="#" class="close-tab btn btn-primary btn btn-blue"><i class="fa fa-close"></i></a>
 
-          </div>
+                  <!-- First Tab -->
+                  <div class="app-tab-content" id="one-2">
 
-          <!-- Footer -->
-          <div class="app-footer">
-
-            <div class="rating no-stars">
-              <div class="star-rating"></div>
-              <div class="star-bg"></div>
-            </div>
-
-            <ul>
-              <li><i class="fa fa-file-text-o"></i> New</li>
-              <li><i class="fa fa-calendar"></i> September 24, 2015</li>
-            </ul>
-            <div class="clearfix"></div>
-
-          </div>
-        </div>
-
-
-        <!-- Application #2 -->
-        <div class="application">
-          <div class="app-content">
-
-            <!-- Name / Avatar -->
-            <div class="info">
-              <img src="assets/images/profilepic2.jpg" alt="">
-              <span><a href="#">Tom Smith</a></span>
-              <ul>
-                <li><a href="#"><i class="fa fa-file-text"></i> Download CV</a>
-                </li>
-                <li><a href="#"><i class="fa fa-envelope"></i> Contact</a>
-                </li>
-              </ul>
-            </div>
-
-            <!-- Buttons -->
-            <div class="buttons">
-              <a href="#one-2" class="button gray app-link"><i class="fa fa-pencil"></i> Edit</a>
-              <a href="#two-2" class="button gray app-link"><i class="fa fa-sticky-note"></i> Add Note</a>
-              <a href="#three-2" class="button gray app-link"><i class="fa fa-plus-circle"></i> Show Details</a>
-            </div>
-            <div class="clearfix"></div>
-
-          </div>
-
-          <!--  Hidden Tabs -->
-          <div class="app-tabs">
-
-            <a href="#" class="close-tab button gray btn btn-blue"><i class="fa fa-close"></i></a>
-
-            <!-- First Tab -->
-            <div class="app-tab-content" id="one-2">
-
-              <div class="select-grid">
-                <select data-placeholder="Application Status" class="chosen-select-no-single form-control">
+                    <div class="select-grid">
+                      <select data-placeholder="Application Status" class="chosen-select-no-single form-control">
                   <option value="">Application Status</option>
                   <option value="new">New</option>
                   <option value="interviewed">Interviewed</option>
@@ -186,152 +175,69 @@
                   <option value="hired">Hired</option>
                   <option value="archived">Archived</option>
                 </select>
+                    </div>
+
+                    <div class="select-grid">
+                      <a href="#" class="btn btn-primary margin-top-15 delete-application">Delete this application</a>
+                    </div>
+
+                    <div class="clearfix"></div>
+                    <a href="#" class="button margin-top-15 btn btn-primary">Save</a>
+
+
+                  </div>
+
+                  <!-- Second Tab -->
+                  <div class="app-tab-content" id="two-2">
+                    <textarea placeholder="Private note regarding this application" class="form-control"></textarea>
+                    <a href="#" class="button margin-top-15">Add Note</a>
+                  </div>
+
+                  <!-- Third Tab -->
+                  <div class="app-tab-content" id="three-2">
+                    <i>Full Name:</i>
+                    <span>Tom Smith</span>
+
+                    <i>Email:</i>
+                    <span><a href="/cdn-cgi/l/email-protection#4d392220633e202439250d28352c203d2128632e2220"><span class="__cf_email__" data-cfemail="087c6765267b65617c60486d70696578646d266b6765">[email&#160;protected]</span>
+
+                    </a>
+                    </span>
+
+                    <i>Message:</i>
+                    <span>Morbi non pharetra quam. Pellentesque eget massa dolor. Sed vitae placerat eros, quis aliquet purus. Donec feugiat sapien urna, at sagittis libero pellentesque in. Praesent efficitur dui eget condimentum viverra. Sed non maximus ipsum, non consequat nulla. Vivamus nec convallis nisi, sit amet egestas magna. Quisque vulputate lorem sit amet ornare efficitur. Duis aliquam est elit, sed tincidunt enim commodo sed. Fusce tempus magna id sagittis laoreet. Proin porta luctus ante eu ultrices. Sed porta consectetur purus, rutrum tincidunt magna dictum tempus. </span>
+                  </div>
+
+                </div>
+
+                <!-- Footer -->
+                <div class="app-footer">
+
+
+                  <ul style="margin-right:78px;">
+                    <li><i class="fa fa-file-text-o"></i> Interviewed</li>
+                    <li><i class="fa fa-calendar"></i> September 22, 2015</li>
+                  </ul>
+                  <div class="clearfix"></div>
+
+                </div>
               </div>
-
-              <div class="select-grid">
-                <input type="number" min="1" max="5" class="form-control" placeholder="Rating (out of 5)">
-              </div>
-
-              <div class="clearfix"></div>
-              <a href="#" class="button margin-top-15 btn btn-primary">Save</a>
-              <a href="#" class="button gray margin-top-15 delete-application">Delete this application</a>
-
             </div>
-
-            <!-- Second Tab -->
-            <div class="app-tab-content" id="two-2">
-              <textarea placeholder="Private note regarding this application"></textarea>
-              <a href="#" class="button margin-top-15">Add Note</a>
-            </div>
-
-            <!-- Third Tab -->
-            <div class="app-tab-content" id="three-2">
-              <i>Full Name:</i>
-              <span>Tom Smith</span>
-
-              <i>Email:</i>
-              <span><a href="/cdn-cgi/l/email-protection#4d392220633e202439250d28352c203d2128632e2220"><span class="__cf_email__" data-cfemail="087c6765267b65617c60486d70696578646d266b6765">[email&#160;protected]</span>
-              
-              </a>
-              </span>
-
-              <i>Message:</i>
-              <span>Morbi non pharetra quam. Pellentesque eget massa dolor. Sed vitae placerat eros, quis aliquet purus. Donec feugiat sapien urna, at sagittis libero pellentesque in. Praesent efficitur dui eget condimentum viverra. Sed non maximus ipsum, non consequat nulla. Vivamus nec convallis nisi, sit amet egestas magna. Quisque vulputate lorem sit amet ornare efficitur. Duis aliquam est elit, sed tincidunt enim commodo sed. Fusce tempus magna id sagittis laoreet. Proin porta luctus ante eu ultrices. Sed porta consectetur purus, rutrum tincidunt magna dictum tempus. </span>
-            </div>
-
           </div>
 
-          <!-- Footer -->
-          <div class="app-footer">
-
-            <div class="rating five-stars">
-              <div class="star-rating"></div>
-              <div class="star-bg"></div>
-            </div>
-
-            <ul>
-              <li><i class="fa fa-file-text-o"></i> Interviewed</li>
-              <li><i class="fa fa-calendar"></i> September 22, 2015</li>
-            </ul>
-            <div class="clearfix"></div>
-
-          </div>
         </div>
-
-
-        <!-- Application #3 -->
-        <div class="application">
-          <div class="app-content">
-
-            <!-- Name / Avatar -->
-            <div class="info">
-              <img src="assets/images/profilepic2.jpg" alt="">
-              <span>Kathy Berry</span>
-              <ul>
-                <li><a href="#"><i class="fa fa-file-text"></i> Download CV</a>
-                </li>
-                <li><a href="#"><i class="fa fa-envelope"></i> Contact</a>
-                </li>
-              </ul>
-            </div>
-
-            <!-- Buttons -->
-            <div class="buttons">
-              <a href="#one-3" class="button gray app-link"><i class="fa fa-pencil"></i> Edit</a>
-              <a href="#two-3" class="button gray app-link"><i class="fa fa-sticky-note"></i> Add Note</a>
-              <a href="#three-3" class="button gray app-link"><i class="fa fa-plus-circle"></i> Show Details</a>
-            </div>
-            <div class="clearfix"></div>
-
-          </div>
-
-          <!--  Hidden Tabs -->
-          <div class="app-tabs">
-
-            <a href="#" class="close-tab button gray"><i class="fa fa-close"></i></a>
-
-            <!-- First Tab -->
-            <div class="app-tab-content" id="one-3">
-
-              <div class="select-grid">
-                <select data-placeholder="Application Status" class="chosen-select-no-single">
-                  <option value="">Application Status</option>
-                  <option value="new">New</option>
-                  <option value="interviewed">Interviewed</option>
-                  <option value="offer">Offer extended</option>
-                  <option value="hired">Hired</option>
-                  <option value="archived">Archived</option>
-                </select>
-              </div>
-
-              <div class="select-grid">
-                <input type="number" min="1" max="5" placeholder="Rating (out of 5)">
-              </div>
-
-              <div class="clearfix"></div>
-              <a href="#" class="button margin-top-15btn btn-primary">Save</a>
-              <a href="#" class="button gray margin-top-15 delete-application btn btn-danger">Delete this application</a>
-
-            </div>
-
-            <!-- Second Tab -->
-            <div class="app-tab-content" id="two-3">
-              <textarea placeholder="Private note regarding this application" class="form-control "></textarea>
-              <a href="#" class="button margin-top-15 btn btn-primary">Add Note</a>
-            </div>
-
-            <!-- Third Tab -->
-            <div class="app-tab-content" id="three-3">
-              <i>Full Name:</i>
-              <span>Kathy Berry</span>
-
-              <i>Email:</i>
-              <span><a href="/cdn-cgi/l/email-protection#761d17021e0f58141304040f36130e171b061a135815191b"><span class="__cf_email__" data-cfemail="b1dad0c5d9c89fd3d4c3c3c8f1d4c9d0dcc1ddd49fd2dedc">[email&#160;protected]</span>
-  
-              </a>
-              </span>
-            </div>
-
-          </div>
-
-          <!-- Footer -->
-          <div class="app-footer">
-
-            <div class="rating four-stars">
-              <div class="star-rating"></div>
-              <div class="star-bg"></div>
-            </div>
-
-            <ul>
-              <li><i class="fa fa-file-text-o"></i> Interviewed</li>
-              <li><i class="fa fa-calendar"></i> September 26, 2015</li>
-            </ul>
-            <div class="clearfix"></div>
-
-          </div>
-        </div>
+        <!-- /.box-body-->
       </div>
+      <!-- /.box -->
+
     </div>
+
+
+
+
+
+
+
   </section>
   <!-- /.content -->
 </div>

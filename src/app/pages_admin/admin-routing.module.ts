@@ -13,6 +13,7 @@ import { CompanysizeComponent } from './companysize/companysize.component';
 import { DistrictComponent } from './district/district.component';
 import { WorkplaceComponent } from './workplace/workplace.component';
 import { CountryComponent } from './country/country.component';
+import { SliderComponent } from './slider/slider.component';
 const adminRoutes: Routes = [
   {
     path: '',
@@ -32,6 +33,7 @@ const adminRoutes: Routes = [
           { path: 'district', component: DistrictComponent },
           { path: 'workplace', component: WorkplaceComponent },
           { path: 'country', component: CountryComponent },
+          { path: 'add-slider', component: SliderComponent },
 
           { path: '', component: AdminHomeComponent }
         ]

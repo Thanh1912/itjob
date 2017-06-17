@@ -27,6 +27,7 @@ import { CompanysizeService } from './../services/companysize.service';
 import { countryService } from './../services/country.service';
 import { PagerService } from './../_services/pager.service';
 import { KeywordService } from './../services/keyword.service';
+import { SliderComponent } from './slider/slider.component';
 
 //======================Service=============================
 @NgModule({
@@ -50,6 +51,7 @@ import { KeywordService } from './../services/keyword.service';
     DistrictComponent,
     WorkplaceComponent,
     CountryComponent,
+    SliderComponent,
     
   ],
    providers: [ToastComponent,ErrorService,AuthenticationService,PagerService,KeywordService,WorkplaceService, DistrictService,countryService,QuanliThanhvienquantriService,CompanysizeService,QuanliNtdService],

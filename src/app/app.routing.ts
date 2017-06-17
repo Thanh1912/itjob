@@ -1,6 +1,6 @@
 import { Routes, RouterModule } from '@angular/router';
 import { ModuleWithProviders } from '@angular/core';
-
+import { LoginNtdComponent } from './login-ntd/login-ntd.component';
 export const routes: Routes = [
   { path: '', redirectTo: 'pages', pathMatch: 'full' },
   {
@@ -12,7 +12,11 @@ export const routes: Routes = [
     path: 'admin',
     loadChildren: 'app/pages_admin/admin-login/admin-login.module#AdminLoginModule',
   },
-
+    //Login admin
+ {
+    path: 'login-ntd',
+   component:LoginNtdComponent
+  },
   //admin
  {
     path: 'pages_admin',

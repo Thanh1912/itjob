@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./applicant.component.css']
 })
 export class ApplicantComponent implements OnInit {
-
+  isedit=false;
   constructor() { }
 
   ngOnInit() {
   }
-
+edit(){
+   this.isedit=true;
+}
+remove(){
+   this.isedit=false;
+}
 }

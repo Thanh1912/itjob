@@ -6414,7 +6414,7 @@ ul.footer-links {
 .app-tabs a.close-tab {
     position: absolute;
     top: 0;
-    right: 0;
+    right: 12px;
     z-index: 9;
     line-height: 32px;
     width: 32px;
@@ -6512,7 +6512,7 @@ ul.footer-links {
 
 .app-content .buttons {
     top: 0;
-    right: 40px;
+    right: 125px;
     display: inline-block;
     top: 52%;
     -webkit-transform: translateY(-50%);
