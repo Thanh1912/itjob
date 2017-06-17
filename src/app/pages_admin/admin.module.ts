@@ -28,6 +28,8 @@ import { countryService } from './../services/country.service';
 import { PagerService } from './../_services/pager.service';
 import { KeywordService } from './../services/keyword.service';
 import { SliderComponent } from './slider/slider.component';
+import { ListJobComponent } from './list-job/list-job.component';
+import { CatalogJobComponent } from './catalog-job/catalog-job.component';
 
 //======================Service=============================
 @NgModule({
@@ -52,6 +54,8 @@ import { SliderComponent } from './slider/slider.component';
     WorkplaceComponent,
     CountryComponent,
     SliderComponent,
+    ListJobComponent,
+    CatalogJobComponent,
     
   ],
    providers: [ToastComponent,ErrorService,AuthenticationService,PagerService,KeywordService,WorkplaceService, DistrictService,countryService,QuanliThanhvienquantriService,CompanysizeService,QuanliNtdService],

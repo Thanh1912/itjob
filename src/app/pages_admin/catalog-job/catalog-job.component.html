@@ -3,21 +3,27 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-     Kích Thước công Ty
-
+CATALOG JOBS
+  
     </h1>
+
   </section>
+
   <!-- Main content -->
   <section class="content">
+
     <!-- Default box -->
     <div class="box">
       <div class="box-header with-border">
-        <h3 class="box-title">Title</h3>
+     
         <div class="box-tools pull-right">
-       
+         
         </div>
       </div>
       <div class="box-body">
+
+
+
         <div class="card" *ngIf="isLoading">
           <h4 class="card-header">Loading...</h4>
           <div class="card-block text-xs-center">
@@ -28,25 +34,29 @@
 
         <!-- *ngIf="!isLoading"-->
         <div class="card">
-          <h4 class="card-header">Current ({{cats.length}})</h4>
+          <h4 class="card-header"> ({{cats.length}})</h4>
           <div class="card-block">
             <table class="table table-bordered table-striped">
               <thead class="thead-default">
                 <tr>
-                  <th>Name</th>
-
+                  <th>Name Job</th>
+<th>Keyword</th>
                   <th>Actions</th>
                 </tr>
               </thead>
               <tbody *ngIf="cats.length === 0">
                 <tr>
-                  <td colspan="4">There are no cats in the DB. Add a new cat below.</td>
+                  <td colspan="4">No data</td>
                 </tr>
               </tbody>
               <tbody *ngIf="!isEditing">
                 <tr *ngFor="let cat of pagedItems">
                   <td>{{cat.name}}</td>
-
+                    <td>
+                       <select  class="form-control">
+                       <option *ngFor="let item of item_Workplace" disabled [selected]="cat.workplace==item._id" [value]="item._id">{{item.name}}</option>
+                 </select>
+                     </td>
                   <td>
                     <button class="btn btn-sm btn-warning" (click)="enableEditing(cat)"><i class="fa fa-pencil"></i> Edit</button>                    <button class="btn btn-sm btn-danger" (click)="deleteCat(cat)"><i class="fa fa-trash"></i> Delete</button>
                   </td>
@@ -60,10 +70,16 @@
               <tbody *ngIf="isEditing">
                 <tr>
                   <td colspan="4">
+                    <select [(ngModel)]="id_w" (change)="changeedit($event.target.value)"    class="form-control">
+                       <option *ngFor="let item of item_Workplace"  [selected]="item._id==cat.workplace" [value]="item._id">{{item.name}}</option>
+                 </select>
                     <form class="form-inline" #form="ngForm" (ngSubmit)="editCat(cat)" style="display:inline">
                       <div class="form-group">
                         <input class="form-control" type="text" name="name" [(ngModel)]="cat.name" placeholder="Name" required>
                       </div>
+
+
+
                       <button class="btn btn-sm btn-primary" type="submit" [disabled]="!form.form.valid"><i class="fa fa-floppy-o"></i> Save</button>
                     </form>
                     <button class="btn btn-sm btn-warning" (click)="cancelEditing()"><i class="fa fa-times"></i> Cancel</button>
@@ -93,12 +109,21 @@
         <div class="card" *ngIf="!isEditing">
           <h4 class="card-header">Add new </h4>
           <div class="card-block">
-            <form class="form-inline" [formGroup]="addCatForm" (ngSubmit)="addCat()" style="text-align:center">
+
+           <div class="form-group col-md-6">
+               <select [ngModel]="selectedItem"  (change)="onChange($event.target.value)" class="form-control">
+
+                       <option *ngFor="let item of item_Workplace" [value]="item._id">{{item.name}}</option>
+                 </select>
+              </div>
+            <form class="form-inline col-md-6" [formGroup]="addCatForm" (ngSubmit)="addCat()" style="text-align:center">
               <div class="form-group">
                 <input class="form-control" type="text" name="name" formControlName="name" placeholder="Name">
               </div>
               <button class="btn btn-primary" type="submit" [disabled]="!addCatForm.valid"><i class="fa fa-floppy-o"></i> Add</button>
             </form>
+
+
           </div>
         </div>
 

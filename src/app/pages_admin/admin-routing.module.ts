@@ -14,6 +14,8 @@ import { DistrictComponent } from './district/district.component';
 import { WorkplaceComponent } from './workplace/workplace.component';
 import { CountryComponent } from './country/country.component';
 import { SliderComponent } from './slider/slider.component';
+import { ListJobComponent } from './list-job/list-job.component';
+import { CatalogJobComponent } from './catalog-job/catalog-job.component';
 const adminRoutes: Routes = [
   {
     path: '',
@@ -34,6 +36,8 @@ const adminRoutes: Routes = [
           { path: 'workplace', component: WorkplaceComponent },
           { path: 'country', component: CountryComponent },
           { path: 'add-slider', component: SliderComponent },
+          { path: 'List-Job', component: ListJobComponent },
+           { path: 'Catalog-Job', component: CatalogJobComponent },
 
           { path: '', component: AdminHomeComponent }
         ]
