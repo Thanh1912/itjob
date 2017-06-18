@@ -1,6 +1,8 @@
 import { Routes, RouterModule } from '@angular/router';
 import { ModuleWithProviders } from '@angular/core';
 import { LoginNtdComponent } from './login-ntd/login-ntd.component';
+import { AnimationComponent } from './animation/animation.component';
+import { DemocodeComponent } from './democode/democode.component';
 export const routes: Routes = [
   { path: '', redirectTo: 'pages', pathMatch: 'full' },
   {
@@ -17,6 +19,17 @@ export const routes: Routes = [
     path: 'login-ntd',
     component: LoginNtdComponent
   },
+   {
+    path: 'democode',
+    component: DemocodeComponent
+  },
+    //animation
+  {
+    path: 'animation',
+    component: AnimationComponent
+  },
+  
+  
   //admin
   {
     path: 'pages_admin',

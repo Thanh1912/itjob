@@ -1,0 +1,8 @@
+<button (click)="show()">Delete</button>
+<div class="box box-danger box-comfirm" [@slideInOut] [@movePanel]  *ngIf="isshow">
+              <div class="box-body">
+            <p>Are you sure you want to do that?</p>
+    <button class="btn btn-flat yes" (click)="hidden()">Yes</button>
+    <button class="btn btn-flat no" (click)="hiddenNo()">No</button>
+              </div><!-- /.box-body -->
+            </div>

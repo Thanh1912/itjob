@@ -1,0 +1,12 @@
+.box-comfirm {
+    width: 300px;
+    position: relative;
+    margin-left: 500px;
+        text-align: center;
+        -webkit-border-radius: 32px 32px 32px 32px;
+border-radius: 32px 32px 32px 32px;
+}
+.box-comfirm .yes{
+    background-color: red;
+    color: white
+} 
