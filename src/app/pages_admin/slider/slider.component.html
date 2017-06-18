@@ -44,22 +44,21 @@
                   <td colspan="4">There are no cats in the DB. Add a new cat below.</td>
                 </tr>
               </tbody>
-              <tbody *ngIf="!isEditing">
-                <tr *ngFor="let cat of pagedItems">
-                  <td>{{cat.name}}</td>
-                  <td>{{cat.name}}</td>
-                  <td>{{cat.name}}</td>
+              <tbody>
+                <tr>
+                  <td>btn btn-sm btn-warning</td>
+                  <td>btn btn-sm btn-warning</td>
+                  <td>btn btn-sm btn-warning</td>
+                  <td>btn btn-sm btn-warning</td>
                   <td>
-                    <button class="btn btn-sm btn-warning" (click)="enableEditing(cat)"><i class="fa fa-pencil"></i> Edit</button>                    <button class="btn btn-sm btn-danger" (click)="deleteCat(cat)"><i class="fa fa-trash"></i> Edit</button>
+                    <button class="btn btn-sm btn-warning" (click)="enableEditing(cat)"><i class="fa fa-pencil"></i> Edit</button>                    <button class="btn btn-sm btn-danger" (click)="deleteCat(cat)"><i class="fa fa-trash"></i> EDIT</button>
+                    <button class="btn btn-sm btn-warning" (click)="enableEditing(cat)"><i class="fa fa-pencil"></i> Edit</button>                    <button class="btn btn-sm btn-danger" (click)="deleteCat(cat)"><i class="fa fa-trash"></i> Active</button>
                     <button class="btn btn-sm btn-warning" (click)="enableEditing(cat)"><i class="fa fa-pencil"></i> Edit</button>                    <button class="btn btn-sm btn-danger" (click)="deleteCat(cat)"><i class="fa fa-trash"></i> Delete</button>
                   </td>
                 </tr>
-
               </tbody>
               <tbody>
-                <!-- pager -->
-
-
+                <!-- pager *ngIf="!isEditing" *ngFor="let cat of pagedItems"-->
               </tbody>
               <tbody *ngIf="isEditing">
                 <tr>
@@ -150,7 +149,7 @@
                             <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
                             <td> <button type="button" class="btn btn-info btn-flat ">Add Job</button></td>
                           </tr>
-                           <tr>
+                          <tr>
                             <td><img src="https://cdn.itviec.com/system/production/employers/logos/1982/propzy-vi-t-nam-logo-65-65.png?1454113573"
                                 class="user-image" alt="User Image"></td>
                             <td>
@@ -161,7 +160,7 @@
                             <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
                             <td> <button type="button" class="btn btn-info btn-flat ">Add Job</button></td>
                           </tr>
-                           <tr>
+                          <tr>
                             <td><img src="https://cdn.itviec.com/system/production/employers/logos/1982/propzy-vi-t-nam-logo-65-65.png?1454113573"
                                 class="user-image" alt="User Image"></td>
                             <td>
@@ -172,7 +171,7 @@
                             <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
                             <td> <button type="button" class="btn btn-info btn-flat ">Add Job</button></td>
                           </tr>
-                           <tr>
+                          <tr>
                             <td><img src="https://cdn.itviec.com/system/production/employers/logos/1982/propzy-vi-t-nam-logo-65-65.png?1454113573"
                                 class="user-image" alt="User Image"></td>
                             <td>
@@ -183,7 +182,7 @@
                             <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
                             <td> <button type="button" class="btn btn-info btn-flat ">Add Job</button></td>
                           </tr>
-                            
+
                         </tbody>
                       </table>
                     </div>

@@ -4,7 +4,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './admin.component';
 import { AdminHomeComponent } from './admin-home/admin-home.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
-import { AddBlogComponent } from './add-blog/add-blog.component';
 import { DuyetNhaTuyenDungComponent } from './duyet-nha-tuyen-dung/duyet-nha-tuyen-dung.component';
 import { QuanLiNganhNgheComponent } from './quan-li-nganh-nghe/quan-li-nganh-nghe.component';
 import { QuanLiDiaDiemComponent } from './quan-li-dia-diem/quan-li-dia-diem.component';

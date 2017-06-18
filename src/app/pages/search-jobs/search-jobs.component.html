@@ -34,7 +34,7 @@
                             <a href="#" class="mj_mainbtn mj_btnyellow" data-text="search"><span>search</span></a>
                         </div>
                     </form>
-                    <a class="search-bottom-link pull-left" href="mod-en-advanced_search.html">Advanced search</a>
+                    <a class="search-bottom-link pull-left" (click)="clickav()">Advanced search</a>
                 </div>
             </div>
         </div>
@@ -42,7 +42,7 @@
     <div class="mj_filter_section">
         <div class="container">
 
-            <div class="row">
+            <div *ngIf="isadvance" class="row">
                 <div class="mj_filter_slider">
                     <form>
                         <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">

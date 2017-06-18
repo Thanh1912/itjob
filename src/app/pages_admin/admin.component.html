@@ -17,7 +17,7 @@
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
           <li class="dropdown tasks-menu open">
-            <a routerLink="/" style="background-color: #d51212;" data-toggle="dropdown" aria-expanded="true">
+            <a (click)="Gohome()" style="background-color: #d51212;" data-toggle="dropdown" aria-expanded="true">
                   <i class="fa fa-flag-o"></i>
                   <span>Open JOBIT</span> 
                 </a>
@@ -93,7 +93,7 @@
         <li class="treeview">
           <a><i class="fa fa-gears"></i> <span>SETTING</span> <i class="fa fa-angle-left pull-right"></i></a>
           <ul class="treeview-menu">
-            <li><a routerLink="/pages_admin/quan-li-nganh-nghe"> <i class="fa fa-tags"></i>Catalog Job</a></li>
+            <li><a routerLink="/pages_admin/Catalog-Job"> <i class="fa fa-tags"></i>Catalog Job</a></li>
             <li><a routerLink="/pages_admin/quan-li-nganh-nghe"> <i class="fa  fa-tag"></i>KeyWork</a></li>
             <li><a routerLink="/pages_admin/district">  <i class="fa fa-street-view"></i>District</a></li>
             <li><a routerLink="/pages_admin/workplace"> <i class="fa fa-map"></i>Workplace</a></li>

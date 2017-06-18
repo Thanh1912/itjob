@@ -5,7 +5,7 @@ import {AdminComponent}           from './admin.component';
 import {AdminHomeComponent}       from './admin-home/admin-home.component';
 import {AdminRoutingModule}       from './admin-routing.module';
 import {AdminLoginComponent}       from './admin-login/admin-login.component';
-import {AddBlogComponent} from './add-blog/add-blog.component';
+
 import {DuyetNhaTuyenDungComponent} from './duyet-nha-tuyen-dung/duyet-nha-tuyen-dung.component';
 import { QuanLiNganhNgheComponent } from './quan-li-nganh-nghe/quan-li-nganh-nghe.component';
 import { QuanLiDiaDiemComponent } from './quan-li-dia-diem/quan-li-dia-diem.component';
@@ -44,7 +44,6 @@ import { CatalogJobComponent } from './catalog-job/catalog-job.component';
     AdminComponent,
     AdminHomeComponent,
     AdminLoginComponent,
-    AddBlogComponent,
     DuyetNhaTuyenDungComponent,
     QuanLiNganhNgheComponent,
     QuanLiDiaDiemComponent,

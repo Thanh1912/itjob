@@ -14,13 +14,15 @@ import { Router } from '@angular/router';
 export class AdminComponent implements OnInit {
   islogin: boolean = false;
   username: string = null;
-  constructor(private Auth_Service: AuthenticationService, private _Router: Router) { }
+  constructor(private Auth_Service: AuthenticationService,private router:Router, private _Router: Router) { }
   logout() {
     this.Auth_Service.logout();
     alert(' da thoat!');
     this._Router.navigate(['/login-admin']);
   }
-
+   Gohome(){
+    this.router.navigate(['/pages/home']);
+  }
   ngOnInit() {
     if (localStorage.getItem('id_token') != null && localStorage.getItem('currentUserRole') == 'admin') {
       this.username = localStorage.getItem('usernameAdmin');
