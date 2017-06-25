@@ -1,7 +1,10 @@
-<button (click)="show()">Delete</button>
-<div class="box box-danger box-comfirm" [@slideInOut] [@movePanel]  *ngIf="isshow">
+<button class="btn btn-danger btn-flat" (click)="show()">Delete</button>
+<div class="box box-danger box-comfirm" [@slideInOut] [@movePanel]  *ngIf="isShow">
               <div class="box-body">
-            <p>Are you sure you want to do that?</p>
+                <div style="">
+               <i class="fa fa-5x fa-trash-o" style="color:red" aria-hidden="true"></i>
+                </div>
+            <p class="swal2-title">Are you sure you want to do that?</p>
     <button class="btn btn-flat yes" (click)="hidden()">Yes</button>
     <button class="btn btn-flat no" (click)="hiddenNo()">No</button>
               </div><!-- /.box-body -->

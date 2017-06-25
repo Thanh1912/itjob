@@ -1,7 +1,7 @@
 <div class="clearfix"></div>
 
 <div class="mj_mapmarker">
-    <div id="map" style="position: relative; overflow: hidden;">
+    <div id="map" style="position: relative; overflow: hidden;margin-top: 100px;">
         <div style="height: 100%; width: 100%; position: absolute; top: 0px; left: 0px; background-color: rgb(229, 227, 223);">
             <div class="gm-err-container">
                 <div class="gm-err-content">
@@ -34,7 +34,15 @@
                             <a href="#" class="mj_mainbtn mj_btnyellow" data-text="search"><span>search</span></a>
                         </div>
                     </form>
-                    <a class="search-bottom-link pull-left" (click)="clickav()">Advanced search</a>
+                </div>
+                <div style="    position: absolute;
+    background-color: #9e5959;
+    padding-left: 20px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-right: 10px;
+    color: white;">
+                    <a class="search-bottom-link pull-left" style="color:white" (click)="clickav()">Advanced search</a>
                 </div>
             </div>
         </div>
@@ -79,7 +87,7 @@
                                     <option >$300</option>
                                 </select> Date
                                     </div>
-                                      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                         <select class="custom-select form-control" name="timepass">
                                     <option ><button  class="btn btn-flat">To day</button></option>
                                     <option ><button  class="btn btn-flat">To day</button></option>

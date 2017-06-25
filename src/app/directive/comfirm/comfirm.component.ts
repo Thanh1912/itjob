@@ -1,4 +1,4 @@
-import { Component, OnChanges, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnChanges, Output, Input, OnInit } from '@angular/core';
 import {
   trigger,
   state,
@@ -11,18 +11,18 @@ import {
   selector: 'app-comfirm',
   templateUrl: './comfirm.component.html',
   styleUrls: ['./comfirm.component.css'],
-   animations: [
-      trigger('movePanel', [
-            transition('void => *', [
-                animate(600, keyframes([
-                    style({opacity: 0, transform: 'translateY(-200px)', offset: 0}),
-                    style({opacity: 1, transform: 'translateY(25px)', offset: .75}),
-                    style({opacity: 1, transform: 'translateY(0)', offset: 1}),
-                ]))
-            ])
+  animations: [
+    trigger('movePanel', [
+      transition('void => *', [
+        animate(600, keyframes([
+          style({ opacity: 0, transform: 'translateY(-200px)', offset: 0 }),
+          style({ opacity: 1, transform: 'translateY(25px)', offset: .75 }),
+          style({ opacity: 1, transform: 'translateY(0)', offset: 1 }),
+        ]))
+      ])
 
-        ]),
-  trigger('slideInOut', [
+    ]),
+    trigger('slideInOut', [
       state('in', style({
         transform: 'translate3d(0, 0, 0)'
       })),
@@ -33,26 +33,36 @@ import {
       transition('out => in', animate('400ms ease-in-out'))
     ]),
 
-   ]
+  ]
 })
 export class ComfirmComponent implements OnInit {
-   yes=false;
-   isshow=false
+  @Input() isShow: boolean;
+  yes: boolean;
+  @Output() out = new EventEmitter<boolean>();
   constructor() { }
-
   ngOnInit() {
-   this.yes=false;
+    this.yes = false;
   }
-  show(){
-    this.isshow=true;
+
+  getYes() {
+    return this.yes;
   }
-  hidden(){
-    this.isshow=false;
-     this.yes=true;
+
+  getisShow() {
+    return this.yes;
   }
-   hiddenNo(){
-    this.isshow=false;
-     this.yes=false;
+  show() {
+    this.isShow = true;
+  }
+  hidden() {
+    this.out.emit(true);
+    this.isShow = false;
+    this.yes = true;
+  }
+  hiddenNo() {
+    this.out.emit(false);
+    this.isShow = false;
+    this.yes = false;
   }
 
 }

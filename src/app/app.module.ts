@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
@@ -12,30 +12,34 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AnimationComponent } from './animation/animation.component';
 import { DemocodeComponent } from './democode/democode.component';
 import { SearchCandidatesComponent } from './search-candidates/search-candidates.component';
-import { ToastComponent } from './directive/toast/toast.component';
+
 import { RateComponent } from './directive/rate/rate.component';
 import { ComfirmComponent } from './directive/comfirm/comfirm.component';//<======Animation
+import { ToastComponent } from './shared/toast/toast.component';
+import { SharedModule } from './shared/shared.module';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     Search2Component,
-  LoginNtdComponent,
-  AnimationComponent,
-  DemocodeComponent,
-  SearchCandidatesComponent,
-  ToastComponent,
-  RateComponent,
-  ComfirmComponent
+    LoginNtdComponent,
+    AnimationComponent,
+    DemocodeComponent,
+    SearchCandidatesComponent,
+    RateComponent,
+    ComfirmComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     routing,
+    SharedModule,
     BrowserAnimationsModule  //<======Animation
   ],
-  providers: [AuthenticationService,ErrorService],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  providers: [AuthenticationService, ErrorService, ToastComponent,ComfirmComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
