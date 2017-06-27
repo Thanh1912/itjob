@@ -16,13 +16,17 @@ import { DuyetntdPipe } from '../../Pipes/duyetntd.pipe';
 export class DuyetNhaTuyenDungComponent implements OnInit {
   //===Search====
   term: String;
-
+  action: String;
   //===Search====
   set_term(value) {
     this.term = value;
-    if(value===""){
-        this.getCats();
+    if (value === "") {
+      this.getCats();
     }
+  }
+  changeaction(value) {
+    this.action = value;
+    alert(this.action)
   }
   private allItems: any[];
   query: string = "";
@@ -63,6 +67,7 @@ export class DuyetNhaTuyenDungComponent implements OnInit {
 
   ngOnInit() {
     this.term = "";
+    this.action = "all";
     this.getCats();
     this.getcountry();
     this.getcompany();
@@ -123,13 +128,11 @@ export class DuyetNhaTuyenDungComponent implements OnInit {
     );
   }
 
-
-
   setPage(page: number) {
     if (page < 1 || page > this.pager.totalPages) {
       return;
     }
-   
+
 
     // get pager object from service
     this.pager = this.pagerService.getPager(this.allItems.length, page);

@@ -15,9 +15,7 @@
                         <option>option 1</option>
                         <option>option 2</option>
                         <option>option 3</option>
-                        <option>option 4</option>
-                        <option>option 5</option>
-                      </select>
+           </select>
         </div>
         <div class="col-xs-5">
           <button style="margin-top: 0px;" class="btn bg-olive btn-flat margin">Search</button>
@@ -61,19 +59,19 @@
                   <th>Actions</th>
                 </tr>
               </thead>
-              <tbody *ngIf="cats.length === 0">
+              <tbody *ngIf="items.length === 0">
                 <tr>
-                  <td colspan="4">There are no cats in the DB. Add a new cat below.</td>
+                  <td colspan="4">There are no items in the DB. Add a new item below.</td>
                 </tr>
               </tbody>
               <tbody *ngIf="!isEditing">
-                <tr *ngFor="let cat of pagedItems">
-                  <td>{{cat.name}}</td>
-                  <td>{{cat.name}}</td>
-                  <td>{{cat.name}}</td>
+                <tr *ngFor="let item of pagedItems">
+                  <td>{{item.name}}</td>
+                  <td>{{item.name}}</td>
+                  <td>{{item.name}}</td>
                   <td>
-                    <button class="btn btn-sm btn-warning" (click)="enableEditing(cat)"><i class="fa fa-pencil"></i> Edit</button>                    <button class="btn btn-sm btn-danger" (click)="deleteCat(cat)"><i class="fa fa-trash"></i> Edit</button>
-                    <button class="btn btn-sm btn-warning" (click)="enableEditing(cat)"><i class="fa fa-pencil"></i> Edit</button>                    <button class="btn btn-sm btn-danger" (click)="deleteCat(cat)"><i class="fa fa-trash"></i> Delete</button>
+                    <button class="btn btn-sm btn-warning" (click)="enableEditing(item)"><i class="fa fa-pencil"></i> Edit</button>                    <button class="btn btn-sm btn-danger" (click)="deleteitem(item)"><i class="fa fa-trash"></i> Edit</button>
+                    <button class="btn btn-sm btn-warning" (click)="enableEditing(item)"><i class="fa fa-pencil"></i> Edit</button>                    <button class="btn btn-sm btn-danger" (click)="deleteitem(item)"><i class="fa fa-trash"></i> Delete</button>
                   </td>
                 </tr>
 
@@ -86,9 +84,9 @@
               <tbody *ngIf="isEditing">
                 <tr>
                   <td colspan="4">
-                    <form class="form-inline" #form="ngForm" (ngSubmit)="editCat(cat)" style="display:inline">
+                    <form class="form-inline" #form="ngForm" (ngSubmit)="edititem(item)" style="display:inline">
                       <div class="form-group">
-                        <input class="form-control" type="text" name="name" [(ngModel)]="cat.name" placeholder="Name" required>
+                        <input class="form-control" type="text" name="name" [(ngModel)]="item.name" placeholder="Name" required>
                       </div>
                       <button class="btn btn-sm btn-primary" type="submit" [disabled]="!form.form.valid"><i class="fa fa-floppy-o"></i> Save</button>
                     </form>

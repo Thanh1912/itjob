@@ -8,13 +8,14 @@
     <div class="box-body">
       <div class="row">
         <div class="col-xs-3">
-          <input type="text" class="form-control" (keyup)="set_term(inputSearch.value)" #inputSearch  placeholder="Search Email,Company">
+          <input type="text" class="form-control" (keyup)="set_term(inputSearch.value)" #inputSearch placeholder="Search Email,Company">
         </div>
         <div class="col-xs-4">
-          <select class="form-control">
-                        <option>Email</option>
-                        <option>Company</option>
-                      </select>
+          <select class="form-control" #ac (change)="changeaction(ac.value)">
+                        <option value="all">ALL</option>
+                        <option  value="email">Email</option>
+                        <option  value="company">Company</option>
+           </select>
         </div>
         <div class="col-xs-5">
           <button style="margin-top: 0px;" class="btn bg-olive btn-flat margin">Search</button>
@@ -53,11 +54,11 @@
               </thead>
               <tbody *ngIf="cats.length === 0">
                 <tr>
-                  <td colspan="4">There are no in the DB. Add a new  below.</td>
+                  <td colspan="4">There are no in the DB. Add a new below.</td>
                 </tr>
               </tbody>
               <tbody *ngIf="!isEditing">
-                <tr *ngFor="let cat of pagedItems | search: term:allItems ">
+                <tr *ngFor="let cat of pagedItems | search: term:allItems:action ">
                   <td>{{cat.fullname}}</td>
                   <td>{{cat.email}}</td>
                   <td>{{cat.createddate |date}}</td>
