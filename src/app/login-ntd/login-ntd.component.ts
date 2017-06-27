@@ -2,7 +2,6 @@ import { Component, AfterViewInit, OnInit, ViewContainerRef, ElementRef } from '
 import { Router } from '@angular/router';
 import { User } from '../_services/user.model';
 import { AuthenticationService } from '../_services/index';
-import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-login-ntd',

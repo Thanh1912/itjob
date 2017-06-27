@@ -37,7 +37,7 @@ router.get('/:token', function(req, res) {
 // after getting token from email, check if it's still valid and then proceed in password reset by
 // getting the user new password, hashing it and then reset the passwordToken and passwordExpires fields to undefined
 
-router.post('/:token', function(req, res) {
+router.post('resetpassword/nhatuyendung/:token', function(req, res) {
   async.waterfall([
     function(done) {
       var token = req.params.token;
@@ -57,7 +57,6 @@ router.post('/:token', function(req, res) {
         user.password = passwordHash.generate(req.body.password);
         user.resetPasswordToken = undefined;
         user.resetPasswordExpires = undefined;
-
         user.save(function(err) {
           done(err, user);
         });
@@ -141,12 +140,6 @@ transporter.sendMail(mailOptions, function(error, info){
         return res.status(200).json({
           message: 'Success'
         })
-
-
-
-
-
-
      //========================Send Email ================
     }
   ], function(err) {

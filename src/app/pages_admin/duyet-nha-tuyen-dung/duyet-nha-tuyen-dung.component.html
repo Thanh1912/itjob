@@ -3,20 +3,17 @@
   <!-- Content Header (Page header) -->
   <div class="box box-danger">
     <div class="box-header with-border">
-    
+
     </div>
     <div class="box-body">
       <div class="row">
         <div class="col-xs-3">
-          <input type="text" class="form-control" placeholder="Search Job">
+          <input type="text" class="form-control" (keyup)="set_term(inputSearch.value)" #inputSearch  placeholder="Search Email,Company">
         </div>
         <div class="col-xs-4">
           <select class="form-control">
                         <option>Email</option>
                         <option>Company</option>
-                        <option>option 3</option>
-                        <option>option 4</option>
-                        <option>option 5</option>
                       </select>
         </div>
         <div class="col-xs-5">
@@ -56,11 +53,11 @@
               </thead>
               <tbody *ngIf="cats.length === 0">
                 <tr>
-                  <td colspan="4">There are no in the DB. Add a new cat below.</td>
+                  <td colspan="4">There are no in the DB. Add a new  below.</td>
                 </tr>
               </tbody>
               <tbody *ngIf="!isEditing">
-                <tr *ngFor="let cat of pagedItems">
+                <tr *ngFor="let cat of pagedItems | search: term:allItems ">
                   <td>{{cat.fullname}}</td>
                   <td>{{cat.email}}</td>
                   <td>{{cat.createddate |date}}</td>
@@ -75,27 +72,27 @@
                   </td>
                 </tr>
               </tbody>
-             
+
             </table>
           </div>
         </div>
-           <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
-                  <li [ngClass]="{disabled:pager.currentPage === 1}">
-                    <a (click)="setPage(1)">First</a>
-                  </li>
-                  <li [ngClass]="{disabled:pager.currentPage === 1}">
-                    <a (click)="setPage(pager.currentPage - 1)">Previous</a>
-                  </li>
-                  <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
-                    <a (click)="setPage(page)">{{page}}</a>
-                  </li>
-                  <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-                    <a (click)="setPage(pager.currentPage + 1)">Next</a>
-                  </li>
-                  <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-                    <a (click)="setPage(pager.totalPages)">Last</a>
-                  </li>
-                </ul>
+        <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+          <li [ngClass]="{disabled:pager.currentPage === 1}">
+            <a (click)="setPage(1)">First</a>
+          </li>
+          <li [ngClass]="{disabled:pager.currentPage === 1}">
+            <a (click)="setPage(pager.currentPage - 1)">Previous</a>
+          </li>
+          <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+            <a (click)="setPage(page)">{{page}}</a>
+          </li>
+          <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+            <a (click)="setPage(pager.currentPage + 1)">Next</a>
+          </li>
+          <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+            <a (click)="setPage(pager.totalPages)">Last</a>
+          </li>
+        </ul>
 
         <div class="box box-primary" *ngIf="isEditing">
           <div class="box-header with-border">
@@ -189,30 +186,10 @@
             <!-- /.mailbox-read-message -->
           </div>
           <!-- /.box-body -->
-          <div class="box-footer">
-
-          </div>
-          <!-- /.box-footer -->
-
-          <!-- /.box-footer -->
         </div>
-
-
-
-
-
-
-
-
       </div>
-      <!-- /.box-body -->
-      <div class="box-footer">
-        Footer
-      </div>
-      <!-- /.box-footer-->
     </div>
     <!-- /.box -->
-
   </section>
   <!-- /.content -->
 </div>

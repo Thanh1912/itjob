@@ -7,8 +7,7 @@ fs = require('fs'),
   gm = require('gm').subClass({ imageMagick: true }),
   jwt = require('jsonwebtoken');
 
-
-  var formidable = require('formidable');
+var formidable = require('formidable');
 var candidatectrl = require('../controllers/candidate.controllers.js');
 var user_nhatuyendungctrl = require('../controllers/user.controllers.js');
 var keywordctrl = require('../controllers/keyword.controllers.js');
@@ -22,8 +21,6 @@ router.route('/user/login/').post(user_nhatuyendungctrl.login);
 router.route('/admin/login/').post(user_nhatuyendungctrl.login_admin);
 router.route('/user/register/').post(user_nhatuyendungctrl.register);
 router.route('/admin/register/').post(user_nhatuyendungctrl.register_admin);
-
-
 router.route('/admin/getall_admin/').get(user_nhatuyendungctrl.getAll_amdin);
 router.route('/admin/count').get(user_nhatuyendungctrl.count_amdin);
 router.route('/admin').post(user_nhatuyendungctrl.insert_amdin);
@@ -119,15 +116,6 @@ router.route('/search-job-key').post(postctrl.get_job_key)
 router.route('/search-job-company/:id').get(postctrl.get_job_company)
 //===================UPload================
 
-
-// up load cv
-// cap nhat thong tin user
-//get chi tiet job
-//get chi tiet company
-
-// select all job search
-// add list yeu thich job
-// select job
 router.route('/getallnewjob').get(postctrl.getalljobs);
 
 

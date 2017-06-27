@@ -7,13 +7,23 @@ import { Nhatuyendung } from './../../_models/nhatuyendung';
 import { PagerService } from './../../_services/pager.service';
 import { CompanysizeService } from './../../services/companysize.service';
 import { countryService } from './../../services/country.service';
+import { DuyetntdPipe } from '../../Pipes/duyetntd.pipe';
 @Component({
   selector: 'app-duyet-nha-tuyen-dung',
   templateUrl: './duyet-nha-tuyen-dung.component.html',
   styleUrls: ['./duyet-nha-tuyen-dung.component.css']
 })
 export class DuyetNhaTuyenDungComponent implements OnInit {
-  // array of all items to be paged
+  //===Search====
+  term: String;
+
+  //===Search====
+  set_term(value) {
+    this.term = value;
+    if(value===""){
+        this.getCats();
+    }
+  }
   private allItems: any[];
   query: string = "";
 
@@ -23,7 +33,6 @@ export class DuyetNhaTuyenDungComponent implements OnInit {
   country: any;
   // paged items
   pagedItems: any[];
-
   cats = [];
   isLoading = true;
 
@@ -53,6 +62,7 @@ export class DuyetNhaTuyenDungComponent implements OnInit {
     private formBuilder: FormBuilder, private countryService: countryService, private CompanysizeService: CompanysizeService, private pagerService: PagerService) { }
 
   ngOnInit() {
+    this.term = "";
     this.getCats();
     this.getcountry();
     this.getcompany();
@@ -107,25 +117,6 @@ export class DuyetNhaTuyenDungComponent implements OnInit {
     this.countryService.getall().subscribe(
       data => {
         this.country = data
-
-      },
-      error => console.log(error),
-      () => this.isLoading = false
-    );
-  }
-
-
-
-  search() {
-
-    this.dataService.search(this.query).subscribe(
-      data => {
-        // set items to json response
-        this.allItems = data;
-
-        this.cats = data
-        // initialize to page 1
-        this.setPage(1);
       },
       error => console.log(error),
       () => this.isLoading = false
@@ -138,6 +129,7 @@ export class DuyetNhaTuyenDungComponent implements OnInit {
     if (page < 1 || page > this.pager.totalPages) {
       return;
     }
+   
 
     // get pager object from service
     this.pager = this.pagerService.getPager(this.allItems.length, page);

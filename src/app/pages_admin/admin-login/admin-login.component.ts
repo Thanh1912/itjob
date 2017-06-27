@@ -2,7 +2,6 @@ import { Component, AfterViewInit, OnInit, ViewContainerRef ,ElementRef } from '
 import { Router } from '@angular/router';
 import {User} from './../../_services/user.model';
 import { AuthenticationService } from './../../_services/authentication.service';
-import { DataService } from './../..//services/data.service';
 
 @Component({
   selector: 'app-admin-login',
@@ -17,7 +16,7 @@ export class AdminLoginComponent implements OnInit {
   user:any;
   private viewContainerRef: ViewContainerRef;
   constructor(
-    private router: Router, private dataService: DataService,
+    private router: Router, 
     private authenticationService: AuthenticationService) {
 
   }

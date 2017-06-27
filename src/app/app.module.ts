@@ -17,6 +17,8 @@ import { RateComponent } from './directive/rate/rate.component';
 import { ComfirmComponent } from './directive/comfirm/comfirm.component';//<======Animation
 import { ToastComponent } from './shared/toast/toast.component';
 import { SharedModule } from './shared/shared.module';
+import { SearchJobPipe } from './Pipes/search-job.pipe';
+
 
 
 @NgModule({
@@ -28,7 +30,9 @@ import { SharedModule } from './shared/shared.module';
     DemocodeComponent,
     SearchCandidatesComponent,
     RateComponent,
-    ComfirmComponent
+    ComfirmComponent,
+    SearchJobPipe,
+  
   ],
   imports: [
     BrowserModule,

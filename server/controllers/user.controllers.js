@@ -257,6 +257,12 @@ module.exports.get_amdin = function (req, res) {
   });
 };
 
+
+
+
+
+
+
 // Update by id
 module.exports.update_amdin = function (req, res) {
   model.findOneAndUpdate({ _id: req.params.id, }, req.body, function (err) {
