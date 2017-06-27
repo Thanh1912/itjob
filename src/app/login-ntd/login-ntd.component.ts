@@ -12,6 +12,7 @@ export class LoginNtdComponent implements OnInit {
   model: any = {};
   loading = false;
   error = '';
+  errorTitle="";
   result;
 
   private viewContainerRef: ViewContainerRef;
@@ -27,6 +28,9 @@ export class LoginNtdComponent implements OnInit {
   ngOnInit() {
     // reset login status
     this.authenticationService.logout();
+  }
+  close(){
+    this.error="";
   }
   login() {
 
@@ -49,7 +53,8 @@ export class LoginNtdComponent implements OnInit {
 
       },
       error => {
-        this.error = 'Username or password is incorrect';
+         this.errorTitle=error.title;
+        this.error = error.error.message;
         this.loading = false;
       }
       );

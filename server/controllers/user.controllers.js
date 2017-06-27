@@ -65,8 +65,7 @@ module.exports.login = function (req, res, next) {
   model.findOne(
 {
   email:req.body.email,
-      role: 'nhatuyendung',
-      "info_recruiter.active" : true
+      role: 'nhatuyendung'
 }
     , function (err, doc) {
       if (err) {
@@ -85,6 +84,12 @@ module.exports.login = function (req, res, next) {
         return res.status(403).json({
           title: 'You cannot log in',
           error: { message: 'Please check your password or email' }
+        })
+      }
+       if ( doc.info_recruiter.active==false) {
+        return res.status(403).json({
+          title: 'You cannot log in',
+          error: { message: 'Your account is not authorized' }
         })
       }
       var token = jwt.sign({ user: doc }, config.secret, { expiresIn: config.jwtExpire });
