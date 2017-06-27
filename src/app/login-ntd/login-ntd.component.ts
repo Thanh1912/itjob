@@ -48,7 +48,7 @@ export class LoginNtdComponent implements OnInit {
         localStorage.setItem('currentUserRole', data.role);
 
         // navigate user to index page of our app
-        this.router.navigate(['/pages_admin']);
+        this.router.navigate(['/pages_employee']);
         // display toastr success message pop up to inform the user that he logged in successfully
 
       },
