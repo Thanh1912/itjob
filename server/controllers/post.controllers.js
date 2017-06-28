@@ -22,7 +22,7 @@ module.exports.getAllJob_company = function (req, res) {
   });
 };
 
-
+/*
 // Get all
 module.exports.getAllJob_company = function (req, res) {
    model.aggregate([
@@ -39,7 +39,7 @@ module.exports.getAllJob_company = function (req, res) {
 
 };
 
-
+*/
 
 
 

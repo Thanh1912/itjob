@@ -117,7 +117,7 @@ router.route('/search-job-company/:id').get(postctrl.get_job_company)
 //get all info of job ---> job and info company
 router.route('/getalljob-company').get(postctrl.getAllJob_company);
 //
-router.route('/getalljob').get(postctrl.getAllJob);
+//router.route('/getalljob').get(postctrl.getAllJob);
 //router.route('/getdemo').get(postctrl.getAlldemo);
 router.route('/getallnewjob').get(postctrl.getalljobs);
 
