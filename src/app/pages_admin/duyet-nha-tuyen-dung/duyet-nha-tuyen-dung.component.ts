@@ -26,7 +26,7 @@ export class DuyetNhaTuyenDungComponent implements OnInit {
   }
   changeaction(value) {
     this.action = value;
-    alert(this.action)
+   
   }
   private allItems: any[];
   query: string = "";

@@ -35,7 +35,7 @@ setPage(page: number) {
     // get current page of items
     this.listJob = this.listAllJob.slice(this.pager.startIndex, this.pager.endIndex + 1);
   }
-  getall_Workplace() {
+  getall() {
     this.job.getall().subscribe(
       data => {
         this.listAllJob = data;
@@ -52,7 +52,7 @@ setPage(page: number) {
   //==============Load first==================
   ngOnInit() {
 
-
+this.getall();
 
 
 
