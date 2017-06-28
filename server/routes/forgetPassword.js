@@ -6,7 +6,7 @@ var express     = require('express'),
     sgTransport = require('nodemailer-sendgrid-transport'),
     config      = require('../config/config');
 //chua su dung
-var User = require('../models/user.model');
+var User = require('../models/recruiter.model');
 
 // requesting password reset and setting the fields resetPasswordToken to a newly generated token
 // and resetPasswordExpires to the exact date the form is submitted so we can set/check the validity of the timestamp (token is valid for only one hour)

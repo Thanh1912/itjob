@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var model = require('../models/user.model.js')
+var model = require('../models/recruiter.model.js')
   , passwordHash = require('password-hash'),
   jwt = require('jsonwebtoken'),
   config = require('../config/config');

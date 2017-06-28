@@ -9,7 +9,7 @@ fs = require('fs'),
 
 var formidable = require('formidable');
 var candidatectrl = require('../controllers/candidate.controllers.js');
-var user_nhatuyendungctrl = require('../controllers/user.controllers.js');
+var user_nhatuyendungctrl = require('../controllers/recruiter.controllers.js');
 var keywordctrl = require('../controllers/keyword.controllers.js');
 
 //*====================/connect mongodb ======================

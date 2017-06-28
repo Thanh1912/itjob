@@ -15,7 +15,7 @@ const nhattuyendungSchema = new mongoose.Schema({
   JobTime: String,//
   endPost:{ type: Date, default: Date.now },
   createddate:{ type: Date, default: Date.now },
-  recruiterid: { type: Schema.Types.ObjectId, ref: 'user' },
+  recruiterid: { type: Schema.Types.ObjectId, ref: 'recruiter' },
   keywords: [
     { type: Schema.Types.ObjectId, ref: 'keyword' },
   ]
