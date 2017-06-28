@@ -12,9 +12,9 @@
         </div>
         <div class="col-xs-4">
           <select class="form-control">
-                        <option>option 1</option>
-                        <option>option 2</option>
-                        <option>option 3</option>
+                  <option>Title</option>
+                   <option>Email</option>
+                    <option>Company</option>
            </select>
         </div>
         <div class="col-xs-5">
@@ -54,7 +54,6 @@
                   <th>Title</th>
                   <th>Company</th>
                   <th>Date</th>
-                  <th>Image</th>
                   <th>Actions</th>
                 </tr>
               </thead>
@@ -65,38 +64,21 @@
               </tbody>
               <tbody *ngIf="!isEditing">
                 <tr *ngFor="let item of listJob">
-                  <td>{{item.name}}</td>
-                  <td>{{item.name}}</td>
-                  <td>{{item.name}}</td>
+                  <td>{{item.title}}</td>
+                  <td>{{item.recruiterid}}</td>
+                  <td>{{item.createddate | date}}</td>
                   <td>
                     <button class="btn btn-sm btn-warning" (click)="enableEditing(item)"><i class="fa fa-pencil"></i> Edit</button>                    <button class="btn btn-sm btn-danger" (click)="deleteitem(item)"><i class="fa fa-trash"></i> Edit</button>
-                    <button class="btn btn-sm btn-warning" (click)="enableEditing(item)"><i class="fa fa-pencil"></i> Edit</button>                    <button class="btn btn-sm btn-danger" (click)="deleteitem(item)"><i class="fa fa-trash"></i> Delete</button>
+
                   </td>
                 </tr>
 
               </tbody>
-              <tbody>
-                <!-- pager -->
 
-
-              </tbody>
-              <tbody *ngIf="isEditing">
-                <tr>
-                  <td colspan="4">
-                    <form class="form-inline" #form="ngForm" (ngSubmit)="edititem(item)" style="display:inline">
-                      <div class="form-group">
-                        <input class="form-control" type="text" name="name" [(ngModel)]="item.name" placeholder="Name" required>
-                      </div>
-                      <button class="btn btn-sm btn-primary" type="submit" [disabled]="!form.form.valid"><i class="fa fa-floppy-o"></i> Save</button>
-                    </form>
-                    <button class="btn btn-sm btn-warning" (click)="cancelEditing()"><i class="fa fa-times"></i> Cancel</button>
-                  </td>
-                </tr>
-              </tbody>
             </table>
           </div>
         </div>
-        <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+        <ul *ngIf="pager.pages && pager.pages.length&&!isEditing" class="pagination">
           <li [ngClass]="{disabled:pager.currentPage === 1}">
             <a (click)="setPage(1)">First</a>
           </li>
@@ -113,6 +95,9 @@
             <a (click)="setPage(pager.totalPages)">Last</a>
           </li>
         </ul>
+
+<!--========================EDIT JOB========================-->
+
         <div class="card">
           <div class="card-block">
             <form role="form">
@@ -165,12 +150,8 @@
           </div>
         </div>
 
+<!--========================EDIT JOB========================-->
       </div>
-      <!-- /.box-body -->
-      <div class="box-footer">
-        Footer
-      </div>
-      <!-- /.box-footer-->
     </div>
     <!-- /.box -->
 

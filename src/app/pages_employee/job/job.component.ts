@@ -74,7 +74,10 @@ export class JobComponent implements OnInit, AfterViewInit {
   onKeytfrom() {
     this.Viewsalary = this.salarybegin + "-" + this.salaryend + " " + this.Donvi;
   }
-
+  jobtime: String;
+  change_jobtime(value) {
+    this.jobtime = value;
+  }
   ngOnInit() {
     if (localStorage.getItem('userId_ntd') == null) {
       this.router.navigate(['/nhatuyendung']);
@@ -189,7 +192,8 @@ export class JobComponent implements OnInit, AfterViewInit {
       workplaceid: this.id_workplace,
       districtid: this.id_dictrict,
       recruiterid: this.id_user,
-      keywords: key
+      keywords: key,
+      JobTime: this.jobtime
     }
     this.postservice.add(post).subscribe(
       data => {
