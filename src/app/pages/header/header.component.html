@@ -30,16 +30,6 @@
                                 </li>
                             </ul>
                         </li>
-                      
-
-                        <li><a >Manager</a>
-                            <ul class="sub_menu">
-                                <li><a routerLink="/pages_admin/login">ADMIN</a>
-                                </li>
-                                <li><a routerLink="/login-ntd">Nha Tuyển Dung</a>
-                                </li>
-                            </ul>
-                        </li>
 
                     </ul>
                     <ul class="nav navbar-nav navbar-right mj_right_menu mj_login_menu" *ngIf="islogin==true">
@@ -92,30 +82,14 @@
                             </li>
                             <li><a routerLink="/pages/Manager-JobApply"><i class="fa fa-heart"></i>saved jobs</a>
                             </li>
-                          
+
                             <li><a ><i class="fa fa-cog"></i>setting</a>
                             </li>
                             <li><a >logout</a>
                             </li>
                         </ul>
                     </div>
-                    <div class="mj_notification_detail" *ngIf="mj_notification_detail">
-                        <ul>
-                            <li>
-                                <h6>frank deo<sup>*</sup></h6>
-                                <p>hello how are you....</p>
-                                <span><i class="fa fa-times"></i></span>
-                            </li>
-                            <li>
-                                <h6>frank deo<sup>*</sup></h6>
-                                <p>hello how are you....</p>
-                                <span><i class="fa fa-times"></i></span>
-                            </li>
-                            <li>
-                                <a >see all saved jobs</a>
-                            </li>
-                        </ul>
-                    </div>
+                  
                     <ul class="nav navbar-nav navbar-right mj_right_menu mj_withoutlogin_menu" *ngIf="islogin==false">
                         <li class="mj_searchbtn"><a (click)="login()"><i class="fa fa-search"></i></a>
                             <div class="mj_search_option">
@@ -130,10 +104,19 @@
                                 </form>
                             </div>
                         </li>
-                     
-                        <li><a routerLink="/pages/register"><i class="fa fa-lock"></i> Sign Up</a>
+
+                        <li
+                        ><a routerLink="/pages/register"><i class="fa fa-lock"></i> Sign Up</a>
                         </li>
-                        <li><a class="mj_logintoggle" routerLink="/pages/login" onclick="show_my_div('my_profile_div_login' , 'id')"><i class="fa fa-user"></i> Login</a>
+                        <li><a   onclick="show_my_div('my_profile_div_login' , 'id')"><i class="fa fa-user"></i> Login</a>
+                       <ul class="sub_menu">
+                                <li><a style="margin-left:-3px;" routerLink="/admin/login">ADMIN</a>
+                                </li>
+                                <li><a style="margin-left:-3px;" routerLink="/login-ntd">Nhà Tuyển Dụng</a>
+                                </li>
+                                 <li><a style="margin-left:-3px;" routerLink="/pages/login">Thành Viên</a>
+                                </li>
+                            </ul>
                         </li>
                           <li><a routerLink="/pages/login-employee"><i class="fa  fa-cloud-upload"></i>Đăng Tuyển & Kiếm Nhân Tài</a>
                         </li>

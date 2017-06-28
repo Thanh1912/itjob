@@ -4,7 +4,7 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import {AdminComponent}           from './admin.component';
 import {AdminHomeComponent}       from './admin-home/admin-home.component';
 import {AdminRoutingModule}       from './admin-routing.module';
-import {AdminLoginComponent}       from './admin-login/admin-login.component';
+
 
 import {DuyetNhaTuyenDungComponent} from './duyet-nha-tuyen-dung/duyet-nha-tuyen-dung.component';
 import { QuanLiNganhNgheComponent } from './quan-li-nganh-nghe/quan-li-nganh-nghe.component';
@@ -44,7 +44,7 @@ import { PostService } from './../services/post.service';
   declarations: [
     AdminComponent,
     AdminHomeComponent,
-    AdminLoginComponent,
+
     DuyetNhaTuyenDungComponent,
     QuanLiNganhNgheComponent,
     QuanLiDiaDiemComponent,

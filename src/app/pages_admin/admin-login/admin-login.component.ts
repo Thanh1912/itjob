@@ -14,15 +14,19 @@ export class AdminLoginComponent implements OnInit {
   error = '';
   result;
   user:any;
+  loadding:String;
   private viewContainerRef: ViewContainerRef;
   constructor(
-    private router: Router, 
+    private router: Router,
     private authenticationService: AuthenticationService) {
 
   }
   ngOnInit() {
     // reset login status
     this.authenticationService.logout();
+  }
+  gohome(){
+    this.router.navigateByUrl('pages/home');
   }
   login() {
     this.loading = true;

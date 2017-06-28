@@ -17,7 +17,6 @@ const adminSchema = new mongoose.Schema({
   logo : String,
   profileimage : String,
   address: String,
-
   active :{ type: Boolean , required: true, default:false},
   companysizeid : mongoose.Schema.Types.ObjectId,
   countryid : mongoose.Schema.Types.ObjectId,

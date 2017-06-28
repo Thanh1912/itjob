@@ -28,7 +28,7 @@ const adminRoutes: Routes = [
           { path: 'duyet-nha-tuyen-dung', component: DuyetNhaTuyenDungComponent },
           { path: 'quan-li-nganh-nghe', component: QuanLiNganhNgheComponent },
      //     { path: 'quan-li-dia-diem', component: VitriComponent },
-          { path: 'login', component: AdminLoginComponent },
+        //  { path: 'login', component: AdminLoginComponent },
           { path: 'quan-li-thanh-vien', component: QuanLiThanhVienComponent },
           { path: 'companysize', component: CompanysizeComponent },
           { path: 'district', component: DistrictComponent },

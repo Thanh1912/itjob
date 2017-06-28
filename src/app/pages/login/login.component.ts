@@ -88,6 +88,9 @@ export class LoginComponent implements OnInit {
       }
     )
   }
+  goRecruiter(){
+    this.router.navigateByUrl('/login-ntd');
+  }
   logout() {
     this._auth.logout().subscribe(
       (data) => { console.log(data); this.user = null; }
