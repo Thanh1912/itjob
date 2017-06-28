@@ -11,12 +11,9 @@ import { PagerService } from './../../_services/pager.service';
 })
 export class DistrictComponent implements OnInit {
   selectedItem: string;
-    id_w: string;
-  c:any;
+  id_w: string;
+  c: any;
   item_Workplace: any;
-
-
-
   changeedit(newValue) {
     console.log(newValue);
     this.id_w = newValue;  // don't forget to update the model here
@@ -34,7 +31,7 @@ export class DistrictComponent implements OnInit {
   cats = [];
   isLoading = true;
   cat = {};
-  edit_={};
+  edit_ = {};
   isEditing = false;
 
   addCatForm: FormGroup;
@@ -52,7 +49,7 @@ export class DistrictComponent implements OnInit {
 
     this.addCatForm = this.formBuilder.group({
       name: this.name,
-      workplace:this.selectedItem
+      workplace: this.selectedItem
     });
   }
 
@@ -87,13 +84,13 @@ export class DistrictComponent implements OnInit {
   }
 
   addCat() {
-this.addCatForm.value.workplace=this.selectedItem;
+    this.addCatForm.value.workplace = this.selectedItem;
     this.dataService.add(this.addCatForm.value).subscribe(
       res => {
         const newCat = res.json();
         this.pagedItems.push(newCat);
         //this.getall()
-       // this.addCatForm.reset();
+        // this.addCatForm.reset();
         alert('item added successfully.')
         // this.toast.setMessage('item added successfully.', 'success');
       },
@@ -115,15 +112,15 @@ this.addCatForm.value.workplace=this.selectedItem;
     this.getall();
   }
   editCat(cat) {
-       this.edit_= {
-       _id:cat._id,
-       name:cat.name,
+    this.edit_ = {
+      _id: cat._id,
+      name: cat.name,
       workplace: this.id_w
-       }
-    this.dataService.edit( this.edit_).subscribe(
+    }
+    this.dataService.edit(this.edit_).subscribe(
       res => {
         this.isEditing = false;
-          this.getall()
+        this.getall()
         alert('item editing cancelled.');
         //   this.toast.setMessage('item edited successfully.', 'success');
       },

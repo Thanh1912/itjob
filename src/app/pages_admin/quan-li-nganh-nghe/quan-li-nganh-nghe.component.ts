@@ -24,16 +24,17 @@ export class QuanLiNganhNgheComponent implements OnInit {
 
   addCatForm: FormGroup;
   name = new FormControl('', Validators.required);
+ _idCategory = new FormControl('', Validators.required);
   constructor(private http: Http,
     private dataService: KeywordService,
-    //    public toast: ToastComponent,
     private formBuilder: FormBuilder, private pagerService: PagerService) { }
 
   ngOnInit() {
     this.getall();
 
     this.addCatForm = this.formBuilder.group({
-      name: this.name
+      name: this.name,
+      _idCategory:this._idCategory
     });
   }
 

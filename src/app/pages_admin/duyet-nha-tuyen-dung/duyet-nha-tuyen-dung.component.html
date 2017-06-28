@@ -162,16 +162,22 @@
 
                 <div class="form-group ">
                   <label class="control-label" for="inputError"> Companysize</label>
-                  <select [ngModel]="selectedItem" name="select" class="form-control">
+                  <!--<select [ngModel]="selectedItem" name="select" class="form-control">
+                       <option *ngFor="let item of companysize" [selected]="item._id===cat.info_recruiter.companysizeid" [value]="item._id">{{item.name}}</option>
+                 </select>-->
+                  <div *ngFor="let item of companysize">
+                    <span *ngIf="item._id===cat.info_recruiter.companysizeid">
+                       {{item.name}}
+                       </span>
+                  </div>
 
-                       <option *ngFor="let item of companysize" [selected]="item._id==cat.info_recruiter.companysizeid" [value]="item._id">{{item.name}}</option>
-                 </select>
                 </div>
                 <div class="form-group ">
                   <label class="control-label" for="inputError"> Country</label>
-                  <select [ngModel]="selectedcountry" name="country" class="form-control">
-                       <option *ngFor="let item of country" [selected]="cat.info_recruiter.countryid==item._id" [value]="item._id">{{item.name}}</option>
-                 </select> {{cat.info_recruiter.countryid}}
+                  <!-- <select [ngModel]="selectedcountry" name="country" class="form-control">
+                       <option *ngFor="let item of country" [selected]="cat.info_recruiter.countryid===item._id" [value]="item._id">{{item.name}}</option>
+                 </select> -->
+
                 </div>
                 <!-- checkbox -->
                 <div class="box-footer">

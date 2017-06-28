@@ -105,7 +105,6 @@ var postctrl = require('../controllers/post.controllers.js');
 
 router.route('/post').get(postctrl.getAll);
 router.route('/gettop10post').get(postctrl.top10post);
-router.route('/getdemo').get(postctrl.getAlldemo);
 router.route('/post/count').get(postctrl.count);
 router.route('/post').post(postctrl.insert);
 router.route('/post/:id').get(postctrl.get);
@@ -115,7 +114,11 @@ router.route('/getpost/:id').get(postctrl.getiduser);
 router.route('/search-job-key').post(postctrl.get_job_key)
 router.route('/search-job-company/:id').get(postctrl.get_job_company)
 //===================UPload================
-
+//get all info of job ---> job and info company
+router.route('/getalljob-company').get(postctrl.getAllJob_company);
+//
+router.route('/getalljob').get(postctrl.getAllJob);
+//router.route('/getdemo').get(postctrl.getAlldemo);
 router.route('/getallnewjob').get(postctrl.getalljobs);
 
 

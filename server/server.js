@@ -46,7 +46,7 @@ app.use('/api', Routes_forgetPassword);
 
 
 const api_upload = require('./routes/upload');
-app.use('/api', api_upload);
+app.use('/', api_upload);
 
 
 //==================SET API =========

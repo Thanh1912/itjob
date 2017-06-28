@@ -12,6 +12,7 @@ export class LoginNtdComponent implements OnInit {
   model: any = {};
   loading = false;
   error = '';
+  errorTitle="";
   result;
 
   private viewContainerRef: ViewContainerRef;
@@ -27,6 +28,9 @@ export class LoginNtdComponent implements OnInit {
   ngOnInit() {
     // reset login status
     this.authenticationService.logout();
+  }
+  close(){
+    this.error="";
   }
   login() {
 
@@ -44,12 +48,13 @@ export class LoginNtdComponent implements OnInit {
         localStorage.setItem('currentUserRole', data.role);
 
         // navigate user to index page of our app
-        this.router.navigate(['/pages_admin']);
+        this.router.navigate(['/pages_employee']);
         // display toastr success message pop up to inform the user that he logged in successfully
 
       },
       error => {
-        this.error = 'Username or password is incorrect';
+         this.errorTitle=error.title;
+        this.error = error.error.message;
         this.loading = false;
       }
       );

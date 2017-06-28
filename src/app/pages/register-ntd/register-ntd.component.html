@@ -1,0 +1,83 @@
+<section class="short-image no-padding blog-short-title" >
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-lg-12 short-image-title">
+        <h3 class="second-color subtitle-margin second-color pull-left"> </h3>
+        <div class="short-title-separator"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact-page-1 no-padding">
+  <div id="contact-map1"></div>
+  <div class="contact1-cont">
+    <div class="container">
+      <div class="row">
+
+
+
+        <div class="col-md-6">
+          <!-- Horizontal Form -->
+          <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Đơn đăng ký Nhà Tuyển Dụng</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form class="form-horizontal" [formGroup]="myForm" (ngSubmit)="onSubmit()" class="register-form form" novalidate>
+              <div class="box-body">
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">FullName</label>
+                  <div class="col-sm-10">
+                    <input type="text" formControlName="fullname" placeholder="fullname" class="form-control">
+                  </div>
+                </div>
+
+
+
+                <span class="help-block" style="height:20px"></span>
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">Tên Công Ty</label>
+                  <div class="col-sm-10">
+                    <input type="text" formControlName="namecompany" name="namecompany" placeholder="Tên Công Ty" class="form-control">
+                  </div>
+                </div>
+                <span class="help-block" style="height:30px"></span>
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">Phone</label>
+                  <div class="col-sm-10">
+                    <input type="text" formControlName="phone" placeholder="Phone" class="form-control">
+                  </div>
+                </div>
+                <span class="help-block" style="height:30px"></span>
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">Email</label>
+                  <div class="col-sm-10">
+                    <input #userEmail type="text" formControlName="email" placeholder="Email" class="form-control">
+                    <div [hidden]="email.valid || email.pristine" class="alert alert-danger">Please enter a valid email format</div>
+                  </div>
+                </div>
+                <span class="help-block" style="height:30px"></span>
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+                  <div class="col-sm-10">
+                    <input type="password" formControlName="password" placeholder="Password" class="form-control">
+                    <div [hidden]="password.valid || password.pristine" class="alert alert-danger">Password must contain 6 or more characters</div>
+                  </div>
+                </div>
+              </div>
+              <!-- /.box-body -->
+              <div class="box-footer">
+                <button type="submit" class="btn btn-default" (click)="gologin()">Login </button>
+                <button class="btn btn-primary" type="submit" [disabled]="!myForm.valid">Register</button>
+              </div>
+              <!-- /.box-footer -->
+            </form>
+          </div>
+          <!-- /.box -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

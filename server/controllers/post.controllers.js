@@ -7,8 +7,24 @@ var _ = require("underscore");
 //get lien ket bang
 
 
+// Get all job -- incluce  : job and company
+module.exports.getAllJob_company = function (req, res) {
+   model.aggregate([
+    { "$lookup": {
+      "from": "users",
+      "localField": "recruiterid",
+      "foreignField": "_id",
+      "as": "listuser"
+    }}
+  ]).exec(function (err, docs) {
+    if (err) throw err;
+    res.json(docs);
+  });
+};
+
+
 // Get all
-module.exports.getAlldemo = function (req, res) {
+module.exports.getAllJob_company = function (req, res) {
    model.aggregate([
     { "$lookup": {
       "from": "users",

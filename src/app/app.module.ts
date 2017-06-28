@@ -18,7 +18,7 @@ import { ComfirmComponent } from './directive/comfirm/comfirm.component';//<====
 import { ToastComponent } from './shared/toast/toast.component';
 import { SharedModule } from './shared/shared.module';
 import { SearchJobPipe } from './Pipes/search-job.pipe';
-
+import {CKEditorModule} from 'ng2-ckeditor';
 
 
 @NgModule({
@@ -39,6 +39,7 @@ import { SearchJobPipe } from './Pipes/search-job.pipe';
     FormsModule,
     HttpModule,
     routing,
+    CKEditorModule,
     SharedModule,
     BrowserAnimationsModule  //<======Animation
   ],
