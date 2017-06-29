@@ -31,7 +31,7 @@ export class RegisterComponent implements OnInit {
    //=================Register  WORKs==================
   ngOnInit() {
     /*if (this._authService.isLoggedIn()) {
-      this._router.navigateByUrl('/form');
+      this._router.navigateByUrl('/');
     }*/
    
   }

@@ -12,6 +12,7 @@
                                     <div class="mj_freelancer_form">
                                         <div class="form-group">
                                             <input type="text" placeholder="Name" formControlName="fullname" name="uname" class="form-control">
+                                             <div [hidden]="fullname.valid || fullname.pristine" class="alert alert-danger">Please enter Name</div>
                                         </div>
                                      
                                         <div class="form-group">
@@ -20,10 +21,11 @@
                                         </div>
                                         <div class="form-group">
                                             <input type="password" placeholder="Password" formControlName="password" name="password" class="form-control">
+                                      <div [hidden]="password.valid || password.pristine" class="alert alert-danger">Please enter Name</div>
                                         </div>
                                          <div class="form-group">
                                             <input type="password" (keyup)="checkpassValidator()" placeholder="Repeat" name="repeatpass" formControlName="repeatpass" class="form-control">
-                                         <div *ngIf="iserrorRe==false" class="alert alert-danger">Please enter a valid email format</div>
+                                         <div *ngIf="iserrorRe==false||repeatpass.valid || repeatpass.pristine" class="alert alert-danger">Please enter password</div>
                                         </div>
                                         <div class="form-group mj_toppadder20">
                                             <div class="mj_checkbox">

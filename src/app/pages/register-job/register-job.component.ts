@@ -44,7 +44,7 @@ export class RegisterJobComponent implements OnInit {
   }
   // submit the register form to the backend with the user's desired credentials
   onSubmit() {
-    alert('thong')
+   
     //  const nhatuyendung = new Nhatuyendung(this.myForm.value.fullname, this.myForm.value.password, this.myForm.email, this.myForm.sodienthoai, this.myForm.tencongty);
     const user = {
       fullname: this.myForm.value.fullname,
