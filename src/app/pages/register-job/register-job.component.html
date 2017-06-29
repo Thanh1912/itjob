@@ -1,50 +1,57 @@
-  <div class="modal fade mj_popupdesign" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                </div>
-                <div class="modal-body">
-                    <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1">
-                        <div class="row">
-                            <div class="mj_pricingtable mj_bluetable mj_freelancer_form_wrapper">
-                                <p class="mj_toppadder40">You can also sign up with <a >Facebook</a>, <a >Linkedin</a>, or <a >Google</a>.</p>
-                                <form  [formGroup]="myForm" (ngSubmit)="onSubmit()">
-                                    <div class="mj_freelancer_form">
-                                        <div class="form-group">
-                                            <input type="text" placeholder="Name" formControlName="fullname" name="uname" class="form-control">
-                                             <div [hidden]="fullname.valid || fullname.pristine" class="alert alert-danger">Please enter Name</div>
-                                        </div>
-                                     
-                                        <div class="form-group">
-                                            <input type="email" placeholder="Email" formControlName="email" name="uemail" class="form-control">
-                                         <div [hidden]="email.valid || email.pristine" class="alert alert-danger">Please enter a valid email format</div>
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="password" placeholder="Password" formControlName="password" name="password" class="form-control">
-                                      <div [hidden]="password.valid || password.pristine" class="alert alert-danger">Please enter Name</div>
-                                        </div>
-                                         <div class="form-group">
-                                            <input type="password" (keyup)="checkpassValidator()" placeholder="Repeat" name="repeatpass" formControlName="repeatpass" class="form-control">
-                                         <div *ngIf="iserrorRe==false||repeatpass.valid || repeatpass.pristine" class="alert alert-danger">Please enter password</div>
-                                        </div>
-                                        <div class="form-group mj_toppadder20">
-                                            <div class="mj_checkbox">
-                                                <input type="checkbox" value="1" id="check3" name="checkbox">
-                                                <label for="check3"></label>
-                                            </div>
-                                            <span> I have read, understand and agree to the meshjobs Terms of Service, including the <a >User Agreement</a> and <a >Privacy Policy</a>.</span>
-                                        </div>
+<app-toast [message]="toast.message"></app-toast>
+<div class="modal fade mj_popupdesign" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            </div>
+            <div class="modal-body">
+                <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1">
+                    <div class="row">
+                        <div class="mj_pricingtable mj_bluetable mj_freelancer_form_wrapper">
+                            <p class="mj_toppadder40">  You can also sign up with <a>Facebook</a>, <a>Linkedin</a>, or <a>Google</a>.</p>
+                             <div *ngIf="error" class="alert alert-danger alert-dismissable">
+                    <button type="button" class="close" (click)="close()" >×</button>
+                    <h4><i class="icon fa fa-ban"></i> {{errorTitle}}!</h4>
+                   {{error}}
+                  </div>
+                            <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+                                <div class="mj_freelancer_form">
+                                    <div class="form-group">
+                                        <input type="text" placeholder="Name" formControlName="fullname" name="uname" class="form-control">
+                                        <div [hidden]="fullname.valid || fullname.pristine" class="alert alert-danger">Please enter Name</div>
                                     </div>
-                                    <div class="mj_pricing_footer">
-                                        <button type="submit">Get Started Now!</button>
+
+                                    <div class="form-group">
+                                        <input type="email" placeholder="Email" formControlName="email" name="uemail" class="form-control">
+                                        <div [hidden]="email.valid || email.pristine" class="alert alert-danger">Please enter a valid email format</div>
                                     </div>
-                                </form>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><img src="assets/images/close.png" alt="">
+                                    <div class="form-group">
+                                        <input type="password" placeholder="Password" formControlName="password" name="password" class="form-control">
+                                        <div [hidden]="password.valid || password.pristine" class="alert alert-danger">Please enter Name</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" (keyup)="checkpassValidator()" placeholder="Repeat" name="repeatpass" formControlName="repeatpass"
+                                            class="form-control">
+                                        <div *ngIf="iserrorRe==false  || repeatpass.pristine" class="alert alert-danger">Please enter password</div>
+                                    </div>
+                                    <div class="form-group mj_toppadder20">
+                                        <div class="mj_checkbox">
+                                            <input type="checkbox" value="1" id="check3" name="checkbox">
+                                            <label for="check3"></label>
+                                        </div>
+                                        <span> I have read, understand and agree to the meshjobs Terms of Service, including the <a >User Agreement</a> and <a >Privacy Policy</a>.</span>
+                                    </div>
+                                </div>
+                                <div class="mj_pricing_footer">
+                                    <button type="submit" class="btn btn-flat btn-primary">Get Started Now!</button>
+                                </div>
+                            </form>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><img src="assets/images/close.png" alt="">
                                 </button>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>

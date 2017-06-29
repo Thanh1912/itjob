@@ -22,9 +22,9 @@ export class RegisterNtdComponent implements OnInit {
   }
   ngOnInit() {
     // if the user tries to hit the register page, first we check if he is logged in or not, if he is then we redirect him to the form page
-    if (this._authService.isLoggedIn()) {
+   /* if (this._authService.isLoggedIn()) {
       this._router.navigateByUrl('/form');
-    }
+    }*/
     this.email = new FormControl('', [Validators.required, this.emailValidator]);
     this.password = new FormControl('', [Validators.required, Validators.minLength(6)]);
     this.fullname = new FormControl('', [Validators.required]);

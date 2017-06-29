@@ -2,6 +2,7 @@ import { Component, OnInit, Renderer, ViewChild, ElementRef, AfterViewInit } fro
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { AuthenticationService } from "../../_services/authentication.service";
 import { Router } from '@angular/router';
+import { ToastComponent } from '../toast/toast.component';
 @Component({
   selector: 'app-register-job',
   templateUrl: './register-job.component.html',
@@ -23,11 +24,14 @@ export class RegisterJobComponent implements OnInit {
   fullname: FormControl;
   repeatpass: FormControl;
   iserrorRe: boolean;
+  error = '';
+  errorTitle="";
 
-  constructor(private _fb: FormBuilder, private _authService: AuthenticationService,
+  constructor(private toast: ToastComponent, private _fb: FormBuilder, private _authService: AuthenticationService,
     private _router: Router, ) { }
 
   ngOnInit() {
+
     this.iserrorRe = false;
     this.email = new FormControl('', [Validators.required, this.emailValidator]);
     this.password = new FormControl('', [Validators.required, Validators.minLength(6)]);
@@ -39,26 +43,34 @@ export class RegisterJobComponent implements OnInit {
       email: this.email,
       password: this.password,
       fullname: this.fullname,
-       repeatpass: this.repeatpass
+      repeatpass: this.repeatpass
     });
   }
+
+
   // submit the register form to the backend with the user's desired credentials
   onSubmit() {
-   
+
     //  const nhatuyendung = new Nhatuyendung(this.myForm.value.fullname, this.myForm.value.password, this.myForm.email, this.myForm.sodienthoai, this.myForm.tencongty);
     const user = {
       fullname: this.myForm.value.fullname,
       password: this.myForm.value.password,
       email: this.myForm.value.email,
     }
-
     this._authService.signup_tv(user)
       .subscribe(
       data => {
+         alert("Đăng Ký Thành Công")
         // after successfull registration, the user is redirected to the login page
-        this._router.navigate(['/login']);
+        this._router.navigate(['/pages/login']);
+      },
+     error => {
+         this.errorTitle=error.title;
+        this.error = error.error.message;
+      
       }
-      );
+
+    );
   }
   // input validator to check if the email entered by the user is actually text in an email form
   emailValidator(control) {
@@ -68,11 +80,11 @@ export class RegisterJobComponent implements OnInit {
     }
   }
   checkpassValidator() {
-  //  alert(this.myForm.value.password)
-  // alert(this.myForm.value.repeatpass)
+    //  alert(this.myForm.value.password)
+    // alert(this.myForm.value.repeatpass)
     if (this.myForm.value.password === this.myForm.value.repeatpass) {
       this.iserrorRe = true;
-      
+
     } else {
       this.iserrorRe = false;
     }
