@@ -48,6 +48,7 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('fullname',this.user.name);
             localStorage.setItem('username',this.user.email);
             localStorage.setItem('currentUserRole', data.role);
+            alert('logined')
             // navigate user to index page of our app
                location.reload();
           this.router.navigate(['']);
@@ -69,6 +70,7 @@ export class LoginComponent implements OnInit {
                     localStorage.setItem('fullname', data.fullname);
                     localStorage.setItem('username', data.username);
                     localStorage.setItem('currentUserRole', data.role);
+                       alert('logined')
                     // navigate user to index page of our app
                     location.reload();
                     this.router.navigate(['']);

@@ -5,8 +5,13 @@
             <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-2 col-sm-offset-0 col-xs-offset-0">
                 <div class="mj_mainheading mj_toppadder80 mj_bottompadder50">
                     <h1>l<span>ogin</span> <span>to my</span> A<span>ccount</span></h1>
-                    <p class="mj_toppadder40">You can also sign up with <a (click)="signIn('facebook')">Facebook</a>, or <a (click)="signIn('google')">Google</a>.</p>
-
+                    <p class="mj_toppadder40">You can also sign up with
+                        <div class="social-bar text-center">
+                            <button class="btn btn-md btn-facebook push-top-xs" (click)="signIn('facebook')">
+                    <i class="fa fa-fw fa-facebook"></i> <span> Facebook</span></button>
+                            <button class="btn btn-md btn-google push-top-xs" (click)="signIn('google')">
+                    <i class="fa fa-fw fa-google"></i> <span> Google</span></button>
+                        </div>
                 </div>
             </div>
         </div>

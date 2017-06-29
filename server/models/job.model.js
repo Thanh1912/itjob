@@ -11,10 +11,11 @@ const nhattuyendungSchema = new mongoose.Schema({
   postimage: { type: String,  required: true },
   workplaceid: String,//
   districtid: String,//
-  CountApllication: String,//
+  Apllication: String,//
   JobTime: String,//
   endPost:{ type: Date, default: Date.now },
   createddate:{ type: Date, default: Date.now },
+  modified:{ type: Date, default: Date.now },
   recruiterid: { type: Schema.Types.ObjectId, ref: 'recruiter' },
   keywords: [
     { type: Schema.Types.ObjectId, ref: 'keyword' },
