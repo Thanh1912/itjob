@@ -24,7 +24,6 @@ import { RegisterNtdComponent } from './register-ntd/register-ntd.component';
 import { RegisterJobComponent } from './register-job/register-job.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
-import { ToastComponent } from './toast/toast.component';
 
 let providers = {
     "google": {
@@ -37,8 +36,8 @@ let providers = {
   };
 @NgModule({
   imports: [CommonModule,routing,  ReactiveFormsModule , FormsModule,Angular2SocialLoginModule],
-  declarations: [Pages, HomeComponent, LoginComponent, RegisterComponent, HeaderComponent, FooterComponent, SearchJobsComponent, DetailJobComponent, SearchCompanyComponent, DetailCompanyComponent, ManagerAccountComponent, ManagerJobApplyComponent, Home2Component, LoginEmployeeComponent, RegisterNtdComponent, RegisterJobComponent, ToastComponent]
-  ,providers: [ToastComponent ],
+  declarations: [Pages, HomeComponent, LoginComponent, RegisterComponent, HeaderComponent, FooterComponent, SearchJobsComponent, DetailJobComponent, SearchCompanyComponent, DetailCompanyComponent, ManagerAccountComponent, ManagerJobApplyComponent, Home2Component, LoginEmployeeComponent, RegisterNtdComponent, RegisterJobComponent]
+  ,providers: [ ],
    schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class PagesModule {
