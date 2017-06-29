@@ -69,6 +69,7 @@ public uploader: FileUploader = new FileUploader({ url: 'http://localhost:3000/a
     this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
       this.imageurl= response;
       console.log(this.imageurl)
+        alert('UpLoad Thanh Cong');
       console.log("ImageUpload: uploaded:", item, status, response);
     };
   }
