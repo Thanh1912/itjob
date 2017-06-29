@@ -2,7 +2,7 @@ import { Component, OnInit, Renderer, ViewChild, ElementRef, AfterViewInit } fro
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { AuthenticationService } from "../../_services/authentication.service";
 import { Router } from '@angular/router';
-import { ToastComponent } from '../toast/toast.component';
+
 @Component({
   selector: 'app-register-job',
   templateUrl: './register-job.component.html',
@@ -27,7 +27,7 @@ export class RegisterJobComponent implements OnInit {
   error = '';
   errorTitle="";
 
-  constructor(private toast: ToastComponent, private _fb: FormBuilder, private _authService: AuthenticationService,
+  constructor( private _fb: FormBuilder, private _authService: AuthenticationService,
     private _router: Router, ) { }
 
   ngOnInit() {
