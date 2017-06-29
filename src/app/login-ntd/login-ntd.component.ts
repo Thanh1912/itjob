@@ -2,11 +2,12 @@ import { Component, AfterViewInit, OnInit, ViewContainerRef, ElementRef } from '
 import { Router } from '@angular/router';
 import { User } from '../_services/user.model';
 import { AuthenticationService } from '../_services/index';
-
+import { animateFactory } from '../index';
 @Component({
   selector: 'app-login-ntd',
   templateUrl: './login-ntd.component.html',
-  styleUrls: ['./login-ntd.component.css']
+  styleUrls: ['./login-ntd.component.css'],
+   animations: [animateFactory(1000, 100)]
 })
 export class LoginNtdComponent implements OnInit {
   model: any = {};
@@ -31,6 +32,9 @@ export class LoginNtdComponent implements OnInit {
   }
   close(){
     this.error="";
+  }
+  gohome(){
+    this.router.navigate(['/pages'])
   }
   login() {
 

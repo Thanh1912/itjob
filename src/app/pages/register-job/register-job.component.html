@@ -8,20 +8,22 @@
                         <div class="row">
                             <div class="mj_pricingtable mj_bluetable mj_freelancer_form_wrapper">
                                 <p class="mj_toppadder40">You can also sign up with <a >Facebook</a>, <a >Linkedin</a>, or <a >Google</a>.</p>
-                                <form>
+                                <form  [formGroup]="myForm" (ngSubmit)="onSubmit()">
                                     <div class="mj_freelancer_form">
                                         <div class="form-group">
-                                            <input type="text" placeholder="Name" id="uname" class="form-control">
+                                            <input type="text" placeholder="Name" formControlName="fullname" name="uname" class="form-control">
                                         </div>
                                      
                                         <div class="form-group">
-                                            <input type="email" placeholder="Email" id="uemail" class="form-control">
+                                            <input type="email" placeholder="Email" formControlName="email" name="uemail" class="form-control">
+                                         <div [hidden]="email.valid || email.pristine" class="alert alert-danger">Please enter a valid email format</div>
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" placeholder="Password" id="password" class="form-control">
+                                            <input type="password" placeholder="Password" formControlName="password" name="password" class="form-control">
                                         </div>
                                          <div class="form-group">
-                                            <input type="password" placeholder="Repeat" id="username" class="form-control">
+                                            <input type="password" (keyup)="checkpassValidator()" placeholder="Repeat" name="repeatpass" formControlName="repeatpass" class="form-control">
+                                         <div *ngIf="iserrorRe==false" class="alert alert-danger">Please enter a valid email format</div>
                                         </div>
                                         <div class="form-group mj_toppadder20">
                                             <div class="mj_checkbox">
@@ -32,7 +34,7 @@
                                         </div>
                                     </div>
                                     <div class="mj_pricing_footer">
-                                        <a >Get Started Now!</a>
+                                        <button type="submit">Get Started Now!</button>
                                     </div>
                                 </form>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><img src="assets/images/close.png" alt="">

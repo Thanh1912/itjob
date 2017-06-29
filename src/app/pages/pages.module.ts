@@ -1,5 +1,5 @@
-import { NgModule,}      from '@angular/core';
-import { CommonModule }  from '@angular/common';
+
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { routing }       from './pages.routing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Pages } from './pages.component';
@@ -22,6 +22,10 @@ import { Title }     from '@angular/platform-browser';
 import { RegisterNtdComponent } from './register-ntd/register-ntd.component';
 
 import { RegisterJobComponent } from './register-job/register-job.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { CommonModule } from '@angular/common';
+import { ToastComponent } from './toast/toast.component';
+
 let providers = {
     "google": {
       "clientId": "1075668812758-334p3amm6s3h1nsnhlhd0bl0o1qd70t5.apps.googleusercontent.com"    //meanstack
@@ -32,8 +36,10 @@ let providers = {
     }
   };
 @NgModule({
-  imports: [CommonModule ,routing,  ReactiveFormsModule , FormsModule,Angular2SocialLoginModule],
-  declarations: [Pages, HomeComponent, LoginComponent, RegisterComponent, HeaderComponent, FooterComponent, SearchJobsComponent, DetailJobComponent, SearchCompanyComponent, DetailCompanyComponent, ManagerAccountComponent, ManagerJobApplyComponent, Home2Component, LoginEmployeeComponent, RegisterNtdComponent, RegisterJobComponent]
+  imports: [CommonModule,routing,  ReactiveFormsModule , FormsModule,Angular2SocialLoginModule],
+  declarations: [Pages, HomeComponent, LoginComponent, RegisterComponent, HeaderComponent, FooterComponent, SearchJobsComponent, DetailJobComponent, SearchCompanyComponent, DetailCompanyComponent, ManagerAccountComponent, ManagerJobApplyComponent, Home2Component, LoginEmployeeComponent, RegisterNtdComponent, RegisterJobComponent, ToastComponent]
+  ,providers: [ToastComponent ],
+   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class PagesModule {
 }

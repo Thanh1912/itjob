@@ -101,7 +101,7 @@ router.route('/workplace').post(workplacectrl.insert);
 router.route('/workplace/:id').get(workplacectrl.get);
 router.route('/workplace/:id').put(workplacectrl.update);
 router.route('/workplace/:id').delete(workplacectrl.delete);
-var postctrl = require('../controllers/post.controllers.js');
+var postctrl = require('../controllers/job.controllers.js');
 
 router.route('/post').get(postctrl.getAll);
 router.route('/gettop10post').get(postctrl.top10post);

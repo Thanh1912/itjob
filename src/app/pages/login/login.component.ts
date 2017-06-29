@@ -1,5 +1,5 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
-
+import { ToastComponent } from '../toast/toast.component';
 import { AuthService } from "angular2-social-login";
 import { AuthenticationService } from "../../_services/authentication.service";
 import { NgForm } from '@angular/forms';
@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
   error = '';
   result;
   sub: any;
-  constructor(public _auth: AuthService, private router: Router, private auth: AuthenticationService) { }
+  constructor(private toast:ToastComponent,   public _auth: AuthService, private router: Router, private auth: AuthenticationService) { }
 
   signIn(provider) {
     this.sub = this._auth.login(provider).subscribe(
@@ -128,6 +128,7 @@ export class LoginComponent implements OnInit {
 
 
   ngOnInit() {
+      this.toast.setMessage('you successfully registered!', 'success');
   }
 
 }

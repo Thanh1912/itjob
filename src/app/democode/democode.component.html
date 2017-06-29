@@ -1,3 +1,11 @@
+
+
+
+
+<div class="alert alert-dismissible alert-danger" [@animate]="'fadeOutDown'">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>Oh snap!</strong> <a href="#" class="alert-link">Change a few things up</a> and try submitting again.
+</div>
 <div style="margin-top:20px;height:900px;background-color:blueviolet">
 <app-comfirm [isShow]="true" (out)="parentget($event)" >
 </app-comfirm>
@@ -9,16 +17,6 @@ Rate: {{Rate}}
 <button (click)="get()"  class="btn btn-primary">GET</button>
 
 
-<ckeditor
-    [(ngModel)]="ckeditorContent"
-    [config]="{uiColor: '#a4a4a4'}"
-    (change)="onChange($event)"
-    (ready)="onReady($event)"
-    (focus)="onFocus($event)"
-    (blur)="onBlur($event)"
-    debounce="500">
-  </ckeditor>
-
 
 
 
@@ -26,8 +24,3 @@ Rate: {{Rate}}
 
 <button (click)="set()">
     setvalue</button>
-
-<div class="alert alert-dismissible alert-danger" [@animate]="'zoomOut'">
-  <button type="button" class="close" data-dismiss="alert">&times;</button>
-  <strong>Oh snap!</strong> <a href="#" class="alert-link">Change a few things up</a> and try submitting again.
-</div>
