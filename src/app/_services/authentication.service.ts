@@ -124,13 +124,28 @@ export class AuthenticationService {
     localStorage.clear();
  //  this.toastr.info('You have been logged out');
   }
-
-  // check if the user is logged in or not, if token is expired, token is deleted from localstorage
+ // check if the user is logged in or not, if token is expired, token is deleted from localstorage
   isLoggedIn() {
-    if ( localStorage.getItem('id_token')!=null) {
+    if (localStorage.getItem('id_token') == null) {
       localStorage.clear();
-    }
-    return true;
+      return false;
+    } else
+      return true;
   }
+  getinfouser() {
+    let id_token = localStorage.getItem('id_token');
+    let userId = localStorage.getItem('userId');
+    let username = localStorage.getItem('fullname');
+    let role = localStorage.getItem('currentUserRole');
+    
+    let userinfo = {
+      id_token: id_token,
+      userId: userId,
+      username: username,
+      role: role
+    }
+    return userinfo;
+  }
+
 
 }

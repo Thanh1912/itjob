@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
+import { AuthenticationService } from "../../_services/authentication.service";
+import { Title } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 
 declare var $: 'jquery';
 declare var TweenLite: 'TweenLite';
@@ -23,21 +25,39 @@ export class HeaderComponent implements OnInit {
   mj_likedetails: boolean;
   mj_profilediv: boolean;
   mj_notification_detail: boolean;
-  constructor() { }
+
+  private info: any;
+  constructor(private auth: AuthenticationService, private router: Router) { }
 
   ngOnInit() {
     this.islogin = false
     this.mj_likedetails = false
     this.mj_profilediv = false
     this.mj_notification_detail = false
+    this.islogin = false;
+    if (localStorage.getItem('id_token') == null) {
+      localStorage.clear()
+    }
+    if (this.auth.isLoggedIn() == true) {
+      this.islogin = true;
+      //get info
+      this.info = this.auth.getinfouser();
+    }
+
   }
-  login(){
-     if (this.islogin) {
+  logout() {
+    localStorage.clear();
+    this.islogin = false;
+    this.router.navigate(['']);
+    location.reload();
+  }
+  login() {
+    if (this.islogin) {
       this.islogin = false
     } else {
       this.islogin = true
     }
-}
+  }
 
   clickmj_likedetails() {
     if (this.mj_likedetails) {

@@ -8,7 +8,7 @@ module.exports.register =function (req, res, next) {
   var user = new model({
    fullname:req.body.fullname,
     email: req.body.email,
-    profileimage: req.body.profileimage ,
+    profileimage: "anonymous.png" ,
     password: passwordHash.generate(req.body.password)
   });
 

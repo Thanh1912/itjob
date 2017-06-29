@@ -51,7 +51,7 @@
                         <li><a  (click)="clickmj_notification_detail()"><i class="fa fa-bell"></i><sup>2</sup></a>
                         </li>
                         <li>
-                            <a class="mj_profileimg" (click)="clickmj_profilediv()"><img style="width:50px;height:50px;" src="http://localhost:3000/uploads/forms/anhdaidien/anonymous.png" alt="user"><i class="fa fa-angle-down"></i>
+                            <a class="mj_profileimg" (click)="clickmj_profilediv()">{{info?.username|uppercase}}<img style="width:50px;height:50px;" src="http://localhost:3000/uploads/forms/anhdaidien/anonymous.png" alt="user"><i class="fa fa-angle-down"></i>
                             </a>
                         </li>
                     </ul>
@@ -85,7 +85,7 @@
 
                             <li><a ><i class="fa fa-cog"></i>setting</a>
                             </li>
-                            <li><a >logout</a>
+                            <li><a (click)="logout()">logout</a>
                             </li>
                         </ul>
                     </div>
