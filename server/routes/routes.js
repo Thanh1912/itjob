@@ -111,6 +111,9 @@ router.route('/post/:id').get(postctrl.get);
 router.route('/post/:id').put(postctrl.update);
 router.route('/post/:id').delete(postctrl.delete);
 router.route('/getpost/:id').get(postctrl.getiduser);
+router.route('/job/detail').get(postctrl.getByIdDetailJob);
+
+
 router.route('/search-job-key').post(postctrl.get_job_key)
 router.route('/search-job-company/:id').get(postctrl.get_job_company)
 //===================UPload================

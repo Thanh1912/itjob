@@ -9,8 +9,8 @@ const nhattuyendungSchema = new mongoose.Schema({
   descriptionwork: String,
   requirementwork: { type: String,  required: true },
   postimage: { type: String,  required: true },
-  workplaceid: String,//
-  districtid: String,//
+  workplaceid:  { type: Schema.Types.ObjectId, ref: 'workplace' },//
+  districtid: { type: Schema.Types.ObjectId, ref: 'district' },//
   Apllication: String,//
   JobTime: String,//
   endPost:{ type: Date, default: Date.now },

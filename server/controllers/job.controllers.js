@@ -9,18 +9,42 @@ var _ = require("underscore");
 
 // Get all job -- incluce  : job and company
 module.exports.getAllJob_company = function (req, res) {
-   model.aggregate([
-    { "$lookup": {
-      "from": "users",
-      "localField": "recruiterid",
-      "foreignField": "_id",
-      "as": "listuser"
-    }}
+  model.aggregate([
+    {
+      "$lookup": {
+        "from": "users",
+        "localField": "recruiterid",
+        "foreignField": "_id",
+        "as": "listuser"
+      }
+    }
   ]).exec(function (err, docs) {
     if (err) throw err;
     res.json(docs);
   });
 };
+
+
+module.exports.getByIdDetailJob = function (req, res) {
+  model.aggregate([
+ 
+
+    {
+      "$lookup": {
+        "from": "districts",
+        "localField": "districtid",
+        "foreignField": "_id",
+        "as": "userInfo"
+      },
+
+    }
+  
+  ]).exec(function (err, docs) {
+    if (err) throw err;
+    res.json(docs);
+  });
+};
+
 
 /*
 // Get all
@@ -64,9 +88,9 @@ module.exports.get_job_key = function (req, res) {
 
   console.log(req.body);
 
-  var array=[];
-  array=req.body;
-  model.find({ keywords : { $in : array } }).sort({ "createddate": 1 }
+  var array = [];
+  array = req.body;
+  model.find({ keywords: { $in: array } }).sort({ "createddate": 1 }
   ).exec(function (err, docs) {
     if (err) throw err;
     res.json(docs);
@@ -96,9 +120,9 @@ module.exports.getalljobs = function (req, res) {
 module.exports.getiduser = function (req, res) {
 
   model.find(
- {
-'recruiterid' :req.params.id
- },
+    {
+      'recruiterid': req.params.id
+    },
     function (err, model) {
       if (err) {
         console.log(err);
@@ -115,18 +139,18 @@ module.exports.count = function (req, res) {
     res.json(count);
   });
 };
-  // Insert
-  module.exports.insert = function(req, res) {
-    const obj = new model(req.body);
-    obj.save(function(err, item)  {
-      if (err) { return console.error(err); }
-      res.status(200).json(item);
-     //save user
+// Insert
+module.exports.insert = function (req, res) {
+  const obj = new model(req.body);
+  obj.save(function (err, item) {
+    if (err) { return console.error(err); }
+    res.status(200).json(item);
+    //save user
 
 
 
-    });
-  };
+  });
+};
 
 // Get by id
 module.exports.get = function (req, res) {
