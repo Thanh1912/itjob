@@ -4,6 +4,7 @@ var router = express.Router(),
 fs = require('fs');
 var multer = require('multer');
 var router = express.Router();
+var cadidatectrl = require('../controllers/candidate.controllers.js');
 /*==============================
       =======..........====
 ==============================

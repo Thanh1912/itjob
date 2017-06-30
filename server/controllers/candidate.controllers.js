@@ -109,6 +109,17 @@ module.exports.login = function (req, res, next) {
       res.sendStatus(200);
     });
   };
+  
+    // Update by id
+  module.exports.updateImagepro = function(req, res) {
+    update={
+       profileimage: req.body.img
+    }
+    model.findOneAndUpdate({ _id: req.params.id },update , function(err) {
+      if (err) { return console.error(err); }
+      res.sendStatus(200);
+    });
+  };
 
   // Delete by id
   module.exports.delete = function(req, res) {

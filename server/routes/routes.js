@@ -50,6 +50,7 @@ router.route('/thanhvien/count').get(candidatectrl.count);
 router.route('/thanhvien').post(candidatectrl.insert);
 router.route('/thanhvien/:id').get(candidatectrl.get);
 router.route('/thanhvien/:id').put(candidatectrl.update);
+router.route('/update/thanhvien/:id').put(candidatectrl.updateImagepro);
 router.route('/thanhvien/:id').delete(candidatectrl.delete);
 //keyword
 router.route('/keyword').get(keywordctrl.getAll);
@@ -69,6 +70,12 @@ var workplacectrl = require('../controllers/workplace.controllers.js');
 
 
 router.route('/resume').post(resumectrl.insert);
+router.route('/getallById/resume/:id').get(resumectrl.getallByIdUser);
+router.route('/readPdf/resume/:id').get(resumectrl.getallByIdPDFUser);
+
+
+
+
 router.route('/district').get(districtctrl.getAll);
 router.route('/district/count').get(districtctrl.count);
 router.route('/district').post(districtctrl.insert);
@@ -101,7 +108,20 @@ router.route('/workplace').post(workplacectrl.insert);
 router.route('/workplace/:id').get(workplacectrl.get);
 router.route('/workplace/:id').put(workplacectrl.update);
 router.route('/workplace/:id').delete(workplacectrl.delete);
+
+var sliderctrl = require('../controllers/slider.controllers.js');
+router.route('/slider').get(sliderctrl.getAll);
+router.route('/slider/count').get(sliderctrl.count);
+router.route('/slider').post(sliderctrl.insert);
+router.route('/slider/:id').get(sliderctrl.get);
+router.route('/slider/:id').put(sliderctrl.update);
+router.route('/slider/:id').delete(sliderctrl.delete);
+
+
 var postctrl = require('../controllers/job.controllers.js');
+
+
+
 
 router.route('/post').get(postctrl.getAll);
 router.route('/gettop10post').get(postctrl.top10post);
@@ -114,6 +134,9 @@ router.route('/getpost/:id').get(postctrl.getiduser);
 router.route('/job/detail').get(postctrl.getByIdDetailJob);
 
 
+
+
+
 router.route('/search-job-key').post(postctrl.get_job_key)
 router.route('/search-job-company/:id').get(postctrl.get_job_company)
 //===================UPload================
@@ -123,6 +146,7 @@ router.route('/getalljob-company').get(postctrl.getAllJob_company);
 //router.route('/getalljob').get(postctrl.getAllJob);
 //router.route('/getdemo').get(postctrl.getAlldemo);
 router.route('/getallnewjob').get(postctrl.getalljobs);
+
 
 
 

@@ -9,7 +9,7 @@ import {PdfViewerComponent} from 'ng2-pdf-viewer';
 })
 export class ReadPdfComponent implements OnInit {
 
- pdfSrc: string = 'http://www.attuneww.com/wp-content/uploads/2016/09/GettingStartedWithAngular2.pdf';
+ pdfSrc: string = '/pdf-test.pdf';
   page: number = 1;
 
   constructor() { }

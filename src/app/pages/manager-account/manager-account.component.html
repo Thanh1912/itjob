@@ -24,17 +24,17 @@
                                     <img src="assets/images/candidate_img.jpg" class="img-responsive image-profile mj_testimonial_img" alt="Image LOgo">
                                 </div>
                                 <div class="col-lg-8">
-                                    <form class="form-horizontal form-profile" *ngIf="ischangepass==true">
+                                    <form class="form-horizontal form-profile" [formGroup]="FormChangpass" (ngSubmit)="updatePassword()"  *ngIf="ischangepass==true">
                                         <div class="form-group">
-                                            <label for="inputName" class="col-sm-2 control-label">Password</label>
+                                            <label for="inputName" class="col-sm-2 control-label" [formControl]="passw"  >Password</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="inputName" placeholder="pass">
+                                                <input type="text" class="form-control" id="inputName" placeholder="pass" [formControl]="passnew">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="inputEmail" class="col-sm-2 control-label">Password new</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="inputName" placeholder="new pass">
+                                                <input type="text" class="form-control" id="inputName" placeholder="new pass" [formControl]="passnewRepeat">
                                             </div>
                                         </div>
                                         <div class="form-group">

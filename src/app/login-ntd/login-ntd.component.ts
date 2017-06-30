@@ -28,7 +28,7 @@ export class LoginNtdComponent implements OnInit {
   }
   ngOnInit() {
     // reset login status
-    this.authenticationService.logout();
+     //this.authenticationService.logout();
   }
   close(){
     this.error="";

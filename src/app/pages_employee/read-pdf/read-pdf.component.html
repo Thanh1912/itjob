@@ -25,12 +25,11 @@
         </div>
       </div>
       <div class="box-body">
-
         <div>
           <label>Page:</label>
           <input type="number" placeholder="Page" [(ngModel)]="page">
         </div>
-        <pdf-viewer [src]="pdfSrc" [page]="page" [original-size]="true" style="display: block;"></pdf-viewer>
+        <pdf-viewer [src]="'http://localhost:3000/uploads/forms/filecv/CV-300617.191153.pdf'" [page]="page" [original-size]="true" style="display: block;"></pdf-viewer>
       </div>
       <!-- /.box-body -->
       <div class="box-footer">

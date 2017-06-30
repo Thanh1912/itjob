@@ -10,24 +10,31 @@ import { PostService } from './../../services/post.service';
 export class DanhSachBaiDangComponent implements OnInit {
 
   constructor(private PostService: PostService) { }
-   list_post :any;
+  list_post: any;
   ngOnInit() {
-  this.getallpost (localStorage.getItem('userId_ntd'));
+    this.getallpost(localStorage.getItem('userId_ntd'));
     // alert( localStorage.getItem('userId_ntd'));
 
   }
-  delete(item){
-
-
-
+  delete(item: any) {
+    if (window.confirm('Are you sure you want to permanently delete this item?')) {
+      this.PostService.delete(item).subscribe(
+        res => {
+          const pos = this.list_post.map(elem => { return elem._id; }).indexOf(item._id);
+          this.list_post.splice(pos, 1);
+          // this.toast.setMessage('item deleted successfully.', 'success');
+        },
+        error => console.log(error)
+      );
+    }
   }
 
   getallpost(id) {
 
- this.PostService.getpost(id).subscribe(
+    this.PostService.getpost(id).subscribe(
       data => {
         this.list_post = data;
-         console.log( this.list_post);
+        console.log(this.list_post);
       },
       error => console.log(error),
       () => { }

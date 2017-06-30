@@ -8,7 +8,8 @@ const SliderSchema = new mongoose.Schema({
     company:String,
     image:String,
     text:String,
-    link:String
+    link:String,
+    status:Boolean
 });
 
 const model = mongoose.model('Slider', resumeSchema);

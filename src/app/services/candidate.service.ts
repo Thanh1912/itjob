@@ -20,4 +20,11 @@ export class CandidateService {
    savecv(user): Observable<any> {
     return this.http.post(this.Rest_Url + `/api/resume`, JSON.stringify(user), this.options);
   }
+  //get resume
+
+  //edit password
+    EditPassWord(user): Observable<any> {
+    return this.http.post(this.Rest_Url + `/api/resume`, JSON.stringify(user), this.options);
+  }
+
 }

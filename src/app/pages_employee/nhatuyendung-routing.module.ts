@@ -22,7 +22,7 @@ const adminRoutes: Routes = [
         // canActivateChild: [AuthGuard],
         children: [
           { path: 'job', component: JobComponent },
-          { path: 'application', component: ApplicantComponent },
+          { path: 'application/:id', component: ApplicantComponent },
           { path: 'company', component: CompanyComponent },
           { path: 'member', component: MemberComponent },
           { path: '', component: DanhSachBaiDangComponent },
