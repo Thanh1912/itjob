@@ -25,7 +25,9 @@ import { RegisterJobComponent } from './register-job/register-job.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 import { CandidateService } from '../services/candidate.service';
+import { ResumeService } from './../services/resume.service';
 import { FileSelectDirective } from 'ng2-file-upload';
+
 let providers = {
   "google": {
     "clientId": "1075668812758-334p3amm6s3h1nsnhlhd0bl0o1qd70t5.apps.googleusercontent.com"    //meanstack
@@ -55,7 +57,7 @@ let providers = {
     RegisterJobComponent,
     FileSelectDirective
   ]
-  , providers: [CandidateService],
+  , providers: [CandidateService,ResumeService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class PagesModule {
