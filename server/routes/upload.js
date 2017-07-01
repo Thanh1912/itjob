@@ -125,7 +125,7 @@ var upload_anhdaidien = multer({
     storage: Storage_anhdaidien
 }).single('anhdaidien');
 router.post("/api/anhdaidien", function (req, res) {
-    upload_logo(req, res, function (err) {
+    upload_anhdaidien(req, res, function (err) {
         if (err) {
             return res.end("Something went wrong!");
         }
