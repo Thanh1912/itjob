@@ -3,7 +3,7 @@ var mongoose = require('mongoose'),
  mongooseUniqueValidator = require('mongoose-unique-validator');
 const districtSchema = new mongoose.Schema({
   name: String,
-  workplace: String
+  workplace:  { type: Schema.Types.ObjectId, ref: 'workplace' },
 });
 
 const model = mongoose.model('district', districtSchema);
