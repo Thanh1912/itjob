@@ -10,42 +10,23 @@ import { PagerService } from './../../_services/pager.service';
   styleUrls: ['./catalog-job.component.css']
 })
 export class CatalogJobComponent implements OnInit {
-
   selectedItem: string;
-    id_w: string;
-  c:any;
   item_Workplace: any;
-
-
-
-  changeedit(newValue) {
-    console.log(newValue);
-    this.id_w = newValue;  // don't forget to update the model here
-  }
-  onChange(newValue) {
-    console.log(newValue);
-    this.selectedItem = newValue;  // don't forget to update the model here
-  }
   // pager object
   pager: any = {};
   // paged items
   pagedItems: any[];
-
-
   cats = [];
   isLoading = true;
   cat = {};
   edit_={};
   isEditing = false;
-
   addCatForm: FormGroup;
   name = new FormControl('', Validators.required);
-
   constructor(private http: Http,
     private dataService: DistrictService, private workplace: WorkplaceService,
     //    public toast: ToastComponent,
     private formBuilder: FormBuilder, private pagerService: PagerService) { }
-
   ngOnInit() {
     this.getall();
     //load select
@@ -116,7 +97,6 @@ this.addCatForm.value.workplace=this.selectedItem;
        this.edit_= {
        _id:cat._id,
        name:cat.name,
-      workplace: this.id_w
        }
     this.dataService.edit( this.edit_).subscribe(
       res => {

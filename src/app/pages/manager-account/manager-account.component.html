@@ -21,21 +21,24 @@
                         <div role="tabpanel" class="tab-pane fade in active" id="company" *ngIf="isupdateuser==false">
                             <div class="row">
                                 <div class="col-lg-4">
-                                    <img id="imageprofile" src="assets/images/candidate_img.jpg" class="img-responsive image-profile mj_testimonial_img" alt="Image LOgo">
-                                 
-  <input style="margin-top: 10px;" type="file" id="anhdaidien" name="anhdaidien" ng2FileSelect [uploader]="uploaderanhdaidien" />
-                                                <button type="button" (click)="uploaderanhdaidien.uploadAll();" [disabled]="!uploaderanhdaidien.getNotUploadedItems().length" class="btn btn-primary">UpLoad Image</button>
-                                    <button class="btn-primary c-edit"><i class="fa fa-edit"></i>Edit</button>
-                              <input type="checkbox" class="minimal">
-                              <span class="pull-right">
+                                    <img id="imageprofile" src="http://localhost:3000/uploads/forms/anhdaidien/{{listuser?.profileimage}}" class="img-responsive image-profile mj_testimonial_img"
+                                        alt="Image LOgo">
+
+                                    <input style="margin-top: 10px;" type="file" id="anhdaidien" name="anhdaidien" ng2FileSelect [uploader]="uploaderanhdaidien"
+                                    />
+                                    <button type="button" (click)="uploaderanhdaidien.uploadAll();" [disabled]="!uploaderanhdaidien.getNotUploadedItems().length"
+                                        class="btn-primary c-edit"><i class="fa fa-edit"></i>Edit</button>
+
+                                    <input type="checkbox" class="minimal">
+                                    <span class="pull-right">
                         <input type="checkbox" class="js-switch" id="chb-searchable" data-switchery="true" style=""><span class="switchery" id="chb-searchable" style="box-shadow: rgb(223, 223, 223) 0px 0px 0px 0px inset; border-color: rgb(223, 223, 223); transition: border 0.5s, box-shadow 0.5s; opacity: 0.5;"><small style="left: 0px; transition: left 0.25s;"></small></span>
-                    </span>
-                              
-                               Public Profile
-                                 <div class="form-group">
-                                            <a id="download-resume-button" class="btn btn-sm btn-default btn-outline" (click)="clickchangepass()"><i class="fa  fa-exchange " ></i> Change  password </a>
-                                            <a id="download-resume-button" href="http://localhost:3000/uploads/forms/filecv/CV-300617.191153.pdf" target="_blank" class="btn btn-sm btn-default btn-outline"><i class="fa fa-fw fa-file-pdf-o"></i> Tải hồ sơ</a>
-                                        </div>
+                                    </span>
+
+                                    Public Profile
+                                    <div class="form-group">
+                                        <a id="download-resume-button" class="btn btn-sm btn-default btn-outline" (click)="clickchangepass()"><i class="fa  fa-exchange " ></i> Change  password </a>
+                                        <a id="download-resume-button" href="http://localhost:3000/uploads/forms/filecv/CV-300617.191153.pdf" target="_blank" class="btn btn-sm btn-default btn-outline"><i class="fa fa-fw fa-file-pdf-o"></i> Tải hồ sơ</a>
+                                    </div>
                                 </div>
                                 <div class="col-lg-8">
                                     <form [formGroup]="changepasswordForm" class="form-horizontal form-profile" *ngIf="ischangepass==true" (ngSubmit)="updatePassword()">
@@ -106,15 +109,15 @@
                                             </div>
                                         </div>
                                         <br>
-                                      
+
 
                                         <div class="form-group">
                                             <label for="inputExperience" class="col-sm-2 control-label">CV</label>
-                                            <div class="col-sm-10" >
+                                            <div class="col-sm-10">
                                                 <input type="text" [formControl]="file" class="form-control">
                                                 <div class="form-group">
-                                                <input style="margin-top: 10px;" type="file" id="file_cv" name="file_cv" ng2FileSelect [uploader]="uploader" />
-                                                <button type="button" (click)="uploader.uploadAll();" [disabled]="!uploader.getNotUploadedItems().length" class="btn btn-primary">UpLoad Image</button>
+                                                    <input style="margin-top: 10px;" type="file" id="file_cv" name="file_cv" ng2FileSelect [uploader]="uploader" />
+                                                    <button type="button" (click)="uploader.uploadAll();" [disabled]="!uploader.getNotUploadedItems().length" class="btn btn-primary">UpLoad Image</button>
                                                 </div>
                                             </div>
                                             <button type="submit" class="btn btn-flat btn-primary pull-right" style="margin-right: 20px;">Update</button>

@@ -60,6 +60,16 @@ router.route('/keyword/:id').get(keywordctrl.get);
 router.route('/keyword/:id').put(keywordctrl.update);
 router.route('/keyword/:id').delete(keywordctrl.delete);
 
+//jobcategory
+var jobcategoryctrl = require('../controllers/jobcategory.controllers.js');
+router.route('/jobcategory').get(jobcategoryctrl.getAll);
+router.route('/jobcategory/count').get(jobcategoryctrl.count);
+router.route('/jobcategory').post(jobcategoryctrl.insert);
+router.route('/kejobcategoryyword/:id').get(jobcategoryctrl.get);
+router.route('/jobcategory/:id').put(jobcategoryctrl.update);
+router.route('/jobcategory/:id').delete(jobcategoryctrl.delete);
+
+
 
 var districtctrl = require('../controllers/district.controllers.js');
 var resumectrl = require('../controllers/resume.controllers.js');
