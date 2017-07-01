@@ -7,16 +7,16 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css','../../../assets/css/bootstrap.css',
+  styleUrls: ['./login.component.css', '../../../assets/css/bootstrap.css',
     '../../../assets/css/animate.css'
-,'../../../assets/css/style.css'
-,'../../../assets/js/plugins/fancybox/jquery.fancybox.css'
-,'../../../assets/js/plugins/rsslider/settings.css'
-,'../../../assets/js/plugins/rsslider/layers.css'
-,'../../../assets/js/plugins/rsslider/navigation.css'
-,'../../../assets/js/plugins/jquery-ui/jquery-ui.css'
-,'../../../assets/js/plugins/bootstrap-slider/bootstrap-slider.css'
-,'../../../assets/js/plugins/owl/owl.carousel.css']
+    , '../../../assets/css/style.css'
+    , '../../../assets/js/plugins/fancybox/jquery.fancybox.css'
+    , '../../../assets/js/plugins/rsslider/settings.css'
+    , '../../../assets/js/plugins/rsslider/layers.css'
+    , '../../../assets/js/plugins/rsslider/navigation.css'
+    , '../../../assets/js/plugins/jquery-ui/jquery-ui.css'
+    , '../../../assets/js/plugins/bootstrap-slider/bootstrap-slider.css'
+    , '../../../assets/js/plugins/owl/owl.carousel.css']
 })
 export class LoginComponent implements OnInit {
   public user;
@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
   error = '';
   result;
   sub: any;
-  constructor(   public _auth: AuthService, private router: Router, private auth: AuthenticationService) { }
+  constructor(public _auth: AuthService, private router: Router, private auth: AuthenticationService) { }
 
   signIn(provider) {
     this.sub = this._auth.login(provider).subscribe(
@@ -35,9 +35,8 @@ export class LoginComponent implements OnInit {
           email: this.user.email,
           password: this.user.uid,
           fullname: this.user.name,
-          profileimage :this.user.image
+          profileimage: this.user.image
         }
-        console.log('=====Xuat=====')
         console.log(user)
         //login tai khoan 
         this.auth.signin_tv(user)
@@ -45,15 +44,13 @@ export class LoginComponent implements OnInit {
           data => {
             localStorage.setItem('id_token', data.token);
             localStorage.setItem('userId', data.userId);
-            localStorage.setItem('fullname',this.user.name);
-            localStorage.setItem('username',this.user.email);
+            localStorage.setItem('fullname', this.user.name);
+            localStorage.setItem('username', this.user.email);
             localStorage.setItem('currentUserRole', data.role);
             alert('logined')
             // navigate user to index page of our app
-               location.reload();
-          this.router.navigate(['']);
-         
-            // display toastr success message pop up to inform the user that he logged in successfully
+            location.reload();
+            this.router.navigate(['']);
           },
           error => {
             //neu chua co tai khoan thi tiep theo tao tai khoan
@@ -70,11 +67,11 @@ export class LoginComponent implements OnInit {
                     localStorage.setItem('fullname', data.fullname);
                     localStorage.setItem('username', data.username);
                     localStorage.setItem('currentUserRole', data.role);
-                       alert('logined')
+                    alert('logined')
                     // navigate user to index page of our app
                     location.reload();
                     this.router.navigate(['']);
-                  
+
                   },
                   error => {
                     alert('Username or password is incorrect')
@@ -90,7 +87,7 @@ export class LoginComponent implements OnInit {
       }
     )
   }
-  goRecruiter(){
+  goRecruiter() {
     this.router.navigateByUrl('/login-ntd');
   }
   logout() {
@@ -123,15 +120,11 @@ export class LoginComponent implements OnInit {
       error => {
         alert('Username or password is incorrect')
         this.error = 'Username or password is incorrect';
-        
       }
       )
-
   }
-
-
   ngOnInit() {
-   
+
   }
 
 }
