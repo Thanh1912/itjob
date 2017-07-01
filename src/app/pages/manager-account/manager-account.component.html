@@ -22,8 +22,9 @@
                             <div class="row">
                                 <div class="col-lg-4">
                                     <img id="imageprofile" src="assets/images/candidate_img.jpg" class="img-responsive image-profile mj_testimonial_img" alt="Image LOgo">
-                                    <input type="file" id="preview" />
-
+                                 
+  <input style="margin-top: 10px;" type="file" id="anhdaidien" name="anhdaidien" ng2FileSelect [uploader]="uploaderanhdaidien" />
+                                                <button type="button" (click)="uploaderanhdaidien.uploadAll();" [disabled]="!uploaderanhdaidien.getNotUploadedItems().length" class="btn btn-primary">UpLoad Image</button>
                                     <button class="btn-primary c-edit"><i class="fa fa-edit"></i>Edit</button>
                               <input type="checkbox" class="minimal">
                               <span class="pull-right">

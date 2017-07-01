@@ -4,7 +4,5 @@ var mongoose = require('mongoose'),
 const districtSchema = new mongoose.Schema({
   name: String
 });
-
 const model = mongoose.model('experience', districtSchema);
-
 module.exports = model;

@@ -48,7 +48,7 @@ export class ManagerAccountComponent implements OnInit {
         reader.readAsDataURL(input.files[0]);
       }
     }
-    jQuery("#preview").change(function () {
+    jQuery("#anhdaidien").change(function () {
       readURL(this);
     });
   }
@@ -68,6 +68,12 @@ export class ManagerAccountComponent implements OnInit {
       this.isupdateuser = true;
     }
   }
+
+//===========Upload Imgage Anh dai dien================
+  public uploaderanhdaidien: FileUploader = new FileUploader({ url: 'http://localhost:3000/api/anhdaidien', itemAlias: 'anhdaidien' });
+//===========Upload Imgage Anh dai dien================
+
+
   //========================================
   public uploader: FileUploader = new FileUploader({ url: 'http://localhost:3000/api/uploadcv', itemAlias: 'file_cv' });
   imageurl: string = "";
@@ -88,6 +94,14 @@ export class ManagerAccountComponent implements OnInit {
     if (localStorage.getItem('userId') != null) {
       this.load_detail_user(localStorage.getItem('userId'));
     }
+    //===========Upload Imgage Anh dai dien================
+    //override the onAfterAddingfile property of the uploader so it doesn't authenticate with //credentials.
+    this.uploaderanhdaidien.onAfterAddingFile = (file) => { file.withCredentials = false; };
+    this.uploaderanhdaidien.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
+      console.log("UpLoad :", item, status, response);
+    };
+     //===========/Upload Imgage Anh dai dien================
+
     //override the onAfterAddingfile property of the uploader so it doesn't authenticate with //credentials.
     this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
     //overide the onCompleteItem property of the uploader so we are
@@ -134,18 +148,18 @@ export class ManagerAccountComponent implements OnInit {
         (error) => alert(error))
     }
   }
- passwordnew = new FormControl('', [
+  passwordnew = new FormControl('', [
     Validators.required,
     Validators.minLength(5),
-     
+
   ]);
-   passwordrepeate = new FormControl('', [
+  passwordrepeate = new FormControl('', [
     Validators.required,
     Validators.minLength(5),
-       
+
   ]);
 
-  passwordold =new FormControl('', [
+  passwordold = new FormControl('', [
     Validators.required,
     Validators.minLength(5),
 
@@ -154,18 +168,18 @@ export class ManagerAccountComponent implements OnInit {
   changepasswordForm: FormGroup = this.builder.group({
     passwordnew: this.passwordnew,
     passwordold: this.passwordold,
-    
+
   });
-  errrorcheck:String;
-    passwordMatch() {
-     var checkpass1=this.changepasswordForm.value.passwordold;
-       var checkpass2=this.changepasswordForm.value.passwordrepeate;
-       if(checkpass1===checkpass2){
-        this.errrorcheck="";
-         return true;
-       }
-     this.errrorcheck="No Match";
-       return false;
+  errrorcheck: String;
+  passwordMatch() {
+    var checkpass1 = this.changepasswordForm.value.passwordold;
+    var checkpass2 = this.changepasswordForm.value.passwordrepeate;
+    if (checkpass1 === checkpass2) {
+      this.errrorcheck = "";
+      return true;
+    }
+    this.errrorcheck = "No Match";
+    return false;
 
   }
 
@@ -176,10 +190,10 @@ export class ManagerAccountComponent implements OnInit {
     //kiem tra password
     var user = {
       _id: localStorage.getItem('userId'),
-    //  password: this.fchangepass.value.passw
+      //  password: this.fchangepass.value.passw
     }
     var userinput = {
-    //  password: this.fchangepass.value.passnew
+      //  password: this.fchangepass.value.passnew
     }
     this.auth.signin_tv(user)
       .subscribe(

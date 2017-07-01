@@ -7,9 +7,8 @@ const resumeSchema = new mongoose.Schema({
   modifieddate:{ type: Date, default: Date.now },
   candidateid :  {type: Schema.Types.ObjectId, ref: 'candidate'},
   recruiterid :  {type: Schema.Types.ObjectId, ref: 'recruiter'},
+  jobid :  {type: Schema.Types.ObjectId, ref: 'job'},
   status: Number,
-
-
 });
 
 const model = mongoose.model('resume', resumeSchema);
