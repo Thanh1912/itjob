@@ -1,4 +1,6 @@
-var mongoose = require('mongoose')
+var mongoose =require('mongoose'),
+ mongooseUniqueValidator = require('mongoose-unique-validator'),
+  Schema                  = mongoose.Schema;
 const candidateSchema = new mongoose.Schema({
   email: { type: String, unique: true, required: true, lowercase: true },
   password: { type: String, required: true },
@@ -15,8 +17,6 @@ const candidateSchema = new mongoose.Schema({
   ],
   workplaceid:  { type: Schema.Types.ObjectId, ref: 'workplace' },//
   districtid: { type: Schema.Types.ObjectId, ref: 'district' },//
-
-
 });
 const model = mongoose.model('candidate', candidateSchema);
 module.exports = model;

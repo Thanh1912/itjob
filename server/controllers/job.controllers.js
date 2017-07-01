@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var model = require('../models/job.model.js');
-var keyword = require('../models/keyword.model.js');
+var keyword = require('../models/jobcategorydetail.model.js');
 var workplace = require('../models/workplace.model.js');
 var _ = require("underscore");
 

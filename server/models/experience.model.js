@@ -2,10 +2,9 @@ var mongoose = require('mongoose'),
   Schema                  = mongoose.Schema;
  mongooseUniqueValidator = require('mongoose-unique-validator');
 const districtSchema = new mongoose.Schema({
-  name: String,
- 
+  name: String
 });
 
-const model = mongoose.model('experience.', districtSchema);
+const model = mongoose.model('experience', districtSchema);
 
 module.exports = model;
