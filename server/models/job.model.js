@@ -17,12 +17,13 @@ const nhattuyendungSchema = new mongoose.Schema({
   createddate:{ type: Date, default: Date.now },
   modified:{ type: Date, default: Date.now },
   recruiterid: { type: Schema.Types.ObjectId, ref: 'recruiter' },
-  keywords: [
-    { type: Schema.Types.ObjectId, ref: 'keyword' },
+  jobcategory: { type: Schema.Types.ObjectId, ref: 'jobcategory' },
+  jobcategorydetail: [
+    { type: Schema.Types.ObjectId, ref: 'jobcategorydetail' },
   ]
 });
 
 const model = mongoose
-  .model('post', nhattuyendungSchema);
+  .model('job', nhattuyendungSchema);
 
 module.exports = model;

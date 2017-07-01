@@ -27,18 +27,32 @@ module.exports.getAllJob_company = function (req, res) {
 
 module.exports.getByIdDetailJob = function (req, res) {
   model.aggregate([
- 
+
 
     {
       "$lookup": {
         "from": "districts",
         "localField": "districtid",
         "foreignField": "_id",
-        "as": "userInfo"
+        "as": "Infodistrict"
       },
-
-    }
-  
+    },
+    {
+      "$lookup": {
+        "from": "recruiters",
+        "localField": "recruiterid",
+        "foreignField": "_id",
+        "as": "Inforecruiter"
+      }
+    },
+    {
+      "$lookup": {
+        "from": "jobcategorydetail",
+        "localField": "jobcategorydetail",
+        "foreignField": "_id",
+        "as": "Infokeyword"
+      }
+    },
   ]).exec(function (err, docs) {
     if (err) throw err;
     res.json(docs);

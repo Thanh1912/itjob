@@ -131,7 +131,8 @@ router.route('/post/:id').get(postctrl.get);
 router.route('/post/:id').put(postctrl.update);
 router.route('/post/:id').delete(postctrl.delete);
 router.route('/getpost/:id').get(postctrl.getiduser);
-router.route('/job/detail').get(postctrl.getByIdDetailJob);
+router.route('/job/getall').get(postctrl.getByIdDetailJob);
+router.route('/job/getall').get(postctrl.getByIdDetailJob);
 
 
 

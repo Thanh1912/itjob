@@ -19,3 +19,13 @@ height: 150px;
     text-align: center;
     background-color: #00bff3;
 }
+.ed {
+    padding: 5px;
+    margin-top: 4px;
+    margin-bottom: 5px;
+}
+.c-edit{
+    position: absolute;
+    margin-top: -163px;
+    margin-left: 28px;
+}

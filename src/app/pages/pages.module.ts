@@ -27,6 +27,7 @@ import { CommonModule } from '@angular/common';
 import { CandidateService } from '../services/candidate.service';
 import { ResumeService } from './../services/resume.service';
 import { FileSelectDirective } from 'ng2-file-upload';
+import { UpdateInfoUserComponent } from './update-info-user/update-info-user.component';
 
 let providers = {
   "google": {
@@ -55,7 +56,8 @@ let providers = {
     LoginEmployeeComponent,
     RegisterNtdComponent,
     RegisterJobComponent,
-    FileSelectDirective
+    FileSelectDirective,
+    UpdateInfoUserComponent
   ]
   , providers: [CandidateService,ResumeService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

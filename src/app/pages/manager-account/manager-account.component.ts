@@ -2,10 +2,18 @@ import { Component, OnInit, AfterViewInit, ElementRef } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { CandidateService } from '../../services/candidate.service';
 import { ResumeService } from '../../services/resume.service';
-import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
 import { AuthenticationService } from "../../_services/authentication.service";
+declare var jQuery: any;
+interface FileReaderEventTarget extends EventTarget {
+  result: string
+}
 
+interface FileReaderEvent extends Event {
+  target: FileReaderEventTarget;
+  getMessage(): string;
+}
 @Component({
   selector: 'app-manager-account',
   templateUrl: './manager-account.component.html',
@@ -24,6 +32,26 @@ import { AuthenticationService } from "../../_services/authentication.service";
 export class ManagerAccountComponent implements OnInit {
   isupdateuser: boolean;
   ischangepass: boolean;
+  //Javascript load image preview when upload image 
+  ngAfterViewInit() {
+
+    function readURL(input) {
+
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (fre: FileReaderEvent) {
+          //   var data = JSON.parse();
+          jQuery('#imageprofile').attr('src', fre.target.result);
+          // alert(jQuery('#blah').height() + "size: " + jQuery('#blah').width());
+
+        }
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+    jQuery("#preview").change(function () {
+      readURL(this);
+    });
+  }
 
   clickchangepass() {
 
@@ -65,9 +93,20 @@ export class ManagerAccountComponent implements OnInit {
     //overide the onCompleteItem property of the uploader so we are
     //able to deal with the server response.
     this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
-      this.imageurl = response;
-      console.log(this.imageurl)
-      alert('UpLoad Thanh Cong');
+
+      //cap cv 
+      let userId = localStorage.getItem('userId');
+      var user1 = {
+        pathresume: response,
+        candidateid: userId
+      }
+      this.resume.save(user1).subscribe(
+        data => {
+          alert('Cap Nhat Thành Công')
+        },
+        error => console.log(error),
+        () => { }
+      );
       console.log("ImageUpload: uploaded:", item, status, response);
     };
   }
@@ -88,33 +127,48 @@ export class ManagerAccountComponent implements OnInit {
         .post('http://localhost:3000/api/uploadcv', formData).map((res: Response) => res.json()).subscribe(
         //map the success function and alert the response
         (success) => {
-          //cap cv 
-          let userId = localStorage.getItem('userId');
-          var user1 = {
-            pathresume: success._body,
-            candidateid: userId
-          }
-          this.resume.save(user1).subscribe(
-            data => {
-              alert('Cap Nhat Thành Công')
-            },
-            error => console.log(error),
-            () => { }
-          );
+
 
           alert(success._body);
         },
         (error) => alert(error))
     }
   }
-  passw = new FormControl('')
-  passnew = new FormControl('')
-  passnewRepeat = new FormControl('')
-  FormChangpass: FormGroup = this.builder.group({
-    passw: this.passw,
-    passnew: this.passnew,
-    passnewRepeat: this.passnewRepeat,
+ passwordnew = new FormControl('', [
+    Validators.required,
+    Validators.minLength(5),
+     
+  ]);
+   passwordrepeate = new FormControl('', [
+    Validators.required,
+    Validators.minLength(5),
+       
+  ]);
+
+  passwordold =new FormControl('', [
+    Validators.required,
+    Validators.minLength(5),
+
+  ]);
+
+  changepasswordForm: FormGroup = this.builder.group({
+    passwordnew: this.passwordnew,
+    passwordold: this.passwordold,
+    
   });
+  errrorcheck:String;
+    passwordMatch() {
+     var checkpass1=this.changepasswordForm.value.passwordold;
+       var checkpass2=this.changepasswordForm.value.passwordrepeate;
+       if(checkpass1===checkpass2){
+        this.errrorcheck="";
+         return true;
+       }
+     this.errrorcheck="No Match";
+       return false;
+
+  }
+
 
 
 
@@ -122,10 +176,10 @@ export class ManagerAccountComponent implements OnInit {
     //kiem tra password
     var user = {
       _id: localStorage.getItem('userId'),
-      password: ""
+    //  password: this.fchangepass.value.passw
     }
     var userinput = {
-      password: ""
+    //  password: this.fchangepass.value.passnew
     }
     this.auth.signin_tv(user)
       .subscribe(

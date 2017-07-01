@@ -7,7 +7,7 @@
         </div>
 
         <div class="row" *ngIf="isupdateuser==false">
-            <div class="col-lg-6 col-md-6 col-lg-offset-3 col-md-offset-3 col-sm-12 col-xs-12">
+            <div class="col-lg-8 col-md-8 col-lg-offset-3 col-md-offset-3 col-sm-12 col-xs-12">
                 <div class="mj_pricingtable mj_yellowtable mj_createaccount_form_wrapper">
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs" role="tablist">
@@ -21,30 +21,73 @@
                         <div role="tabpanel" class="tab-pane fade in active" id="company" *ngIf="isupdateuser==false">
                             <div class="row">
                                 <div class="col-lg-4">
-                                    <img src="assets/images/candidate_img.jpg" class="img-responsive image-profile mj_testimonial_img" alt="Image LOgo">
+                                    <img id="imageprofile" src="assets/images/candidate_img.jpg" class="img-responsive image-profile mj_testimonial_img" alt="Image LOgo">
+                                    <input type="file" id="preview" />
+
+                                    <button class="btn-primary c-edit"><i class="fa fa-edit"></i>Edit</button>
+                              <input type="checkbox" class="minimal">
+                              <span class="pull-right">
+                        <input type="checkbox" class="js-switch" id="chb-searchable" data-switchery="true" style=""><span class="switchery" id="chb-searchable" style="box-shadow: rgb(223, 223, 223) 0px 0px 0px 0px inset; border-color: rgb(223, 223, 223); transition: border 0.5s, box-shadow 0.5s; opacity: 0.5;"><small style="left: 0px; transition: left 0.25s;"></small></span>
+                    </span>
+                              
+                               Public Profile
+                                 <div class="form-group">
+                                            <a id="download-resume-button" class="btn btn-sm btn-default btn-outline" (click)="clickchangepass()"><i class="fa  fa-exchange " ></i> Change  password </a>
+                                            <a id="download-resume-button" href="http://localhost:3000/uploads/forms/filecv/CV-300617.191153.pdf" target="_blank" class="btn btn-sm btn-default btn-outline"><i class="fa fa-fw fa-file-pdf-o"></i> Tải hồ sơ</a>
+                                        </div>
                                 </div>
                                 <div class="col-lg-8">
-                                    <form class="form-horizontal form-profile" [formGroup]="FormChangpass" (ngSubmit)="updatePassword()"  *ngIf="ischangepass==true">
+                                    <form [formGroup]="changepasswordForm" class="form-horizontal form-profile" *ngIf="ischangepass==true" (ngSubmit)="updatePassword()">
+
                                         <div class="form-group">
-                                            <label for="inputName" class="col-sm-2 control-label" [formControl]="passw"  >Password</label>
+                                            <label for="username" class="col-sm-2 control-label">PassWordOld</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="inputName" placeholder="pass" [formControl]="passnew">
+                                                <input type="text" name="passwordold" id="passwordold" [formControl]="passwordold" class="form-control">
+                                                <div class="alert alert-danger ed" [hidden]="passwordold.valid || passwordnew.untouched">
+
+
+                                                    <div [hidden]="!passwordold.hasError('minlength')">
+                                                        <i class="fa fa-ban" aria-hidden="true"></i> PassWordOld can not
+                                                        be shorter than 5 characters.
+                                                    </div>
+                                                    <div [hidden]="!passwordold.hasError('required')">
+                                                        <i class="fa fa-ban" aria-hidden="true"></i> PassWordOld is required.
+                                                    </div>
+                                                </div>
                                             </div>
+
                                         </div>
                                         <div class="form-group">
-                                            <label for="inputEmail" class="col-sm-2 control-label">Password new</label>
+                                            <label class="col-sm-2 control-label" for="passwordnew">PassWordNew</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="inputName" placeholder="new pass" [formControl]="passnewRepeat">
+                                                <input type="password" name="passwordnew" id="passwordnew" class="form-control" [formControl]="passwordnew">
+                                                <div class="alert alert-danger ed" [hidden]="passwordnew.valid || passwordnew.untouched">
+
+
+                                                    <div [hidden]="!passwordnew.hasError('required')">
+                                                        <i class="fa fa-ban" aria-hidden="true"></i> The password is required.
+                                                    </div>
+                                                </div>
                                             </div>
+
+
                                         </div>
                                         <div class="form-group">
-                                            <label for="inputEmail" class="col-sm-2 control-label">Password</label>
+                                            <label class="col-sm-2 control-label" for="passwordnew">RepeatPassWord</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="inputName" placeholder="repeat pass">
+                                                <input type="password" name="passwordrepeate" (keyup)="passwordMatch()" id="passwordrepeate" class="form-control" [formControl]="passwordrepeate">
+                                                <div class="alert alert-danger ed" [hidden]="passwordrepeate.valid || passwordrepeate.untouched">
+
+                                                    <div class="alert alert-danger">
+                                                        {{errrorcheck}}
+                                                    </div>
+                                                    <div class="alert alert-danger ed" [hidden]="!passwordrepeate.hasError('required')">
+                                                        <i class="fa fa-ban" aria-hidden="true"></i> The password is required.
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                        <a id="download-resume-button" class="btn btn-sm btn-primary btn-outline" (click)="clickchangepass()"><i class="fa  fa-save  " ></i> Save </a>
-                                        <a id="download-resume-button" class="btn btn-sm btn-danger btn-outline" (click)="clickchangepass()"><i class="fa fa-dedent " ></i> Cancel </a>
+                                        <button type="submit" [disabled]="!changepasswordForm.valid" class="btn btn-flat btn-primary">Update</button>
                                     </form>
                                     <form class="form-horizontal form-profile" [formGroup]="saveForm" (ngSubmit)="saveinfo()" *ngIf="ischangepass==false">
                                         <div class="form-group">
@@ -61,19 +104,20 @@
                                                     data-original-title="Edit your email address">
                                             </div>
                                         </div>
+                                        <br>
+                                      
 
                                         <div class="form-group">
                                             <label for="inputExperience" class="col-sm-2 control-label">CV</label>
-                                            <div class="col-sm-10">
+                                            <div class="col-sm-10" >
                                                 <input type="text" [formControl]="file" class="form-control">
-                                                <input type="file" id="file_cv" name="file_cv" ng2FileSelect [uploader]="uploader" />
+                                                <div class="form-group">
+                                                <input style="margin-top: 10px;" type="file" id="file_cv" name="file_cv" ng2FileSelect [uploader]="uploader" />
                                                 <button type="button" (click)="uploader.uploadAll();" [disabled]="!uploader.getNotUploadedItems().length" class="btn btn-primary">UpLoad Image</button>
+                                                </div>
                                             </div>
-                                            <button type="submit" class="btn btn-flat btn-primary pull-right">Update</button>
-                                            <br>
-                                            <input type="checkbox" class="minimal"> Public Profile
-                                            <a id="download-resume-button" class="btn btn-sm btn-default btn-outline" (click)="clickchangepass()"><i class="fa  fa-exchange " ></i> Change  password </a>
-                                            <a id="download-resume-button" href="https://www.vietnamworks.com/tai-ho-so" target="_blank" class="btn btn-sm btn-default btn-outline"><i class="fa fa-fw fa-file-pdf-o"></i> Tải hồ sơ</a>
+                                            <button type="submit" class="btn btn-flat btn-primary pull-right" style="margin-right: 20px;">Update</button>
+
                                         </div>
 
                                     </form>
@@ -93,120 +137,7 @@
             </div>
         </div>
         <div class="row" *ngIf="isupdateuser==true">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="mj_postdiv mj_shadow_blue mj_postpage mj_toppadder50 mj_bottompadder50">
-                    <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1">
-                        <form>
-                            <div class="form-group">
-                                <label>Your Name</label>
-                                <input type="text" class="form-control" placeholder="John Doe">
-                            </div>
-
-                            <div class="form-group">
-                                <label>Your Email Address</label>
-                                <input type="text" class="form-control" placeholder="Email Id">
-                            </div>
-                            <div class="form-group">
-                                <label>Professional Title</label>
-                                <input type="text" class="form-control" placeholder="e.g. “Web Developer”">
-                            </div>
-                            <div class="form-group">
-                                <label>Location</label>
-                                <input type="text" class="form-control" placeholder="e.g. “London, UK”, “New York”, “Houston, TX”">
-                            </div>
-                            <div class="form-group">
-                                <label>Resume Category</label>
-                                <select name="timepass" class="form-control custom-select">
-                                        <option>Choose a Category</option>
-                                        <option>Design</option>
-                                        <option>web</option>
-                                        <option>development</option>
-                                    </select>
-                                <a class="a-underline"> select all </a>
-                                <ul class="mj_selected_content">
-                                    <li>
-                                        <a href="#"><img src="assets/images/cross_white.png" alt=""> Design</a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><img src="assets/images/cross_white.png" alt=""> web</a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><img src="assets/images/cross_white.png" alt=""> development</a>
-                                    </li>
-                                </ul>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Skills <span>(optionnal)</span>
-                                    </label>
-                                <input type="text" class="form-control" placeholder="Comma separate a list of relevant skills">
-                            </div>
-
-                            <div class="form-group">
-                                <label>Education<span>(optionnal)</span>
-                                    </label>
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="row">
-                                        <div class="mj_education">
-                                            <input type="text" class="form-control" placeholder="School Name">
-                                            <input type="text" class="form-control" placeholder="Qualification(s)">
-                                            <input type="text" class="form-control" placeholder="Start / End Date">
-                                            <textarea class="form-control" rows="5" placeholder="Notes"></textarea>
-                                            <a href="#" class="mj_removefile"><i class="fa fa-times"></i> remove</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div id="i2" class="mj_addurl">+ Add URL
-                                    <span>Optionally provide links to any of your websites or social network profiles.</span>
-                                </div>
-                                <div class="mj_addurldiv" id="divi2">
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" placeholder="Alink to a video about your company">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <input type="button" value="Add New" class="mj_add" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label>Experience<span>(optionnal)</span>
-                                    </label>
-                                <div id="i3" class="mj_addurl">+ Add URL
-                                    <span>Optionally provide links to any of your websites or social network profiles.</span>
-                                </div>
-                                <div class="mj_addurldiv" id="divi3">
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" placeholder="Alink to a video about your company">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <input type="button" value="Add New" class="mj_add" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label> UPLOAD CV <span>(optionnal)</span>
-                                    </label>
-                                <img src="assets/images/envato_logo.png" class="img-responsive" alt="">
-                                <a href="#" class="mj_removefile"><i class="fa fa-times"></i> remove</a>
-                                <a href="#" class="mj_mainbtn mj_btngray" data-text="Choose File"><span>choose file</span></a>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <div class="mj_showmore"><a href="#" class="mj_showmorebtn mj_bigbtn mj_bluebtn">Preview <i class="fa fa-angle-right"></i></a>
-                </div>
-            </div>
+            <app-update-info-user></app-update-info-user>
         </div>
     </div>
 </div>
