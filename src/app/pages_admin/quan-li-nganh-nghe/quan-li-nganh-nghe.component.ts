@@ -3,6 +3,8 @@ import { Http } from '@angular/http';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { KeywordService } from './../../services/keyword.service';
 import { PagerService } from './../../_services/pager.service';
+import { JobcategoryService } from './../../services/jobcategory.service';
+
 @Component({
   selector: 'app-quan-li-nganh-nghe',
   templateUrl: './quan-li-nganh-nghe.component.html',
@@ -12,32 +14,39 @@ export class QuanLiNganhNgheComponent implements OnInit {
 
   // pager object
   pager: any = {};
-
+selectedItem: any
   // paged items
   pagedItems: any[];
-
+  Listjobcat: any[];
 
   cats = [];
   isLoading = true;
   cat = {};
   isEditing = false;
-
+  changeId :any;
   addCatForm: FormGroup;
   name = new FormControl('', Validators.required);
- _idCategory = new FormControl('', Validators.required);
+  _idCategory = new FormControl('', Validators.required);
   constructor(private http: Http,
     private dataService: KeywordService,
+    private Jobcategory: JobcategoryService,
     private formBuilder: FormBuilder, private pagerService: PagerService) { }
 
   ngOnInit() {
     this.getall();
-
+    this.getjobcategory();
     this.addCatForm = this.formBuilder.group({
       name: this.name,
-      _idCategory:this._idCategory
+      _idCategory: this._idCategory
     });
   }
-
+  changeEdit(value:any){
+    this.changeId=value;
+  }
+ onChange(newValue) {
+    console.log(newValue);
+    this.selectedItem = newValue;  // don't forget to update the model here
+  }
   setPage(page: number) {
     if (page < 1 || page > this.pager.totalPages) {
       return;
@@ -59,12 +68,21 @@ export class QuanLiNganhNgheComponent implements OnInit {
       () => this.isLoading = false
     );
   }
-
+  getjobcategory() {
+    this.Jobcategory.getall().subscribe(
+      data => {
+        this.Listjobcat = data
+      },
+      error => console.log(error),
+      () => this.isLoading = false
+    );
+  }
   addCat() {
+    this.addCatForm.controls['_idCategory'].setValue( this.selectedItem);
+    console.log(this.addCatForm.value)
     this.dataService.add(this.addCatForm.value).subscribe(
       res => {
-       this.getall();
-        // this.toast.setMessage('item added successfully.', 'success');
+        this.getall();
       },
       error => console.log(error)
     );
@@ -78,19 +96,16 @@ export class QuanLiNganhNgheComponent implements OnInit {
   cancelEditing() {
     this.isEditing = false;
     this.cat = {};
-    alert('item editing cancelled. ')
-    // this.toast.setMessage('item editing cancelled.', 'warning');
-    // reload the cats to reset the editing
     this.getall();
   }
 
   editCat(cat) {
+       this.addCatForm.controls['_idCategory'].setValue( this.changeId);
     this.dataService.edit(cat).subscribe(
       res => {
         this.isEditing = false;
         this.cat = cat;
-        alert('item editing cancelled.');
-        //   this.toast.setMessage('item edited successfully.', 'success');
+      
       },
       error => console.log(error)
     );

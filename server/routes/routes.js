@@ -65,7 +65,7 @@ var jobcategoryctrl = require('../controllers/jobcategory.controllers.js');
 router.route('/jobcategory').get(jobcategoryctrl.getAll);
 router.route('/jobcategory/count').get(jobcategoryctrl.count);
 router.route('/jobcategory').post(jobcategoryctrl.insert);
-router.route('/kejobcategoryyword/:id').get(jobcategoryctrl.get);
+router.route('/jobcategory/:id').get(jobcategoryctrl.get);
 router.route('/jobcategory/:id').put(jobcategoryctrl.update);
 router.route('/jobcategory/:id').delete(jobcategoryctrl.delete);
 
@@ -133,16 +133,16 @@ var postctrl = require('../controllers/job.controllers.js');
 
 
 
-router.route('/post').get(postctrl.getAll);
+router.route('/job').get(postctrl.getAll);
 router.route('/gettop10post').get(postctrl.top10post);
-router.route('/post/count').get(postctrl.count);
-router.route('/post').post(postctrl.insert);
-router.route('/post/:id').get(postctrl.get);
-router.route('/post/:id').put(postctrl.update);
-router.route('/post/:id').delete(postctrl.delete);
+router.route('/job/count').get(postctrl.count);
+router.route('/job').post(postctrl.insert);
+router.route('/job/:id').get(postctrl.get);
+router.route('/job/:id').put(postctrl.update);
+router.route('/job/:id').delete(postctrl.delete);
 router.route('/getpost/:id').get(postctrl.getiduser);
 router.route('/job/getall').get(postctrl.getByIdDetailJob);
-router.route('/job/getall').get(postctrl.getByIdDetailJob);
+
 
 
 

@@ -91,7 +91,7 @@ export class DistrictComponent implements OnInit {
         this.pagedItems.push(newCat);
         //this.getall()
         // this.addCatForm.reset();
-        alert('item added successfully.')
+       
         // this.toast.setMessage('item added successfully.', 'success');
       },
       error => console.log(error)
@@ -106,7 +106,7 @@ export class DistrictComponent implements OnInit {
   cancelEditing() {
     this.isEditing = false;
     this.cat = {};
-    alert('item editing cancelled. ')
+    
     // this.toast.setMessage('item editing cancelled.', 'warning');
     // reload the cats to reset the editing
     this.getall();

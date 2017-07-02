@@ -64,8 +64,8 @@ export class WorkplaceComponent implements OnInit {
   addCat() {
     this.dataService.add(this.addCatForm.value).subscribe(
       res => {
-        this.getall();
-        // this.toast.setMessage('item added successfully.', 'success');
+          this.setPage(1);
+      
       },
       error => console.log(error)
     );
@@ -79,7 +79,7 @@ export class WorkplaceComponent implements OnInit {
   cancelEditing() {
     this.isEditing = false;
     this.cat = {};
-    alert('item editing cancelled. ')
+    
     // this.toast.setMessage('item editing cancelled.', 'warning');
     // reload the cats to reset the editing
     this.getall();

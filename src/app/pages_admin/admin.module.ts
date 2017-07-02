@@ -32,6 +32,8 @@ import { ListJobComponent } from './list-job/list-job.component';
 import { CatalogJobComponent } from './catalog-job/catalog-job.component';
 import { DuyetntdPipe } from '../Pipes/duyetntd.pipe';
 import { PostService } from './../services/post.service';
+import { JobcategoryService } from './../services/jobcategory.service';
+
 //======================Service=============================
 @NgModule({
   imports: [
@@ -59,7 +61,7 @@ import { PostService } from './../services/post.service';
     DuyetntdPipe
     
   ],
-   providers: [PostService,ToastComponent,ErrorService,AuthenticationService,PagerService,KeywordService,WorkplaceService, DistrictService,countryService,QuanliThanhvienquantriService,CompanysizeService,QuanliNtdService],
+   providers: [JobcategoryService,PostService,ToastComponent,ErrorService,AuthenticationService,PagerService,KeywordService,WorkplaceService, DistrictService,countryService,QuanliThanhvienquantriService,CompanysizeService,QuanliNtdService],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AdminModule {

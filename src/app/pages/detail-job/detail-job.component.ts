@@ -16,7 +16,7 @@ import { Component, OnInit } from '@angular/core';
   ]
 })
 export class DetailJobComponent implements OnInit {
-
+    
   constructor() { }
 
   ngOnInit() {

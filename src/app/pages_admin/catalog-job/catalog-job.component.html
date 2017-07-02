@@ -14,16 +14,7 @@
 
     <!-- Default box -->
     <div class="box">
-      <div class="box-header with-border">
-
-        <div class="box-tools pull-right">
-
-        </div>
-      </div>
       <div class="box-body">
-
-
-
         <div class="card" *ngIf="isLoading">
           <h4 class="card-header">Loading...</h4>
           <div class="card-block text-xs-center">
@@ -53,20 +44,12 @@
                 <tr *ngFor="let cat of pagedItems">
                   <td>{{cat.name}}</td>
                   <td>
-                    <select class="form-control">
-                       <option *ngFor="let item of item_Workplace" disabled [selected]="cat.workplace==item._id" [value]="item._id">{{item.name}}</option>
-                 </select>
-                  </td>
-                  <td>
                     <button class="btn btn-sm btn-warning" (click)="enableEditing(cat)"><i class="fa fa-pencil"></i> Edit</button>                    <button class="btn btn-sm btn-danger" (click)="deleteCat(cat)"><i class="fa fa-trash"></i> Delete</button>
                   </td>
                 </tr>
-
               </tbody>
               <tbody>
                 <!-- pager -->
-
-
               </tbody>
               <tbody *ngIf="isEditing">
                 <tr>
@@ -78,9 +61,6 @@
                       <div class="form-group">
                         <input class="form-control" type="text" name="name" [(ngModel)]="cat.name" placeholder="Name" required>
                       </div>
-
-
-
                       <button class="btn btn-sm btn-primary" type="submit" [disabled]="!form.form.valid"><i class="fa fa-floppy-o"></i> Save</button>
                     </form>
                     <button class="btn btn-sm btn-warning" (click)="cancelEditing()"><i class="fa fa-times"></i> Cancel</button>
@@ -110,49 +90,22 @@
         <div class="card" *ngIf="!isEditing">
           <h4 class="card-header">Add new </h4>
           <div class="card-block">
-
             <div class="form-group col-md-6">
-              <select [ngModel]="selectedItem" (change)="onChange($event.target.value)" class="form-control">
-
-                       <option *ngFor="let item of item_Workplace" [value]="item._id">{{item.name}}</option>
-                 </select>
+              <form class="form-inline" [formGroup]="addCatForm" (ngSubmit)="addCat()" style="text-align:center">
+                <div class="form-group">
+                  <input class="form-control" type="text" name="name" formControlName="name" placeholder="Name">
+                </div>
+                <button class="btn btn-primary" type="submit" [disabled]="!addCatForm.valid"><i class="fa fa-floppy-o"></i> Add</button>
+              </form>
             </div>
-
-
-            <form role="form">
-              <div class="box-body">
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Title</label>
-                  <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-                </div>
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Icon</label>
-                  <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-                </div>
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Mô tả</label>
-                  <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-                </div>
-              </div>
-              <!-- /.box-body -->
-              <div class="box-footer">
-                <button type="submit" class="btn btn-primary">Submit</button>
-              </div>
-            </form>
-
-
           </div>
         </div>
-
       </div>
       <!-- /.box-body -->
-      <div class="box-footer">
-        Footer
-      </div>
+
       <!-- /.box-footer-->
     </div>
     <!-- /.box -->
-
   </section>
   <!-- /.content -->
 </div>

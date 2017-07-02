@@ -27,9 +27,6 @@ export class AdminComponent implements OnInit {
     if (localStorage.getItem('id_token') != null && localStorage.getItem('currentUserRole') == 'admin') {
       this.username = localStorage.getItem('usernameAdmin');
       this.islogin = true;
-    }else{
-         alert('Vui Lòng Đăng Nhập Admin')
-        this.router.navigate(['/admin/login']);
     }
 
   }

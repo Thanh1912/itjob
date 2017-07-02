@@ -16,7 +16,7 @@ constructor(private http: Http) { }
     return this.http.get(this.Rest_Url + '/api/gettop10post').map(res => res.json());
   }
   getdetailjob(id): Observable<any> {
-    return this.http.get(this.Rest_Url+`/api/post/`+id, this.options);
+    return this.http.get(this.Rest_Url+`/api/job/`+id, this.options);
   }
   //get by id keyword - ngon ngu
   getkeywork_job(list: Array<String>): Observable<any>{
@@ -24,7 +24,7 @@ constructor(private http: Http) { }
   }
   //get count job
   countjob(): Observable<any> {
-    return this.http.get(this.Rest_Url + '/api/post/count').map(res => res.json());
+    return this.http.get(this.Rest_Url + '/api/job/count').map(res => res.json());
   }
   getallkeyword(): Observable<any> {
     return this.http.get(this.Rest_Url+'/api/keyword').map(res => res.json());

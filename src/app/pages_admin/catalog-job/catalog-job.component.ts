@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { DistrictService } from './../../services/district.service';
-import { WorkplaceService } from './../../services/workplace.service';
+import { JobcategoryService } from './../../services/jobcategory.service';
 import { PagerService } from './../../_services/pager.service';
 @Component({
   selector: 'app-catalog-job',
@@ -19,22 +18,18 @@ export class CatalogJobComponent implements OnInit {
   cats = [];
   isLoading = true;
   cat = {};
-  edit_={};
+  edit_ = {};
   isEditing = false;
   addCatForm: FormGroup;
   name = new FormControl('', Validators.required);
   constructor(private http: Http,
-    private dataService: DistrictService, private workplace: WorkplaceService,
-    //    public toast: ToastComponent,
+    private dataService: JobcategoryService, 
     private formBuilder: FormBuilder, private pagerService: PagerService) { }
   ngOnInit() {
     this.getall();
-    //load select
-    this.getall_Workplace();
-
     this.addCatForm = this.formBuilder.group({
       name: this.name,
-      workplace:this.selectedItem
+      workplace: this.selectedItem
     });
   }
 
@@ -48,15 +43,7 @@ export class CatalogJobComponent implements OnInit {
     // get current page of items
     this.pagedItems = this.cats.slice(this.pager.startIndex, this.pager.endIndex + 1);
   }
-  getall_Workplace() {
-    this.workplace.getall().subscribe(
-      data => {
-        this.item_Workplace = data
-      },
-      error => console.log(error),
-      () => this.isLoading = false
-    );
-  }
+ 
   getall() {
     this.dataService.getall().subscribe(
       data => {
@@ -69,13 +56,13 @@ export class CatalogJobComponent implements OnInit {
   }
 
   addCat() {
-this.addCatForm.value.workplace=this.selectedItem;
+    this.addCatForm.value.workplace = this.selectedItem;
     this.dataService.add(this.addCatForm.value).subscribe(
       res => {
         const newCat = res.json();
         this.pagedItems.push(newCat);
         //this.getall()
-       // this.addCatForm.reset();
+        // this.addCatForm.reset();
         alert('item added successfully.')
         // this.toast.setMessage('item added successfully.', 'success');
       },
@@ -94,14 +81,14 @@ this.addCatForm.value.workplace=this.selectedItem;
     this.getall();
   }
   editCat(cat) {
-       this.edit_= {
-       _id:cat._id,
-       name:cat.name,
-       }
-    this.dataService.edit( this.edit_).subscribe(
+    this.edit_ = {
+      _id: cat._id,
+      name: cat.name,
+    }
+    this.dataService.edit(this.edit_).subscribe(
       res => {
         this.isEditing = false;
-          this.getall()
+        this.getall()
         alert('item editing cancelled.');
         //   this.toast.setMessage('item edited successfully.', 'success');
       },

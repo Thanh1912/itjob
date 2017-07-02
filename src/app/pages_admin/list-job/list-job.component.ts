@@ -13,20 +13,20 @@ import { PagerService } from './../../_services/pager.service';
 })
 export class ListJobComponent implements OnInit {
   //==============VARIABLES ==================
-  listAllJob=[];
-  listJob= [];
-  isLoading:boolean;
+  listAllJob = [];
+  listJob = [];
+  isLoading: boolean;
   // pager object
   pager: any = {};
   // paged items
   pagedItems: any[];
- isEditing = false;
+  isEditing = false;
   //==============VARIABLES==================
-  constructor(private job: PostService,private pagerService:PagerService) {
+  constructor(private job: PostService, private pagerService: PagerService) {
 
   }
   //==============FUNCTION==================
-setPage(page: number) {
+  setPage(page: number) {
     if (page < 1 || page > this.pager.totalPages) {
       return;
     }
@@ -39,7 +39,10 @@ setPage(page: number) {
     this.job.getall().subscribe(
       data => {
         this.listAllJob = data;
-         this.setPage(1);
+        this.listJob = data;
+           console.log('Show')
+        console.log(data)
+        this.setPage(1);
       },
       error => console.log(error),
       () => this.isLoading = false
@@ -51,12 +54,7 @@ setPage(page: number) {
 
   //==============Load first==================
   ngOnInit() {
-
-this.getall();
-
-
-
-
+    this.getall();
   }
   //==============Load first==================
 

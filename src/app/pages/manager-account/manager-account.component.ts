@@ -99,6 +99,8 @@ export class ManagerAccountComponent implements OnInit {
     this.uploaderanhdaidien.onAfterAddingFile = (file) => { file.withCredentials = false; };
     this.uploaderanhdaidien.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
       console.log("UpLoad :", item, status, response);
+      alert('Upload thanh cong');
+      
     };
      //===========/Upload Imgage Anh dai dien================
 
