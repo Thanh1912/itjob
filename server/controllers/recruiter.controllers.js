@@ -11,8 +11,8 @@ module.exports.register = function (req, res, next) {
     email: req.body.email,
     password: passwordHash.generate(req.body.password),
     info_recruiter: {
-      namecompany: req.body.namecompany ,
-      phone: req.body.phone ,
+      namecompany: req.body.namecompany,
+      phone: req.body.phone,
     },
     role: "nhatuyendung"
   });
@@ -63,10 +63,10 @@ module.exports.login = function (req, res, next) {
   console.log('dang login' + req.body.email.toLowerCase());
 
   model.findOne(
-{
-  email:req.body.email,
+    {
+      email: req.body.email,
       role: 'nhatuyendung'
-}
+    }
     , function (err, doc) {
       if (err) {
         return res.status(403).json({
@@ -86,7 +86,7 @@ module.exports.login = function (req, res, next) {
           error: { message: 'Please check your password or email' }
         })
       }
-       if ( doc.info_recruiter.active==false) {
+      if (doc.info_recruiter.active == false) {
         return res.status(403).json({
           title: 'You cannot log in',
           error: { message: 'Your account is not authorized' }
@@ -103,9 +103,6 @@ module.exports.login = function (req, res, next) {
       })
     })
 };
-
-
-
 
 // user login
 module.exports.login_admin = function (req, res, next) {
@@ -141,11 +138,9 @@ module.exports.login_admin = function (req, res, next) {
   })
 };
 
-
-
 // Get all  nha tuyend ung -- theo role -sap theo active
 module.exports.getAll_ntd = function (req, res) {
-  model.find({role:'nhatuyendung'}).sort({ "info_recruiter.active": 1 }
+  model.find({ role: 'nhatuyendung' }).sort({ "info_recruiter.active": 1 }
 
   ).exec(function (err, docs) {
     if (err) throw err;
@@ -153,7 +148,7 @@ module.exports.getAll_ntd = function (req, res) {
   })
 };
 module.exports.gettop10 = function (req, res) {
-  model.find({role:'nhatuyendung'}).sort({ "createddate": 1 }
+  model.find({ role: 'nhatuyendung' }).sort({ "createddate": 1 }
 
   ).limit(10).exec(function (err, docs) {
     if (err) throw err;
@@ -202,7 +197,7 @@ module.exports.update_duyet_ntd = function (req, res) {
 // Update by id
 module.exports.update_kduyet_ntd = function (req, res) {
   var update = {
-   'info_recruiter.active': false
+    'info_recruiter.active': false
   }
     ;
   model.findOneAndUpdate({ _id: req.params.id }, {
@@ -289,18 +284,18 @@ module.exports.delete_amdin = function (req, res) {
 
 
 module.exports.update_info_company = function (req, res) {
-var update={
-  "info_recruiter.namecompany": req.body.namecompany,
-   "info_recruiter.website": req.body.website,
-   "info_recruiter.facebook":req.body.facebook,
-   "info_recruiter.phone":req.body.phone,
-   "info_recruiter.introduction" : req.body.introduction,
-   "info_recruiter.logo" :req.body.logo,
-   "info_recruiter.profileimage" :req.body.profileimage,
-   "info_recruiter.address":req.body.address,
-   "info_recruiter.description":req.body.description,
-   "info_recruiter.companysizeid" :req.body.companysizeid,
-   "info_recruiter.countryid" : req.body.countryid,
+  var update = {
+    "info_recruiter.namecompany": req.body.namecompany,
+    "info_recruiter.website": req.body.website,
+    "info_recruiter.facebook": req.body.facebook,
+    "info_recruiter.phone": req.body.phone,
+    "info_recruiter.introduction": req.body.introduction,
+    "info_recruiter.logo": req.body.logo,
+    "info_recruiter.profileimage": req.body.profileimage,
+    "info_recruiter.address": req.body.address,
+    "info_recruiter.description": req.body.description,
+    "info_recruiter.companysizeid": req.body.companysizeid,
+    "info_recruiter.countryid": req.body.countryid,
 
   }
   model.findOneAndUpdate({ _id: req.params.id }, {
@@ -310,6 +305,14 @@ var update={
     if (err) { return console.error(err); }
     res.sendStatus(200);
   });
+};
+//GET ALL COMPANY
+// Get all  nha tuyend ung -- theo role -sap theo active
+module.exports.getAll_company = function (req, res) {
+  model.find({role:'nhatuyendung',"info_recruiter.active": 1 }).exec(function (err, docs) {
+    if (err) throw err;
+    res.json(docs);
+  })
 };
 
 

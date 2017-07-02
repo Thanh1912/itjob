@@ -28,6 +28,8 @@ import { CandidateService } from '../services/candidate.service';
 import { ResumeService } from './../services/resume.service';
 import { FileSelectDirective } from 'ng2-file-upload';
 import { UpdateInfoUserComponent } from './update-info-user/update-info-user.component';
+import { QuanliNtdService } from './../services/quanli-ntd.service';
+import { CompanyService } from './../services/company.service';
 
 let providers = {
   "google": {
@@ -59,7 +61,7 @@ let providers = {
     FileSelectDirective,
     UpdateInfoUserComponent
   ]
-  , providers: [CandidateService,ResumeService],
+  , providers: [CompanyService,QuanliNtdService,CandidateService,ResumeService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class PagesModule {

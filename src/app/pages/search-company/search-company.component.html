@@ -20,130 +20,28 @@
     <div class="row">
         <div class="mj_articleslider mj_bottompadder50">
 
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+            <div *ngFor="let item of listcompany" class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                 <div class="mj_recent_article">
-                    <div class="mj_articleimg"> <img src="assets/images/recent_article1.jpg" class="img-responsive" alt="">
+                    <div class="mj_articleimg"> <img src="http://localhost:3000/uploads/forms/logo/{{item?.info_recruiter.logo}}" class="img-responsive" alt="">
                         <div class="mj_articleoverlay">
-                            <p>KMS Technology </p>
+                            <p>{{item?.info_recruiter.namecompany}} </p>
                         </div>
                     </div>
                     <div class="mj_articledata">
                         <div class="col-lg-6">
-                            <img src="https://itviec.com/system/production/employers/logos/31/kms-technology-logo-65-65.png?1454113898" width="64" height="62"
-                                alt="KMS Technology Vietnam Small Logo">
+                            <img src="http://localhost:3000/uploads/forms/image/{{item?.info_recruiter.profileimage}}" width="64" height="62"
+                                alt="KMS Technology ">
                         </div>
                         <div class="col-lg-6">
                             <p> Rate: 5 start</p>
                         </div>
-                         <span>TP Ho Chi Minh</span>
+                         <span>{{item?.info_recruiter.address}}</span>
                         <a href="blog_single.html"><i class="fa fa-angle-right">16job</i></a> 
                         </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                <div class="mj_recent_article">
-                    <div class="mj_articleimg"> <img src="assets/images/recent_article2.jpg" class="img-responsive" alt="">
-                        <div class="mj_articleoverlay">
-                            <p>FPT Technology </p>
-                        </div>
-                    </div>
-                    <div class="mj_articledata">
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt
-                            ut laoreet.</p>
-                        <span>TP Ho Chi Minh</span> <a href="blog_single.html"><i class="fa fa-angle-right"></i></a> </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                <div class="mj_recent_article">
-                    <div class="mj_articleimg"> <img src="assets/images/recent_article3.jpg" class="img-responsive" alt="">
-                        <div class="mj_articleoverlay">
-                            <p>CGF Technology </p>
-                        </div>
-                    </div>
-                    <div class="mj_articledata">
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt
-                            ut laoreet.</p>
-                        <span>HCM</span> <a href="blog_single.html"><i class="fa fa-angle-right"></i></a> </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                <div class="mj_recent_article">
-                    <div class="mj_articleimg"> <img src="assets/images/recent_article6.jpg" class="img-responsive" alt="">
-                        <div class="mj_articleoverlay">
-                            <p>Nhac Cua Tui Technology </p>
-                        </div>
-                    </div>
-                    <div class="mj_articledata">
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt
-                            ut laoreet.</p>
-                        <span>TP Ho Chi Minh</span> <a href="blog_single.html"><i class="fa fa-angle-right"></i></a> </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                <div class="mj_recent_article">
-                    <div class="mj_articleimg"> <img src="assets/images/recent_article7.jpg" class="img-responsive" alt="">
-                        <div class="mj_articleoverlay">
-                            <p>MP3 Technology </p>
-                        </div>
-                    </div>
-                    <div class="mj_articledata">
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt
-                            ut laoreet.</p>
-                        <span>TP Ho Chi Minh</span> <a href="blog_single.html"><i class="fa fa-angle-right"></i></a> </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                <div class="mj_recent_article">
-                    <div class="mj_articleimg"> <img src="assets/images/recent_article8.jpg" class="img-responsive" alt="">
-                        <div class="mj_articleoverlay">
-                            <p>KMS Technology </p>
-                        </div>
-                    </div>
-                    <div class="mj_articledata">
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt
-                            ut laoreet.</p>
-                        <span>TP Ho Chi Minh</span> <a href="blog_single.html"><i class="fa fa-angle-right"></i></a> </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                <div class="mj_recent_article">
-                    <div class="mj_articleimg"> <img src="assets/images/recent_article9.jpg" class="img-responsive" alt="">
-                        <div class="mj_articleoverlay">
-                            <p>KMS Technology </p>
-                        </div>
-                    </div>
-                    <div class="mj_articledata">
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt
-                            ut laoreet.</p>
-                        <span>TP Ho Chi Minh</span> <a href="blog_single.html"><i class="fa fa-angle-right"></i></a> </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                <div class="mj_recent_article">
-                    <div class="mj_articleimg"> <img src="assets/images/recent_article10.jpg" class="img-responsive" alt="">
-                        <div class="mj_articleoverlay">
-                            <p>KMS Technology </p>
-                        </div>
-                    </div>
-                    <div class="mj_articledata">
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt
-                            ut laoreet.</p>
-                        <span>TP Ho Chi Minh</span> <a href="blog_single.html"><i class="fa fa-angle-right"></i></a> </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                <div class="mj_recent_article">
-                    <div class="mj_articleimg"> <img src="assets/images/recent_article11.jpg" class="img-responsive" alt="">
-                        <div class="mj_articleoverlay">
-                            <p>KMS Technology </p>
-                        </div>
-                    </div>
-                    <div class="mj_articledata">
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt
-                            ut laoreet.</p>
-                        <span>TP Ho Chi Minh</span> <a href="blog_single.html"><i class="fa fa-angle-right"></i></a> </div>
-                </div>
-            </div>
+          
+      
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="mj_blog_btn"> <a href="#" class="mj_mainbtn mj_btnblack" data-text="load more"><span>load more</span></a> </div>
             </div>

@@ -39,6 +39,10 @@ router.route('/nhatuyendung/kduyet/:id').put(user_nhatuyendungctrl.update_kduyet
 router.route('/updatenhatuyendung/:id').put(user_nhatuyendungctrl.update_info_company);
 router.route('/nhatuyendungget/gettop10company/').get(user_nhatuyendungctrl.gettop10);
 
+
+router.route('/company/getall/').get(user_nhatuyendungctrl.getAll_company);
+
+
 //keyword
 //  USER -- THANH VIEN DANG KY DANG NHAP
 router.route('/thanhvien/login/').post(candidatectrl.login);

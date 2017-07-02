@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { JobService } from './../../services/job.service';
 @Component({
   selector: 'app-search-jobs',
   templateUrl: './search-jobs.component.html',
@@ -18,7 +18,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchJobsComponent implements OnInit {
   isadvance = false;
-  constructor() { }
+  constructor(private job: JobService) { }
 
   ngOnInit() {
       this.isadvance = true;
