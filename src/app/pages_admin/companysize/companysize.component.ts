@@ -85,7 +85,7 @@ export class CompanysizeComponent implements OnInit {
   cancelEditing() {
     this.isEditing = false;
     this.cat = {};
-    alert('item editing cancelled. ')
+ 
     // this.toast.setMessage('item editing cancelled.', 'warning');
     // reload the cats to reset the editing
     this.getall();

@@ -3,7 +3,7 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-Thành Phố
+      Thành Phố
     </h1>
   </section>
   <!-- Main content -->
@@ -19,7 +19,17 @@ Thành Phố
         </div>
         <!-- *ngIf="!isLoading"-->
         <div class="card">
-          <h4 class="card-header">Current ({{cats.length}})</h4>
+          <div class="col-md-6">
+            <h4 class="card-header"> ({{cats.length}})</h4>
+          </div>
+          <div class="col-md-6 ">
+            <a class="pull-right btn-floating waves-effect waves-light btn-large red" style="border-radius: 2px;    border-radius: 200px 200px 200px 200px;
+-moz-border-radius: 200px 200px 200px 200px;
+-webkit-border-radius: 200px 200px 200px 200px;
+border: 0px solid #000000;"><i class="fa fa-2x fa-plus" style=" margin-top: 9px;
+    margin-left: -7px;
+    color: white;" aria-hidden="true"></i></a>
+          </div>
           <div class="card-block">
             <table class="table table-bordered table-striped">
               <thead class="thead-default">
@@ -44,7 +54,8 @@ Thành Phố
                 </tr>
 
               </tbody>
-              <tbody>      <!-- pager -->
+              <tbody>
+                <!-- pager -->
 
 
               </tbody>
@@ -64,23 +75,23 @@ Thành Phố
             </table>
           </div>
         </div>
-  <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
-                <li [ngClass]="{disabled:pager.currentPage === 1}">
-                    <a (click)="setPage(1)">First</a>
-                </li>
-                <li [ngClass]="{disabled:pager.currentPage === 1}">
-                    <a (click)="setPage(pager.currentPage - 1)">Previous</a>
-                </li>
-                <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
-                    <a (click)="setPage(page)">{{page}}</a>
-                </li>
-                <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-                    <a (click)="setPage(pager.currentPage + 1)">Next</a>
-                </li>
-                <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-                    <a (click)="setPage(pager.totalPages)">Last</a>
-                </li>
-            </ul>
+        <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+          <li [ngClass]="{disabled:pager.currentPage === 1}">
+            <a (click)="setPage(1)">First</a>
+          </li>
+          <li [ngClass]="{disabled:pager.currentPage === 1}">
+            <a (click)="setPage(pager.currentPage - 1)">Previous</a>
+          </li>
+          <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+            <a (click)="setPage(page)">{{page}}</a>
+          </li>
+          <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+            <a (click)="setPage(pager.currentPage + 1)">Next</a>
+          </li>
+          <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+            <a (click)="setPage(pager.totalPages)">Last</a>
+          </li>
+        </ul>
         <div class="card" *ngIf="!isEditing">
           <h4 class="card-header">Add new </h4>
           <div class="card-block">
@@ -95,7 +106,7 @@ Thành Phố
 
       </div>
       <!-- /.box-body -->
-    
+
       <!-- /.box-footer-->
     </div>
     <!-- /.box -->

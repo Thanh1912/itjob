@@ -63,7 +63,7 @@ export class CatalogJobComponent implements OnInit {
         this.pagedItems.push(newCat);
         //this.getall()
         // this.addCatForm.reset();
-        alert('item added successfully.')
+    
         // this.toast.setMessage('item added successfully.', 'success');
       },
       error => console.log(error)
@@ -89,7 +89,7 @@ export class CatalogJobComponent implements OnInit {
       res => {
         this.isEditing = false;
         this.getall()
-        alert('item editing cancelled.');
+    
         //   this.toast.setMessage('item edited successfully.', 'success');
       },
       error => console.log(error)
