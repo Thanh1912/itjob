@@ -8,7 +8,7 @@ import {AdminRoutingModule}       from './admin-routing.module';
 
 import {DuyetNhaTuyenDungComponent} from './duyet-nha-tuyen-dung/duyet-nha-tuyen-dung.component';
 import { QuanLiNganhNgheComponent } from './quan-li-nganh-nghe/quan-li-nganh-nghe.component';
-import { QuanLiDiaDiemComponent } from './quan-li-dia-diem/quan-li-dia-diem.component';
+
 import { QuanLiThanhVienComponent } from './quan-li-thanh-vien/quan-li-thanh-vien.component';
 import { QuanliThanhvienquantriService } from './../services/quanli-thanhvienquantri.service';
 import { DistrictComponent } from './district/district.component';
@@ -49,7 +49,7 @@ import { JobcategoryService } from './../services/jobcategory.service';
 
     DuyetNhaTuyenDungComponent,
     QuanLiNganhNgheComponent,
-    QuanLiDiaDiemComponent,
+ 
     QuanLiThanhVienComponent,
     CompanysizeComponent,
     DistrictComponent,

@@ -6,7 +6,6 @@ import { AdminHomeComponent } from './admin-home/admin-home.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { DuyetNhaTuyenDungComponent } from './duyet-nha-tuyen-dung/duyet-nha-tuyen-dung.component';
 import { QuanLiNganhNgheComponent } from './quan-li-nganh-nghe/quan-li-nganh-nghe.component';
-import { QuanLiDiaDiemComponent } from './quan-li-dia-diem/quan-li-dia-diem.component';
 import { QuanLiThanhVienComponent } from './quan-li-thanh-vien/quan-li-thanh-vien.component';
 import { CompanysizeComponent } from './companysize/companysize.component';
 import { DistrictComponent } from './district/district.component';
