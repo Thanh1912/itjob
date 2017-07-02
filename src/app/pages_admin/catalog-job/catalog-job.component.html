@@ -30,12 +30,11 @@
             <table class="table table-bordered table-striped">
               <thead class="thead-default">
                 <tr>
-                  <th>Name Job</th>
-                  <th>Keyword</th>
+                  <th>Name Catagory Job</th>
                   <th>Actions</th>
                 </tr>
               </thead>
-              <tbody *ngIf="cats.length === 0">
+              <tbody *ngIf="pagedItems.length === 0">
                 <tr>
                   <td colspan="4">No data</td>
                 </tr>
@@ -54,9 +53,7 @@
               <tbody *ngIf="isEditing">
                 <tr>
                   <td colspan="4">
-                    <select [(ngModel)]="id_w" (change)="changeedit($event.target.value)" class="form-control">
-                       <option *ngFor="let item of item_Workplace"  [selected]="item._id==cat.workplace" [value]="item._id">{{item.name}}</option>
-                 </select>
+                 
                     <form class="form-inline" #form="ngForm" (ngSubmit)="editCat(cat)" style="display:inline">
                       <div class="form-group">
                         <input class="form-control" type="text" name="name" [(ngModel)]="cat.name" placeholder="Name" required>

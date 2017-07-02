@@ -42,6 +42,16 @@ var model = require('../models/jobcategorydetail.model.js');
     });
   };
 
+  // Get by id
+  module.exports.getAllByIdCategory = function(req, res) {
+    model.find({ _idCategory: req.params.id }, function(err, obj) {
+      if (err) { return console.error(err); }
+      res.json(obj);
+    });
+  };
+
+
+
   // Update by id
   module.exports.update = function(req, res) {
     model.findOneAndUpdate({ _id: req.params.id }, req.body, function(err) {

@@ -77,7 +77,14 @@
                   required>
                 </ckeditor>
               </div>
-
+     <div class="form-group">
+                <label>Job</label>
+                <div class="form-group">
+                  <select [(ngModel)]="category" name="category" (change)="change_category($event.target.value)" required class="form-control">
+                       <option *ngFor="let item of ListJobcategory"  [value]="item._id">{{item.name}}</option>
+                 </select>
+                </div>
+              </div>
               <div class="form-group">
                 <label>Tu khoa Tim kiem</label>
                 <div class="form-group">
@@ -85,6 +92,11 @@
                     required></ss-multiselect-dropdown>
                 </div>
               </div>
+
+
+
+
+
               <div class="form-group">
                 <label for="">Job Time </label>
                 <select [(ngModel)]="jobtime" (change)="change_jobtime($event.target.value)" name="jobtime" class="form-control" required>

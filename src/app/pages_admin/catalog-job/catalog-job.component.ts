@@ -101,7 +101,8 @@ export class CatalogJobComponent implements OnInit {
       this.dataService.delete(cat).subscribe(
         res => {
           const pos = this.cats.map(elem => { return elem._id; }).indexOf(cat._id);
-          this.cats.splice(pos, 1);
+          this.pagedItems.splice(pos, 1);
+           // this.getall()
           // this.toast.setMessage('item deleted successfully.', 'success');
         },
         error => console.log(error)

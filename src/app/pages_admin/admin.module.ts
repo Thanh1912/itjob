@@ -33,6 +33,8 @@ import { CatalogJobComponent } from './catalog-job/catalog-job.component';
 import { DuyetntdPipe } from '../Pipes/duyetntd.pipe';
 import { PostService } from './../services/post.service';
 import { JobcategoryService } from './../services/jobcategory.service';
+import { sliderService } from './../services/slider.service';
+import { JobService } from './../services/job.service';
 
 //======================Service=============================
 @NgModule({
@@ -46,10 +48,8 @@ import { JobcategoryService } from './../services/jobcategory.service';
   declarations: [
     AdminComponent,
     AdminHomeComponent,
-
     DuyetNhaTuyenDungComponent,
     QuanLiNganhNgheComponent,
- 
     QuanLiThanhVienComponent,
     CompanysizeComponent,
     DistrictComponent,
@@ -59,17 +59,11 @@ import { JobcategoryService } from './../services/jobcategory.service';
     ListJobComponent,
     CatalogJobComponent,
     DuyetntdPipe
-    
   ],
-   providers: [JobcategoryService,PostService,ToastComponent,ErrorService,AuthenticationService,PagerService,KeywordService,WorkplaceService, DistrictService,countryService,QuanliThanhvienquantriService,CompanysizeService,QuanliNtdService],
+   providers: [JobService,sliderService,JobcategoryService,PostService,ToastComponent,ErrorService,AuthenticationService,PagerService,KeywordService,WorkplaceService, DistrictService,countryService,QuanliThanhvienquantriService,CompanysizeService,QuanliNtdService],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AdminModule {
 }
 
 
-/*
- Copyright 2017 Google Inc. All Rights Reserved.
- Use of this source code is governed by an MIT-style license that
- can be found in the LICENSE file at http://angular.io/license
- */

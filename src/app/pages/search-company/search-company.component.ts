@@ -19,8 +19,22 @@ import { Component, OnInit } from '@angular/core';
 export class SearchCompanyComponent implements OnInit {
 
   constructor() { }
+  listcompany:any;
+
+
+
 
   ngOnInit() {
+  }
+  getall() {
+    this.dataService.getall().subscribe(
+      data => {
+        this.listcompany = data
+        this.setPage(1);
+      },
+      error => console.log(error),
+      () => this.isLoading = false
+    );
   }
 
 }

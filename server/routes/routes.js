@@ -54,6 +54,7 @@ router.route('/update/thanhvien/:id').put(candidatectrl.updateImagepro);
 router.route('/thanhvien/:id').delete(candidatectrl.delete);
 //keyword
 router.route('/keyword').get(keywordctrl.getAll);
+router.route('/keywordByIdCategory/:id').get(keywordctrl.getAllByIdCategory);
 router.route('/keyword/count').get(keywordctrl.count);
 router.route('/keyword').post(keywordctrl.insert);
 router.route('/keyword/:id').get(keywordctrl.get);

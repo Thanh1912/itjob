@@ -115,8 +115,8 @@ selectedItem: any
     if (window.confirm('Are you sure you want to permanently delete this item?')) {
       this.dataService.delete(cat).subscribe(
         res => {
-          const pos = this.cats.map(elem => { return elem._id; }).indexOf(cat._id);
-          this.cats.splice(pos, 1);
+          const pos = this.pagedItems.map(elem => { return elem._id; }).indexOf(cat._id);
+          this.pagedItems.splice(pos, 1);
           // this.toast.setMessage('item deleted successfully.', 'success');
         },
         error => console.log(error)

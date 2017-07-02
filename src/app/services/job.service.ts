@@ -15,6 +15,9 @@ constructor(private http: Http) { }
   gettopjob(): Observable<any> {
     return this.http.get(this.Rest_Url + '/api/gettop10post').map(res => res.json());
   }
+   getall(): Observable<any> {
+    return this.http.get(this.Rest_Url+'/api/job').map(res => res.json());
+  }
   getdetailjob(id): Observable<any> {
     return this.http.get(this.Rest_Url+`/api/job/`+id, this.options);
   }

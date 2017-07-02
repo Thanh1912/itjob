@@ -39,17 +39,14 @@
                   <th>Actions</th>
                 </tr>
               </thead>
-              <tbody *ngIf="cats.length === 0">
+              <tbody *ngIf="Itemsall.length === 0">
                 <tr>
                   <td colspan="4">There are no cats in the DB. Add a new cat below.</td>
                 </tr>
               </tbody>
               <tbody>
-                <tr>
-                  <td>btn btn-sm btn-warning</td>
-                  <td>btn btn-sm btn-warning</td>
-                  <td>btn btn-sm btn-warning</td>
-                  <td>btn btn-sm btn-warning</td>
+                <tr *ngFor="let items of pagedItems">
+                  <td>{{items.name}}</td>
                   <td>
                     <button class="btn btn-sm btn-warning" (click)="enableEditing(cat)"><i class="fa fa-pencil"></i> Edit</button>                    <button class="btn btn-sm btn-danger" (click)="deleteCat(cat)"><i class="fa fa-trash"></i> EDIT</button>
                     <button class="btn btn-sm btn-warning" (click)="enableEditing(cat)"><i class="fa fa-pencil"></i> Edit</button>                    <button class="btn btn-sm btn-danger" (click)="deleteCat(cat)"><i class="fa fa-trash"></i> Active</button>
