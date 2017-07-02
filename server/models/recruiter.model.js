@@ -15,6 +15,7 @@ const adminSchema = new mongoose.Schema({
   phone: String,
   introduction : String,
   logo : String,
+  ratestar:String, 
   profileimage : String,
   address: String,
   active :{ type: Boolean , required: true, default:false},

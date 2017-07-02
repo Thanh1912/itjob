@@ -18,9 +18,7 @@ import { Home2Component } from './home2/home2.component';
 import { LoginEmployeeComponent } from './login-employee/login-employee.component';
 import { Angular2SocialLoginModule } from "angular2-social-login";
 import { Title } from '@angular/platform-browser';
-
 import { RegisterNtdComponent } from './register-ntd/register-ntd.component';
-
 import { RegisterJobComponent } from './register-job/register-job.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
@@ -30,6 +28,7 @@ import { FileSelectDirective } from 'ng2-file-upload';
 import { UpdateInfoUserComponent } from './update-info-user/update-info-user.component';
 import { QuanliNtdService } from './../services/quanli-ntd.service';
 import { CompanyService } from './../services/company.service';
+import { JobService } from './../services/job.service';
 
 let providers = {
   "google": {
@@ -61,7 +60,7 @@ let providers = {
     FileSelectDirective,
     UpdateInfoUserComponent
   ]
-  , providers: [CompanyService,QuanliNtdService,CandidateService,ResumeService],
+  , providers: [JobService, CompanyService, QuanliNtdService, CandidateService, ResumeService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class PagesModule {

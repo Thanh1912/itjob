@@ -22,14 +22,14 @@
 
             <div *ngFor="let item of listcompany" class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                 <div class="mj_recent_article">
-                    <div class="mj_articleimg"> <img src="http://localhost:3000/uploads/forms/logo/{{item?.info_recruiter.logo}}" class="img-responsive" alt="">
+                    <div class="mj_articleimg"> <img src="http://localhost:3000/uploads/forms/image/{{item?.info_recruiter.profileimage}}" class="img-responsive" alt="">
                         <div class="mj_articleoverlay">
                             <p>{{item?.info_recruiter.namecompany}} </p>
                         </div>
                     </div>
                     <div class="mj_articledata">
                         <div class="col-lg-6">
-                            <img src="http://localhost:3000/uploads/forms/image/{{item?.info_recruiter.profileimage}}" width="64" height="62"
+                            <img src="http://localhost:3000/uploads/forms/logo/{{item?.info_recruiter.logo}}" width="64" height="62"
                                 alt="KMS Technology ">
                         </div>
                         <div class="col-lg-6">
