@@ -19,6 +19,7 @@ public Rest_Url:String ='http://localhost:3000';
   getbyid(): Observable<any> {
     return this.http.get(this.Rest_Url+'/api/company/getall').map(res => res.json());
   }
+  
 
 
 

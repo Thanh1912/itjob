@@ -12,7 +12,7 @@ module.exports.getAllJob_company = function (req, res) {
   model.aggregate([
     {
       "$lookup": {
-        "from": "users",
+        "from": "recruiter",
         "localField": "recruiterid",
         "foreignField": "_id",
         "as": "listuser"
@@ -24,11 +24,23 @@ module.exports.getAllJob_company = function (req, res) {
   });
 };
 
+  // Get by id
+  module.exports.gettop12Company = function(req, res) {
+ model.aggregate([
+     {"$group" : {_id:"$recruiterid", count:{$sum:1}, recruiterid: { $first: "$recruiterid" } }},
+     { $project: { _id: 1, name: 1, count: 1,recruiterid:1 }},
+      {$lookup: {from: "recruiters", localField: "recruiterid", foreignField: "_id", as: "info"}}, 
+  { $limit : 12 }
+], function(err, obj) {
+      if (err) { return console.error(err); }
+      res.json(obj);
+    })
+  };
+
+
 
 module.exports.getByIdDetailJob = function (req, res) {
   model.aggregate([
-
-
     {
       "$lookup": {
         "from": "districts",
@@ -42,7 +54,7 @@ module.exports.getByIdDetailJob = function (req, res) {
         "from": "recruiters",
         "localField": "recruiterid",
         "foreignField": "_id",
-        "as": "Inforecruiter"
+        "as": "company"
       }
     },
     {
@@ -51,8 +63,28 @@ module.exports.getByIdDetailJob = function (req, res) {
         "localField": "jobcategorydetail",
         "foreignField": "_id",
         "as": "Infokeyword"
+      },
+       
+    },
+    {
+      "$lookup": {
+        "from": "jobcategories",
+        "localField": "jobcategory",
+        "foreignField": "_id",
+        "as": "Infojobcategory"
       }
     },
+      {
+      "$lookup": {
+        "from": "workplaces",
+        "localField": "workplaceid",
+        "foreignField": "_id",
+        "as": "Infoworkplace"
+      }
+    },
+
+    
+
   ]).exec(function (err, docs) {
     if (err) throw err;
     res.json(docs);

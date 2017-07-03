@@ -247,7 +247,7 @@ this.id_dictrict=newValue;
   }
 
   getKeyword() {
-    this.keywordService.getallKey().subscribe(
+    this.keywordService.getall().subscribe(
       data => {
         this.listKeyword = data;
         this.myOptions = [];

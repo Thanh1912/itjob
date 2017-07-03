@@ -41,6 +41,31 @@ var model = require('../models/jobcategorydetail.model.js');
       res.json(obj);
     });
   };
+   // Get by id
+  module.exports.Categorybyid = function(req, res) {
+    model.find({ _idCategory: req.params.id }, function(err, obj) {
+      if (err) { return console.error(err); }
+      res.json(obj);
+    });
+  };
+  
+  // Get by id
+  module.exports.getdemo = function(req, res) {
+ /*   model.find({ _id: req.params.id }, function(err, obj) {
+      if (err) { return console.error(err); }
+      res.json(obj);
+    });
+*/
+ model.aggregate([
+ // {"$group" : {_id:"$_idCategory", count:{$sum:1}, name: { $first: "$name" }, _idCategory: { $first: "$_idCategory" }}},
+    { $project: { _id: 1, name: 1, count: 1,_idCategory:1 }},
+      {$lookup: {from: "jobcategories", localField: "_idCategory", foreignField: "_id", as: "details"}}, 
+ 
+], function(err, obj) {
+      if (err) { return console.error(err); }
+      res.json(obj);
+    })
+  };
 
   // Get by id
   module.exports.getAllByIdCategory = function(req, res) {

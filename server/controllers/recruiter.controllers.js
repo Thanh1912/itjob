@@ -308,11 +308,25 @@ module.exports.update_info_company = function (req, res) {
 };
 //GET ALL COMPANY
 // Get all  nha tuyend ung -- theo role -sap theo active
-module.exports.getAll_company = function (req, res) {
-  model.find({role:'nhatuyendung',"info_recruiter.active": 1 }).exec(function (err, docs) {
+module.exports.getdetail_company = function (req, res) {
+  model.aggregate([
+ //   { $match: { role: 'nhatuyendung', "info_recruiter.active": 1,_id:req.params.id } },
+   { $match : { fullname : 'Framgia' } } ,
+    {
+      "$lookup": {
+        "from": "countries",
+        "localField": "countryid",
+        "foreignField": "_id",
+        "as": "country"
+      }
+    }
+  ]).exec(function (err, docs) {
     if (err) throw err;
     res.json(docs);
-  })
+  });
 };
+
+
+
 
 

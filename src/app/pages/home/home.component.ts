@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { JobService } from '../../services/job.service';
+import { JobcategoryService } from '../../services/jobcategory.service';
+import { JobcategoryDetailService } from '../../services/jobcategory-detail.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -16,12 +19,50 @@ import { Title } from '@angular/platform-browser';
     ]
 })
 export class HomeComponent implements OnInit {
-
-   constructor(private title: Title) {
-
+ListJobcategory:any;
+ListJob:any;
+ListJobcategoryD:any;
+Listcompany:any;
+   constructor(private title: Title,private job: JobService,private JobcategoryService: JobcategoryService,private JobcategoryDetailService: JobcategoryDetailService ) {
+   
    }
-
+ 
+  getjobcategory() {
+    this.JobcategoryService.getall().subscribe(
+      data => {
+        this.ListJobcategory = data;
+      },
+      error => console.log(error),
+      () => { }
+    );
+  }
+   getjobcategoryD() {
+    this.JobcategoryDetailService.getall().subscribe(
+      data => {
+        this.ListJobcategoryD = data;
+      },
+      error => console.log(error),
+      () => { }
+    );
+  }
+   gettop12Company() {
+    this.job.gettop12Company().subscribe(
+      data => {
+       this.Listcompany =data ;
+      
+      },
+      error => console.log(error),
+      () => { }
+    );
+  }
+  
+  getvalue(value:any){
+  
+  }
   ngOnInit() {
+    this.getjobcategory();
+      this.getjobcategoryD();
+      this.gettop12Company();
     this.title.setTitle('Trang chủ Itjob');
      // title.getTitle();
     // title.setTitle('new title');

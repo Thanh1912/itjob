@@ -30,6 +30,8 @@ import { QuanliNtdService } from './../services/quanli-ntd.service';
 import { CompanyService } from './../services/company.service';
 import { JobService } from './../services/job.service';
 
+import { JobcategoryService } from './../services/jobcategory.service';
+import { JobcategoryDetailService } from './../services/jobcategory-detail.service';
 let providers = {
   "google": {
     "clientId": "1075668812758-334p3amm6s3h1nsnhlhd0bl0o1qd70t5.apps.googleusercontent.com"    //meanstack
@@ -60,7 +62,7 @@ let providers = {
     FileSelectDirective,
     UpdateInfoUserComponent
   ]
-  , providers: [JobService, CompanyService, QuanliNtdService, CandidateService, ResumeService],
+  , providers: [JobcategoryDetailService,JobcategoryService,JobService, CompanyService, QuanliNtdService, CandidateService, ResumeService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class PagesModule {

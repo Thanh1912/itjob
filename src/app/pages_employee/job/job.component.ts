@@ -54,12 +54,14 @@ export class JobComponent implements OnInit, AfterViewInit {
   Viewsalary = "0-0 VND";
   ListJobcategory: any;
   ListJobcategoryDetail: any;
+  sluongtuyen:String;
+  jobcategoryId:String;
   n = 0;
   onChange1() {
     console.log(this.keyword);
   }
   change_category(value: any) {
-    alert(value)
+    this.jobcategoryId=value;
     this.getjobcategoryDetailByid(value)
   }
   onchange_dv(newValue) {
@@ -197,8 +199,11 @@ export class JobComponent implements OnInit, AfterViewInit {
       workplaceid: this.id_workplace,
       districtid: this.id_dictrict,
       recruiterid: this.id_user,
-      keywords: key,
-      JobTime: this.jobtime
+      jobcategorydetail: key,
+      JobTime: this.jobtime,
+      Apllication: this.sluongtuyen,
+      jobcategory: this.jobcategoryId,
+      
     }
     this.postservice.add(post).subscribe(
       data => {

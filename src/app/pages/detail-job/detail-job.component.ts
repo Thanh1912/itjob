@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import { JobService } from '../../services/job.service';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-detail-job',
   templateUrl: './detail-job.component.html',
@@ -16,10 +17,30 @@ import { Component, OnInit } from '@angular/core';
   ]
 })
 export class DetailJobComponent implements OnInit {
-    
-  constructor() { }
-
+  sub: any;
+  id: any;
+  constructor(private job: JobService,private route: ActivatedRoute ) { }
+  jobitem= [];
   ngOnInit() {
+    this.sub = this.route.params.subscribe(params => {
+      this.id = params['id'];
+    });
+    this.get();
+
+  }
+
+  get() {
+    this.job.getdetailjob(this.id).subscribe(
+      data => {
+        this.jobitem =JSON.parse(data._body) ;
+        console.log('sh===ow')
+           console.log( this.jobitem)
+      },
+      error => console.log(error),
+      () => {
+
+      }
+    );
   }
 
 }

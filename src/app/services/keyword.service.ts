@@ -16,7 +16,7 @@ public Rest_Url:String ='http://localhost:3000';
   getall(): Observable<any> {
     return this.http.get(this.Rest_Url+'/api/keyword').map(res => res.json());
   }
-  getallByIdCategory(id:any): Observable<keyword> {
+  getallByIdCategory(id:any): Observable<any> {
     return this.http.get(this.Rest_Url+'/api/keywordByIdCategory/'+id).map(res => res.json());
   }
 
