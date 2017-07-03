@@ -30,11 +30,10 @@ export class DetailCompanyComponent implements OnInit {
     this.get();
   }
    get() {
-    this.company.getdetailcompany(this.id).subscribe(
+    this.company.getdetail_companybyid(this.id).subscribe(
       data => {
         this.companyitem =JSON.parse(data._body) ;
-        console.log('sh===ow')
-           console.log( this.jobitem)
+            console.log(data);
       },
       error => console.log(error),
       () => {

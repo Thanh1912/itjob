@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+
 var model = require('../models/recruiter.model.js')
   , passwordHash = require('password-hash'),
   jwt = require('jsonwebtoken'),
@@ -308,10 +309,12 @@ module.exports.update_info_company = function (req, res) {
 };
 //GET ALL COMPANY
 // Get all  nha tuyend ung -- theo role -sap theo active
+
 module.exports.getdetail_company = function (req, res) {
-  model.aggregate([
+ var ObjectId = require('mongoose').Types.ObjectId; 
+  model .aggregate([
  //   { $match: { role: 'nhatuyendung', "info_recruiter.active": 1,_id:req.params.id } },
-   { $match : { fullname : 'Framgia' } } ,
+   { $match : { _id: new ObjectId(req.params.id), "role": "nhatuyendung", "info_recruiter.active": 1 } } ,
     {
       "$lookup": {
         "from": "countries",
