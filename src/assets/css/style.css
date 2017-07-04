@@ -1980,7 +1980,7 @@ ul.mj_joblist li a:hover, ul.mj_joblist.nav-tabs > li.active > a, ul.mj_joblist.
 	display: block;
 	transform: scale3d(0.2, 0.2, 1);
 	opacity: 0;
-	transition-property: transform, opacity;
+/*	transition-property: transform, opacity;*/
 	transition-duration: 0.3s, 0.3s;
 	transition-delay: 0s, 0s;
 	transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);

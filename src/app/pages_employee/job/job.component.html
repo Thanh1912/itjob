@@ -78,7 +78,7 @@
                   required>
                 </ckeditor>
               </div>
-     <div class="form-group">
+           <div class="form-group">
                 <label>Job</label>
                 <div class="form-group">
                   <select [(ngModel)]="category" name="category" (change)="change_category($event.target.value)" required class="form-control">
@@ -108,6 +108,10 @@
                         <option value="Temporary"  >Temporary</option>
                                  
                  </select>
+              </div>
+                     <div class="form-group">
+                <label for="">Job Time End </label>
+               <input type="date" [(ngModel)]="time_end"  name="time_end">
               </div>
 
 

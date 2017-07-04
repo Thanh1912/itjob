@@ -18,7 +18,7 @@ export class JobService {
   gettop12Company(): Observable<any> {
     return this.http.get(this.Rest_Url + '/api/gettop12Company').map(res => res.json());
   }
-
+ 
 
   getall(): Observable<any> {
     return this.http.get(this.Rest_Url + '/api/job').map(res => res.json());
@@ -27,7 +27,7 @@ export class JobService {
     return this.http.get(this.Rest_Url + `/api/jobdetail/${item._id}`, this.options);
   }
   getdetailjob(id): Observable<any> {
-    return this.http.get(this.Rest_Url + `/api/job/` + id, this.options);
+    return this.http.get(this.Rest_Url + `/api/getDetailjob/` + id, this.options);
   }
   //get by id keyword - ngon ngu
   getkeywork_job(list: Array<String>): Observable<any> {

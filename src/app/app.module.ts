@@ -12,7 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AnimationComponent } from './animation/animation.component';
 import { DemocodeComponent } from './democode/democode.component';
 import { SearchCandidatesComponent } from './search-candidates/search-candidates.component';
-
+import { FileSelectDirective } from 'ng2-file-upload';
 import { RateComponent } from './directive/rate/rate.component';
 import { ComfirmComponent } from './directive/comfirm/comfirm.component';//<======Animation
 import { ToastComponent } from './shared/toast/toast.component';
@@ -32,6 +32,7 @@ import {CKEditorModule} from 'ng2-ckeditor';
     RateComponent,
     ComfirmComponent,
     SearchJobPipe,
+   // FileSelectDirective
   
   ],
   imports: [

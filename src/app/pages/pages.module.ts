@@ -59,7 +59,7 @@ let providers = {
     LoginEmployeeComponent,
     RegisterNtdComponent,
     RegisterJobComponent,
-    FileSelectDirective,
+  FileSelectDirective,
     UpdateInfoUserComponent
   ]
   , providers: [JobcategoryDetailService,JobcategoryService,JobService, CompanyService, QuanliNtdService, CandidateService, ResumeService],

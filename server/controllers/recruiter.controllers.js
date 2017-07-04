@@ -311,16 +311,24 @@ module.exports.update_info_company = function (req, res) {
 // Get all  nha tuyend ung -- theo role -sap theo active
 
 module.exports.getdetail_company = function (req, res) {
- var ObjectId = require('mongoose').Types.ObjectId; 
-  model .aggregate([
- //   { $match: { role: 'nhatuyendung', "info_recruiter.active": 1,_id:req.params.id } },
-   { $match : { _id: new ObjectId(req.params.id), "role": "nhatuyendung", "info_recruiter.active": 1 } } ,
+  var ObjectId = require('mongoose').Types.ObjectId;
+  model.aggregate([
+    //   { $match: { role: 'nhatuyendung', "info_recruiter.active": 1,_id:req.params.id } },
+    { $match: { _id: new ObjectId(req.params.id), "role": "nhatuyendung", "info_recruiter.active": true } },
     {
       "$lookup": {
         "from": "countries",
-        "localField": "countryid",
+        "localField": "info_recruiter.countryid",
         "foreignField": "_id",
-        "as": "country"
+        "as": "infocountry"
+      }
+    },
+    {
+      "$lookup": {
+        "from": "companysizes",
+        "localField": "info_recruiter.companysizeid",
+        "foreignField": "_id",
+        "as": "infocompanysizes"
       }
     }
   ]).exec(function (err, docs) {
@@ -328,6 +336,8 @@ module.exports.getdetail_company = function (req, res) {
     res.json(docs);
   });
 };
+
+
 
 
 

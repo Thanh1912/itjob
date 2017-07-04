@@ -10,6 +10,7 @@ import { countryService } from './../../services/country.service';
 import { PostService } from './../../services/post.service';
 import { JobcategoryService } from './../../services/jobcategory.service';
 
+
 import { IMultiSelectOption, IMultiSelectSettings } from 'angular-2-dropdown-multiselect';
 import { keyword } from './../../_models/keyword.model';
 import { Router } from '@angular/router';
@@ -29,7 +30,7 @@ interface FileReaderEvent extends Event {
 
 })
 export class JobComponent implements OnInit, AfterViewInit {
-  constructor(private router: Router, private jobcategoryService: JobcategoryService, private http: Http, private el: ElementRef, private districtService: DistrictService, private workplaceService: WorkplaceService, private jobcategoryDetailService: KeywordService, private postservice: PostService) {
+  constructor(private router: Router, private jobcategoryService: JobcategoryService, private http: Http, private el: ElementRef, private districtService: DistrictService, private workplaceService: WorkplaceService, private jobcategoryDetailService: KeywordService,private countryService :countryService, private postservice: PostService) {
     this.ckeditorContent = `<p>My HTML</p>`;
   }
 
@@ -56,6 +57,7 @@ export class JobComponent implements OnInit, AfterViewInit {
   ListJobcategoryDetail: any;
   sluongtuyen:String;
   jobcategoryId:String;
+  time_end:any;
   n = 0;
   onChange1() {
     console.log(this.keyword);
@@ -96,6 +98,7 @@ export class JobComponent implements OnInit, AfterViewInit {
       })
     this.getworkplace();
     this.getjobcategory();
+
     //override the onAfterAddingfile property of the uploader so it doesn't authenticate with //credentials.
     this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
     //overide the onCompleteItem property of the uploader so we are
@@ -203,6 +206,7 @@ export class JobComponent implements OnInit, AfterViewInit {
       JobTime: this.jobtime,
       Apllication: this.sluongtuyen,
       jobcategory: this.jobcategoryId,
+      endPost:this.time_end
       
     }
     this.postservice.add(post).subscribe(
@@ -260,6 +264,9 @@ export class JobComponent implements OnInit, AfterViewInit {
       () => { }
     );
   }
+
+
+
   getDistrict(id) {
     var c = {
       id: id

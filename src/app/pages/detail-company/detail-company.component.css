@@ -8,3 +8,10 @@
 .fsize22{
     font-size: 22px;
 }
+.jobtitle{
+    color: #2580b1 !important;
+    font-size: 30px;
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.1;
+}

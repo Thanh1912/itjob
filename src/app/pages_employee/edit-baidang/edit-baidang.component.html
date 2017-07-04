@@ -21,7 +21,7 @@
             <div class="box-body">
               <div class="form-group">
                 <label for="exampleInputEmail1">Tiêu đề *</label>
-                <input type="text" class="form-control"  [(ngModel)]="title" name="title" placeholder="" required >
+                <input type="text" class="form-control" [(ngModel)]="title" name="title" placeholder="" required>
               </div>
               <div class="form-group">
                 <div class="col-xs-6">
@@ -37,7 +37,7 @@
                 <div class="col-xs-6">
                   <div class="form-group">
                     <label>Đơn Vị * </label>
-                    <select name="donvi" (change)="onchange_dv($event.target.value)" class="form-control" >
+                    <select name="donvi" (change)="onchange_dv($event.target.value)" class="form-control">
                         <option value="VND" selected>VND</option>
                         <option value="USD">USD</option>
                       </select>
@@ -48,10 +48,10 @@
                 <label for="">Mức lương Từ *</label>
                 <div class="row">
                   <div class="col-xs-3">
-                    <input type="text" class="form-control" (keyup)="onKeyto($event)"  name="salarybegin" [(ngModel)]="salarybegin" placeholder="">
+                    <input type="text" class="form-control" (keyup)="onKeyto($event)" name="salarybegin" [(ngModel)]="salarybegin" placeholder="">
                   </div>
                   <div class="col-xs-4">
-                    <input type="text" class="form-control"  (keyup)="onKeytfrom($event)"  name="salaryend" [(ngModel)]="salaryend" placeholder="">
+                    <input type="text" class="form-control" (keyup)="onKeytfrom($event)" name="salaryend" [(ngModel)]="salaryend" placeholder="">
                   </div>
                   <div class="col-xs-5">
 
@@ -61,26 +61,48 @@
 
               <div class="form-group" *ngIf="select_Luong=='false'">
                 <label for="exampleInputPassword1">Lương</label>
-                <input type="text" disabled="disabled" name="salary" [(ngModel)]="Viewsalary"  class="form-control" placeholder="Lương">
+                <input type="text" disabled="disabled" name="salary" [(ngModel)]="Viewsalary" class="form-control" placeholder="Lương">
               </div>
-           <div class="form-group">
+              <div class="form-group">
+                <label for="exampleInputPassword1">Số Lượng tuyển dụng *</label>
+                <input type="text" name="sluongtuyen" [(ngModel)]="sluongtuyen">
+              </div>
+              <div class="form-group">
                 <label for="exampleInputPassword1">Mô tả công việc *</label>
-                <ckeditor name="ckeditorContent" [(ngModel)]="descriptionwork" name="descriptionwork"  (change)="onChangemotta($event)"
-                  debounce="500" required>
+                <ckeditor name="ckeditordescriptionwork" [(ngModel)]="descriptionwork" name="descriptionwork" (change)="onChangemotta($event)" debounce="500"
+                  required>
                 </ckeditor>
               </div>
               <div class="form-group">
                 <label for="exampleInputPassword1">Yêu Cầu công việc *</label>
-                <ckeditor name="ckeditorContent" [(ngModel)]="requirementwork" name="requirementwork" (change)="onChangeYeucau($event)"
-                 debounce="500" required>
+                <ckeditor name="ckeditorrequirementwork" [(ngModel)]="requirementwork" name="requirementwork" (change)="onChangeYeucau($event)" debounce="500"
+                  required>
                 </ckeditor>
               </div>
 
               <div class="form-group">
                 <label>Tu khoa Tim kiem</label>
                 <div class="form-group">
-                  <ss-multiselect-dropdown [options]="myOptions" [(ngModel)]="keyword"  name="keywords" name="aa" (ngModelChange)="onChange1($event)" required></ss-multiselect-dropdown>
+                  <ss-multiselect-dropdown [options]="myOptions" [(ngModel)]="keyword" name="keywords" name="aa" (ngModelChange)="onChange1($event)"
+                    required></ss-multiselect-dropdown>
                 </div>
+              </div>
+              <div class="form-group">
+                <label for="">Job Time </label>
+                <select [(ngModel)]="jobtime"   (change)="change_jobtime($event.target.value)" name="jobtime" class="form-control" required>
+                        <option value="Freelancer" [selected]="'Freelancer' == selectedjobtime"  >Freelancer</option>
+                        <option value="Full Time"  [selected]="'Full Time' == selectedjobtime">Full Time</option>
+                        <option value="Internship"  [selected]="'Internship' == selectedjobtime">Internship</option>
+                        <option value="Part Time"  [selected]="'Part Time'== selectedjobtime">Part Time</option>
+                        <option value="Temporary"  [selected]="'Temporary' == selectedjobtime">Temporary</option>
+                                 
+                 </select>
+              </div>
+              <div class="form-group">
+                <label for="">Job Time End </label>
+
+                <input type="date" [(ngModel)]="time_end" name="time_end">
+                {{time_endLoad|date}}
               </div>
               <!-- /.form-group -->
               <div class="form-group">
@@ -91,7 +113,7 @@
               </div>
               <div class="form-group">
                 <label for="examplep">Quận </label>
-                <select [(ngModel)]="quan" name="quan" (change)="change_dictrict($event.target.value)" required  class="form-control">
+                <select [(ngModel)]="quan" name="quan" (change)="change_dictrict($event.target.value)" required class="form-control">
                        <option *ngFor="let item of listDistrict" [selected]="id_dictrict==item._id" [value]="item._id">{{item.name}}</option>
                  </select>
 
@@ -102,17 +124,18 @@
 chuẩn(.jpg, .png, .gif)
 dưới 2MB
 kích thước : 1200px : 400px</label>
-<input type="file" id="imgInp"  name="photo" ng2FileSelect [uploader]="uploader" />
+                <input type="file" id="imgInp" name="photo" ng2FileSelect [uploader]="uploader" />
 
-                  <img id="blah" style="width:100px;height:100px;" src="http://localhost:3000/uploads/forms/post/{{imageurl}}" alt="your image" />
-                 <button type="button" (click)="uploader.uploadAll();" [disabled]="!uploader.getNotUploadedItems().length" class="btn btn-primary" >UpLoad Image</button>
+                <img id="blah" style="width:100px;height:100px;" src="http://localhost:3000/uploads/forms/post/{{imageurl}}" alt="your image"
+                />
+                <button type="button" (click)="uploader.uploadAll();" [disabled]="!uploader.getNotUploadedItems().length" class="btn btn-primary">UpLoad Image</button>
 
               </div>
             </div>
             <!-- /.box-body -->
             <div class="box-footer">
 
-              <button type="submit"   class="btn btn-primary">Cập Nhật</button>
+              <button type="submit" class="btn btn-primary">Cập Nhật</button>
             </div>
           </form>
         </div>
@@ -133,14 +156,14 @@ kích thước : 1200px : 400px</label>
         <h4 class="modal-title">Modal Default</h4>
       </div>
       <div class="modal-body">
-     <!-- File input for the file-upload plugin, with special ng2-file-upload directive called ng2FileSelect -->
+        <!-- File input for the file-upload plugin, with special ng2-file-upload directive called ng2FileSelect -->
 
 
 
-<!-- File input for upload without using the plugin. -->
-<input id="photo" type="file" />
-<!-- button to trigger the file upload when submitted -->
-<button type="button" class="btn btn-success btn-s" (click)="upload()">
+        <!-- File input for upload without using the plugin. -->
+        <input id="photo" type="file" />
+        <!-- button to trigger the file upload when submitted -->
+        <button type="button" class="btn btn-success btn-s" (click)="upload()">
 Upload with method 2
 </button>
       </div>

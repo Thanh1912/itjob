@@ -19,6 +19,10 @@ export class JobcategoryDetailService {
   count(): Observable<any> {
     return this.http.get(this.Rest_Url + '/api/keyword/count').map(res => res.json());
   }
+ getAllCategoryHome(): Observable<any> {
+    return this.http.get(this.Rest_Url + '/api/getAllCategoryHome').map(res => res.json());
+  }
+  
   getallByIdCategory(id:any): Observable<any> {
     return this.http.get(this.Rest_Url+'/api/keywordByIdCategory/'+id).map(res => res.json());
   }

@@ -32,9 +32,8 @@ export class DetailJobComponent implements OnInit {
   get() {
     this.job.getdetailjob(this.id).subscribe(
       data => {
-        this.jobitem =JSON.parse(data._body) ;
-        console.log('sh===ow')
-           console.log( this.jobitem)
+        this.jobitem =JSON.parse(data._body)[0] ;
+      console.log(  this.jobitem)
       },
       error => console.log(error),
       () => {

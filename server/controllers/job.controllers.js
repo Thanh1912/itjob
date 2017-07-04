@@ -24,23 +24,40 @@ module.exports.getAllJob_company = function (req, res) {
   });
 };
 
-  // Get by id
-  module.exports.gettop12Company = function(req, res) {
- model.aggregate([
-     {"$group" : {_id:"$recruiterid", count:{$sum:1}, recruiterid: { $first: "$recruiterid" } }},
-     { $project: { _id: 1, name: 1, count: 1,recruiterid:1 }},
-      {$lookup: {from: "recruiters", localField: "recruiterid", foreignField: "_id", as: "info"}}, 
-  { $limit : 12 }
-], function(err, obj) {
-      if (err) { return console.error(err); }
-      res.json(obj);
-    })
-  };
+// Get by id
+module.exports.gettop12Company = function (req, res) {
+  model.aggregate([
+    { "$group": { _id: "$recruiterid", count: { $sum: 1 }, recruiterid: { $first: "$recruiterid" } } },
+    { $project: { _id: 1, name: 1, count: 1, recruiterid: 1 } },
+    { $lookup: { from: "recruiters", localField: "recruiterid", foreignField: "_id", as: "info" } },
+    { $limit: 12 }
+  ], function (err, obj) {
+    if (err) { return console.error(err); }
+    res.json(obj);
+  })
+};
+
+
+// Get by id
+module.exports.count_job_in_Company = function (req, res) {
+  var ObjectId = require('mongoose').Types.ObjectId;
+  model.aggregate([
+    { $match: { recruiterid: new ObjectId(req.params.id) } },
+    { "$group": { _id: "$recruiterid", count: { $sum: 1 }, recruiterid: { $first: "$recruiterid" } } },
+    { $project: { _id: 1, count: 1, recruiterid: 1 } },
+  ], function (err, obj) {
+    if (err) { return console.error(err); }
+    res.json(obj);
+  })
+};
+
 
 
 
 module.exports.getByIdDetailJob = function (req, res) {
+  var ObjectId = require('mongoose').Types.ObjectId;
   model.aggregate([
+    { $match: { _id: new ObjectId(req.params.id)} },
     {
       "$lookup": {
         "from": "districts",
@@ -59,12 +76,12 @@ module.exports.getByIdDetailJob = function (req, res) {
     },
     {
       "$lookup": {
-        "from": "jobcategorydetail",
+        "from": "jobcategorydetails",
         "localField": "jobcategorydetail",
         "foreignField": "_id",
         "as": "Infokeyword"
       },
-       
+
     },
     {
       "$lookup": {
@@ -74,17 +91,14 @@ module.exports.getByIdDetailJob = function (req, res) {
         "as": "Infojobcategory"
       }
     },
-      {
+    {
       "$lookup": {
         "from": "workplaces",
         "localField": "workplaceid",
         "foreignField": "_id",
         "as": "Infoworkplace"
       }
-    },
-
-    
-
+    }
   ]).exec(function (err, docs) {
     if (err) throw err;
     res.json(docs);
@@ -110,13 +124,87 @@ module.exports.getAllJob_company = function (req, res) {
 };
 
 */
+//==================Get top 10 job By ID RECRUTER=========
+
+
+// Get by id
+
+module.exports.jobincompany = function (req, res) {
+  var ObjectId = require('mongoose').Types.ObjectId;
+  model.aggregate([
+    { $match: { recruiterid: new ObjectId(req.params.id)} },
+    {
+      "$lookup": {
+        "from": "recruiters",
+        "localField": "recruiters",
+        "foreignField": "_id",
+        "as": "recruiters"
+      }
+    },
+      { $limit: 10 }
+  ]).exec(function (err, docs) {
+    if (err) throw err;
+    res.json(docs);
+  });
+};
 
 
 
+function onlyUnique(value, index, self) {
+  return self.indexOf(value) === index;
+}
+//GET SKILL COMPANY
+module.exports.get_All_Skill_Company = function (req, res) {
+  var ObjectId = require('mongoose').Types.ObjectId;
+  
+  model.aggregate([
+    { $match: { recruiterid: new ObjectId(req.params.id) } },
+    {
+      "$lookup": {
+        "from": "jobcategorydetails",
+        "localField": "jobcategorydetail",
+        "foreignField": "_id",
+        "as": "Skills"
+      }
+    }
+
+  ]).exec(function (err, docs) {
+    if (err) throw err;
+    var array = []
+    docs.forEach(function (value) {
+      console.log(value._id);
+      //====================
+      var tmp = [];
+      tmp = value.Skills;
+      tmp.forEach(function (valuetmp) {
+        array.push(valuetmp)
+      })
+
+      //============
+
+    });
+    console.log('===============')
+    console.log(array)
+    var unique_array = array.filter(onlyUnique);
+    res.json(unique_array);
+  });
+
+};
 
 
 
-
+// Get 
+module.exports.searchJobTitles = function (req, res) {
+  model.find({title: /.*ED.*/ },
+    function (err, model) {
+      if (err) {
+        console.log(err);
+        res.status(400).json(err);
+      } else {
+        res.status(200).json(model);
+      }
+    });
+};
 
 // Get all
 module.exports.getAll = function (req, res) {

@@ -1,12 +1,12 @@
 <div class="mj_pagetitle">
-  <img src="https://cdn.itviec.com/system/production/assets/images/9/kms-technology-headline-photo-compress.png" alt="">
+  <img src="http://localhost:3000/uploads/forms/image/{{companyitem?.info_recruiter?.profileimage}}" alt="profileimage">
   <div class="mj_mainheading_overlay"></div>
   <div class="mj_pagetitle_inner">
     <div class="container">
       <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div class="mj_mainheading mj_toppadder80 mj_bottompadder80">
-            <h1>Global CyberSoft</h1>
+            <h1>{{companyitem?.info_recruiter.namecompany}}</h1>
           </div>
         </div>
       </div>
@@ -19,29 +19,32 @@
     <div class="row">
       <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 col-lg-offset-3 col-md-offset-3">
         <div class="mj_resume_heading">
-          <img src="https://cdn.itviec.com/system/production/employers/logos/189/global-cybersoft-logo-170-151.jpg?1467280280" class="img-responsive"
-            alt="">
-          <h1><span></span> <span>FPT Software Reviews</span></h1>
+
+          <img src="http://localhost:3000/uploads/forms/logo/{{companyitem?.info_recruiter.logo}}" class="img-responsive" alt="Logo Company">
+          <h1><span></span> <span>{{companyitem?.info_recruiter.namecompany}}</span></h1>
           <ul>
             <li>
               <label><i class="fa fa-map-marker"></i>
-             </label > <span style="font-size: 22px;">Address: Palo Alto, California, United States </span></li>
+             </label > <span style="font-size: 22px;">Address: {{companyitem?.info_recruiter.address}} </span></li>
 
             <li>
-              <label>Số Lượng: </label><span class="mj_green_text fsize22">300+</span>
+              <label>Số Lượng: </label><span class="mj_green_text fsize22"> {{companyitem?.infocompanysizes[0].name}} </span>
             </li>
+
           </ul>
           <ul>
-            <li><a href="#"><i  class="fa fa-link"></i> Website</a>
-            </li>
-            <li><a href="#"><i  class="fa fa-twitter"></i>Twitter</a>
-            </li>
-            <li><a href="#"><i  class="fa fa-facebook"></i>facebook</a>
-            </li>
-            <li>
-              <a href="#"><i  class="joball "></i>30 jobs</a>
+            <li><a href="{{companyitem?.info_recruiter.website}}"><i  class="fa fa-link"></i> Website</a>
             </li>
 
+            <li><a href="{{companyitem?.info_recruiter.facebook}}"><i  class="fa fa-facebook"></i>facebook</a>
+            </li>
+
+            <li>
+              <a><i  class="joball "></i>{{countJob}} jobs</a>
+            </li>
+            <li>
+              <a><label>Quốc Gia: </label>{{companyitem?.infocountry[0].name}} </a>
+            </li>
           </ul>
         </div>
       </div>
@@ -82,43 +85,49 @@
                     </div>
                     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
                       <div class="mj_detaildiv">
-                        <p>The leading provider of software outsourcing services in Vietnam Established in 1999, ranking in
-                          Top 100 Global Outsourcing, recognized as Top Best IT Company To Work in Vietnam (2014), FPT Software
-                          is a global software company with presence in US, Japan, EU, Asia Pacific and Australia. FPT Software
-                          staff take pride in fair competition with work quality equal to that of the world’s 500 biggest
-                          companies’ staff in central area of technology such as Mobility, Cloud Computing, Big Data... Annually,
-                          thousands of staff have gone on business trips overseas. FPT Software‘s members consist of Vietnam,
-                          US, Japan, EU, Slovakia, Singapore, Myanmar‘s citizens. Though from different origins, they all
-                          share the common mission of turning FPT Software into one of the world’s leading software companies.
-                          You can make it too!
+                        <p [innerHTML]="companyitem?.info_recruiter.introduction">
                         </p>
+
                       </div>
                     </div>
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mj_toppadder30 mj_bottompadder30">
                       <div class="mj_divider"></div>
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                      <label>skills</label>
+                      <label>Skills</label>
                     </div>
                     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
                       <div class="mj_detaildiv">
                         <ul class="mj_selected_content">
-                          <li>
-                            <a href="#"><img src="assets/images/cross_white.png" alt=""> Design</a>
+                          <li *ngFor="let iSkill of skill_item">
+                            <a href="{{iSkill._idCategory}}--{{iSkill._id}}"><img src="assets/images/cross_white.png" alt=""> {{iSkill.name}}</a>
                           </li>
-                          <li>
-                            <a href="#"><img src="assets/images/cross_white.png" alt=""> Web Designer</a>
-                          </li>
-                          <li>
-                            <a href="#"><img src="assets/images/cross_white.png" alt=""> User Experience</a>
-                          </li>
-                          <li>
-                            <a href="#"><img src="assets/images/cross_white.png" alt=""> developer</a>
-                          </li>
+                         
                         </ul>
 
                       </div>
                     </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mj_toppadder30 mj_bottompadder30">
+                      <div class="mj_divider"></div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                      <label>Job</label>
+                    </div>
+                    <div *ngFor="let ijob of job_item" class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                      <div class="mj_detaildiv">
+                        <span class="jobtitle" [routerLink]="['detail-jobs', ijob.title ]">{{ijob.title}}</span>
+                        <blockquote class="mj_blueblockquote">
+                          <span><i class="fa fa-calendar"></i> Dec 2010 - Sep 2011</span>
+                          <span><i class="fa fa-money"></i> {{ijob.salarycompete}}</span>
+
+                          <p [innerHTML]="ijob.descriptionwork">.</p>
+                        </blockquote>
+                      </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+
+                    </div>
+                  
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mj_toppadder30 mj_bottompadder30">
                       <div class="mj_divider"></div>
                     </div>
@@ -144,7 +153,7 @@
 
 
 
-                  
+
 
 
                       </div>
@@ -154,7 +163,7 @@
                       <div class="mj_detaildiv">
                         <blockquote class="mj_blueblockquote">
                           <span><i class="fa fa-calendar"></i> Dec 2010 - Sep 2011  </span>
-                        
+
                           <h5>Honours Co-op BMATH</h5>
                           <p>Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat
                             facer possim assum.</p>
@@ -196,10 +205,10 @@
                             <div class="form-group">
                               <input type="text" placeholder="noi dug" id="Review Title" class="form-control">
                             </div>
-                              <div class="form-group">
+                            <div class="form-group">
                               <input type="text" placeholder="Star" id="Review Title" class="form-control">
                             </div>
-                        <a  class="btn btn-primary btn-flat " data-text="Save"><span>Save</span></a>
+                            <a class="btn btn-primary btn-flat " data-text="Save"><span>Save</span></a>
                           </div>
 
 

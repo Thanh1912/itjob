@@ -25,7 +25,7 @@ export class CompanyComponent implements OnInit {
   public uploader_logo: FileUploader = new FileUploader({ url: 'http://localhost:3000/api/uploadlogo', itemAlias: 'file_logo' });
   public uploader_co: FileUploader = new FileUploader({ url: 'http://localhost:3000/api/uploadcogty', itemAlias: 'file_co' });
 
-  constructor(private  router :Router,private builder: FormBuilder, private QuanliNtdService: QuanliNtdService, private countryService: countryService, private company: CompanysizeService) { }
+  constructor(private router: Router, private builder: FormBuilder, private QuanliNtdService: QuanliNtdService, private countryService: countryService, private company: CompanysizeService) { }
 
   id_user: String;
   info_user: Nhatuyendung;
@@ -60,13 +60,13 @@ export class CompanyComponent implements OnInit {
   ngAfterViewInit() {
 
     //upload file image
-    function readURL(input,idimg) {
+    function readURL(input, idimg) {
 
       if (input.files && input.files[0]) {
         var reader = new FileReader();
         reader.onload = function (fre: FileReaderEvent) {
           //   var data = JSON.parse();
-          jQuery('#'+idimg).attr('src', fre.target.result);
+          jQuery('#' + idimg).attr('src', fre.target.result);
           // alert(jQuery('#blah').height() + "size: " + jQuery('#blah').width());
 
         }
@@ -74,16 +74,16 @@ export class CompanyComponent implements OnInit {
       }
     }
     jQuery("#logo").change(function () {
-      readURL(this,'logoimg');
+      readURL(this, 'logoimg');
     });
     jQuery("#profile").change(function () {
-      readURL(this,'logopro');
+      readURL(this, 'logopro');
     });
   }
   ngOnInit() {
-if(localStorage.getItem('userId_ntd')==null){
-  this.router.navigate(['/nhatuyendung']);
-}
+    if (localStorage.getItem('userId_ntd') == null) {
+      this.router.navigate(['/nhatuyendung']);
+    }
 
     this.id_user = localStorage.getItem('userId_ntd');
     this.load_info_user(this.id_user);
@@ -120,6 +120,7 @@ if(localStorage.getItem('userId_ntd')==null){
       () => { }
     );
   }
+
   load_info_user(id_user) {
     this.QuanliNtdService.getinfo(id_user).subscribe(
       data => {

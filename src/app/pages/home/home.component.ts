@@ -37,9 +37,10 @@ Listcompany:any;
     );
   }
    getjobcategoryD() {
-    this.JobcategoryDetailService.getall().subscribe(
+    this.JobcategoryDetailService.getAllCategoryHome().subscribe(
       data => {
         this.ListJobcategoryD = data;
+        console.log(  this.ListJobcategoryD )
       },
       error => console.log(error),
       () => { }

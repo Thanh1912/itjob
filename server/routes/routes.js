@@ -66,6 +66,12 @@ router.route('/keyword/:id').put(keywordctrl.update);
 router.route('/keyword/:id').delete(keywordctrl.delete);
 router.route('/getdemo').get(keywordctrl.getdemo);
 router.route('/Categorybyid/:id').get(keywordctrl.Categorybyid);
+
+router.route('/getAllCategoryHome').get(keywordctrl.getAllCategoryHome);
+
+
+
+
 //jobcategory
 var jobcategoryctrl = require('../controllers/jobcategory.controllers.js');
 router.route('/jobcategory').get(jobcategoryctrl.getAll);
@@ -138,7 +144,8 @@ var postctrl = require('../controllers/job.controllers.js');
 
 
 
-
+router.route('/get-All-Skill-Company/:id').get(postctrl.get_All_Skill_Company);
+router.route('/count-job-in-Company/:id').get(postctrl.count_job_in_Company);
 router.route('/job').get(postctrl.getAll);
 router.route('/gettop10post').get(postctrl.top10post);
 router.route('/job/count').get(postctrl.count);
@@ -147,8 +154,10 @@ router.route('/job/:id').get(postctrl.get);
 router.route('/job/:id').put(postctrl.update);
 router.route('/job/:id').delete(postctrl.delete);
 router.route('/getpost/:id').get(postctrl.getiduser);
-router.route('/getDetailjob').get(postctrl.getByIdDetailJob);
+router.route('/getDetailjob/:id').get(postctrl.getByIdDetailJob);
 router.route('/gettop12Company').get(postctrl.gettop12Company);
+router.route('/job-in-company/:id').get(postctrl.jobincompany);//get top 12
+router.route('/job-search').get(postctrl.searchJobTitles);//get top 12
 
 
 

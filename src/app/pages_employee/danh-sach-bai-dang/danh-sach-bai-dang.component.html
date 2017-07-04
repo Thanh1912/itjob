@@ -37,11 +37,14 @@
 
                       </div></a>
                         <a class="btn btn-primary btn-sm btn-flat"   [routerLink]="['/pages_employee/application', item._id]"><div class="tools">
-                        <i class="fa fa-edit">Show (4)</i>
+                        <i class="fa fa-edit">Show All application </i>
 
                       </div></a>
                       <a class="btn btn-danger btn-sm btn-flat" (click)="delete(item)"><div class="tools">
-                        <i class="fa fa-trash-o"></i>
+                        <i class="fa fa-trash-o">Off</i>
+                      </div></a>
+                       <a class="btn btn-primarys btn-sm btn-flat" (click)="delete(item)"><div class="tools">
+                        <i class="fa fa-trash-o">On</i>
                       </div></a>
                   </div>
                 </td>

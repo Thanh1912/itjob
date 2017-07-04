@@ -36,7 +36,7 @@ import { JobcategoryService } from './../services/jobcategory.service';
      ReactiveFormsModule,// <-- import the FormsModule before binding with [(ngModel)]
   ],
   declarations: [
-    FileSelectDirective,
+   FileSelectDirective,
     DanhSachBaiDangComponent,
     CompanyComponent,
     MemberComponent,
