@@ -29,9 +29,11 @@ import { UpdateInfoUserComponent } from './update-info-user/update-info-user.com
 import { QuanliNtdService } from './../services/quanli-ntd.service';
 import { CompanyService } from './../services/company.service';
 import { JobService } from './../services/job.service';
-
+import { PagerService } from './../_services/pager.service';
 import { JobcategoryService } from './../services/jobcategory.service';
 import { JobcategoryDetailService } from './../services/jobcategory-detail.service';
+import { SearchPipe } from './../Pipes/search.pipe';
+import { SearchCompanyPipe } from './search-company.pipe';
 let providers = {
   "google": {
     "clientId": "1075668812758-334p3amm6s3h1nsnhlhd0bl0o1qd70t5.apps.googleusercontent.com"    //meanstack
@@ -60,9 +62,10 @@ let providers = {
     RegisterNtdComponent,
     RegisterJobComponent,
   FileSelectDirective,
-    UpdateInfoUserComponent
+    UpdateInfoUserComponent,
+    SearchCompanyPipe
   ]
-  , providers: [JobcategoryDetailService,JobcategoryService,JobService, CompanyService, QuanliNtdService, CandidateService, ResumeService],
+  , providers: [SearchPipe,PagerService,JobcategoryDetailService,JobcategoryService,JobService, CompanyService, QuanliNtdService, CandidateService, ResumeService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class PagesModule {

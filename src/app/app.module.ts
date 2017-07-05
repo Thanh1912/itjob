@@ -19,6 +19,7 @@ import { ToastComponent } from './shared/toast/toast.component';
 import { SharedModule } from './shared/shared.module';
 import { SearchJobPipe } from './Pipes/search-job.pipe';
 import {CKEditorModule} from 'ng2-ckeditor';
+import { SearchPipe } from './Pipes/search.pipe';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import {CKEditorModule} from 'ng2-ckeditor';
     RateComponent,
     ComfirmComponent,
     SearchJobPipe,
+    SearchPipe,
    // FileSelectDirective
   
   ],

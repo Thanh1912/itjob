@@ -5,7 +5,7 @@
                 <form>
                     <div class="col-lg-10 col-md-3 col-sm-3 col-xs-12">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Category">
+                            <input (keyup)="setvalue(input.value)" #input type="text" class="form-control" placeholder="Category">
                         </div>
                     </div>
 
@@ -20,30 +20,46 @@
     <div class="row">
         <div class="mj_articleslider mj_bottompadder50">
 
-            <div *ngFor="let item of listcompany" class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+            <div *ngFor="let item of pagedItems|searchCompany:all:term" class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                 <div class="mj_recent_article">
-                    <div class="mj_articleimg"> <img src="http://localhost:3000/uploads/forms/image/{{item?.info_recruiter.profileimage}}" class="img-responsive" alt="">
+                    <div class="mj_articleimg"> <img src="http://localhost:3000/uploads/forms/image/{{item.info_recruiter.profileimage}}" class="img-responsive" alt="">
                         <div class="mj_articleoverlay">
-                            <p>{{item?.info_recruiter.namecompany}} </p>
+                            <p [routerLink]="['detail-company', item._id ]">{{item.info_recruiter.namecompany}} </p>
                         </div>
                     </div>
                     <div class="mj_articledata">
                         <div class="col-lg-6">
-                            <img src="http://localhost:3000/uploads/forms/logo/{{item?.info_recruiter.logo}}" width="64" height="62"
-                                alt="KMS Technology ">
+                            <img [routerLink]="['detail-company', item._id ]" src="http://localhost:3000/uploads/forms/logo/{{item.info_recruiter.logo}}" width="64" height="62"
+                                alt="Image ">
                         </div>
                         <div class="col-lg-6">
-                            <p> Rate: 5 start</p>
+                            <p> Rate:{{item?.ratestar}}  start</p>
                         </div>
-                         <span>{{item?.info_recruiter.address}}</span>
-                        <a href="blog_single.html"><i class="fa fa-angle-right">16job</i></a> 
+                         <span>{{item.info_recruiter.address}}</span>
+                     
                         </div>
                 </div>
             </div>
           
       
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="mj_blog_btn"> <a href="#" class="mj_mainbtn mj_btnblack" data-text="load more"><span>load more</span></a> </div>
+                 <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+                <li [ngClass]="{disabled:pager.currentPage === 1}">
+                    <a (click)="setPage(1)">First</a>
+                </li>
+                <li [ngClass]="{disabled:pager.currentPage === 1}">
+                    <a (click)="setPage(pager.currentPage - 1)">Previous</a>
+                </li>
+                <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                    <a (click)="setPage(page)">{{page}}</a>
+                </li>
+                <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                    <a (click)="setPage(pager.currentPage + 1)">Next</a>
+                </li>
+                <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                    <a (click)="setPage(pager.totalPages)">Last</a>
+                </li>
+            </ul>
             </div>
         </div>
     </div>

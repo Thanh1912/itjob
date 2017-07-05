@@ -41,7 +41,9 @@ router.route('/nhatuyendungget/gettop10company/').get(user_nhatuyendungctrl.gett
 
 
 router.route('/company/getdetail_company/:id').get(user_nhatuyendungctrl.getdetail_company);
+router.route('/company-getall/:title').get(user_nhatuyendungctrl.searchCompanyTitles);
 
+router.route('/company-get-all').get(user_nhatuyendungctrl.getallcompany);
 
 //keyword
 //  USER -- THANH VIEN DANG KY DANG NHAP
@@ -92,8 +94,13 @@ var workplacectrl = require('../controllers/workplace.controllers.js');
 
 
 router.route('/resume').post(resumectrl.insert);
+router.route('/insertCV').post(resumectrl.insertCV);
+router.route('/resume/:id').put(resumectrl.update);
+
 router.route('/getallById/resume/:id').get(resumectrl.getallByIdUser);
 router.route('/readPdf/resume/:id').get(resumectrl.getallByIdPDFUser);
+router.route('/jobapplyByidUser/resume/:id').get(resumectrl.jobapplyByidUser);
+router.route('/jobapplyByidJOB/resume/:id').get(resumectrl.jobapplyByidJOB);
 
 
 

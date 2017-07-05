@@ -141,6 +141,23 @@ module.exports.jobincompany = function (req, res) {
         "as": "recruiters"
       }
     },
+        {
+      "$lookup": {
+        "from": "jobcategorydetails",
+        "localField": "jobcategorydetail",
+        "foreignField": "_id",
+        "as": "CategoryDetail"
+      }
+    },
+          {
+      "$lookup": {
+        "from": "jobcategories",
+        "localField": "jobcategory",
+        "foreignField": "_id",
+        "as": "Category"
+      }
+    },
+    
       { $limit: 10 }
   ]).exec(function (err, docs) {
     if (err) throw err;
@@ -237,9 +254,19 @@ module.exports.get_job_key = function (req, res) {
 
 
 module.exports.top10post = function (req, res) {
-  model.find().sort({ "createddate": 1 }
+  model.aggregate([
+    {
+      "$lookup": {
+        "from": "recruiters",
+        "localField": "recruiterid",
+        "foreignField": "_id",
+        "as": "inforCompany"
+      }
+    },
+     { $limit : 10 }
+  ]).sort({ "createddate": 1 }
 
-  ).limit(10).exec(function (err, docs) {
+  ).exec(function (err, docs) {
     if (err) throw err;
     res.json(docs);
   });

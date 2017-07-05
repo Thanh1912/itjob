@@ -11,26 +11,20 @@
     </div>
     <!--===============================-->
 
-    <div class="mj_blog_tags" style="margin-top: -256px;"> <a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-angle-right">Choose Catalog Jobs</i></a>
+    <div class="mj_blog_tags" style="margin-left: 27px;margin-top: -251px;"> <a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-angle-right">Choose Catalog Jobs</i></a>
         <ul>
-            <li><a href="">Web Developer/</a>
+            <li><a >{{NameCatagory}}/</a>
             </li>
-            <li><a href="">ASP.NET</a>
+            <li><a   >{{NameCatagoryDetail}}</a>
             </li>
         </ul>
         <!-- <a class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Choose Catalog Jobs</a>-->
     </div>
     <aside class="woocommerce widget widget_tag_cloud" style="margin-top: -213px;">
-        <a href="#">ASP.NET</a> <a href="#">Java / J2EE</a> <a href="#">PHP</a> <a href="#">HTML</a>
-        <a href="#">Other</a>
+        <a *ngFor="let item of list_ById_jobcategory" [routerLink]="['search-jobs', 'catagory', item._id ,'all']" >{{item.name}}</a>
     </aside>
 
     <!--==============================-->
-
-
-
-
-
     <div class="container">
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -73,16 +67,7 @@
             <div *ngIf="isadvance" class="row">
                 <div class="mj_filter_slider">
                     <form>
-                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                            <div class="row">
-                                <div class="form-group">
-                                    <label>Experience:<span>0 to 4 Years</span>
-                                    </label>
-                                    <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="14"
-                                    />
-                                </div>
-                            </div>
-                        </div>
+                    
                         <div class="col-lg-8 col-md-6 col-sm-6 col-xs-12">
                             <div class="row">
                                 <div class="form-group">
@@ -165,21 +150,9 @@
                                 <!--Body model-->
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                                 <aside class="widget widget_tag_cloud">
-                                    <h4 class="widget-title">Tags Widget</h4>
-                                    <a href="#">Web Developer</a>
-                                    <a href="#">Web Designer</a>
-                                    <a href="#">Business Managment</a>
-                                    <a href="#">Finance</a>
-                                    <a href="#">Marketing</a>
-                                    <a href="#">Job</a>
-                                    <a href="#">Customer Support</a>
-                                    <a href="#">Databases</a>
-                                    <a href="#">Engineers</a>
-                                    <a href="#">Mobile Applications</a> <a href="#">Software Developer</a>
-                                    <a href="#">SEO & Content Management</a>
-                                    <a href="#">Sales & Marketing</a>
-                                    <a href="#">Telecommunications</a>
-                                    <a href="#">Wireless Networks</a>
+                                    <h4 class="widget-title">Catagory </h4>
+                                    <a *ngFor="let item of list_all_jobcategory" [routerLink]="['/pages/home/search-jobs', 'catagory',item._id,'all']"  >{{item.name}}</a>
+
                                 </aside>
                                 <!--Body Model-->
                             </div>

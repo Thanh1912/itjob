@@ -16,13 +16,12 @@
                             </div>
                             <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
                                 <div class="mj_pageheading mj_toppadder50">
-                                    <h1>{{jobitem?.title}}</h1>
+                                    <h3 style="color: white;">{{jobitem?.title}}</h3>
                                     <ul>
-                                        <li>
-                                            <label><i class="fa fa-map-marker"></i>
-                                                </label><a href="#">{{jobitem?.title}}</a>
+                                      
+                                          <li><a href="#" class="mj_btn mj_greenbtn"><i class="fa fa-map-marker"></i>{{jobitem?.JobTime}}</a>
                                         </li>
-                                        <li><a href="#" class="mj_btn mj_greenbtn">{{jobitem?.JobTime}}</a>
+                                        <li><a href="#" class="mj_btn mj_greenbtn">{{jobitem?.company[0].info_recruiter.address}}</a>
                                         </li>
                                         <li>
                                             <label>Company:</label><a href="#">{{jobitem?.company[0].info_recruiter.namecompany}}</a>
@@ -68,16 +67,16 @@
                 <div class="mj_social_media_section mj_toppadder40 mj_bottompadder40">
                     <ul>
 
-                        <li><a href="contact.html" class="mj_mainbtn mj_btnyellow" data-text="Back"><span>Back</span></a>
+                        <li><a (click)="backClicked()" class="mj_mainbtn mj_btnyellow" data-text="Back"><span>Back</span></a>
                         </li>
                         <li>
                             <a href="#" class="mj_mainbtn mj_btnblack" data-text="Apply Job" data-toggle="modal" data-target="#myModal"><span>Apply Job</span></a>
                         </li>
                     </ul>
 
-                    <ul>
-                        <li *ngFor="let cat of jobitem?.Infokeyword">
-                            {{cat.name}}
+                    <ul class="list_language">
+                        <li *ngFor="let inf of jobitem?.Infokeyword">
+                            {{inf.name}}
                         </li>
                     </ul>
 
@@ -162,7 +161,7 @@
                                 <li role="presentation"><a href="#individual" aria-controls="individual" role="tab" data-toggle="tab">Đăng nhập</a>
                                 </li>
                             </ul>
-                            <p class="mj_toppadder40">You can also sign up with <a href="#">Facebook</a>, <a href="#">Linkedin</a>, or <a href="#">Google</a>.</p>
+
                             <!-- Tab panes -->
                             <div class="tab-content">
                                 <div role="tabpanel" class="tab-pane fade in active" id="company">
@@ -170,34 +169,24 @@
                                         <div class="mj_createaccount_form">
                                             <div class="form-group">
                                                 <div class="col-lg-6">
-                                                    <img src="assets/images/candidate_img.jpg" class="img-responsive" alt="">
+                                                    <img src="http://localhost:3000/uploads/forms/anhdaidien/{{imageUrl}}" class="img-responsive" alt="">
                                                 </div>
                                                 <div class="col-lg-6">
-                                                    <input type="text" placeholder="Name" id="ur_name" value="Nguyen van Demo" disabled="disabled" class="form-control">
+                                                    <input type="text" placeholder="Name" [ngModel]="name" id="ur_name" value="{{name}}" disabled="disabled" name="username" class="form-control">
                                                 </div>
 
                                             </div>
-                                            <div class="form-group">
-                                                <input type="text" placeholder="Phone" id="ur_name" value="09834234" disabled="disabled" class="form-control">
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="text" placeholder="Email" disabled="disabled" id="ur_surname" value="demo@gmail.com" class="form-control">
-                                            </div>
 
                                             <div class="form-group">
-                                                <input type="file" id="ur_username" class="form-control">
+                                                <input type="text" placeholder="Email" disabled="disabled" [ngModel]="email" id="email"  name="email" value="{{email}}" class="form-control">
                                             </div>
-
-                                            <div class="form-group mj_toppadder20">
-                                                <div class="mj_checkbox">
-                                                    <input type="checkbox" value="1" id="check1" name="checkbox">
-                                                    <label for="check1"></label>
-                                                </div>
-
+                                            <div class="form-group">
+                                                <input style="margin-top: 10px;"  name="fileupload" class="form-control" type="file" id="file_cv" name="file_cv" ng2FileSelect [uploader]="uploader"
+                                                />
                                             </div>
                                         </div>
                                         <div class="mj_pricing_footer">
-                                            <a href="#">Apply Job!</a>
+                                            <button type="button" (click)="uploader.uploadAll();" [disabled]="!uploader.getNotUploadedItems().length" class="btn btn-primary">Apply Job!</button>
                                         </div>
                                     </form>
                                 </div>
@@ -206,18 +195,12 @@
                                         <div class="mj_createaccount_form">
 
                                             <div class="form-group">
-                                                <input type="email" placeholder="Email Address" id="uremail" class="form-control">
+                                                <input type="email" name="uremail" placeholder="Email Address" id="uremail" class="form-control">
                                             </div>
                                             <div class="form-group">
-                                                <input type="password" placeholder="Password" id="urpassword" class="form-control">
+                                                <input type="password"  name="urpassword" placeholder="Password" id="urpassword" class="form-control">
                                             </div>
-                                            <div class="form-group mj_toppadder20">
-                                                <div class="mj_checkbox">
-                                                    <input type="checkbox" value="1" id="check2" name="checkbox">
-                                                    <label for="check2"></label>
-                                                </div>
-                                                <span> I have read, understand and agree to the meshjobs Terms of Service, including the <a href="#">User Agreement</a> and <a href="#">Privacy Policy</a>.</span>
-                                            </div>
+                                          
                                         </div>
                                         <div class="mj_pricing_footer">
                                             <a href="#">Get Started Now!</a>

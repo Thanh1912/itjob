@@ -115,12 +115,14 @@
                     </div>
                     <div *ngFor="let ijob of job_item" class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
                       <div class="mj_detaildiv">
-                        <span class="jobtitle" [routerLink]="['detail-jobs', ijob.title ]">{{ijob.title}}</span>
+                        <span class="jobtitle" >{{ijob.title}}</span>
                         <blockquote class="mj_blueblockquote">
-                          <span><i class="fa fa-calendar"></i> Dec 2010 - Sep 2011</span>
+                          <span><i class="fa fa-dot-circle-o"></i>Số Lượng Tuyển {{ijob.Apllication}}</span>
+                               <span><i class="fa fa-calendar"></i> {{ijob.createddate|date}}---> {{ijob.endPost|date}}</span>
                           <span><i class="fa fa-money"></i> {{ijob.salarycompete}}</span>
 
-                          <p [innerHTML]="ijob.descriptionwork">.</p>
+                          <p style="  height: 80px;overflow-y: hidden;" [innerHTML]="ijob.descriptionwork">.</p>
+                          <a class="detailJob" [routerLink]="['detail-jobs', ijob._id ]"><i class="fa fa-info-circle" aria-hidden="true"></i> Detail</a>
                         </blockquote>
                       </div>
                     </div>
@@ -150,12 +152,7 @@
                   <div class="row">
                     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
                       <div class="mj_detaildiv">
-
-
-
-
-
-
+                        
                       </div>
                     </div>
 

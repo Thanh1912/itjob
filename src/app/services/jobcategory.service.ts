@@ -15,7 +15,9 @@ export class JobcategoryService {
   getall(): Observable<any> {
     return this.http.get(this.Rest_Url + '/api/jobcategory').map(res => res.json());
   }
-
+   Categorybyid(id): Observable<any> {
+    return this.http.get(this.Rest_Url + '/api/Categorybyid/'+id).map(res => res.json());
+  }
   count(): Observable<any> {
     return this.http.get(this.Rest_Url + '/api/jobcategory/count').map(res => res.json());
   }

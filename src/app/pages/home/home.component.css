@@ -1,6 +1,21 @@
 .set-caption {
        margin-top: -1000px;
 }
+
+.mkj_content{
+margin-top: 34px;
+    padding-left: 22px;
+    font-size: 16px;
+}
+.mdtext{
+	font-size: 12px;
+    background: #e6f2f6;
+    color: #256fc7;
+    border-radius: 5px;
+    font-family: Droid Sans Mono,Consolas,monospace;
+    display: inline-block;
+    padding: 1px 6px;
+}
 .log0{
 	    width: 100px;
     height: 100px;

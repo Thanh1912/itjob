@@ -60,33 +60,33 @@
                 <div class="mj_tabs mj_bottompadder50">
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs mj_joblist" role="tablist">
-                        <li role="presentation" class="active"><a href="#recentjobs" aria-controls="recentjobs" role="tab" data-toggle="tab" aria-expanded="false">CANDIDATE LOOKING FOR A JOB</a>
+                        <li role="presentation" class="active"><a href="#recentjobs" aria-controls="recentjobs" role="tab" data-toggle="tab" aria-expanded="true">CANDIDATE LOOKING FOR A JOB</a>
                         </li>
-                        <li role="presentation" class=""><a href="#featuredjobs" aria-controls="featuredjobs" role="tab" data-toggle="tab" aria-expanded="true">EMPLOYER LOOKING TO HIRE</a>
+                        <li role="presentation" class=""><a href="#featuredjobs" aria-controls="featuredjobs" role="tab" data-toggle="tab" aria-expanded="false">EMPLOYER LOOKING TO HIRE</a>
                         </li>
-                        <li role="presentation" class=""><a href="#catalogjobs" aria-controls="featuredjobs" role="tab" data-toggle="tab" aria-expanded="true">Jobs catalog</a>
+                        <li role="presentation" class=""><a href="#catalogjobs" aria-controls="catalogjobs" role="tab" data-toggle="tab" aria-expanded="false">Jobs catalog</a>
                         </li>
                     </ul>
                     <!-- Tab panes -->
                     <div class="tab-content">
-                        <div role="tabpanel" class="tab-pane" id="recentjobs">
+                        <div role="tabpanel" class="tab-pane active" id="recentjobs">
                             <div class="mj_tabcontent mj_toppadder30">
                                 <table class="table table-striped">
                                     <tbody>
-                                        <tr>
+                                        <tr *ngFor="let item of listjobtop">
                                             <td><a href="#"><i class="fa fa-heart"></i></a>
                                             </td>
                                             <td>
-                                                <a href="#"><img src="assets/images/profilepic1.jpg" class="img-responsive" alt="">
+                                                <a [routerLink]="['detail-company', item.inforCompany[0]._id ]"><img src="assets/images/profilepic1.jpg" class="img-responsive" alt="">
                                                 </a>
                                             </td>
                                             <td>
-                                                <h4><a href="#">Senior Web Developer</a></h4>
-                                                <p>Company Inc.</p>
+                                                <h4><a [routerLink]="['detail-jobs', item._id ]">{{item.title}}</a></h4>
+                                                <p>{{item.inforCompany[0].info_recruiter.namecompany}}</p>
                                             </td>
                                             <td>
                                                 <i class="fa fa-map-marker"></i>
-                                                <p>New York City</p>
+                                                <p>{{item.inforCompany[0].info_recruiter.address}}</p>
                                             </td>
                                             <td>
                                                 <a href="#" class="mj_btn mj_greenbtn">Full Time</a>
@@ -94,111 +94,7 @@
                                             <td><span>$45,000</span>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td><a href="#"><i class="fa fa-heart"></i></a>
-                                            </td>
-                                            <td>
-                                                <a href="#"><img src="assets/images/profilepic2.jpg" class="img-responsive" alt="">
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <h4><a href="#">UX Designer</a></h4>
-                                                <p>Company Inc.</p>
-                                            </td>
-                                            <td>
-                                                <i class="fa fa-map-marker"></i>
-                                                <p>Boston</p>
-                                            </td>
-                                            <td>
-                                                <a href="#" class="mj_btn mj_bluebtn">Freelance</a>
-                                            </td>
-                                            <td><span>$20,000</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="#"><i class="fa fa-heart"></i></a>
-                                            </td>
-                                            <td>
-                                                <a href="#"><img src="assets/images/profilepic3.jpg" class="img-responsive" alt="">
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <h4><a href="#">Web Designer</a></h4>
-                                                <p>Company Inc.</p>
-                                            </td>
-                                            <td>
-                                                <i class="fa fa-map-marker"></i>
-                                                <p>Boston</p>
-                                            </td>
-                                            <td>
-                                                <a href="#" class="mj_btn mj_greenbtn">full time</a>
-                                            </td>
-                                            <td><span>$36,500</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="#"><i class="fa fa-heart"></i></a>
-                                            </td>
-                                            <td>
-                                                <a href="#"><img src="assets/images/profilepic4.jpg" class="img-responsive" alt="">
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <h4><a href="#">Project Manager</a></h4>
-                                                <p>Company Inc.</p>
-                                            </td>
-                                            <td>
-                                                <i class="fa fa-map-marker"></i>
-                                                <p>Los Angeles</p>
-                                            </td>
-                                            <td>
-                                                <a href="#" class="mj_btn mj_greenbtn">full time</a>
-                                            </td>
-                                            <td><span>$26,200</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="#"><i class="fa fa-heart"></i></a>
-                                            </td>
-                                            <td>
-                                                <a href="#"><img src="assets/images/profilepic5.jpg" class="img-responsive" alt="">
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <h4><a href="#">Design Technologist</a></h4>
-                                                <p>Company Inc.</p>
-                                            </td>
-                                            <td>
-                                                <i class="fa fa-map-marker"></i>
-                                                <p>Chicago</p>
-                                            </td>
-                                            <td>
-                                                <a href="#" class="mj_btn mj_orangebtn">Part Time</a>
-                                            </td>
-                                            <td><span>$84,000</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="#"><i class="fa fa-heart"></i></a>
-                                            </td>
-                                            <td>
-                                                <a href="#"><img src="assets/images/profilepic6.jpg" class="img-responsive" alt="">
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <h4><a href="#">Front End Developer</a></h4>
-                                                <p>Company Inc.</p>
-                                            </td>
-                                            <td>
-                                                <i class="fa fa-map-marker"></i>
-                                                <p>New York City</p>
-                                            </td>
-                                            <td>
-                                                <a href="#" class="mj_btn mj_greenbtn">full Time</a>
-                                            </td>
-                                            <td><span>$65,000</span>
-                                            </td>
-                                        </tr>
+
                                     </tbody>
                                 </table>
                                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 col-lg-offset-4 col-md-offset-4">
@@ -211,28 +107,31 @@
                         </div>
 
                         <div role="tabpanel" class="tab-pane" id="catalogjobs">
-                            <div *ngFor="let item of ListJobcategory" class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+                            <div *ngFor="let item of ListJobcategoryD" class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
                                 <div class="mj_recent_article">
                                     <div class="mj_articleimg">
-
                                         <div class="mj_articleoverlay">
                                             <a class="text-decoration" style="font-size: 20px;">{{item.name}}</a>
                                         </div>
                                     </div>
+                                     <div class="mkj_content">
+                                    <span *ngFor="let item01 of item.K">
+                                            <a [routerLink]="['search-jobs', 'catagory', item._id, item01._id ]" class="mdtext" >
+                                                {{item01.name}} 
+                                            </a>
+                                        </span>
+                                         </div>
                                     <div class="mj_articledata" style="margin-top:10px;">
-                                        <p  >
-                                       
-                                          
-                                        </p>
+                                        
 
-                                        <a href="blog_single.html"><i  class="fa fa-angle-right"></i></a>
+                                        <a [routerLink]="['search-jobs', 'catagory', item._id, 'all' ]"><i  class="fa fa-angle-right"></i></a>
                                     </div>
                                 </div>
                             </div>
 
                         </div>
 
-                        <div role="tabpanel" class="tab-pane active" id="featuredjobs">
+                        <div role="tabpanel" class="tab-pane " id="featuredjobs">
                             <div class="mj_tabcontent mj_toppadder30">
                                 <table class="table table-striped">
                                     <tbody>
@@ -257,111 +156,7 @@
                                             <td><span>$20,000</span>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td><a href="#"><i class="fa fa-heart"></i></a>
-                                            </td>
-                                            <td>
-                                                <a href="#"><img src="assets/images/profilepic1.jpg" class="img-responsive" alt="">
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <h4><a href="#">Senior Web Developer</a></h4>
-                                                <p>Company Inc.</p>
-                                            </td>
-                                            <td>
-                                                <i class="fa fa-map-marker"></i>
-                                                <p>New York City</p>
-                                            </td>
-                                            <td>
-                                                <a href="#" class="mj_btn mj_greenbtn">Full Time</a>
-                                            </td>
-                                            <td><span>$45,000</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="#"><i class="fa fa-heart"></i></a>
-                                            </td>
-                                            <td>
-                                                <a href="#"><img src="assets/images/profilepic3.jpg" class="img-responsive" alt="">
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <h4><a href="#">Web Designer</a></h4>
-                                                <p>Company Inc.</p>
-                                            </td>
-                                            <td>
-                                                <i class="fa fa-map-marker"></i>
-                                                <p>Boston</p>
-                                            </td>
-                                            <td>
-                                                <a href="#" class="mj_btn mj_greenbtn">full time</a>
-                                            </td>
-                                            <td><span>$36,500</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="#"><i class="fa fa-heart"></i></a>
-                                            </td>
-                                            <td>
-                                                <a href="#"><img src="assets/images/profilepic4.jpg" class="img-responsive" alt="">
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <h4><a href="#">Project Manager</a></h4>
-                                                <p>Company Inc.</p>
-                                            </td>
-                                            <td>
-                                                <i class="fa fa-map-marker"></i>
-                                                <p>Los Angeles</p>
-                                            </td>
-                                            <td>
-                                                <a href="#" class="mj_btn mj_greenbtn">full time</a>
-                                            </td>
-                                            <td><span>$26,200</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="#"><i class="fa fa-heart"></i></a>
-                                            </td>
-                                            <td>
-                                                <a href="#"><img src="assets/images/profilepic5.jpg" class="img-responsive" alt="">
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <h4><a href="#">Design Technologist</a></h4>
-                                                <p>Company Inc.</p>
-                                            </td>
-                                            <td>
-                                                <i class="fa fa-map-marker"></i>
-                                                <p>Chicago</p>
-                                            </td>
-                                            <td>
-                                                <a href="#" class="mj_btn mj_orangebtn">Part Time</a>
-                                            </td>
-                                            <td><span>$84,000</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="#"><i class="fa fa-heart"></i></a>
-                                            </td>
-                                            <td>
-                                                <a href="#"><img src="assets/images/profilepic6.jpg" class="img-responsive" alt="">
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <h4><a href="#">Front End Developer</a></h4>
-                                                <p>Company Inc.</p>
-                                            </td>
-                                            <td>
-                                                <i class="fa fa-map-marker"></i>
-                                                <p>New York City</p>
-                                            </td>
-                                            <td>
-                                                <a href="#" class="mj_btn mj_greenbtn">full Time</a>
-                                            </td>
-                                            <td><span>$65,000</span>
-                                            </td>
-                                        </tr>
+
                                     </tbody>
                                 </table>
                                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 col-lg-offset-4 col-md-offset-4">
@@ -388,12 +183,12 @@
         <div class="row">
             <div *ngFor="let item01 of Listcompany" class="col-lg-3 col-md-3 col-sm-4 col-xs-12 mj_bottompadder50">
                 <div class="mj_clientlogo">
-                    <a [routerLink]="['overview']"><img src="http://localhost:3000/uploads/forms/logo/{{item01?.info[0].info_recruiter.logo}}" class="img-responsive log0" alt="">
+                    <a [routerLink]="['./detail-company',item01?.info[0]._id]"><img src="http://localhost:3000/uploads/forms/logo/{{item01?.info[0].info_recruiter.logo}}" class="img-responsive log0" alt="">
                         <span>{{item01?.count}}</span>
                         </a>
                 </div>
             </div>
-           
+
         </div>
     </div>
 </div>

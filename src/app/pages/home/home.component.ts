@@ -6,27 +6,38 @@ import { JobcategoryDetailService } from '../../services/jobcategory-detail.serv
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-    styleUrls:['../../../assets/css/bootstrap.css',
+  styleUrls: ['../../../assets/css/bootstrap.css',
     '../../../assets/css/animate.css'
-,'../../../assets/css/style.css'
-,'../../../assets/js/plugins/fancybox/jquery.fancybox.css'
-,'../../../assets/js/plugins/rsslider/settings.css'
-,'../../../assets/js/plugins/rsslider/layers.css'
-,'../../../assets/js/plugins/rsslider/navigation.css'
-,'../../../assets/js/plugins/jquery-ui/jquery-ui.css'
-,'../../../assets/js/plugins/bootstrap-slider/bootstrap-slider.css'
-,'../../../assets/js/plugins/owl/owl.carousel.css','home.component.css'
-    ]
+    , '../../../assets/css/style.css'
+    , '../../../assets/js/plugins/fancybox/jquery.fancybox.css'
+    , '../../../assets/js/plugins/rsslider/settings.css'
+    , '../../../assets/js/plugins/rsslider/layers.css'
+    , '../../../assets/js/plugins/rsslider/navigation.css'
+    , '../../../assets/js/plugins/jquery-ui/jquery-ui.css'
+    , '../../../assets/js/plugins/bootstrap-slider/bootstrap-slider.css'
+    , '../../../assets/js/plugins/owl/owl.carousel.css', 'home.component.css'
+  ]
 })
 export class HomeComponent implements OnInit {
-ListJobcategory:any;
-ListJob:any;
-ListJobcategoryD:any;
-Listcompany:any;
-   constructor(private title: Title,private job: JobService,private JobcategoryService: JobcategoryService,private JobcategoryDetailService: JobcategoryDetailService ) {
-   
-   }
- 
+  ListJobcategory: any;
+  ListJob: any;
+  ListJobcategoryD: any;
+  Listcompany: any;
+  listjobtop: any;
+  constructor(private title: Title, private job: JobService, private JobcategoryService: JobcategoryService, private JobcategoryDetailService: JobcategoryDetailService) {
+
+  }
+  getjobTOP() {
+    this.job.gettopjob().subscribe(
+      data => {
+        this.listjobtop = data;
+        console.log('====listjobtop====')
+        console.log(this.listjobtop)
+      },
+      error => console.log(error),
+      () => { }
+    );
+  }
   getjobcategory() {
     this.JobcategoryService.getall().subscribe(
       data => {
@@ -36,36 +47,37 @@ Listcompany:any;
       () => { }
     );
   }
-   getjobcategoryD() {
+  getjobcategoryD() {
     this.JobcategoryDetailService.getAllCategoryHome().subscribe(
       data => {
         this.ListJobcategoryD = data;
-        console.log(  this.ListJobcategoryD )
+        console.log(this.ListJobcategoryD)
       },
       error => console.log(error),
       () => { }
     );
   }
-   gettop12Company() {
+  gettop12Company() {
     this.job.gettop12Company().subscribe(
       data => {
-       this.Listcompany =data ;
-      
+        this.Listcompany = data;
+
       },
       error => console.log(error),
       () => { }
     );
   }
-  
-  getvalue(value:any){
-  
+
+  getvalue(value: any) {
+
   }
   ngOnInit() {
     this.getjobcategory();
-      this.getjobcategoryD();
-      this.gettop12Company();
+    this.getjobcategoryD();
+    this.gettop12Company();
+    this.getjobTOP()
     this.title.setTitle('Trang chủ Itjob');
-     // title.getTitle();
+    // title.getTitle();
     // title.setTitle('new title');
   }
 

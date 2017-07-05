@@ -4,6 +4,7 @@ var router = express.Router(),
 fs = require('fs');
 var multer = require('multer');
 var router = express.Router();
+
 var cadidatectrl = require('../controllers/candidate.controllers.js');
 /*==============================
       =======..........====
@@ -121,17 +122,21 @@ var Storage_anhdaidien = multer.diskStorage({
         callback(null, file.fieldname + "_" + Date.now() + "_" + file.originalname);
     }
 });
-var upload_anhdaidien = multer({
-    storage: Storage_anhdaidien
-}).single('anhdaidien');
+
 router.post("/api/anhdaidien", function (req, res) {
-    upload_anhdaidien(req, res, function (err) {
-        if (err) {
-            return res.end("Something went wrong!");
-        }
-        console.log(req.file.filename)
-        return res.end(req.file.filename);
-    });
+    var upload = multer({
+		storage: Storage_anhdaidien,
+		fileFilter: function(req, file, callback) {
+			var ext = path.extname(file.originalname)
+			if (ext !== '.png' && ext !== '.jpg' && ext !== '.gif' && ext !== '.jpeg') {
+				return callback(res.end('Only images are allowed'), null)
+			}
+			callback(null, true)
+		}
+	}).single('anhdaidien');
+	upload(req, res, function(err) {
+	   res.end(req.file.filename);
+	})
 });
 /*==============================
       =======Upload cv====
@@ -146,20 +151,32 @@ var Storage_cv = multer.diskStorage({
         callback(null, file.fieldname + "_" + Date.now() + "_" + file.originalname);
     }
 });
-var upload_cv = multer({
-    storage: Storage_logo
-}).single('file_cv');
+
 router.post("/api/uploadcv", function (req, res) {
-    upload_cv(req, res, function (err) {
+    var upload = multer({
+		storage: Storage_cv,
+		fileFilter: function(req, file, callback) {
+			var ext = path.extname(file.originalname)
+			if (ext !== '.pdf' ) {
+				return callback(res.end('Only PDF are allowed'), null)
+			}
+			callback(null, true)
+		}
+	}).single('file_cv');
+	upload(req, res, function(err) {
+	   res.end(req.file.filename);
+	})
+  
+});
+/*==============================
+      =======Upload cv====
+        upload_cv(req, res, function (err) {
         if (err) {
             return res.end("Something went wrong!");
         }
         console.log(req.file.filename)
         return res.end(req.file.filename);
     });
-});
-/*==============================
-      =======Upload cv====
 ==============================
 */
 

@@ -14,7 +14,7 @@ public Rest_Url:String ='http://localhost:3000';
   constructor(private http: Http) { }
 
   getall(): Observable<any> {
-    return this.http.get(this.Rest_Url+'/api/company/getall').map(res => res.json());
+    return this.http.get(this.Rest_Url+'/api/company-get-all').map(res => res.json());
   }
 
    getdetail_companybyid(id): Observable<any> {

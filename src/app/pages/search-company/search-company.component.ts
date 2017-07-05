@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
+import { PagerService } from './../../_services/pager.service';
 import { CompanyService } from '../../services/company.service';
+import { SearchCompanyPipe } from './../search-company.pipe';
 @Component({
   selector: 'app-search-company',
   templateUrl: './search-company.component.html',
@@ -18,23 +19,45 @@ import { CompanyService } from '../../services/company.service';
   ]
 })
 export class SearchCompanyComponent implements OnInit {
+   // pager object
+  pager: any = {};
+  term:String;
+setvalue(value:string){
+  this.term=value;
+}
+  // paged items
+  pagedItems: any[];
 
-  constructor(private company: CompanyService) { }
+  constructor(private company: CompanyService,
+   private pagerService: PagerService) { }
   listcompany: any;
+    all=[];
   isLoading: Boolean;
   ngOnInit() {
+    this.term=""
       this.getall();
   }
   getall() {
     this.company.getall().subscribe(
       data => {
-        this.listcompany = data;
+        this.all = data;
         console.log(data)
-        //  this.setPage(1);
+         this.setPage(1);
       },
       error => console.log(error),
       () => this.isLoading = false
     );
+  }
+   setPage(page: number) {
+    if (page < 1 || page > this.pager.totalPages) {
+      return;
+    }
+
+    // get pager object from service
+    this.pager = this.pagerService.getPager(this.all.length, page);
+
+    // get current page of items
+    this.pagedItems = this.all.slice(this.pager.startIndex, this.pager.endIndex + 1);
   }
 
 }

@@ -29,10 +29,11 @@ export const routes: Routes = [
       { path: 'login', component: LoginComponent },
       { path: 'login-employee', component: LoginEmployeeComponent },
       { path: 'register', component: RegisterComponent },
-      { path: 'search-jobs/:id', component: SearchJobsComponent },
-      { path: 'search-company', component: SearchCompanyComponent },
-      { path: 'detail-jobs/:id', component: DetailJobComponent },
-      { path: 'detail-company/:id', component: DetailCompanyComponent },
+      { path: 'home/search-jobs/:action/:id/:id_detail', component: SearchJobsComponent },
+      //  action : catalog - id : id of catagory|all - id_detail |all
+      { path: 'home/search-company', component: SearchCompanyComponent },
+      { path: 'home/detail-jobs/:id', component: DetailJobComponent },
+      { path: 'home/detail-company/:id', component: DetailCompanyComponent },
       { path: 'Manager-Account', component: ManagerAccountComponent },
       { path: 'Manager-JobApply', component: ManagerJobApplyComponent },
 

@@ -259,6 +259,19 @@ module.exports.get_amdin = function (req, res) {
 };
 
 
+// Get 
+module.exports.searchCompanyTitles = function (req, res) {
+  
+  model.find({'info_recruiter.namecompany': {'$regex': req.params.title} },
+    function (err, model) {
+      if (err) {
+        console.log(err);
+        res.status(400).json(err);
+      } else {
+        res.status(200).json(model);
+      }
+    });
+};
 
 
 
@@ -336,6 +349,34 @@ module.exports.getdetail_company = function (req, res) {
     res.json(docs);
   });
 };
+
+module.exports.getallcompany = function (req, res) {
+  var ObjectId = require('mongoose').Types.ObjectId;
+  model.aggregate([
+    { $match: {  "role": "nhatuyendung", "info_recruiter.active": true } },
+    {
+      "$lookup": {
+        "from": "countries",
+        "localField": "info_recruiter.countryid",
+        "foreignField": "_id",
+        "as": "infocountry"
+      }
+    },
+    {
+      "$lookup": {
+        "from": "companysizes",
+        "localField": "info_recruiter.companysizeid",
+        "foreignField": "_id",
+        "as": "infocompanysizes"
+      }
+    }
+  ]).exec(function (err, docs) {
+    if (err) throw err;
+    res.json(docs);
+  });
+};
+
+
 
 
 

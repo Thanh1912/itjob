@@ -15,47 +15,50 @@
                 <th>CHỨC DANH</th>
                 <th>Công Ty</th>
                 <th>NGÀY LƯU</th>
+                <th>NGÀY </th>
                 <th>Tình Trang</th>
-                <th>  NHÀ TUYỂN DỤNG PHẢN HỒI</th>
+                <th> NHÀ TUYỂN DỤNG PHẢN HỒI</th>
                 <th>Action</th>
               </tr>
-              <tr>
+              <tr *ngFor="let item of listJOB">
                 <td><a href="#"><i class="fa fa-times"></i></a>
                 </td>
                 <td>
-                  <h6>JAVA Developer ( Up to $1,000) </h6>
+                  <h6>{{item.infojobs[0].title}} </h6>
                   <p>
-                    <label>Resume:</label>John Doe</p>
+                    <label>Resume:</label><button>DOWLOAD RESUME </button></p>
+
                 </td>
-                <td><span>Công Ty CP JV-IT</span></td>
+                <td> <span *ngFor="let i of item.inforecruiters"> {{i.info_recruiter.namecompany}}</span></td>
                 <td>
-                  <p>16-06-2017</p>
+                  <p> {{item.createddate|date}}</p>
                 </td>
-                 <td><span class="mj_blue_text">Bạn đã được nhận</span>
+                <td>
+                  <p> {{item.modifieddate|date}}</p>
                 </td>
-                  <td><span class="fa fa-envelope-o"></span>
+                <td>
+
+                  <div [ngSwitch]="item.status">
+                    <span *ngSwitchCase="1" class="mj_blue_text">Approve</span>
+                    <span *ngSwitchCase="2" class="mj_blue_text">Waiting interview</span>
+                    <span *ngSwitchCase="3" class="mj_blue_text">Pass CV</span>
+                    <span *ngSwitchCase="4" class="mj_blue_text">Fail CV</span>
+                    <span *ngSwitchCase="5" class="mj_blue_text">Hired</span>
+                    <span *ngSwitchDefault class="mj_blue_text">Pendding CV</span>
+
+                  </div>
                 </td>
-                 
-                <td><span class="mj_blue_text"><span><a href="javascript:;"><i class="fa fa-heart-o" aria-hidden="true"></i></a></span> </span>
+                <td><span class="fa fa-envelope-o"></span>
+                </td>
+
+                <td><span class="mj_blue_text"><span><a href="javascript:;"><i class="fa fa-heart-o" aria-hidden="true"></i></a></span>                  </span>
                 </td>
               </tr>
             </tbody>
           </table>
-          <div class="mj_offerdiv">
-            <div class="woo_product-code">
-              <form class="form-inline">
-                <div class="form-group">
-                  <input type="text" name="code" class="form-control" value="" placeholder="Coupon Code...">
-                </div>
-                <button class="mj_apply_coupenbtn">Apply Coupon</button>
-              </form>
-            </div>
-            <div class="mj_updatecart">
-              <a href="#" class="mj_mainbtn mj_btnyellow" data-text="Update Cart"><span>Update Cart</span></a>
-            </div>
-          </div>
+
         </div>
-   
+
       </div>
     </div>
   </div>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { JobService } from '../../services/job.service';
 import { CompanyService } from '../../services/company.service';
 import { ActivatedRoute } from '@angular/router';
+import {Location} from '@angular/common';
 @Component({
   selector: 'app-detail-company',
   templateUrl: './detail-company.component.html',
@@ -22,7 +23,7 @@ export class DetailCompanyComponent implements OnInit {
   sub: any;
   id: any;
   countJob: String;
-  constructor(private company: CompanyService, private job: JobService, private route: ActivatedRoute) { }
+  constructor(private company: CompanyService,private _location: Location, private job: JobService, private route: ActivatedRoute) { }
   companyitem = [];
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
@@ -35,6 +36,9 @@ export class DetailCompanyComponent implements OnInit {
     this.get_getjobincompany();
      //==============GET============
   }
+   backClicked() {
+        this._location.back();
+    }
   getcountJobCompany() {
     this.company.count_job_in_Company(this.id).subscribe(
       data => {
