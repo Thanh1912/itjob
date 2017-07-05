@@ -132,6 +132,13 @@ export class AuthenticationService {
     } else
       return true;
   }
+  isLoggedInE() {
+    if (localStorage.getItem('id_token_ntd') == null) {
+      localStorage.clear();
+      return false;
+    } else
+      return true;
+  }
   getinfouser() {
     let id_token = localStorage.getItem('id_token');
     let userId = localStorage.getItem('userId');

@@ -13,6 +13,7 @@ export class ApplicantComponent implements OnInit {
   isedit = false;
   // pager object
   pager: any = {};
+
   all = []
   // paged items
   pagedItems: any[];
@@ -49,6 +50,21 @@ export class ApplicantComponent implements OnInit {
   }
   getall(id: String) {
     this.resume.getalljobapplyByidJOB(id).subscribe(
+      data => {
+        this.all = data;
+        this.setPage(1);
+      },
+      error => console.log(error),
+
+    );
+  }
+  //cap nhat trang thai cho ung vien 
+  updateStatus(idCV:String,statusUpdate:String){
+    var updateI={
+      _id: idCV,
+      status:statusUpdate
+    }
+     this.resume.edit(updateI).subscribe(
       data => {
         this.all = data;
         this.setPage(1);

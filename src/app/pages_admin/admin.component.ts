@@ -24,7 +24,7 @@ export class AdminComponent implements OnInit {
     this.router.navigate(['/pages/home']);
   }
   ngOnInit() {
-    if (localStorage.getItem('id_token') != null && localStorage.getItem('currentUserRole') == 'admin') {
+    if (localStorage.getItem('id_token_admin') != null && localStorage.getItem('currentUserRole') == 'admin') {
       this.username = localStorage.getItem('usernameAdmin');
       this.islogin = true;
     }

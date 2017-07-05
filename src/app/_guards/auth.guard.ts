@@ -11,7 +11,7 @@ export class AuthGuard implements CanActivate {
       }
   canActivate() {
        this.role = localStorage.getItem('currentUserRole');
-    if (localStorage.getItem('id_token')&& this.role=='thanhvien') {
+    if (localStorage.getItem('id_token_admin')&& this.role=='thanhvien') {
       // logged in so return true
  //   this.toastr.success('You Welcome Login Success!', 'Success!');
       return true;

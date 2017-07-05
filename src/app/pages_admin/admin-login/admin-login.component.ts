@@ -36,8 +36,8 @@ export class AdminLoginComponent implements OnInit {
         data => {
           // if the user credentials are correct, set the localStorage token and userId,
           // we need these info in order to do stuff later when the user is signed in and verified
-          localStorage.setItem('id_token', data.token);
-          localStorage.setItem('userId', data.userId);
+          localStorage.setItem('id_token_admin', data.token);
+          localStorage.setItem('userId_admin', data.userId);
             localStorage.setItem('usernameAdmin', data.fullname);
                  localStorage.setItem('currentUserRole', data.role);
           this.router.navigate(['/pages_admin']);

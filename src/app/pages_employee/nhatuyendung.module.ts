@@ -24,7 +24,8 @@ import { PostService } from './../services/post.service';
 import { QuanliNtdService } from './../services/quanli-ntd.service';
 import { EditBaidangComponent } from './edit-baidang/edit-baidang.component';
 import { JobcategoryService } from './../services/jobcategory.service';
-
+import { ResumeService } from './../services/resume.service'
+import { PagerService } from './../_services/pager.service';
 
 @NgModule({
   imports: [
@@ -45,7 +46,7 @@ import { JobcategoryService } from './../services/jobcategory.service';
     NhatuyendungComponent,
     ReadPdfComponent,PdfViewerComponent, HeroSearchComponent, EditBaidangComponent
   ],
- providers: [JobcategoryService,QuanliNtdService,KeywordService,WorkplaceService,PostService, DistrictService,countryService,CompanysizeService]
+ providers: [PagerService,ResumeService,JobcategoryService,QuanliNtdService,KeywordService,WorkplaceService,PostService, DistrictService,countryService,CompanysizeService]
 })
 export class NhatuyendungModule {
 

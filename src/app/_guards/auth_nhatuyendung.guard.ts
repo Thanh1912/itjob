@@ -8,7 +8,7 @@ export class AuthGuardnhatuyendung implements CanActivate {
       }
   canActivate() {
       this.role = localStorage.getItem('currentUserRole');
-    if (localStorage.getItem('id_token')&& this.role=='nhatuyendung') {
+    if (localStorage.getItem('id_token_ntd')&& this.role=='nhatuyendung') {
       // logged in so return true
   //this.toastr.success('You Welcome Login Success NTD!', 'Success!');
       return true;

@@ -28,7 +28,10 @@ export class LoginNtdComponent implements OnInit {
   }
   ngOnInit() {
     // reset login status
-     //this.authenticationService.logout();
+     if(this.authenticationService.isLoggedInE()){
+       alert('Logined')
+       this.router.navigateByUrl('/pages_employee')
+     }
   }
   close(){
     this.error="";
@@ -46,7 +49,7 @@ export class LoginNtdComponent implements OnInit {
       data => {
         // if the user credentials are correct, set the localStorage token and userId,
         // we need these info in order to do stuff later when the user is signed in and verified
-        localStorage.setItem('id_token', data.token);
+        localStorage.setItem('id_token_ntd', data.token);
         localStorage.setItem('userId_ntd', data.userId);
         localStorage.setItem('username_ntd', data.fullname);
         localStorage.setItem('currentUserRole', data.role);

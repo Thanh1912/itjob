@@ -20,6 +20,7 @@ import { SharedModule } from './shared/shared.module';
 import { SearchJobPipe } from './Pipes/search-job.pipe';
 import {CKEditorModule} from 'ng2-ckeditor';
 import { SearchPipe } from './Pipes/search.pipe';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { SearchPipe } from './Pipes/search.pipe';
     ComfirmComponent,
     SearchJobPipe,
     SearchPipe,
+    PageNotFoundComponent,
    // FileSelectDirective
   
   ],

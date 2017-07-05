@@ -2,7 +2,7 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      Danh SachUng Tuyen
+     Danh sách ứng viên - JOB
     </h1>
   </section>
   <!-- Main content -->
@@ -38,9 +38,9 @@
       <!--Table -->
 
 
-      <div class="box box-danger">
+      <div class="box box-danger" *ngFor="let items of pagedItems">
         <div class="box-header with-border">
-          <h3 class="box-title">Different Width</h3>
+          <h3 class="box-title"></h3>
         </div>
         <div class="box-body">
           <div class="row">
@@ -48,9 +48,10 @@
               <!-- Name / Avatar -->
               <div class="info">
                 <img src="assets/images/profilepic2.jpg" alt="">
-                <span>John Doe</span>
-                <ul>
-                  <li><a href="#"><i class="fa fa-file-text"></i> Download CV</a>
+                <span>Full Name : Jone </span>
+                 <span>Email : Jone@gmail.com </span>
+                <ul style="margin-top:20px">
+                  <li><a class="btn-download"><i class="fa fa-file-text"></i> Download CV</a>
                   </li>
 
                 </ul>
@@ -92,7 +93,7 @@
                             </div>
                             <div class="col-md-6">
                               <div class="buttons">
-                                <a class="btn btn-flat btn-primary app-link"><i  class="fa fa-save"></i> SAVE</a>
+                                <a class="btn btn-flat btn-primary app-link" (click)="updateStatus(items._id,items.status)"><i  class="fa fa-save"></i> SAVE</a>
                                 <a class="btn btn-flat btn-primary app-link" href="#two-1"><i  class="fa fa-sticky-note"></i>Delete</a>
                               </div>
                             </div>
