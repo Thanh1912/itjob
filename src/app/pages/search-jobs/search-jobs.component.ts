@@ -28,7 +28,15 @@ export class SearchJobsComponent implements OnInit {
   showcus: boolean;
   isdate: boolean;
   from = new Date()
-  to = new Date()
+  to = new Date();
+  salaryB:String;
+    salaryE:String;
+ selectSalaryB(value:String) {
+   this.salaryB=value;
+ }
+  selectSalaryE(value:String) {
+   this.salaryE=value;
+ }
   select() {
     if (this.Showselected == true) {
       this.Showselected = false;
