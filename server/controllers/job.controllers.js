@@ -57,7 +57,7 @@ module.exports.count_job_in_Company = function (req, res) {
 module.exports.getByIdDetailJob = function (req, res) {
   var ObjectId = require('mongoose').Types.ObjectId;
   model.aggregate([
-    { $match: { _id: new ObjectId(req.params.id)} },
+    { $match: { _id: new ObjectId(req.params.id) } },
     {
       "$lookup": {
         "from": "districts",
@@ -132,7 +132,7 @@ module.exports.getAllJob_company = function (req, res) {
 module.exports.jobincompany = function (req, res) {
   var ObjectId = require('mongoose').Types.ObjectId;
   model.aggregate([
-    { $match: { recruiterid: new ObjectId(req.params.id)} },
+    { $match: { recruiterid: new ObjectId(req.params.id) } },
     {
       "$lookup": {
         "from": "recruiters",
@@ -141,7 +141,7 @@ module.exports.jobincompany = function (req, res) {
         "as": "recruiters"
       }
     },
-        {
+    {
       "$lookup": {
         "from": "jobcategorydetails",
         "localField": "jobcategorydetail",
@@ -149,7 +149,7 @@ module.exports.jobincompany = function (req, res) {
         "as": "CategoryDetail"
       }
     },
-          {
+    {
       "$lookup": {
         "from": "jobcategories",
         "localField": "jobcategory",
@@ -157,8 +157,8 @@ module.exports.jobincompany = function (req, res) {
         "as": "Category"
       }
     },
-    
-      { $limit: 10 }
+
+    { $limit: 10 }
   ]).exec(function (err, docs) {
     if (err) throw err;
     res.json(docs);
@@ -173,7 +173,7 @@ function onlyUnique(value, index, self) {
 //GET SKILL COMPANY
 module.exports.get_All_Skill_Company = function (req, res) {
   var ObjectId = require('mongoose').Types.ObjectId;
-  
+
   model.aggregate([
     { $match: { recruiterid: new ObjectId(req.params.id) } },
     {
@@ -212,15 +212,63 @@ module.exports.get_All_Skill_Company = function (req, res) {
 
 // Get 
 module.exports.searchJobTitles = function (req, res) {
-  model.find({title: /.*ED.*/ },
-    function (err, model) {
-      if (err) {
-        console.log(err);
-        res.status(400).json(err);
-      } else {
-        res.status(200).json(model);
+  var object = [
+    { title: /.*ED.*/ },
+    { title: /.*wq.*/ }
+  ]
+
+  var ObjectId = require('mongoose').Types.ObjectId;
+  model.aggregate([
+    {
+      $match: {
+        $or: object
       }
-    });
+    },
+    {
+      "$lookup": {
+        "from": "districts",
+        "localField": "districtid",
+        "foreignField": "_id",
+        "as": "Infodistrict"
+      },
+    },
+    {
+      "$lookup": {
+        "from": "recruiters",
+        "localField": "recruiterid",
+        "foreignField": "_id",
+        "as": "company"
+      }
+    },
+    {
+      "$lookup": {
+        "from": "jobcategorydetails",
+        "localField": "jobcategorydetail",
+        "foreignField": "_id",
+        "as": "Infokeyword"
+      },
+
+    },
+    {
+      "$lookup": {
+        "from": "jobcategories",
+        "localField": "jobcategory",
+        "foreignField": "_id",
+        "as": "Infojobcategory"
+      }
+    },
+    {
+      "$lookup": {
+        "from": "workplaces",
+        "localField": "workplaceid",
+        "foreignField": "_id",
+        "as": "Infoworkplace"
+      }
+    }
+  ]).exec(function (err, docs) {
+    if (err) throw err;
+    res.json(docs);
+  });
 };
 
 // Get all
@@ -263,13 +311,13 @@ module.exports.top10post = function (req, res) {
         "as": "inforCompany"
       }
     },
-     { $limit : 10 }
+    { $limit: 10 }
   ]).sort({ "createddate": 1 }
 
-  ).exec(function (err, docs) {
-    if (err) throw err;
-    res.json(docs);
-  });
+    ).exec(function (err, docs) {
+      if (err) throw err;
+      res.json(docs);
+    });
 };
 module.exports.getalljobs = function (req, res) {
   model.find().exec(function (err, docs) {
