@@ -102,7 +102,7 @@
                           <li *ngFor="let iSkill of skill_item">
                             <a href="{{iSkill._idCategory}}--{{iSkill._id}}"><img src="assets/images/cross_white.png" alt=""> {{iSkill.name}}</a>
                           </li>
-                         
+
                         </ul>
 
                       </div>
@@ -115,21 +115,21 @@
                     </div>
                     <div *ngFor="let ijob of job_item" class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
                       <div class="mj_detaildiv">
-                        <span class="jobtitle" >{{ijob.title}}</span>
+                        <span class="jobtitle">{{ijob.title}}</span>
                         <blockquote class="mj_blueblockquote">
                           <span><i class="fa fa-dot-circle-o"></i>Số Lượng Tuyển {{ijob.Apllication}}</span>
-                               <span><i class="fa fa-calendar"></i> {{ijob.createddate|date}}---> {{ijob.endPost|date}}</span>
+                          <span><i class="fa fa-calendar"></i> {{ijob.createddate|date}}---> {{ijob.endPost|date}}</span>
                           <span><i class="fa fa-money"></i> {{ijob.salarycompete}}</span>
 
                           <p style="  height: 80px;overflow-y: hidden;" [innerHTML]="ijob.descriptionwork">.</p>
-                          <a class="detailJob" [routerLink]="['detail-jobs', ijob._id ]"><i class="fa fa-info-circle" aria-hidden="true"></i> Detail</a>
+                          <a class="detailJob" [routerLink]="['../../detail-jobs', ijob._id ]"><i class="fa fa-info-circle" aria-hidden="true"></i> Detail</a>
                         </blockquote>
                       </div>
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
 
                     </div>
-                  
+
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mj_toppadder30 mj_bottompadder30">
                       <div class="mj_divider"></div>
                     </div>
@@ -152,18 +152,25 @@
                   <div class="row">
                     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
                       <div class="mj_detaildiv">
-                        
+                        <img style="width: 250px;" src="https://preview.ibb.co/b0pYhv/stars.png" alt="stars" border="0">
+                        <h2>4 Star</h2>
                       </div>
                     </div>
 
                     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
                       <div class="mj_detaildiv">
+                        <h3 class="short-title">
+                          Moi truong lam viec tot nhat VN
+                        </h3>
                         <blockquote class="mj_blueblockquote">
-                          <span><i class="fa fa-calendar"></i> Dec 2010 - Sep 2011  </span>
-
-                          <h5>Honours Co-op BMATH</h5>
-                          <p>Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat
-                            facer possim assum.</p>
+                          <img src="https://preview.ibb.co/b0pYhv/stars.png" style="    width: 100px;" alt="stars" border="0">
+                          <span><i class="fa fa-calendar"></i> Dec 2010   </span>
+                          <p>- Phuc loi rat tot, bao hiem nhan vien + 1 nguoi than
+                            <br>- Luong kha
+                            <br>- Nhieu hoat dong the thao va training ky thuat
+                            <br>- Van hoa rat tot
+                            <br>Bao hiem va luong rat tot, co rat nhieu hoat dong the thao de nhan vien ren luyen the luc
+                            va tinh than</p>
                         </blockquote>
                       </div>
                     </div>
@@ -171,48 +178,7 @@
                       <div class="mj_divider"></div>
                     </div>
 
-                    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
-                      <div class="mj_detaildiv mj_bottompadder30">
-                        <span>Contrasystems, Azeroth, WOW</span>
-                        <blockquote class="mj_yellowblockquote">
-                          <span><i class="fa fa-calendar"></i> Jul 2012 - Dec 2013</span>
-                          <h5>Chief Software Analyst</h5>
-                          <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum
-                            dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit
-                            praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.</p>
-                        </blockquote>
-                      </div>
-                      <div class="mj_detaildiv mj_bottompadder30">
-                        <span>World-span, Ottawa, ON</span>
-                        <blockquote class="mj_yellowblockquote">
-                          <span><i class="fa fa-calendar"></i> Jul 2013 - Dec 2014</span>
-                          <h5>Product Assistant</h5>
-                          <p>Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum
-                            formas humanitatis per seacula quarta decima et quinta decima.</p>
-                        </blockquote>
-                      </div>
-                      <div class="mj_detaildiv mj_bottompadder30">
-                        <fieldset>
-                          <legend>Review Details</legend>
 
-                          <div class="mj_createaccount_form">
-                            <div class="form-group">
-                              <input type="text" placeholder="Tieu de" id="Rate" class="form-control">
-                            </div>
-                            <div class="form-group">
-                              <input type="text" placeholder="noi dug" id="Review Title" class="form-control">
-                            </div>
-                            <div class="form-group">
-                              <input type="text" placeholder="Star" id="Review Title" class="form-control">
-                            </div>
-                            <a class="btn btn-primary btn-flat " data-text="Save"><span>Save</span></a>
-                          </div>
-
-
-
-                        </fieldset>
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>

@@ -13,15 +13,15 @@
 
     <div class="mj_blog_tags" style="margin-left: 27px;margin-top: -251px;"> <a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-angle-right">Choose Catalog Jobs</i></a>
         <ul>
-            <li><a >{{NameCatagory}}/</a>
+            <li><a>{{NameCatagory}}/</a>
             </li>
-            <li><a   >{{NameCatagoryDetail}}</a>
+            <li><a>{{NameCatagoryDetail}}</a>
             </li>
         </ul>
         <!-- <a class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Choose Catalog Jobs</a>-->
     </div>
     <aside class="woocommerce widget widget_tag_cloud" style="margin-top: -213px;">
-        <a *ngFor="let item of list_ById_jobcategory" [routerLink]="['search-jobs', 'catagory', item._id ,'all']" >{{item.name}}</a>
+        <a *ngFor="let item of list_ById_jobcategory" [routerLink]="['search-jobs', 'catagory', item._id ,'all']">{{item.name}}</a>
     </aside>
 
     <!--==============================-->
@@ -38,10 +38,8 @@
 
                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                             <select name="timepass" class="custom-select form-control">
-									<option>Country</option>
-									<option>2</option>
-									<option>3</option>
-									<option>4</option>
+									<option>Loading Thành Phố</option>
+									<option  *ngFor="let item of list_all_Workplace">{{item.name}}</option>
                                 </select>
                         </div>
                         <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
@@ -67,7 +65,7 @@
             <div *ngIf="isadvance" class="row">
                 <div class="mj_filter_slider">
                     <form>
-                    
+
                         <div class="col-lg-8 col-md-6 col-sm-6 col-xs-12">
                             <div class="row">
                                 <div class="form-group">
@@ -93,14 +91,52 @@
                                 </select> Date
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                        <select class="custom-select form-control" name="timepass">
-                                    <option ><button  class="btn btn-flat">To day</button></option>
-                                    <option ><button  class="btn btn-flat">To day</button></option>
-                                    <option ><button  class="btn btn-flat">To day</button></option>
-                                    <option ><button  class="btn btn-flat">To day</button></option>
-                                      <option ><button  class="btn btn-flat">To day</button></option>
-                                        <option ><button  class="btn btn-flat">To day</button></option>
-                                       </select>
+                                        <div style=" position: absolute;z-index: 99;" >
+                                            <ul *ngIf="isdate==false">
+                                                <li>
+                                                    <div class="row">
+                                                        <div style="margin-left: -20px;" class="col-xs-6">
+                                                            <input type="date" class="form-control date-left" />
+                                                        </div>
+                                                        <div class="col-xs-6">
+                                                            <input type="date" class="form-control date-right" />
+                                                        </div>
+
+                                                    </div>
+                                                </li>
+                                            </ul>
+
+
+                                            <ul class="date-load" *ngIf="isdate==true">
+                                                <li class="input-date">
+                                                    <input (click)="select()" type="text" class="form-control" /> <i class="fa fa-calendar icon-date"
+                                                        aria-hidden="true"></i>
+                                                </li>
+
+
+
+                                                <li class="select-date bounceInLeft" [class.show]="Showselected">
+                                                    <button class="btn btn-warning">30 Days</button>
+                                                </li>
+                                                <li class="select-date bounceInLeft" [class.show]="Showselected">
+                                                    <button class="btn btn-warning">1 Days</button>
+                                                </li>
+                                                <li class="select-date bounceInLeft" [class.show]="Showselected">
+                                                    <button class="btn btn-warning">2 Days</button>
+                                                </li>
+                                                <li class="select-date bounceInLeft" [class.show]="Showselected">
+                                                    <button class="btn btn-warning">7 Days</button>
+                                                </li>
+                                                <li class="select-date bounceInLeft" [class.show]="Showselected">
+                                                    <button class="btn btn-warning">14 Days </button>
+                                                </li>
+                                                <li class="select-date bounceInLeft" [class.show]="Showselected">
+
+
+                                                </li>
+
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -151,7 +187,7 @@
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                                 <aside class="widget widget_tag_cloud">
                                     <h4 class="widget-title">Catagory </h4>
-                                    <a *ngFor="let item of list_all_jobcategory" [routerLink]="['/pages/home/search-jobs', 'catagory',item._id,'all']"  >{{item.name}}</a>
+                                    <a *ngFor="let item of list_all_jobcategory" [routerLink]="['/pages/home/search-jobs', 'catagory',item._id,'all']">{{item.name}}</a>
 
                                 </aside>
                                 <!--Body Model-->

@@ -25,3 +25,10 @@
     text-transform: capitalize;
     text-decoration: none;
 }
+.company-content .company-review .content-of-review .short-title {
+    font-size: 22px;
+    margin-top: 7px;
+    color: #333;
+    line-height: 1.5em;
+    word-wrap: break-word;
+}

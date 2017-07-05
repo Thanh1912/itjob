@@ -23,6 +23,31 @@ import { CapitalizePipe } from '../Pipe/capitalize.pipe';
   ]
 })
 export class SearchJobsComponent implements OnInit {
+Showselected: boolean;
+  showcus: boolean;
+ isdate:boolean
+  select() {
+    if (this.Showselected == true) {
+      this.Showselected = false;
+    } else {
+      this.Showselected = true;
+    }
+
+  }
+   selectcus() {
+    if (this.showcus == true) {
+      this.showcus = false;
+    } else {
+      this.showcus = true;
+    }
+
+  }
+ 
+
+
+
+
+
   isadvance = false;
   constructor(private job: JobService, private capitalize: CapitalizePipe, private Workplace: WorkplaceService, private router: Router, private jobcategoryDetailService: JobcategoryDetailService, private jobcategory: JobcategoryService, private route: ActivatedRoute) { }
   list_all_jobcategory: any;
@@ -37,6 +62,9 @@ export class SearchJobsComponent implements OnInit {
   // ...
 }
   ngOnInit() {
+    this.isdate=true;
+      this.Showselected = false;
+       this.showcus= false;
     this.onSubmit(null)
     this.isadvance = true;
     this.sub = this.route.params.subscribe(params => {
@@ -49,7 +77,7 @@ export class SearchJobsComponent implements OnInit {
     });
 
     this.getjobcategory();
-    this.getWorkplace
+    this.getWorkplace();
     this.getjobcategoryByID();
 
   }
@@ -58,7 +86,9 @@ export class SearchJobsComponent implements OnInit {
   getWorkplace() {
     this.Workplace.getall().subscribe(
       data => {
-        this.list_all_Workplace = data
+            console.log("SHOW")
+        this.list_all_Workplace = data;
+          console.log(this.list_all_Workplace)
 
       },
       error => console.log(error),
