@@ -37,6 +37,7 @@ import { JobcategoryDetailService } from './../services/jobcategory-detail.servi
 import { SearchPipe } from './../Pipes/search.pipe';
 import { SearchCompanyPipe } from './search-company.pipe';
 import { CapitalizePipe } from './Pipe/capitalize.pipe';
+import { DatePipe } from '@angular/common';
 let providers = {
   "google": {
     "clientId": "1075668812758-334p3amm6s3h1nsnhlhd0bl0o1qd70t5.apps.googleusercontent.com"    //meanstack
@@ -69,7 +70,7 @@ let providers = {
     SearchCompanyPipe,
     CapitalizePipe
   ]
-  , providers: [WorkplaceService,CapitalizePipe,SearchPipe,PagerService,JobcategoryDetailService,JobcategoryService,JobService, CompanyService, QuanliNtdService, CandidateService, ResumeService],
+  , providers: [DatePipe,WorkplaceService,CapitalizePipe,SearchPipe,PagerService,JobcategoryDetailService,JobcategoryService,JobService, CompanyService, QuanliNtdService, CandidateService, ResumeService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class PagesModule {

@@ -76,22 +76,28 @@
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                         <select class="custom-select form-control" name="timepass">
-									<option >salary</option>
-									<option >$100</option>
-									<option >$200</option>
-									<option >$300</option>
+									<option value="0">salary Begin</option>
+									   <option value="100">$300</option>
+                                    <option value="500">>$500</option>
+                                    <option value="1000">>$1000</option>
+                                    <option value="2000">>$2000</option>
+                                    <option value="5000">>$5000</option>
+                                    <option value="10000">>$10000</option>
                                 </select>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                         <select class="custom-select form-control" name="timepass">
-                                    <option >salary</option>
-                                    <option >$100</option>
-                                    <option >$200</option>
-                                    <option >$300</option>
-                                </select> Date
+                                    <option value="0">salary End</option>
+                                    <option value="100">$100</option>
+                                    <option value="500">$500</option>
+                                    <option value="1000">$1000</option>
+                                    <option value="2000">$2000</option>
+                                    <option value="5000">$5000</option>
+                                    <option value="10000">$10000</option>
+                                </select>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                        <div style=" position: absolute;z-index: 99;" >
+                                        <div style=" position: absolute;z-index: 99;">
                                             <ul *ngIf="isdate==false">
                                                 <li>
                                                     <div class="row">
@@ -111,33 +117,31 @@
                                                 <li class="input-date">
                                                     <input (click)="select()" type="text" class="form-control" /> <i class="fa fa-calendar icon-date"
                                                         aria-hidden="true"></i>
-                                                          <input type="date"  [(ngModel)]="from" name="demo"/>
-                                                          {{from|date}}
-                                                           <input type="date"  [(ngModel)]="to" name="demo"/>
-                                                          {{to}}
+                                                 {{from|date}}
+                                                
                                                 </li>
 
 
 
                                                 <li class="select-date bounceInLeft" [class.show]="Showselected">
-                                                    <button class="btn btn-warning" (click)="setDate(30)" >30 Days</button>
-                                                </li>
-                                                <li class="select-date bounceInLeft"  [class.show]="Showselected">
-                                                    <button class="btn btn-warning"  (click)="setDate(1)">1 Days</button>
+                                                    <button class="btn btn-warning" (click)="setDate(30)">30 Days</button>
                                                 </li>
                                                 <li class="select-date bounceInLeft" [class.show]="Showselected">
-                                                    <button class="btn btn-warning" (click)="setDate(1)">2 Days</button>
+                                                    <button class="btn btn-warning" (click)="setDate(1)">1 Days</button>
                                                 </li>
                                                 <li class="select-date bounceInLeft" [class.show]="Showselected">
-                                                    <button class="btn btn-warning" (click)="setDate(1)">7 Days</button>
+                                                    <button class="btn btn-warning" (click)="setDate(2)">2 Days</button>
                                                 </li>
                                                 <li class="select-date bounceInLeft" [class.show]="Showselected">
-                                                    <button class="btn btn-warning" (click)="setDate(1)">14 Days </button>
+                                                    <button class="btn btn-warning" (click)="setDate(7)">7 Days</button>
                                                 </li>
-                                                  <li class="select-date bounceInLeft" [class.show]="Showselected">
-                                                    <button class="btn btn-warning" (click)="setDate(1)">14 Days </button>
+                                                <li class="select-date bounceInLeft" [class.show]="Showselected">
+                                                    <button class="btn btn-warning" (click)="setDate(4)">14 Days </button>
                                                 </li>
-                               
+                                                <li class="select-date bounceInLeft" [class.show]="Showselected">
+                                                    <button class="btn btn-warning" (click)="setDate(1)">Custumer </button>
+                                                </li>
+
 
                                             </ul>
                                         </div>

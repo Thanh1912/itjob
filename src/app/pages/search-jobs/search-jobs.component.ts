@@ -6,6 +6,7 @@ import { WorkplaceService } from './../../services/workplace.service';
 import { JobcategoryDetailService } from './../../services/jobcategory-detail.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CapitalizePipe } from '../Pipe/capitalize.pipe';
+import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-search-jobs',
   templateUrl: './search-jobs.component.html',
@@ -27,7 +28,7 @@ export class SearchJobsComponent implements OnInit {
   showcus: boolean;
   isdate: boolean;
   from = new Date()
-  to = new Date().getTime()
+  to = new Date()
   select() {
     if (this.Showselected == true) {
       this.Showselected = false;
@@ -36,10 +37,15 @@ export class SearchJobsComponent implements OnInit {
     }
 
   }
-  setDate(value: Number) {
-    this.from = new Date(new Date("2013-02-20T12:01:04.753Z").getTime() - new Date("2013-02-20T12:01:04.753Z").getTime());
+  setDate(value: number) {
+  //  this.from = 
+    //new Date(new Date("2013-02-20T12:01:04.753Z").getTime() - new Date("2013-02-20T12:01:04.753Z").getTime());
     //   this.from= new Date("2013-02-20T12:01:04.753Z");
-    this.to = Date.now() - +(new Date("2013-02-20T12:01:04.753Z"))
+    var d = new Date();
+ d.setDate(d.getDate()-value);
+    this.from = d
+    this.datePipe.transform(this.from, 'yyyy-MM-dd');
+    //Date.now() - +(new Date("2013-02-20T12:01:04.753Z"))
   }
   selectcus() {
     if (this.showcus == true) {
@@ -56,7 +62,7 @@ export class SearchJobsComponent implements OnInit {
 
 
   isadvance = false;
-  constructor(private job: JobService, private capitalize: CapitalizePipe, private Workplace: WorkplaceService, private router: Router, private jobcategoryDetailService: JobcategoryDetailService, private jobcategory: JobcategoryService, private route: ActivatedRoute) { }
+  constructor(private datePipe: DatePipe,private job: JobService, private capitalize: CapitalizePipe, private Workplace: WorkplaceService, private router: Router, private jobcategoryDetailService: JobcategoryDetailService, private jobcategory: JobcategoryService, private route: ActivatedRoute) { }
   list_all_jobcategory: any;
   list_ById_jobcategory: any;
   private sub: any;
