@@ -2,7 +2,7 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-     Danh sách ứng viên - JOB
+      Danh sách ứng viên - JOB
     </h1>
   </section>
   <!-- Main content -->
@@ -20,7 +20,7 @@
             </select>
             </div>
             <!-- /.form-group -->
-            <div class="col-md-6">
+            <div class="col-md-4">
               <select class="form-control select2" style="width: 100%;">
               <option value="new">New</option>
               <option value="1">Approve</option>
@@ -29,6 +29,10 @@
               <option value="4">Fail </option>
               <option value="5">Hired</option>
             </select>
+            </div>
+            <div class="col-md-2">
+  <button class="btn btn-flat btn-primary" (click)="getall()">Refesh</button>
+
             </div>
             <!-- /.form-group -->
           </div>
@@ -47,14 +51,43 @@
             <div class="col-xs-6">
               <!-- Name / Avatar -->
               <div class="info">
-                <img src="assets/images/profilepic2.jpg" alt="">
-                <span>Full Name : Jone </span>
-                 <span>Email : Jone@gmail.com </span>
-                <ul style="margin-top:20px">
-                  <li><a class="btn-download"><i class="fa fa-file-text"></i> Download CV</a>
-                  </li>
+                <div class="col-md-4">
+                  <img style=" width: 100px;border-radius: 50%;" src="http://localhost:3000/uploads/forms/anhdaidien/{{items.infocandidateid[0].profileimage}}"
+                    alt="">
+                </div>
 
-                </ul>
+
+                <div class="col-md-8">
+                  <div class="row">
+                    <div class="form-group">
+                      <label class="col-sm-4 control-label" for="inputEmail3">  <i >Full Name:</i></label>
+                      <div class="col-sm-8">
+                        <span>{{items.infocandidateid[0].fullname}}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-group">
+                      <label class="col-sm-4 control-label" for="inputEmail3"> <i >Email:</i></label>
+                      <div class="col-sm-8">
+                        {{items.infocandidateid[0].email}}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-group">
+                      <ul style="margin-top:20px">
+                        <li><a class="btn-download" href="http://localhost:3000/uploads/forms/filecv/{{items.pathresume}}"><i class="fa fa-file-text"></i> Download CV</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+
+
+                </div>
+
+
+
               </div>
               <!-- Name / Avatar -->
             </div>
@@ -82,21 +115,17 @@
                         <div class="box-body">
                           <div class="row">
                             <div class="col-md-6">
-                              <select data-placeholder="Application Status" class="col-xs-6 chosen-select-no-single form-control">
+                              <select (change)="onChange($event.target.value,items._id)" name="a" data-placeholder="Application Status" class="col-xs-6 chosen-select-no-single form-control">
                                     <option value="">Application Status</option>
                                     <option value="new">New</option>
-                                    <option value="interviewed">Interviewed</option>
-                                    <option value="offer">Offer extended</option>
-                                    <option value="hired">Hired</option>
-                                    <option value="archived">Archived</option>
-                               </select>
+                                    <option value="1">Interviewed</option>
+                                    <option value="2">Offer extended</option>
+                                    <option value="3">Hired</option>
+                                    <option value="4">Archived</option>
+                                    <option value="5">Archived</option>
+                                    </select>
                             </div>
-                            <div class="col-md-6">
-                              <div class="buttons">
-                                <a class="btn btn-flat btn-primary app-link" (click)="updateStatus(items._id,items.status)"><i  class="fa fa-save"></i> SAVE</a>
-                                <a class="btn btn-flat btn-primary app-link" href="#two-1"><i  class="fa fa-sticky-note"></i>Delete</a>
-                              </div>
-                            </div>
+
                           </div>
                           <div class="row">
                             <form class="form-horizontal">
@@ -104,29 +133,42 @@
                                 <div class="form-group">
                                   <label for="inputEmail3" class="col-sm-2 control-label">  <i>Full Name:</i></label>
                                   <div class="col-sm-10">
-                                    <span>Tom Smith</span>
+                                    <span>   {{items.infocandidateid[0].fullname}}</span>
                                   </div>
                                 </div>
                                 <div class="form-group">
                                   <label for="inputEmail3" class="col-sm-2 control-label"> <i>Email:</i></label>
                                   <div class="col-sm-10">
+                                    {{items.infocandidateid[0].email}}
+                                  </div>
+                                </div>
 
-                                  </div>
-                                </div>
-                                <div class="form-group">
-                                  <label for="inputEmail3" class="col-sm-2 control-label">    <i>Message:</i></label>
-                                  <div class="col-sm-10">
-                                    <span>Morbi non pharetra quam. Pellentesque eget massa dolor. Sed vitae placerat eros, quis aliquet purus. Donec feugiat sapien urna, at sagittis libero pellentesque in. Praesent efficitur dui eget condimentum viverra. Sed non maximus ipsum, non consequat nulla. Vivamus nec convallis nisi, sit amet egestas magna. Quisque vulputate lorem sit amet ornare efficitur. Duis aliquam est elit, sed tincidunt enim commodo sed. Fusce tempus magna id sagittis laoreet. Proin porta luctus ante eu ultrices. Sed porta consectetur purus, rutrum tincidunt magna dictum tempus. </span>
-                                  </div>
-                                </div>
                               </div>
                               <!-- /.box-body -->
                             </form>
                           </div>
                           <div class="box-footer clearfix pull-right">
-                            <ul style="margin-right:78px;display: -webkit-box;">
-                              <li style="    margin-right: 28px;"><i class="fa fa-file-text-o"></i> Interviewed</li>
-                              <li><i class="fa fa-calendar"></i> September 22, 2015</li>
+                            <ul [ngSwitch]="items.status" style="margin-right:78px;display: -webkit-box;">
+                              <li *ngSwitchCase="1" style="margin-right: 28px;">
+                                <i class="fa fa-file-text-o"></i> Approve
+                              </li>
+                              <li *ngSwitchCase="2" style="margin-right: 28px;">
+                                <i class="fa fa-file-text-o"></i> Waiting interview
+                              </li>
+                              <li *ngSwitchCase="3" style="margin-right: 28px;">
+                                <i class="fa fa-file-text-o"></i> Pass CV
+                              </li>
+                              <li *ngSwitchCase="4" style="margin-right: 28px;">
+                                <i class="fa fa-file-text-o"></i> Fail CV
+                              </li>
+                              <li *ngSwitchCase="5" style="margin-right: 28px;">
+                                <i class="fa fa-file-text-o"></i> Pendding (NEW)
+                              </li>
+
+
+
+
+                              <li><i class="fa fa-calendar"></i> {{items.modifieddate}}</li>
                             </ul>
                             <div class="clearfix"></div>
                           </div>

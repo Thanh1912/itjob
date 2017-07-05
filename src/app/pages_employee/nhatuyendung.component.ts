@@ -18,11 +18,11 @@ export class NhatuyendungComponent implements OnInit {
       this.username = localStorage.getItem('username_ntd');
       this.islogin = true;
     }
-    else{
+   /* else{
       alert('Vui Long đăng nhập Nhà Tuyển dụng ');
        this.router.navigate(['/login-ntd']);
     }
-  
+  */
   }
   Gohome() {
     this.router.navigate(['/pages/home']);

@@ -5,6 +5,7 @@ import { WorkplaceService } from './../../services/workplace.service';
 
 import { JobcategoryDetailService } from './../../services/jobcategory-detail.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CapitalizePipe } from '../Pipe/capitalize.pipe';
 @Component({
   selector: 'app-search-jobs',
   templateUrl: './search-jobs.component.html',
@@ -23,7 +24,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class SearchJobsComponent implements OnInit {
   isadvance = false;
-  constructor(private job: JobService,private Workplace: WorkplaceService, private router: Router, private jobcategoryDetailService: JobcategoryDetailService, private jobcategory: JobcategoryService, private route: ActivatedRoute) { }
+  constructor(private job: JobService, private capitalize: CapitalizePipe, private Workplace: WorkplaceService, private router: Router, private jobcategoryDetailService: JobcategoryDetailService, private jobcategory: JobcategoryService, private route: ActivatedRoute) { }
   list_all_jobcategory: any;
   list_ById_jobcategory: any;
   private sub: any;
@@ -31,7 +32,12 @@ export class SearchJobsComponent implements OnInit {
   NameCatagory: String;
   NameCatagoryDetail: String;
   id: any;
+  onSubmit(value) {
+  this.capitalize.transform(value);
+  // ...
+}
   ngOnInit() {
+    this.onSubmit(null)
     this.isadvance = true;
     this.sub = this.route.params.subscribe(params => {
       this.id = params['id'];
@@ -47,8 +53,8 @@ export class SearchJobsComponent implements OnInit {
     this.getjobcategoryByID();
 
   }
- 
-list_all_Workplace:any;
+
+  list_all_Workplace: any;
   getWorkplace() {
     this.Workplace.getall().subscribe(
       data => {

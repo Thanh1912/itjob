@@ -58,6 +58,10 @@ export class ApplicantComponent implements OnInit {
 
     );
   }
+  onChange(value:String,id_:String){
+   // alert('selected: '+value);
+   this.updateStatus(id_,value);
+  }
   //cap nhat trang thai cho ung vien 
   updateStatus(idCV:String,statusUpdate:String){
     var updateI={
@@ -66,8 +70,7 @@ export class ApplicantComponent implements OnInit {
     }
      this.resume.edit(updateI).subscribe(
       data => {
-        this.all = data;
-        this.setPage(1);
+     alert('cap nhat thanh cong')
       },
       error => console.log(error),
 
