@@ -164,7 +164,7 @@ router.route('/getpost/:id').get(postctrl.getiduser);
 router.route('/getDetailjob/:id').get(postctrl.getByIdDetailJob);
 router.route('/gettop12Company').get(postctrl.gettop12Company);
 router.route('/job-in-company/:id').get(postctrl.jobincompany);//get top 12
-router.route('/job-search-title').get(postctrl.searchJobTitles);//get top 12
+router.route('/job-search-title').post(postctrl.searchJobTitles);//get top 12
 
 
 

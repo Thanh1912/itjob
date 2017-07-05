@@ -212,6 +212,16 @@ module.exports.get_All_Skill_Company = function (req, res) {
 
 // Get 
 module.exports.searchJobTitles = function (req, res) {
+//get value from post  or 
+var b=req.body.b;
+var c=req.body.c;
+if(typeof b ==='undefined'){
+  console.log('b is undefined')
+}
+if(typeof c === 'undefined'){
+  console.log('c is undefined')
+}
+console.log(typeof c);
   var object = [
     { title: /.*ED.*/ },
     { title: /.*wq.*/ }

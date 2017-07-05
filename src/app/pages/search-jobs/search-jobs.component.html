@@ -111,29 +111,33 @@
                                                 <li class="input-date">
                                                     <input (click)="select()" type="text" class="form-control" /> <i class="fa fa-calendar icon-date"
                                                         aria-hidden="true"></i>
+                                                          <input type="date"  [(ngModel)]="from" name="demo"/>
+                                                          {{from|date}}
+                                                           <input type="date"  [(ngModel)]="to" name="demo"/>
+                                                          {{to}}
                                                 </li>
 
 
 
                                                 <li class="select-date bounceInLeft" [class.show]="Showselected">
-                                                    <button class="btn btn-warning">30 Days</button>
+                                                    <button class="btn btn-warning" (click)="setDate(30)" >30 Days</button>
+                                                </li>
+                                                <li class="select-date bounceInLeft"  [class.show]="Showselected">
+                                                    <button class="btn btn-warning"  (click)="setDate(1)">1 Days</button>
                                                 </li>
                                                 <li class="select-date bounceInLeft" [class.show]="Showselected">
-                                                    <button class="btn btn-warning">1 Days</button>
+                                                    <button class="btn btn-warning" (click)="setDate(1)">2 Days</button>
                                                 </li>
                                                 <li class="select-date bounceInLeft" [class.show]="Showselected">
-                                                    <button class="btn btn-warning">2 Days</button>
+                                                    <button class="btn btn-warning" (click)="setDate(1)">7 Days</button>
                                                 </li>
                                                 <li class="select-date bounceInLeft" [class.show]="Showselected">
-                                                    <button class="btn btn-warning">7 Days</button>
+                                                    <button class="btn btn-warning" (click)="setDate(1)">14 Days </button>
                                                 </li>
-                                                <li class="select-date bounceInLeft" [class.show]="Showselected">
-                                                    <button class="btn btn-warning">14 Days </button>
+                                                  <li class="select-date bounceInLeft" [class.show]="Showselected">
+                                                    <button class="btn btn-warning" (click)="setDate(1)">14 Days </button>
                                                 </li>
-                                                <li class="select-date bounceInLeft" [class.show]="Showselected">
-
-
-                                                </li>
+                               
 
                                             </ul>
                                         </div>

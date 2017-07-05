@@ -23,9 +23,11 @@ import { CapitalizePipe } from '../Pipe/capitalize.pipe';
   ]
 })
 export class SearchJobsComponent implements OnInit {
-Showselected: boolean;
+  Showselected: boolean;
   showcus: boolean;
- isdate:boolean
+  isdate: boolean;
+  from = new Date()
+  to = new Date().getTime()
   select() {
     if (this.Showselected == true) {
       this.Showselected = false;
@@ -34,7 +36,12 @@ Showselected: boolean;
     }
 
   }
-   selectcus() {
+  setDate(value: Number) {
+    this.from = new Date(new Date("2013-02-20T12:01:04.753Z").getTime() - new Date("2013-02-20T12:01:04.753Z").getTime());
+    //   this.from= new Date("2013-02-20T12:01:04.753Z");
+    this.to = Date.now() - +(new Date("2013-02-20T12:01:04.753Z"))
+  }
+  selectcus() {
     if (this.showcus == true) {
       this.showcus = false;
     } else {
@@ -42,7 +49,7 @@ Showselected: boolean;
     }
 
   }
- 
+
 
 
 
@@ -58,13 +65,13 @@ Showselected: boolean;
   NameCatagoryDetail: String;
   id: any;
   onSubmit(value) {
-  this.capitalize.transform(value);
-  // ...
-}
+    this.capitalize.transform(value);
+    // ...
+  }
   ngOnInit() {
-    this.isdate=true;
-      this.Showselected = false;
-       this.showcus= false;
+    this.isdate = true;
+    this.Showselected = false;
+    this.showcus = false;
     this.onSubmit(null)
     this.isadvance = true;
     this.sub = this.route.params.subscribe(params => {
@@ -86,9 +93,9 @@ Showselected: boolean;
   getWorkplace() {
     this.Workplace.getall().subscribe(
       data => {
-            console.log("SHOW")
+        console.log("SHOW")
         this.list_all_Workplace = data;
-          console.log(this.list_all_Workplace)
+        console.log(this.list_all_Workplace)
 
       },
       error => console.log(error),
