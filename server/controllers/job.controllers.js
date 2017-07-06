@@ -213,67 +213,72 @@ module.exports.get_All_Skill_Company = function (req, res) {
 // Get 
 module.exports.searchJobTitles = function (req, res) {
   //get value from post  or 
-  var salarybegin = req.body.salarybegin;
-  var salaryend = req.body.salaryend;
-  var Unit = req.body.Unit;
-  var districtid = req.body.districtid;
-  var workplaceid = req.body.workplaceid;
-  var JobTime = req.body.JobTime;
-  var jobcategory = req.body.jobcategory;
-  var jobcategorydetail = req.body.jobcategorydetail;
+  var Ksalarybegin = req.body.salarybeginP;
+  var Ksalaryend = req.body.salaryendP;
+  var KUnit = req.body.UnitP;
+  var Kdistrictid = req.body.districtidP;
+  var Kworkplaceid = req.body.workplaceidP;
+  var KJobTime = req.body.JobTimeP;
+  var Kjobcategory = req.body.jobcategoryP;
+  var Kjobcategorydetail = req.body.jobcategorydetailP;
   var obj1 = [];
   var obj2 = [
-  
+
   ];
-  if (typeof salarybegin === 'undefined') {
+    var ObjectId = require('mongoose').Types.ObjectId;
+  if (typeof Ksalarybegin !== 'undefined') {
+
     obj2.push({
       salarybegin: {
-        $gte: salarybegin,
+        $gte: parseInt(Ksalarybegin),
       }
     })
+
   }
-  if (typeof salaryend === 'undefined') {
+  if (typeof Ksalaryend !== 'undefined') {
     obj2.push({
       salaryend: {
-        $lt: salaryend,
+        $lt: parseInt(Ksalaryend),
       }
     })
   }
 
-  if (typeof districtid === 'undefined') {
-    console.log('b is undefined')
-  }
-  if (typeof workplaceid === 'undefined') {
+  if (typeof Kdistrictid !== 'undefined') {
     obj2.push({
-      workplaceid: workplaceid
+      districtid: new ObjectId(Kdistrictid)
     })
   }
-  if (typeof JobTime === 'undefined') {
+  if (typeof Kworkplaceid !== 'undefined') {
     obj2.push({
-      JobTime: JobTime
+      workplaceid: new ObjectId(Kworkplaceid)
     })
   }
-  if (typeof jobcategory === 'undefined') {
+  if (typeof KJobTime !== 'undefined') {
     obj2.push({
-      jobcategory: jobcategory
+      JobTime: KJobTime
+    })
+  }
+  if (typeof Kjobcategory !== 'undefined') {
+   
+    obj2.push({
+      jobcategory: new ObjectId(Kjobcategory)
     })
   }
 
-  if (typeof jobcategorydetail === 'undefined') {
-   obj2.push({
-      jobcategorydetail: jobcategorydetail
+  if (typeof Kjobcategorydetail !== 'undefined') {
+    obj2.push({
+      jobcategorydetail: Kjobcategorydetail
     })
   }
 
-
-
+console.log(obj2)
 
 
   var ObjectId = require('mongoose').Types.ObjectId;
   model.aggregate([
     {
       $match: {
-      //  $and: obj2,
+        $and: obj2
         //   $or: obj2
 
       }
