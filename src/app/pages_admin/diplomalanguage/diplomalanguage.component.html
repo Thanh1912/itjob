@@ -20,7 +20,7 @@
         <!-- *ngIf="!isLoading"-->
         <div class="card">
           <div class="col-md-6">
-            <h4 class="card-header"> ({{cats.length}})</h4>
+            <h4 class="card-header"> ({{All_Items.length}})</h4>
           </div>
           <div class="col-md-6 ">
             <a class="pull-right btn-floating waves-effect waves-light btn-large red" style="border-radius: 2px;    border-radius: 200px 200px 200px 200px;
@@ -39,9 +39,9 @@ border: 0px solid #000000;"><i class="fa fa-2x fa-plus" style=" margin-top: 9px;
                   <th>Actions</th>
                 </tr>
               </thead>
-              <tbody *ngIf="cats.length === 0">
+              <tbody *ngIf="All_Items.length === 0">
                 <tr>
-                  <td colspan="4">There are no cats in the DB. Add a new cat below.</td>
+                  <td colspan="4">There are no All_Items in the DB. Add a new cat below.</td>
                 </tr>
               </tbody>
               <tbody *ngIf="!isEditing">

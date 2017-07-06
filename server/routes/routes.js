@@ -134,7 +134,7 @@ var diplomalanguagectrl = require('../controllers/diplomalanguage.controllers.js
 
 router.route('/diplomalanguage').get(diplomalanguagectrl.getAll);
 router.route('/diplomalanguage/count').get(diplomalanguagectrl.count);
-router.route('/diplomalanguage').post(workplacdiplomalanguagectrlectrl.insert);
+router.route('/diplomalanguage').post(diplomalanguagectrl.insert);
 router.route('/diplomalanguage/:id').get(diplomalanguagectrl.get);
 router.route('/diplomalanguage/:id').put(diplomalanguagectrl.update);
 router.route('/diplomalanguage/:id').delete(diplomalanguagectrl.delete);

@@ -17,16 +17,19 @@ export class SliderComponent implements OnInit {
   pager: any = {};
   // paged items
   pagedItems: any[];
-  Itemsall: any;
+  Itemsall=[];
   constructor(private sliderService: sliderService, private Job: JobService, private pagerService: PagerService) { }
   ngOnInit() {
-    this.getallJob();
+    this.getallJobslider ();
   }
   //=======
-  getallJob() {
+  getallJobslider () {
     this.Job.getall().subscribe(
       data => {
-        this.listjob = data
+        this.listjob = data;
+        console.log('show')
+        console.log(data)
+        this.setPage(1)
       },
       error => console.log(error),
       () => this.isLoading = false

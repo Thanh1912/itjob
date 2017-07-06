@@ -22,7 +22,9 @@ import {CKEditorModule} from 'ng2-ckeditor';
 import { SearchPipe } from './Pipes/search.pipe';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
-
+import { AuthGuard } from './_guards/index';
+import { AuthGuardAmin } from './_guards/auth_admin.guard';
+import { AuthGuardnhatuyendung } from './_guards/auth_nhatuyendung.guard';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,7 +51,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     BrowserAnimationsModule  //<======Animation
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [AuthenticationService, ErrorService, ToastComponent,ComfirmComponent],
+  providers: [AuthGuardnhatuyendung,AuthGuardAmin,AuthGuard,AuthenticationService, ErrorService, ToastComponent,ComfirmComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

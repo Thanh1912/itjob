@@ -19,7 +19,7 @@ export class DiplomalanguageComponent implements OnInit {
   pagedItems: any[];
 
 
-  cats = [];
+  All_Items = [];
   isLoading = true;
   cat = {};
   isEditing = false;
@@ -46,15 +46,15 @@ export class DiplomalanguageComponent implements OnInit {
     }
 
     // get pager object from service
-    this.pager = this.pagerService.getPager(this.cats.length, page);
+    this.pager = this.pagerService.getPager(this.All_Items.length, page);
 
     // get current page of items
-    this.pagedItems = this.cats.slice(this.pager.startIndex, this.pager.endIndex + 1);
+    this.pagedItems = this.All_Items.slice(this.pager.startIndex, this.pager.endIndex + 1);
   }
   getall() {
     this.dataService.getall().subscribe(
       data => {
-        this.cats = data
+        this.All_Items = data
         this.setPage(1);
       },
       error => console.log(error),
@@ -82,7 +82,7 @@ export class DiplomalanguageComponent implements OnInit {
     this.cat = {};
     
     // this.toast.setMessage('item editing cancelled.', 'warning');
-    // reload the cats to reset the editing
+    // reload the All_Items to reset the editing
     this.getall();
   }
 
@@ -102,8 +102,8 @@ export class DiplomalanguageComponent implements OnInit {
     if (window.confirm('Are you sure you want to permanently delete this item?')) {
       this.dataService.delete(cat).subscribe(
         res => {
-          const pos = this.cats.map(elem => { return elem._id; }).indexOf(cat._id);
-          this.cats.splice(pos, 1);
+          const pos = this.All_Items.map(elem => { return elem._id; }).indexOf(cat._id);
+          this.All_Items.splice(pos, 1);
           // this.toast.setMessage('item deleted successfully.', 'success');
         },
         error => console.log(error)

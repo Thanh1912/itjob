@@ -27,7 +27,7 @@
 
         <!-- *ngIf="!isLoading"-->
         <div class="card">
-      
+
           <div class="card-block">
             <table class="table table-bordered table-striped">
               <thead class="thead-default">
@@ -135,45 +135,13 @@
                     <div class="box-body table-responsive no-padding">
                       <table class="table table-hover">
                         <tbody>
-                          <tr>
+                          <tr *ngFor="let item of listjob">
                             <td><img src="https://cdn.itviec.com/system/production/employers/logos/1982/propzy-vi-t-nam-logo-65-65.png?1454113573"
                                 class="user-image" alt="User Image"></td>
                             <td>
-                              <p>15 Full-Stack Java Developers</p>
-                              <p>Date: 11-7-2014</p>
-                              <p>Company: Propzy Việt Nam</p>
-                            </td>
-                            <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                            <td> <button type="button" class="btn btn-info btn-flat ">Add Job</button></td>
-                          </tr>
-                          <tr>
-                            <td><img src="https://cdn.itviec.com/system/production/employers/logos/1982/propzy-vi-t-nam-logo-65-65.png?1454113573"
-                                class="user-image" alt="User Image"></td>
-                            <td>
-                              <p>15 Full-Stack Java Developers</p>
-                              <p>Date: 11-7-2014</p>
-                              <p>Company: Propzy Việt Nam</p>
-                            </td>
-                            <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                            <td> <button type="button" class="btn btn-info btn-flat ">Add Job</button></td>
-                          </tr>
-                          <tr>
-                            <td><img src="https://cdn.itviec.com/system/production/employers/logos/1982/propzy-vi-t-nam-logo-65-65.png?1454113573"
-                                class="user-image" alt="User Image"></td>
-                            <td>
-                              <p>15 Full-Stack Java Developers</p>
-                              <p>Date: 11-7-2014</p>
-                              <p>Company: Propzy Việt Nam</p>
-                            </td>
-                            <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                            <td> <button type="button" class="btn btn-info btn-flat ">Add Job</button></td>
-                          </tr>
-                          <tr>
-                            <td><img src="https://cdn.itviec.com/system/production/employers/logos/1982/propzy-vi-t-nam-logo-65-65.png?1454113573"
-                                class="user-image" alt="User Image"></td>
-                            <td>
-                              <p>15 Full-Stack Java Developers</p>
-                              <p>Date: 11-7-2014</p>
+                              <p>{{item.title}}</p>
+                              <p>{{item.createddate}}</p>
+                              <p>{{item.endPost}}</p>
                               <p>Company: Propzy Việt Nam</p>
                             </td>
                             <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
@@ -252,9 +220,7 @@
 
       </div>
       <!-- /.box-body -->
-      <div class="box-footer">
-        Footer
-      </div>
+
       <!-- /.box-footer-->
     </div>
     <!-- /.box -->
