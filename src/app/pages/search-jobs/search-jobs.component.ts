@@ -24,19 +24,23 @@ import { DatePipe } from '@angular/common';
   ]
 })
 export class SearchJobsComponent implements OnInit {
+  pager: any = {};
+  // paged items
+  pagedItems: any[];
+  allItems:any;
   Showselected: boolean;
   showcus: boolean;
   isdate: boolean;
   from = new Date()
   to = new Date();
-  salaryB:String;
-    salaryE:String;
- selectSalaryB(value:String) {
-   this.salaryB=value;
- }
-  selectSalaryE(value:String) {
-   this.salaryE=value;
- }
+  salaryB: String;
+  salaryE: String;
+  selectSalaryB(value: String) {
+    this.salaryB = value;
+  }
+  selectSalaryE(value: String) {
+    this.salaryE = value;
+  }
   select() {
     if (this.Showselected == true) {
       this.Showselected = false;
@@ -46,11 +50,11 @@ export class SearchJobsComponent implements OnInit {
 
   }
   setDate(value: number) {
-  //  this.from = 
+    //  this.from = 
     //new Date(new Date("2013-02-20T12:01:04.753Z").getTime() - new Date("2013-02-20T12:01:04.753Z").getTime());
     //   this.from= new Date("2013-02-20T12:01:04.753Z");
     var d = new Date();
- d.setDate(d.getDate()-value);
+    d.setDate(d.getDate() - value);
     this.from = d
     this.datePipe.transform(this.from, 'yyyy-MM-dd');
     //Date.now() - +(new Date("2013-02-20T12:01:04.753Z"))
@@ -64,13 +68,8 @@ export class SearchJobsComponent implements OnInit {
 
   }
 
-
-
-
-
-
   isadvance = false;
-  constructor(private datePipe: DatePipe,private job: JobService, private capitalize: CapitalizePipe, private Workplace: WorkplaceService, private router: Router, private jobcategoryDetailService: JobcategoryDetailService, private jobcategory: JobcategoryService, private route: ActivatedRoute) { }
+  constructor(private datePipe: DatePipe, private job: JobService, private capitalize: CapitalizePipe, private Workplace: WorkplaceService, private router: Router, private jobcategoryDetailService: JobcategoryDetailService, private jobcategory: JobcategoryService, private route: ActivatedRoute) { }
   list_all_jobcategory: any;
   list_ById_jobcategory: any;
   private sub: any;
@@ -80,7 +79,6 @@ export class SearchJobsComponent implements OnInit {
   id: any;
   onSubmit(value) {
     this.capitalize.transform(value);
-    // ...
   }
   ngOnInit() {
     this.isdate = true;
@@ -91,15 +89,19 @@ export class SearchJobsComponent implements OnInit {
     this.sub = this.route.params.subscribe(params => {
       this.id = params['id'];
       this.idDetail = params['id_detail'];
-      if (this.id !== "all")
+      if (this.id !== "all") {
         this.getinfoCatagory(this.id);
+      }
+      this.getjobcategoryByID(this.id);
+
       if (this.idDetail !== "all")
         this.getinfoCatagoryDetail(this.idDetail);
     });
 
     this.getjobcategory();
     this.getWorkplace();
-    this.getjobcategoryByID();
+  }
+  setjsonPost(){
 
   }
 
@@ -163,8 +165,8 @@ export class SearchJobsComponent implements OnInit {
     );
   }
 
-  getjobcategoryByID() {
-    this.jobcategory.Categorybyid(this.id).subscribe(
+  getjobcategoryByID(id: String) {
+    this.jobcategory.Categorybyid(id).subscribe(
       data => {
         this.list_ById_jobcategory = data;
         console.log(data)

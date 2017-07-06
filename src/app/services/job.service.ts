@@ -19,7 +19,7 @@ export class JobService {
     return this.http.get(this.Rest_Url + '/api/gettop12Company').map(res => res.json());
   }
   searchJobTile(item): Observable<any> {
-      return this.http.post(this.Rest_Url+'/api/searchJobTitles', JSON.stringify(item), this.options);
+      return this.http.post(this.Rest_Url+'/api/job-search-title', JSON.stringify(item), this.options).map(res => res.json());
    
   }
 

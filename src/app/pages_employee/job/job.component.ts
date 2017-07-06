@@ -196,6 +196,7 @@ export class JobComponent implements OnInit, AfterViewInit {
       salarycompete: salarycompete,
       salarybegin: value.salarybegin,
       salaryend: value.salaryend,
+       Unit :this.Donvi,
       descriptionwork: value.descriptionwork,
       requirementwork: value.requirementwork,
       postimage: this.imageurl,//
@@ -206,7 +207,8 @@ export class JobComponent implements OnInit, AfterViewInit {
       JobTime: this.jobtime,
       Apllication: this.sluongtuyen,
       jobcategory: this.jobcategoryId,
-      endPost:this.time_end
+      endPost:this.time_end,
+     
       
     }
     this.postservice.add(post).subscribe(

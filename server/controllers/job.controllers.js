@@ -212,19 +212,52 @@ module.exports.get_All_Skill_Company = function (req, res) {
 
 // Get 
 module.exports.searchJobTitles = function (req, res) {
-//get value from post  or 
-var b=req.body.b;
-var c=req.body.c;
-if(typeof b ==='undefined'){
-  console.log('b is undefined')
-}
-if(typeof c === 'undefined'){
-  console.log('c is undefined')
-}
-console.log(typeof c);
+  //get value from post  or 
+  var b = req.body.b;
+  var c = req.body.c;
+  if (typeof b === 'undefined') {
+    console.log('b is undefined')
+  }
+  if (typeof c === 'undefined') {
+    console.log('c is undefined')
+  }
+  console.log(typeof c);
   var object = [
-    { title: /.*ED.*/ },
-    { title: /.*wq.*/ }
+    {
+      createddate: {
+        $gte: "Mon May 30 18:47:00 +0000 2015",
+        $lt: "Sun May 30 20:40:36 +0000 2010"
+      }
+    },
+    {
+      jobcategory: ''
+    },
+    {
+      jobcategorydetail: ''
+    },
+    {
+      workplaceid: ''
+    },
+    {
+      districtid: ''
+    },
+    {
+      JobTime: ''
+    },
+    {
+      salarybegin: {
+        $gte: "600",
+      }
+    },
+    {
+      salaryend: {
+        $lt: "900"
+      }
+    },
+    {
+      Unit: 'USD'
+    },
+    { title: /.*ED.*/ }
   ]
 
   var ObjectId = require('mongoose').Types.ObjectId;

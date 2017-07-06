@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { DistrictService } from './../../services/district.service';
+
 import { WorkplaceService } from './../../services/workplace.service';
 import { PagerService } from './../../_services/pager.service';
 @Component({

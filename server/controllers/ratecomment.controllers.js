@@ -24,6 +24,13 @@ var model = require('../models/district.model.js');
       res.json(count);
     });
   };
+    // Count all
+  module.exports.countByidJOB = function(req, res) {
+   model.count(   function(err, count) {
+      if (err) { return console.error(err); }
+      res.json(count);
+    });
+  };
 
   // Insert
   module.exports.insert = function(req, res) {

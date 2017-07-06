@@ -35,6 +35,8 @@ import { PostService } from './../services/post.service';
 import { JobcategoryService } from './../services/jobcategory.service';
 import { sliderService } from './../services/slider.service';
 import { JobService } from './../services/job.service';
+import { DiplomalanguageService } from './../services/diplomalanguage.service';
+import { DiplomalanguageComponent } from './diplomalanguage/diplomalanguage.component';
 
 //======================Service=============================
 @NgModule({
@@ -58,9 +60,10 @@ import { JobService } from './../services/job.service';
     SliderComponent,
     ListJobComponent,
     CatalogJobComponent,
-    DuyetntdPipe
+    DuyetntdPipe,
+    DiplomalanguageComponent
   ],
-   providers: [JobService,sliderService,JobcategoryService,PostService,ToastComponent,ErrorService,AuthenticationService,PagerService,KeywordService,WorkplaceService, DistrictService,countryService,QuanliThanhvienquantriService,CompanysizeService,QuanliNtdService],
+   providers: [DiplomalanguageService,JobService,sliderService,JobcategoryService,PostService,ToastComponent,ErrorService,AuthenticationService,PagerService,KeywordService,WorkplaceService, DistrictService,countryService,QuanliThanhvienquantriService,CompanysizeService,QuanliNtdService],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AdminModule {

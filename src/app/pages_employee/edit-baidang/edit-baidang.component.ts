@@ -234,6 +234,7 @@ export class EditBaidangComponent implements OnInit {
       salarycompete: salarycompete,
       salarybegin: value.salarybegin,
       salaryend: value.salaryend,
+       Unit :this.Donvi,
       descriptionwork: value.descriptionwork,
       requirementwork: value.requirementwork,
       postimage: this.imageurl,//

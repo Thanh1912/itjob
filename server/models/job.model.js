@@ -6,6 +6,7 @@ const nhattuyendungSchema = new mongoose.Schema({
   salarycompete: String,
   salarybegin: String,
   salaryend: String,
+  Unit:String,
   descriptionwork: String,
   requirementwork: { type: String,  required: true },
   postimage: { type: String,  required: true },

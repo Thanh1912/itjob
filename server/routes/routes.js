@@ -129,6 +129,15 @@ router.route('/companysize/:id').get(companysizectrl.get);
 router.route('/companysize/:id').put(companysizectrl.update);
 router.route('/companysize/:id').delete(companysizectrl.delete);
 
+var diplomalanguagectrl = require('../controllers/diplomalanguage.controllers.js');
+
+
+router.route('/diplomalanguage').get(diplomalanguagectrl.getAll);
+router.route('/diplomalanguage/count').get(diplomalanguagectrl.count);
+router.route('/diplomalanguage').post(workplacdiplomalanguagectrlectrl.insert);
+router.route('/diplomalanguage/:id').get(diplomalanguagectrl.get);
+router.route('/diplomalanguage/:id').put(diplomalanguagectrl.update);
+router.route('/diplomalanguage/:id').delete(diplomalanguagectrl.delete);
 
 
 router.route('/workplace').get(workplacectrl.getAll);

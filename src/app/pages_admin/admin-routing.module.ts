@@ -14,6 +14,7 @@ import { CountryComponent } from './country/country.component';
 import { SliderComponent } from './slider/slider.component';
 import { ListJobComponent } from './list-job/list-job.component';
 import { CatalogJobComponent } from './catalog-job/catalog-job.component';
+import { DiplomalanguageComponent } from './diplomalanguage/diplomalanguage.component';
 const adminRoutes: Routes = [
   {
     path: '',
@@ -36,6 +37,7 @@ const adminRoutes: Routes = [
           { path: 'add-slider', component: SliderComponent },
           { path: 'List-Job', component: ListJobComponent },
            { path: 'Catalog-Job', component: CatalogJobComponent },
+            { path: 'Diplomalanguage', component: DiplomalanguageComponent },
 
           { path: '', component: AdminHomeComponent }
         ]
