@@ -3,7 +3,7 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-Quốc Gia
+      Quốc Gia
     </h1>
 
   </section>
@@ -16,21 +16,16 @@ Quốc Gia
       <div class="box-header with-border">
         <h3 class="box-title">Title</h3>
         <div class="box-tools pull-right">
-         
+
         </div>
       </div>
       <div class="box-body">
-
-
-
         <div class="card" *ngIf="isLoading">
           <h4 class="card-header">Loading...</h4>
           <div class="card-block text-xs-center">
             <i class="fa fa-circle-o-notch fa-spin fa-3x"></i>
           </div>
         </div>
-
-
         <!-- *ngIf="!isLoading"-->
         <div class="card">
           <h4 class="card-header">Current ({{cats.length}})</h4>
@@ -39,7 +34,6 @@ Quốc Gia
               <thead class="thead-default">
                 <tr>
                   <th>Name</th>
-
                   <th>Actions</th>
                 </tr>
               </thead>
@@ -51,16 +45,10 @@ Quốc Gia
               <tbody *ngIf="!isEditing">
                 <tr *ngFor="let cat of pagedItems">
                   <td>{{cat.name}}</td>
-
                   <td>
                     <button class="btn btn-sm btn-warning" (click)="enableEditing(cat)"><i class="fa fa-pencil"></i> Edit</button>                    <button class="btn btn-sm btn-danger" (click)="deleteCat(cat)"><i class="fa fa-trash"></i> Delete</button>
                   </td>
                 </tr>
-
-              </tbody>
-              <tbody>      <!-- pager -->
-
-
               </tbody>
               <tbody *ngIf="isEditing">
                 <tr>
@@ -78,23 +66,23 @@ Quốc Gia
             </table>
           </div>
         </div>
-  <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
-                <li [ngClass]="{disabled:pager.currentPage === 1}">
-                    <a (click)="setPage(1)">First</a>
-                </li>
-                <li [ngClass]="{disabled:pager.currentPage === 1}">
-                    <a (click)="setPage(pager.currentPage - 1)">Previous</a>
-                </li>
-                <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
-                    <a (click)="setPage(page)">{{page}}</a>
-                </li>
-                <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-                    <a (click)="setPage(pager.currentPage + 1)">Next</a>
-                </li>
-                <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-                    <a (click)="setPage(pager.totalPages)">Last</a>
-                </li>
-            </ul>
+        <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+          <li [ngClass]="{disabled:pager.currentPage === 1}">
+            <a (click)="setPage(1)">First</a>
+          </li>
+          <li [ngClass]="{disabled:pager.currentPage === 1}">
+            <a (click)="setPage(pager.currentPage - 1)">Previous</a>
+          </li>
+          <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+            <a (click)="setPage(page)">{{page}}</a>
+          </li>
+          <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+            <a (click)="setPage(pager.currentPage + 1)">Next</a>
+          </li>
+          <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+            <a (click)="setPage(pager.totalPages)">Last</a>
+          </li>
+        </ul>
         <div class="card" *ngIf="!isEditing">
           <h4 class="card-header">Add new </h4>
           <div class="card-block">
@@ -106,16 +94,12 @@ Quốc Gia
             </form>
           </div>
         </div>
-
       </div>
       <!-- /.box-body -->
-      <div class="box-footer">
-        Footer
-      </div>
+
       <!-- /.box-footer-->
     </div>
     <!-- /.box -->
-
   </section>
   <!-- /.content -->
 </div>

@@ -27,7 +27,7 @@ export class SearchJobsComponent implements OnInit {
   pager: any = {};
   // paged items
   pagedItems: any[];
-  allItems:any;
+  allItems: any;
   Showselected: boolean;
   showcus: boolean;
   isdate: boolean;
@@ -78,7 +78,16 @@ export class SearchJobsComponent implements OnInit {
   NameCatagoryDetail: String;
   id: any;
   onSubmit(value) {
-    this.capitalize.transform(value);
+    this.job.searchJobTile({}).subscribe(
+      data => {
+        this.allItems = data;
+        console.log(this.allItems);
+      },
+      error => console.log(error),
+      () => {
+
+      }
+    );
   }
   ngOnInit() {
     this.isdate = true;
@@ -101,7 +110,7 @@ export class SearchJobsComponent implements OnInit {
     this.getjobcategory();
     this.getWorkplace();
   }
-  setjsonPost(){
+  setjsonPost() {
 
   }
 

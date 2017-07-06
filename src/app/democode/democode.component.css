@@ -196,3 +196,23 @@ h1 { font-size: 1.5em; margin: 10px; }
 
 
 
+/*================================CODE======================================*/
+.dynamic-navbar.navbar-fixed-top {
+    box-shadow: 0 0 50px rgba(0,0,0,.3);
+}
+.dynamic-navbar {
+    background: #fff;
+    min-height: 58px;
+    padding: 24px;
+    font-size: 1em;
+    z-index: 1039;
+    -webkit-transition: box-shadow 1s;
+    transition: box-shadow 1s;
+}
+.navbar-fixed-top {
+    position: fixed;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+}
+/*================================CODE======================================*/

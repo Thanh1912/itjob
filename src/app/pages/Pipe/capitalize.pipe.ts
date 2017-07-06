@@ -7,13 +7,9 @@ import { JobService } from './../../services/job.service';
 export class CapitalizePipe implements PipeTransform {
   constructor(private job: JobService) {
   }
-
+data1=[]
   transform(value: any, args?: any): any {
-    var item = {}
-    this.job.searchJobTile(item).subscribe(data => {
-      console.log(data);
-      return data;
-    })
-    return null;
+    var item = {};
+    return  value;
   }
 }

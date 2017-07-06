@@ -1,0 +1,24 @@
+.titleJ{
+margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 5px;
+    font-size: 22px;
+    font-family: "Roboto", sans-serif;
+    line-height: 28px;
+    font-weight: 500;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.listBg{
+        background: #f69725;
+    border: 1px solid #F7941D;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
+    color: white;
+}
+.listBg{
+        background: white;
+    border: 1px solid #F7941D;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
+    color: #f69725;
+}

@@ -213,58 +213,69 @@ module.exports.get_All_Skill_Company = function (req, res) {
 // Get 
 module.exports.searchJobTitles = function (req, res) {
   //get value from post  or 
-  var b = req.body.b;
-  var c = req.body.c;
-  if (typeof b === 'undefined') {
+  var salarybegin = req.body.salarybegin;
+  var salaryend = req.body.salaryend;
+  var Unit = req.body.Unit;
+  var districtid = req.body.districtid;
+  var workplaceid = req.body.workplaceid;
+  var JobTime = req.body.JobTime;
+  var jobcategory = req.body.jobcategory;
+  var jobcategorydetail = req.body.jobcategorydetail;
+  var obj1 = [];
+  var obj2 = [
+  
+  ];
+  if (typeof salarybegin === 'undefined') {
+    obj2.push({
+      salarybegin: {
+        $gte: salarybegin,
+      }
+    })
+  }
+  if (typeof salaryend === 'undefined') {
+    obj2.push({
+      salaryend: {
+        $lt: salaryend,
+      }
+    })
+  }
+
+  if (typeof districtid === 'undefined') {
     console.log('b is undefined')
   }
-  if (typeof c === 'undefined') {
-    console.log('c is undefined')
+  if (typeof workplaceid === 'undefined') {
+    obj2.push({
+      workplaceid: workplaceid
+    })
   }
-  console.log(typeof c);
-  var object = [
-    {
-      createddate: {
-        $gte: "Mon May 30 18:47:00 +0000 2015",
-        $lt: "Sun May 30 20:40:36 +0000 2010"
-      }
-    },
-    {
-      jobcategory: ''
-    },
-    {
-      jobcategorydetail: ''
-    },
-    {
-      workplaceid: ''
-    },
-    {
-      districtid: ''
-    },
-    {
-      JobTime: ''
-    },
-    {
-      salarybegin: {
-        $gte: "600",
-      }
-    },
-    {
-      salaryend: {
-        $lt: "900"
-      }
-    },
-    {
-      Unit: 'USD'
-    },
-    { title: /.*ED.*/ }
-  ]
+  if (typeof JobTime === 'undefined') {
+    obj2.push({
+      JobTime: JobTime
+    })
+  }
+  if (typeof jobcategory === 'undefined') {
+    obj2.push({
+      jobcategory: jobcategory
+    })
+  }
+
+  if (typeof jobcategorydetail === 'undefined') {
+   obj2.push({
+      jobcategorydetail: jobcategorydetail
+    })
+  }
+
+
+
+
 
   var ObjectId = require('mongoose').Types.ObjectId;
   model.aggregate([
     {
       $match: {
-        $or: object
+      //  $and: obj2,
+        //   $or: obj2
+
       }
     },
     {

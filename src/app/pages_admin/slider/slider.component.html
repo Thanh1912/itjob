@@ -39,37 +39,27 @@
                   <th>Actions</th>
                 </tr>
               </thead>
-              <tbody *ngIf="Itemsall.length === 0">
+              <tbody *ngIf="listAll.length === 0">
                 <tr>
                   <td colspan="4">There are no cats in the DB. Add a new cat below.</td>
                 </tr>
               </tbody>
               <tbody>
-                <tr *ngFor="let items of pagedItems">
-                  <td>{{items.name}}</td>
+                <tr *ngFor="let items of listAll">
+                  <td>{{items.Tilte}}</td>
+                    <td>{{items.company}}</td>
+                      <td>{{items.createddate}}</td>
                   <td>
-                    <button class="btn btn-sm btn-warning" (click)="enableEditing(cat)"><i class="fa fa-pencil"></i> Edit</button>                    <button class="btn btn-sm btn-danger" (click)="deleteCat(cat)"><i class="fa fa-trash"></i> EDIT</button>
-                    <button class="btn btn-sm btn-warning" (click)="enableEditing(cat)"><i class="fa fa-pencil"></i> Edit</button>                    <button class="btn btn-sm btn-danger" (click)="deleteCat(cat)"><i class="fa fa-trash"></i> Active</button>
-                    <button class="btn btn-sm btn-warning" (click)="enableEditing(cat)"><i class="fa fa-pencil"></i> Edit</button>                    <button class="btn btn-sm btn-danger" (click)="deleteCat(cat)"><i class="fa fa-trash"></i> Delete</button>
+                    <button class="btn btn-sm btn-warning" (click)="enableEditing(cat)"><i class="fa fa-pencil"></i> Edit</button>                  
+                    <button class="btn btn-sm btn-warning" (click)="enableEditing(cat)"><i class="fa fa-pencil"></i> Edit</b
+                    <button class="btn btn-sm btn-warning" (click)="enableEditing(cat)"><i class="fa fa-pencil"></i> Edit</button>               
                   </td>
                 </tr>
               </tbody>
               <tbody>
                 <!-- pager *ngIf="!isEditing" *ngFor="let cat of pagedItems"-->
               </tbody>
-              <tbody *ngIf="isEditing">
-                <tr>
-                  <td colspan="4">
-                    <form class="form-inline" #form="ngForm" (ngSubmit)="editCat(cat)" style="display:inline">
-                      <div class="form-group">
-                        <input class="form-control" type="text" name="name" [(ngModel)]="cat.name" placeholder="Name" required>
-                      </div>
-                      <button class="btn btn-sm btn-primary" type="submit" [disabled]="!form.form.valid"><i class="fa fa-floppy-o"></i> Save</button>
-                    </form>
-                    <button class="btn btn-sm btn-warning" (click)="cancelEditing()"><i class="fa fa-times"></i> Cancel</button>
-                  </td>
-                </tr>
-              </tbody>
+           
             </table>
           </div>
         </div>
@@ -135,21 +125,39 @@
                     <div class="box-body table-responsive no-padding">
                       <table class="table table-hover">
                         <tbody>
-                          <tr *ngFor="let item of listjob">
+                          <tr *ngFor="let item of listjob" class="listBg">
                             <td><img src="https://cdn.itviec.com/system/production/employers/logos/1982/propzy-vi-t-nam-logo-65-65.png?1454113573"
                                 class="user-image" alt="User Image"></td>
                             <td>
-                              <p>{{item.title}}</p>
-                              <p>{{item.createddate}}</p>
-                              <p>{{item.endPost}}</p>
+                              <p class="titleJ">{{item.title}}</p>
+                              <p>{{item.createddate|date}}</p>
+                              <p>{{item.endPost|date}}</p>
                               <p>Company: Propzy Việt Nam</p>
                             </td>
-                            <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                            <td> 
+                                 </td>
                             <td> <button type="button" class="btn btn-info btn-flat ">Add Job</button></td>
                           </tr>
 
                         </tbody>
                       </table>
+                        <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+                <li [ngClass]="{disabled:pager.currentPage === 1}">
+                    <a (click)="setPage(1)">First</a>
+                </li>
+                <li [ngClass]="{disabled:pager.currentPage === 1}">
+                    <a (click)="setPage(pager.currentPage - 1)">Previous</a>
+                </li>
+                <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                    <a (click)="setPage(page)">{{page}}</a>
+                </li>
+                <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                    <a (click)="setPage(pager.currentPage + 1)">Next</a>
+                </li>
+                <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                    <a (click)="setPage(pager.totalPages)">Last</a>
+                </li>
+            </ul>
                     </div>
                     <!-- /.box-body -->
                   </div>
@@ -168,15 +176,15 @@
 
 
           <div class="card-block">
-            <form role="form">
+            <form role="form" [formGroup]="addForm" (ngSubmit)="addSlider(cat)">
               <div class="box-body">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Title Job</label>
-                  <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                  <input type="text" class="form-control" formControlName="title"  id="exampleInputEmail1" placeholder="Enter email">
                 </div>
                 <div class="form-group">
                   <label for="exampleInputEmail1">Company Job</label>
-                  <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                  <input type="text" formControlName="namecompany" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
                 </div>
                 <div class="form-group">
                   <label for="exampleInputEmail1">Icon</label>
@@ -188,38 +196,33 @@
                   <div class="col-lg-2">
                     <label for="exampleInputEmail1">Salary</label>
                   </div>
-                  <div class="col-lg-5">
-                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="$100">
+                  <div class="col-lg-10">
+                    <input type="text" class="form-control" formControlName="SalaryC"  id="exampleInputEmail1" placeholder="$100">
                   </div>
-                  <div class="col-lg-5">
-                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="$200">
-                  </div>
+                
                 </div>
-                <div class="form-group">
-                  <label for="exampleInputPassword1">Text</label>
-                  <textarea class="form-control"></textarea>
-                </div>
+             
                 <div class="form-group">
                   <label for="exampleInputFile">Image</label>
-                  <img src="https://preview.ibb.co/gCAN8Q/11.jpg" alt="11" border="0">
+                  <img src="" id="blah" alt="11" border="0">
                 </div>
                 <div class="form-group">
                   <label for="exampleInputFile">File input</label>
-                  <input type="file" id="exampleInputFile">
-                  <p class="help-block">Example block-level help text here.</p>
+                  <input type="file" id="imgInp">
+               
                 </div>
               </div>
               <!-- /.box-body -->
 
               <div class="box-footer">
-                <button type="submit" class="btn btn-primary"> SAVE</button>
+                <button type="submit"  class="btn btn-primary"> SAVE</button>
               </div>
             </form>
           </div>
         </div>
 
       </div>
-      <!-- /.box-body -->
+      <!-- /.box-body [disabled]="!addForm.valid"-->
 
       <!-- /.box-footer-->
     </div>
