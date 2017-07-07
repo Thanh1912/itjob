@@ -4,6 +4,17 @@
 	width: 100%;
 	background-color: #00bff3;
 }
+.scrollToTop {
+    background: #00aeef;
+    border-radius: 7px;
+    position: fixed;
+    right: 15px;
+    color: #fff;
+    transition: 0.5s all ease-in-out;
+    padding: 6px 12px;
+    font-size: 22px;
+    bottom: -60px;
+}
 .logo-ms{
 	margin-top: 10px;
 }

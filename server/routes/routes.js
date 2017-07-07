@@ -11,6 +11,7 @@ var formidable = require('formidable');
 var candidatectrl = require('../controllers/candidate.controllers.js');
 var user_nhatuyendungctrl = require('../controllers/recruiter.controllers.js');
 var keywordctrl = require('../controllers/jobcategorydetail.controllers.js');
+var ratecommentctrl = require('../controllers/ratecomment.controllers.js');
 
 //*====================/connect mongodb ======================
 var connect = require('../config/db');
@@ -105,6 +106,11 @@ router.route('/jobapplyByidJOB/resume/:id').get(resumectrl.jobapplyByidJOB);
 
 
 
+  
+router.route('/getByidrecruiter/:id').get(ratecommentctrl.getByidrecruiter);
+router.route('/ratecomment').post(ratecommentctrl.insert);
+
+
 router.route('/district').get(districtctrl.getAll);
 router.route('/district/count').get(districtctrl.count);
 router.route('/district').post(districtctrl.insert);
@@ -148,6 +154,7 @@ router.route('/workplace/:id').put(workplacectrl.update);
 router.route('/workplace/:id').delete(workplacectrl.delete);
 
 var sliderctrl = require('../controllers/slider.controllers.js');
+router.route('/getslider').get(sliderctrl.getslider);
 router.route('/slider').get(sliderctrl.getAll);
 router.route('/slider/count').get(sliderctrl.count);
 router.route('/slider').post(sliderctrl.insert);
@@ -163,6 +170,7 @@ var postctrl = require('../controllers/job.controllers.js');
 router.route('/get-All-Skill-Company/:id').get(postctrl.get_All_Skill_Company);
 router.route('/count-job-in-Company/:id').get(postctrl.count_job_in_Company);
 router.route('/job').get(postctrl.getAll);
+router.route('/getjobByID/:id').get(postctrl.get);
 router.route('/gettop10post').get(postctrl.top10post);
 router.route('/job/count').get(postctrl.count);
 router.route('/job').post(postctrl.insert);
@@ -172,8 +180,8 @@ router.route('/job/:id').delete(postctrl.delete);
 router.route('/getpost/:id').get(postctrl.getiduser);
 router.route('/getDetailjob/:id').get(postctrl.getByIdDetailJob);
 router.route('/gettop12Company').get(postctrl.gettop12Company);
-router.route('/job-in-company/:id').get(postctrl.jobincompany);//get top 12
-router.route('/job-search-title').post(postctrl.searchJobTitles);//get top 12
+router.route('/job-in-company/:id').get(postctrl.jobincompany);
+router.route('/job-search-title').post(postctrl.searchJobTitles);
 
 
 

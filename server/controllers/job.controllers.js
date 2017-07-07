@@ -225,7 +225,7 @@ module.exports.searchJobTitles = function (req, res) {
   var obj2 = [
 
   ];
-    var ObjectId = require('mongoose').Types.ObjectId;
+  var ObjectId = require('mongoose').Types.ObjectId;
   if (typeof Ksalarybegin !== 'undefined') {
 
     obj2.push({
@@ -259,7 +259,7 @@ module.exports.searchJobTitles = function (req, res) {
     })
   }
   if (typeof Kjobcategory !== 'undefined') {
-   
+
     obj2.push({
       jobcategory: new ObjectId(Kjobcategory)
     })
@@ -271,7 +271,7 @@ module.exports.searchJobTitles = function (req, res) {
     })
   }
 
-console.log(obj2)
+  console.log(obj2)
 
 
   var ObjectId = require('mongoose').Types.ObjectId;
@@ -332,15 +332,53 @@ console.log(obj2)
 
 // Get all
 module.exports.getAll = function (req, res) {
-  model.find(
-    function (err, model) {
-      if (err) {
-        console.log(err);
-        res.status(400).json(err);
-      } else {
-        res.status(200).json(model);
+  model.aggregate([
+
+    {
+      "$lookup": {
+        "from": "districts",
+        "localField": "districtid",
+        "foreignField": "_id",
+        "as": "Infodistrict"
+      },
+    },
+    {
+      "$lookup": {
+        "from": "recruiters",
+        "localField": "recruiterid",
+        "foreignField": "_id",
+        "as": "company"
       }
-    });
+    },
+    {
+      "$lookup": {
+        "from": "jobcategorydetails",
+        "localField": "jobcategorydetail",
+        "foreignField": "_id",
+        "as": "Infokeyword"
+      },
+
+    },
+    {
+      "$lookup": {
+        "from": "jobcategories",
+        "localField": "jobcategory",
+        "foreignField": "_id",
+        "as": "Infojobcategory"
+      }
+    },
+    {
+      "$lookup": {
+        "from": "workplaces",
+        "localField": "workplaceid",
+        "foreignField": "_id",
+        "as": "Infoworkplace"
+      }
+    }
+  ]).exec(function (err, docs) {
+    if (err) throw err;
+    res.json(docs);
+  });
 };
 module.exports.get_job_key = function (req, res) {
 
@@ -422,9 +460,21 @@ module.exports.insert = function (req, res) {
 
 // Get by id
 module.exports.get = function (req, res) {
-  model.findOne({ _id: req.params.id }, function (err, obj) {
-    if (err) { return console.error(err); }
-    res.json(obj);
+  var ObjectId = require('mongoose').Types.ObjectId;
+
+  model.aggregate([
+    { $match: { _id: new ObjectId(req.params.id) } },
+    {
+      "$lookup": {
+        "from": "recruiters",
+        "localField": "recruiterid",
+        "foreignField": "_id",
+        "as": "company"
+      }
+    }
+
+  ]).exec(function (err, docs) {
+    res.json(docs);
   });
 };
 module.exports.get_job_company = function (req, res) {

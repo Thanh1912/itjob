@@ -3,6 +3,8 @@ import { Title } from '@angular/platform-browser';
 import { JobService } from '../../services/job.service';
 import { JobcategoryService } from '../../services/jobcategory.service';
 import { JobcategoryDetailService } from '../../services/jobcategory-detail.service';
+import { sliderService } from '../../services/slider.service';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -24,9 +26,25 @@ export class HomeComponent implements OnInit {
   ListJobcategoryD: any;
   Listcompany: any;
   listjobtop: any;
-  constructor(private title: Title, private job: JobService, private JobcategoryService: JobcategoryService, private JobcategoryDetailService: JobcategoryDetailService) {
+  listslider: any;
+  constructor(private title: Title,private slider: sliderService, private job: JobService, private JobcategoryService: JobcategoryService, private JobcategoryDetailService: JobcategoryDetailService) {
 
   }
+  getslider() {
+    this.slider.getslider().subscribe(
+      data => {
+        this.listslider = data;
+        console.log('====listslider====')
+        console.log(this.listslider)
+      },
+      error => console.log(error),
+      () => { }
+    );
+  }
+
+
+
+
   getjobTOP() {
     this.job.gettopjob().subscribe(
       data => {
@@ -77,6 +95,7 @@ export class HomeComponent implements OnInit {
     this.gettop12Company();
     this.getjobTOP()
     this.title.setTitle('Trang chủ Itjob');
+    this.getslider();
     // title.getTitle();
     // title.setTitle('new title');
   }

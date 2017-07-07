@@ -13,6 +13,10 @@ export class sliderService {
   getall(): Observable<any> {
     return this.http.get(this.Rest_Url + '/api/slider').map(res => res.json());
   }
+    getslider(): Observable<any> {
+    return this.http.get(this.Rest_Url + '/api/getslider').map(res => res.json());
+  }
+  
   count(): Observable<any> {
     return this.http.get(this.Rest_Url + '/api/slider/count').map(res => res.json());
   }

@@ -77,8 +77,8 @@ export class SearchJobsComponent implements OnInit {
   NameCatagory: String;
   NameCatagoryDetail: String;
   id: any;
-  onSubmit(value) {
-    this.job.searchJobTile({}).subscribe(
+  onSubmit(id:String) {
+    this.job.searchJobTile({jobcategoryP:this.id}).subscribe(
       data => {
         this.allItems = data;
         console.log(this.allItems);
@@ -93,13 +93,14 @@ export class SearchJobsComponent implements OnInit {
     this.isdate = true;
     this.Showselected = false;
     this.showcus = false;
-    this.onSubmit(null)
+   
     this.isadvance = true;
     this.sub = this.route.params.subscribe(params => {
       this.id = params['id'];
       this.idDetail = params['id_detail'];
       if (this.id !== "all") {
         this.getinfoCatagory(this.id);
+         this.onSubmit(this.id)
       }
       this.getjobcategoryByID(this.id);
 

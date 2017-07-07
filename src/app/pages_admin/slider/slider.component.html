@@ -51,8 +51,8 @@
                       <td>{{items.createddate}}</td>
                   <td>
                     <button class="btn btn-sm btn-warning" (click)="enableEditing(cat)"><i class="fa fa-pencil"></i> Edit</button>                  
-                    <button class="btn btn-sm btn-warning" (click)="enableEditing(cat)"><i class="fa fa-pencil"></i> Edit</b
-                    <button class="btn btn-sm btn-warning" (click)="enableEditing(cat)"><i class="fa fa-pencil"></i> Edit</button>               
+
+                   
                   </td>
                 </tr>
               </tbody>
@@ -98,7 +98,7 @@
                 <div class="modal-body">
                   <div class="box box-danger">
                     <div class="box-header with-border">
-                      <h3 class="box-title">Slide Home</h3>
+                   
                     </div>
                     <div class="box-body">
                       <div class="row">
@@ -109,7 +109,6 @@
                           <select class="form-control">
                         <option>New </option>
                         <option>Title</option>
-                        <option>  </option>
                         <option>option 4</option>
                         <option>option 5</option>
                       </select>
@@ -126,17 +125,18 @@
                       <table class="table table-hover">
                         <tbody>
                           <tr *ngFor="let item of listjob" class="listBg">
-                            <td><img src="https://cdn.itviec.com/system/production/employers/logos/1982/propzy-vi-t-nam-logo-65-65.png?1454113573"
+                            <td><img src="http://localhost:3000/uploads/forms/logo/{{item.company[0].info_recruiter.logo}}"
                                 class="user-image" alt="User Image"></td>
                             <td>
-                              <p class="titleJ">{{item.title}}</p>
+                              <p class="titleJ">{{item._id}}</p>
+                                   <p class="titleJ">{{item.title}}</p>
                               <p>{{item.createddate|date}}</p>
                               <p>{{item.endPost|date}}</p>
-                              <p>Company: Propzy Việt Nam</p>
+                              <p>Company:{{item.company[0].info_recruiter.namecompany}}</p>
                             </td>
                             <td> 
                                  </td>
-                            <td> <button type="button" class="btn btn-info btn-flat ">Add Job</button></td>
+                            <td> <button type="button" class="btn btn-info btn-flat " (click)="getByIdJob(item._id)">Add Job</button></td>
                           </tr>
 
                         </tbody>

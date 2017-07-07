@@ -2,10 +2,22 @@
 var mongoose = require('mongoose');
 var model = require('../models/slider.model.js');
 
-
 // Get all
 module.exports.getAll = function (req, res) {
     model.find(
+        function (err, model) {
+            if (err) {
+                console.log(err);
+                res.status(400).json(err);
+            } else {
+                console.log('getall', model);
+                res.status(200).json(model);
+            }
+        });
+};
+// Get all
+module.exports.getslider = function (req, res) {
+    model.find({status:true},
         function (err, model) {
             if (err) {
                 console.log(err);

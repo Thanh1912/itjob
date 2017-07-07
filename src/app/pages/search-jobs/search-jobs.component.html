@@ -235,7 +235,7 @@
                                 </a>
                         </td>
                         <td>
-                            <h4><a href="job_detail.html">{{listjob.title}}</a></h4>
+                            <h4><a [routerLink]="['pages/home/detail-jobs',listjob._id ]">{{listjob.title}}</a></h4>
                             <p>{{listjob.title}}</p>
                             <br>
                             <p>Posted on: {{listjob.createddate|date}} </p>

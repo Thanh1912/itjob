@@ -41,11 +41,6 @@ export class SliderComponent implements OnInit {
 
   }
   public uploader: FileUploader = new FileUploader({ url: 'http://localhost:3000/api/uploadpostbaidang', itemAlias: 'file' });
-
-
-
-
-
   //====================================
   listjob: any;
   listskider: any;
@@ -64,11 +59,7 @@ export class SliderComponent implements OnInit {
   addForm: FormGroup;
   title = new FormControl('', Validators.required);
   namecompany = new FormControl('', Validators.required);
-
   SalaryC = new FormControl('', Validators.required);
-  //    title = new FormControl('', Validators.required);
-
-
   constructor(private formBuilder: FormBuilder, private http: Http, private sliderService: sliderService, private Job: JobService, private pagerService: PagerService) { }
   ngOnInit() {
     this.getallJobslider();
@@ -78,6 +69,7 @@ export class SliderComponent implements OnInit {
       namecompany: this.namecompany,
       SalaryC: this.SalaryC
     });
+
     //override the onAfterAddingfile property of the uploader so it doesn't authenticate with //credentials.
     this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
     //overide the onComplceteItem property of the uploader so we are
@@ -105,8 +97,24 @@ export class SliderComponent implements OnInit {
   getslider() {
     this.sliderService.getall().subscribe(
       data => {
-        this.listAll = data;
-        console.log(this.listAll)
+
+        this.listskider = data;
+
+        console.log(data)
+      },
+      error => console.log(error),
+      () => this.isLoading = false
+    );
+  }
+  getByIdJob(idjob: String) {
+    this.Job.getjobByID(idjob).subscribe(
+      data => {
+        console.log(data)
+        this.title.setValue(data[0].title);
+        this.namecompany.setValue(data[0].company[0].info_recruiter.namecompany);
+        this.SalaryC.setValue(data[0].salarycompete);
+        this.ImageUrls = data[0].postimage
+        this.IconUrls = data[0].company[0].info_recruiter.logo;
       },
       error => console.log(error),
       () => this.isLoading = false

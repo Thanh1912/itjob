@@ -32,7 +32,8 @@ import { JobService } from './../services/job.service';
 import { PagerService } from './../_services/pager.service';
 import { JobcategoryService } from './../services/jobcategory.service';
 import { WorkplaceService } from './../services/workplace.service';
-
+import { sliderService } from './../services/slider.service';
+import { RateService } from './../services/rate.service';
 import { JobcategoryDetailService } from './../services/jobcategory-detail.service';
 import { SearchPipe } from './../Pipes/search.pipe';
 import { SearchCompanyPipe } from './search-company.pipe';
@@ -70,7 +71,7 @@ let providers = {
     SearchCompanyPipe,
     CapitalizePipe
   ]
-  , providers: [DatePipe,WorkplaceService,CapitalizePipe,SearchPipe,PagerService,JobcategoryDetailService,JobcategoryService,JobService, CompanyService, QuanliNtdService, CandidateService, ResumeService],
+  , providers: [sliderService,RateService,DatePipe,WorkplaceService,CapitalizePipe,SearchPipe,PagerService,JobcategoryDetailService,JobcategoryService,JobService, CompanyService, QuanliNtdService, CandidateService, ResumeService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class PagesModule {
