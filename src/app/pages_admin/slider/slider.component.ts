@@ -42,7 +42,7 @@ export class SliderComponent implements OnInit {
   }
   public uploader: FileUploader = new FileUploader({ url: 'http://localhost:3000/api/uploadpostbaidang', itemAlias: 'file' });
   //====================================
-  listjob: any;
+  listJOB: any;
   listskider: any;
   isLoading: boolean
   //====================================
@@ -50,8 +50,13 @@ export class SliderComponent implements OnInit {
   pager: any = {};
   // paged items
   pagedItems: any[];
-  Itemsall = [];
-  listAll = [];
+
+
+    pagerJOB: any = {};
+  // paged items
+  pagedItemsJOB: any[];
+
+
 
   //====================================
   ImageUrls: String;
@@ -60,6 +65,9 @@ export class SliderComponent implements OnInit {
   title = new FormControl('', Validators.required);
   namecompany = new FormControl('', Validators.required);
   SalaryC = new FormControl('', Validators.required);
+  Link = new FormControl('', Validators.required);
+  descriptionwork = new FormControl('', Validators.required);
+
   constructor(private formBuilder: FormBuilder, private http: Http, private sliderService: sliderService, private Job: JobService, private pagerService: PagerService) { }
   ngOnInit() {
     this.getallJobslider();
@@ -67,7 +75,9 @@ export class SliderComponent implements OnInit {
     this.addForm = this.formBuilder.group({
       title: this.title,
       namecompany: this.namecompany,
-      SalaryC: this.SalaryC
+      SalaryC: this.SalaryC,
+      Link: this.Link,
+      descriptionwork: this.descriptionwork
     });
 
     //override the onAfterAddingfile property of the uploader so it doesn't authenticate with //credentials.
@@ -85,10 +95,10 @@ export class SliderComponent implements OnInit {
   getallJobslider() {
     this.Job.getall().subscribe(
       data => {
-        this.listjob = data;
+        this.listJOB = data;
         console.log('show')
         console.log(data)
-        this.setPage(1)
+        this.setPageJOB(1)
       },
       error => console.log(error),
       () => this.isLoading = false
@@ -99,7 +109,7 @@ export class SliderComponent implements OnInit {
       data => {
 
         this.listskider = data;
-
+        this.setPage(1)
         console.log(data)
       },
       error => console.log(error),
@@ -115,6 +125,8 @@ export class SliderComponent implements OnInit {
         this.SalaryC.setValue(data[0].salarycompete);
         this.ImageUrls = data[0].postimage
         this.IconUrls = data[0].company[0].info_recruiter.logo;
+        this.Link.setValue("http://localhost:4200/pages/home/detail-jobs/" + data[0]._id);
+        this.descriptionwork.setValue(data[0].descriptionwork);
       },
       error => console.log(error),
       () => this.isLoading = false
@@ -148,9 +160,19 @@ export class SliderComponent implements OnInit {
       return;
     }
     // get pager object from service
-    this.pager = this.pagerService.getPager(this.Itemsall.length, page);
+    this.pager = this.pagerService.getPager(this.listskider.length, page);
 
     // get current page of items
-    this.pagedItems = this.Itemsall.slice(this.pager.startIndex, this.pager.endIndex + 1);
+    this.pagedItems = this.listskider.slice(this.pager.startIndex, this.pager.endIndex + 1);
+  }
+    setPageJOB(page: number) {
+    if (page < 1 || page > this.pagerJOB.totalPages) {
+      return;
+    }
+    // get pager object from service
+    this.pagerJOB = this.pagerService.getPager(this.listJOB.length, page);
+
+    // get current page of items
+    this.pagedItemsJOB = this.listJOB.slice(this.pagerJOB.startIndex, this.pagerJOB.endIndex + 1);
   }
 }

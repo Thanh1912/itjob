@@ -7,6 +7,7 @@ import { JobcategoryDetailService } from './../../services/jobcategory-detail.se
 import { ActivatedRoute, Router } from '@angular/router';
 import { CapitalizePipe } from '../Pipe/capitalize.pipe';
 import { DatePipe } from '@angular/common';
+import { PagerService } from './../../_services/pager.service';
 @Component({
   selector: 'app-search-jobs',
   templateUrl: './search-jobs.component.html',
@@ -35,6 +36,7 @@ export class SearchJobsComponent implements OnInit {
   to = new Date();
   salaryB: String;
   salaryE: String;
+  allItem=[];
   selectSalaryB(value: String) {
     this.salaryB = value;
   }
@@ -65,11 +67,9 @@ export class SearchJobsComponent implements OnInit {
     } else {
       this.showcus = true;
     }
-
   }
-
   isadvance = false;
-  constructor(private datePipe: DatePipe, private job: JobService, private capitalize: CapitalizePipe, private Workplace: WorkplaceService, private router: Router, private jobcategoryDetailService: JobcategoryDetailService, private jobcategory: JobcategoryService, private route: ActivatedRoute) { }
+  constructor( private pagerService:  PagerService ,private datePipe: DatePipe, private job: JobService, private capitalize: CapitalizePipe, private Workplace: WorkplaceService, private router: Router, private jobcategoryDetailService: JobcategoryDetailService, private jobcategory: JobcategoryService, private route: ActivatedRoute) { }
   list_all_jobcategory: any;
   list_ById_jobcategory: any;
   private sub: any;
@@ -129,6 +129,16 @@ export class SearchJobsComponent implements OnInit {
 
       }
     );
+  }
+  
+  setPage(page: number) {
+    if (page < 1 || page > this.pager.totalPages) {
+      return;
+    }
+    // get pager object from service
+    this.pager = this.pagerService.getPager(this.allItem.length, page);
+    // get current page of items
+    this.pagedItems = this.allItem.slice(this.pager.startIndex, this.pager.endIndex + 1);
   }
   getjobcategory() {
     this.jobcategory.getall().subscribe(

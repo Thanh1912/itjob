@@ -9,6 +9,7 @@ const SliderSchema = new mongoose.Schema({
     image:String,
     salary:String,
     icon:String,
+    descriptionwork:String,
     link:{ type: String, default: '' },
     status:{ type: Boolean, default: true },
 });
