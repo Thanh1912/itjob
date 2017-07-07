@@ -82,7 +82,7 @@ export class CompanyComponent implements OnInit {
   }
   ngOnInit() {
     if (localStorage.getItem('userId_ntd') == null) {
-      this.router.navigate(['/nhatuyendung']);
+      this.router.navigate(['/']);
     }
 
     this.id_user = localStorage.getItem('userId_ntd');

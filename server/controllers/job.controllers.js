@@ -24,7 +24,6 @@ module.exports.getAllJob_company = function (req, res) {
   });
 };
 
-// Get by id
 module.exports.gettop12Company = function (req, res) {
   model.aggregate([
     { "$group": { _id: "$recruiterid", count: { $sum: 1 }, recruiterid: { $first: "$recruiterid" } } },
@@ -38,7 +37,6 @@ module.exports.gettop12Company = function (req, res) {
 };
 
 
-// Get by id
 module.exports.count_job_in_Company = function (req, res) {
   var ObjectId = require('mongoose').Types.ObjectId;
   model.aggregate([
@@ -50,7 +48,6 @@ module.exports.count_job_in_Company = function (req, res) {
     res.json(obj);
   })
 };
-
 
 
 
@@ -106,28 +103,9 @@ module.exports.getByIdDetailJob = function (req, res) {
 };
 
 
-/*
-// Get all
-module.exports.getAllJob_company = function (req, res) {
-   model.aggregate([
-    { "$lookup": {
-      "from": "users",
-      "localField": "recruiterid",
-      "foreignField": "_id",
-      "as": "listuser"
-    }}
-  ]).exec(function (err, docs) {
-    if (err) throw err;
-    res.json(docs);
-  });
-
-};
-
-*/
 //==================Get top 10 job By ID RECRUTER=========
 
 
-// Get by id
 
 module.exports.jobincompany = function (req, res) {
   var ObjectId = require('mongoose').Types.ObjectId;
@@ -226,8 +204,8 @@ module.exports.searchJobTitles = function (req, res) {
 
   ];
   var ObjectId = require('mongoose').Types.ObjectId;
-  if (typeof Ksalarybegin !== 'undefined') {
-
+  if (typeof Ksalarybegin !== 'undefined' || Ksalarybegin === "==") {
+    console.log('salarybegin')
     obj2.push({
       salarybegin: {
         $gte: parseInt(Ksalarybegin),
@@ -235,7 +213,8 @@ module.exports.searchJobTitles = function (req, res) {
     })
 
   }
-  if (typeof Ksalaryend !== 'undefined') {
+  if (typeof Ksalaryend !== 'undefined' || Ksalaryend === "==") {
+    console.log('Ksalaryend')
     obj2.push({
       salaryend: {
         $lt: parseInt(Ksalaryend),
@@ -243,41 +222,41 @@ module.exports.searchJobTitles = function (req, res) {
     })
   }
 
-  if (typeof Kdistrictid !== 'undefined') {
+  if (typeof Kdistrictid !== 'undefined' || Kdistrictid === "==") {
+    console.log('Kdistrictid')
     obj2.push({
       districtid: new ObjectId(Kdistrictid)
     })
   }
-  if (typeof Kworkplaceid !== 'undefined') {
+  if (typeof Kworkplaceid !== 'undefined' || Kworkplaceid === "==") {
+    console.log('Kworkplaceid')
     obj2.push({
       workplaceid: new ObjectId(Kworkplaceid)
     })
   }
-  if (typeof KJobTime !== 'undefined') {
+  if (typeof KJobTime !== 'undefined' || KJobTime === "==") {
+    console.log('KJobTime')
     obj2.push({
       JobTime: KJobTime
     })
   }
-  if (typeof Kjobcategory !== 'undefined') {
-
+  if (typeof Kjobcategory !== 'undefined' || Kjobcategory === "==") {
+    console.log('Kjobcategory')
     obj2.push({
       jobcategory: new ObjectId(Kjobcategory)
     })
   }
-
-  if (typeof Kjobcategorydetail !== 'undefined') {
-    var arr=[];
-    Kjobcategorydetail.forEach(function(value){
-      arr.push(  new ObjectId(value) )
+  if (typeof Kjobcategorydetail !== 'undefined' || typeof array[0] !== 'undefined') {
+    console.log('Kjobcategorydetail')
+    var arr = [];
+    Kjobcategorydetail.forEach(function (value) {
+      arr.push(new ObjectId(value))
     });
     obj2.push({
-      jobcategorydetail: { $in:  arr}
+      jobcategorydetail: { $in: arr }
     })
   }
-
   console.log(obj2)
-
-
   var ObjectId = require('mongoose').Types.ObjectId;
   model.aggregate([
     {

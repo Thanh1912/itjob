@@ -188,10 +188,7 @@ export class EditBaidangComponent implements OnInit {
     }
     this.postservice.get(a).subscribe(
       data => {
-        const json = JSON.parse(data._body);
-        if (data._body == "null") {
-          alert('roing')
-        }
+        const json = data[0]
         console.log(data)
         this.title = json.title;
         this.Viewsalary = json.salarycompete;

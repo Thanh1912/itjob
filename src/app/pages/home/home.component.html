@@ -6,23 +6,23 @@
 
             <!-- Wrapper for slides -->
             <div class="carousel-inner">
-              
+
                 <div [class.active]="i===0" class="item " *ngFor="let item of listslider;let i = index">
-                    
-                   <img src="http://localhost:3000/uploads/forms/post/{{item.image}}" alt="" style="width:100%;">
+                    <img src="http://localhost:3000/uploads/forms/post/{{item.image}}" alt="Los Angeles" style="width:100%;height: 876px">
                     <div class="xcarousel-caption set-caption">
                         <a class="carousel-link" href="{{item.link}}">
                             <img class="slide-product-image img-responsive right-margin-40" src="http://localhost:3000/uploads/forms/logo/{{item.logo}} " alt="Dell Inc" align="left"><h1 class="no-top-margin carousel-link add-shadow">
                                 {{item.Tilte}}
                               <span class="salary">  {{item.salary}} </span></h1>
-                  <p class="carousel-job-text hide-sm text_detail" [innerHTML]="item.descriptionwork">
+                <p class="carousel-job-text hide-sm text_detail" style="    height: 150px;
+    overflow-y: hidden;" [innerHTML]="item.descriptionwork">
                     
                   </p>
 					</a>
 
                     </div>
                 </div>
-         
+
             </div>
 
             <!-- Left and right controls -->
@@ -99,15 +99,15 @@
                                             <a class="text-decoration" style="font-size: 20px;">{{item.name}}</a>
                                         </div>
                                     </div>
-                                     <div class="mkj_content">
-                                    <span *ngFor="let item01 of item.K">
+                                    <div class="mkj_content">
+                                        <span *ngFor="let item01 of item.K">
                                             <a [routerLink]="['search-jobs', 'catagory', item._id, item01._id ]" class="mdtext" >
                                                 {{item01.name}} 
                                             </a>
                                         </span>
-                                         </div>
+                                    </div>
                                     <div class="mj_articledata" style="margin-top:10px;">
-                                        
+
 
                                         <a [routerLink]="['search-jobs', 'catagory', item._id, 'all' ]"><i  class="fa fa-angle-right"></i></a>
                                     </div>

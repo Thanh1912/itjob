@@ -43,7 +43,7 @@ export class SliderComponent implements OnInit {
   public uploader: FileUploader = new FileUploader({ url: 'http://localhost:3000/api/uploadpostbaidang', itemAlias: 'file' });
   //====================================
   listJOB: any;
-  listskider: any;
+  listskider=[];
   isLoading: boolean
   //====================================
   // pager object

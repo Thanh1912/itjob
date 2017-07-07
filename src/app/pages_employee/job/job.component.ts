@@ -30,7 +30,7 @@ interface FileReaderEvent extends Event {
 
 })
 export class JobComponent implements OnInit, AfterViewInit {
-  constructor(private router: Router, private jobcategoryService: JobcategoryService, private http: Http, private el: ElementRef, private districtService: DistrictService, private workplaceService: WorkplaceService, private jobcategoryDetailService: KeywordService,private countryService :countryService, private postservice: PostService) {
+  constructor(private router: Router, private jobcategoryService: JobcategoryService, private http: Http, private el: ElementRef, private districtService: DistrictService, private workplaceService: WorkplaceService, private jobcategoryDetailService: KeywordService, private countryService: countryService, private postservice: PostService) {
     this.ckeditorContent = `<p>My HTML</p>`;
   }
 
@@ -55,15 +55,15 @@ export class JobComponent implements OnInit, AfterViewInit {
   Viewsalary = "0-0 VND";
   ListJobcategory: any;
   ListJobcategoryDetail: any;
-  sluongtuyen:String;
-  jobcategoryId:String;
-  time_end:any;
+  sluongtuyen: String;
+  jobcategoryId: String;
+  time_end: any;
   n = 0;
   onChange1() {
     console.log(this.keyword);
   }
   change_category(value: any) {
-    this.jobcategoryId=value;
+    this.jobcategoryId = value;
     this.getjobcategoryDetailByid(value)
   }
   onchange_dv(newValue) {
@@ -129,9 +129,9 @@ export class JobComponent implements OnInit, AfterViewInit {
         .post('http://localhost:3000/uploadpostbaidang', formData).map((res: Response) => res.json()).subscribe(
         //map the success function and alert the response
         (success) => {
-          alert(success._body);
+          alert('UPload thanh cong');
         },
-        (error) => alert(error))
+        (error) => alert('Khong the upload Image'))
     }
   }
 
@@ -196,7 +196,7 @@ export class JobComponent implements OnInit, AfterViewInit {
       salarycompete: salarycompete,
       salarybegin: value.salarybegin,
       salaryend: value.salaryend,
-       Unit :this.Donvi,
+      Unit: this.Donvi,
       descriptionwork: value.descriptionwork,
       requirementwork: value.requirementwork,
       postimage: this.imageurl,//
@@ -207,9 +207,9 @@ export class JobComponent implements OnInit, AfterViewInit {
       JobTime: this.jobtime,
       Apllication: this.sluongtuyen,
       jobcategory: this.jobcategoryId,
-      endPost:this.time_end,
-     
-      
+      endPost: this.time_end,
+
+
     }
     this.postservice.add(post).subscribe(
       data => {
@@ -229,7 +229,7 @@ export class JobComponent implements OnInit, AfterViewInit {
     this.id_dictrict = newValue;
   }
 
- 
+
   getjobcategory() {
     this.jobcategoryService.getall().subscribe(
       data => {
@@ -243,13 +243,14 @@ export class JobComponent implements OnInit, AfterViewInit {
   getjobcategoryDetailByid(id: any) {
     this.jobcategoryDetailService.getallByIdCategory(id).subscribe(
       data => {
-         this.listKeyword = data;
-         console.log(data)
-       //  this.n=listKeyword.le
+        this.listKeyword = data;
+        console.log(data)
+        //  this.n=listKeyword.le
         this.myOptions = [];
-        for (var i = 0; i < this.n; i++) {
-          this.myOptions.push({ id: data[i]._id, name: data[i].name })
-          console.log(data[i].name + data[i]._id)
+
+        for (let entry of data) {
+          this.myOptions.push({ id: entry._id, name: entry.name })
+          console.log(entry.name + entry._id)
         }
 
       },
