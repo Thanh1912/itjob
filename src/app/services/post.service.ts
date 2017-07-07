@@ -26,7 +26,7 @@ public Rest_Url:String ='http://localhost:3000';
   }
 
   get(cat): Observable<any> {
-    return this.http.get(this.Rest_Url+`/api/job/${cat._id}`, this.options);
+    return this.http.get(this.Rest_Url+`/api/job/${cat._id}`, this.options).map(res => res.json());
   }
 
   edit(cat): Observable<any> {

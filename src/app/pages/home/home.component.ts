@@ -30,6 +30,7 @@ export class HomeComponent implements OnInit {
   constructor(private title: Title,private slider: sliderService, private job: JobService, private JobcategoryService: JobcategoryService, private JobcategoryDetailService: JobcategoryDetailService) {
 
   }
+   active="active";
   getslider() {
     this.slider.getslider().subscribe(
       data => {

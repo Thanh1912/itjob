@@ -60,6 +60,7 @@ export class SliderComponent implements OnInit {
 
   //====================================
   ImageUrls: String;
+  idjob:String;
   IconUrls: String;
   addForm: FormGroup;
   title = new FormControl('', Validators.required);
@@ -104,6 +105,17 @@ export class SliderComponent implements OnInit {
       () => this.isLoading = false
     );
   }
+   delete(cat) {
+    if (window.confirm('Are you sure you want to permanently delete this item?')) {
+      this.sliderService.delete(cat).subscribe(
+        res => {
+          const pos = this.listskider.map(elem => { return elem._id; }).indexOf(cat._id);
+          this.listskider.splice(pos, 1);
+        },
+        error => console.log(error)
+      );
+    }
+  }
   getslider() {
     this.sliderService.getall().subscribe(
       data => {
@@ -125,6 +137,7 @@ export class SliderComponent implements OnInit {
         this.SalaryC.setValue(data[0].salarycompete);
         this.ImageUrls = data[0].postimage
         this.IconUrls = data[0].company[0].info_recruiter.logo;
+        this.idjob=data[0]._id
         this.Link.setValue("http://localhost:4200/pages/home/detail-jobs/" + data[0]._id);
         this.descriptionwork.setValue(data[0].descriptionwork);
       },
@@ -132,23 +145,22 @@ export class SliderComponent implements OnInit {
       () => this.isLoading = false
     );
   }
-
   addSlider() {
-
     var inp = {
       Tilte: this.addForm.value.title,
-      postid: '595da418e778d00da0555d03',
+      postid: this.idjob,
       company: this.addForm.value.namecompany,
       salary: this.addForm.value.SalaryC,
       image: this.ImageUrls,
-      icon: this.IconUrls
+      icon: this.IconUrls,
+      link: this.addForm.value.Link,
+      descriptionwork: this.addForm.value.descriptionwork
     }
     console.log(inp)
 
     this.sliderService.add(inp).subscribe(
       res => {
-        alert('thanh cong')
-
+        alert('Them Slider thanh cong')
       },
       error => console.log(error)
     );

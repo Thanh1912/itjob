@@ -50,6 +50,7 @@
                   <td>{{items.company}}</td>
                   <td>{{items.createddate}}</td>
                   <td>{{items.link}}</td>
+                  <td> <button class="btn btn-sm btn-danger" (click)="delete(items)"><i class="fa fa-trash"></i> Delete</button></td>
                   <td>
                   </td>
                 </tr>
@@ -125,7 +126,7 @@
                             <td><img src="http://localhost:3000/uploads/forms/logo/{{item.company[0].info_recruiter.logo}}" class="user-image image-logo"
                                 alt="User Image"></td>
                             <td>
-                              <p class="titleJ">{{item._id}}</p>
+                            
                               <p class="titleJ">{{item.title}}</p>
                               <p>{{item.createddate|date}}</p>
                               <p>{{item.endPost|date}}</p>
@@ -185,8 +186,7 @@
                 </div>
                 <div class="form-group">
                   <label for="exampleInputEmail1">Icon</label>
-                  <img style="width:110px;height:100px;" src="http://localhost:3000/uploads/forms/logo/{{IconUrls}}" alt=""
-                    border="0">
+                  <img style="width:110px;height:100px;" src="http://localhost:3000/uploads/forms/logo/{{IconUrls}}" alt="" border="0">
 
                 </div>
                 <div class="form-group">
@@ -198,7 +198,7 @@
                   </div>
 
                 </div>
-                  <div class="form-group">
+                <div class="form-group">
                   <div class="col-lg-2">
                     <label for="exampleInputEmail1">Link</label>
                   </div>
@@ -219,7 +219,7 @@
 
                 <div class="form-group">
                   <label for="exampleInputFile">Image</label>
-                  <img src="http://localhost:3000/uploads/forms/logo/{{ImageUrls}}" id="blah" alt="11" border="0">
+                  <img src="http://localhost:3000/uploads/forms/post/{{ImageUrls}}" id="blah" alt="11" border="0">
                 </div>
                 <div class="form-group">
                   <label for="exampleInputFile">File input</label>
