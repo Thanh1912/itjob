@@ -266,8 +266,12 @@ module.exports.searchJobTitles = function (req, res) {
   }
 
   if (typeof Kjobcategorydetail !== 'undefined') {
+    var arr=[];
+    Kjobcategorydetail.forEach(function(value){
+      arr.push(  new ObjectId(value) )
+    });
     obj2.push({
-      jobcategorydetail: Kjobcategorydetail
+      jobcategorydetail: { $in:  arr}
     })
   }
 
@@ -279,8 +283,6 @@ module.exports.searchJobTitles = function (req, res) {
     {
       $match: {
         $and: obj2
-        //   $or: obj2
-
       }
     },
     {

@@ -6,18 +6,22 @@
 
             <!-- Wrapper for slides -->
             <div class="carousel-inner">
-                <div class="item active">
-                    <img src="http://www.ittjobs.com/backgrounds/1.jpg" alt="Los Angeles" style="width:100%;">
+              
+                <div [class.active]="i===0" class="item " *ngFor="let item of listslider;let i = index">
+                    
+                   <img src="http://localhost:3000/uploads/forms/post/{{item.image}}" alt="" style="width:100%;">
                     <div class="xcarousel-caption set-caption">
-                        <a class="carousel-link" href=""><img class="slide-product-image img-responsive right-margin-40" src="http://www.ittjobs.com/thumbnails/92767745.jpg" alt="Dell Inc" align="left"><h1 class="no-top-margin carousel-link add-shadow">C#  Developer ($550 ~ $1,000)	 <span class="salary"> 800-1000 USD </span></h1>
-			
-
-                  <p class="carousel-job-text hide-sm text_detail">Dell is looking for a highly skilled Software Development Analyst who is willing to handle development as well production support work.  He/She should be able to gather client requirements, estimate, design, develop and deploy ...</p>
+                        <a class="carousel-link" href="{{item.link}}">
+                            <img class="slide-product-image img-responsive right-margin-40" src="http://localhost:3000/uploads/forms/logo/{{item.logo}} " alt="Dell Inc" align="left"><h1 class="no-top-margin carousel-link add-shadow">
+                                {{item.Tilte}}
+                              <span class="salary">  {{item.salary}} </span></h1>
+                  <p class="carousel-job-text hide-sm text_detail" [innerHTML]="item.descriptionwork">
+                    
+                  </p>
 					</a>
 
                     </div>
                 </div>
-             
          
             </div>
 

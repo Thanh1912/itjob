@@ -74,11 +74,61 @@ export class SearchJobsComponent implements OnInit {
   list_ById_jobcategory: any;
   private sub: any;
   idDetail: String;
+  workplaceid:String
   NameCatagory: String;
   NameCatagoryDetail: String;
+  districtid:String;
+  JobTime:String
   id: any;
-  onSubmit(id:String) {
-    this.job.searchJobTile({jobcategoryP:this.id}).subscribe(
+  Unit:String;
+  jobcategory_:String;
+jobcategorydetail_=[]
+  onSubmit() {
+ var salaryB_TMP=this.salaryB;
+ var salaryE_TMP=this.salaryE;
+ var Unit_TMP=this.Unit;
+ var districtid_TMP=this.districtid;
+ var workplaceid_TMP=this.workplaceid;
+ var JobTime_TMP= this.JobTime;
+ var jobcategory_TMP=this.jobcategory_;
+ var jobcategorydetail_TMP=this.jobcategorydetail_;
+if(salaryB_TMP===''){
+  salaryB_TMP='=='
+}
+if(salaryE_TMP===''){
+  salaryE_TMP='=='
+}
+if(Unit_TMP===''){
+  Unit_TMP='USD'
+}
+if(districtid_TMP===''){
+  districtid_TMP='=='
+}
+if(workplaceid_TMP===''){
+  workplaceid_TMP='=='
+}
+if(JobTime_TMP===''){
+  JobTime_TMP='=='
+}
+if(jobcategory_TMP===''){
+  jobcategory_TMP='=='
+}
+if(jobcategorydetail_TMP===[]){
+  jobcategorydetail_TMP=[]
+}
+var p= {
+ salarybeginP:salaryB_TMP,
+ salaryendP:salaryE_TMP,
+ UnitP:Unit_TMP,
+ districtidP:districtid_TMP,
+ workplaceidP:workplaceid_TMP,
+ JobTimeP:JobTime_TMP,
+ jobcategoryP:jobcategory_TMP,
+ jobcategorydetailP:jobcategorydetail_TMP
+ }
+    this.job.searchJobTile(
+     p
+      ).subscribe(
       data => {
         this.allItems = data;
         console.log(this.allItems);
@@ -97,10 +147,11 @@ export class SearchJobsComponent implements OnInit {
     this.isadvance = true;
     this.sub = this.route.params.subscribe(params => {
       this.id = params['id'];
+      this.jobcategory_= params['id'];
       this.idDetail = params['id_detail'];
       if (this.id !== "all") {
         this.getinfoCatagory(this.id);
-         this.onSubmit(this.id)
+         this.onSubmit()
       }
       this.getjobcategoryByID(this.id);
 
