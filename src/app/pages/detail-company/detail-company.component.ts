@@ -34,7 +34,7 @@ export class DetailCompanyComponent implements OnInit {
       if (!(evt instanceof NavigationEnd)) {
         return;
       }
-      window.scrollTo(0, 0)
+      window.scrollTo(0, 0);
     });
   }
   title = new FormControl('')
@@ -50,7 +50,8 @@ export class DetailCompanyComponent implements OnInit {
     this.scrollTopChangeRouter();
     this.sub = this.route.params.subscribe(params => {
       this.id = params['id'];
-      this.CountRate(this.id)
+      this.CountRate(this.id);
+      this.GetListRate(this.id);
     });
     //==============GET============
     this.getdetailCompany();
@@ -86,8 +87,8 @@ export class DetailCompanyComponent implements OnInit {
   getdetailCompany() {
     this.company.getdetail_companybyid(this.id).subscribe(
       data => {
-        this.companyitem = data[0];
-          console.log('SHOWWW');
+        this.companyitem = data;
+        console.log("======GET COMPANY=======");
         console.log(data);
       },
       error => console.log(error),
@@ -129,17 +130,50 @@ export class DetailCompanyComponent implements OnInit {
   }
 
   //===============GET Top JOB OF Company======
+checkRate(){
+  var post={
+    candidateid:'595c53fa4fba6c02745ef784',
+    recruiterid:this.id
+  }
+      this.rate.checkHire(post).subscribe(
+      data => {
+          alert(data)
+      },
+      error => console.log(error),
+      () => {
 
+      }
+    );
+}
 
 
   //===============Load comment RATE======
-
+count_Review:String
   CountRate(id: String) {
+    this.rate.count(id).subscribe(
+      data => {
+
+        console.log("======sdfdsf=======");
+        console.log(data);
+        this.count_Review=data
+      },
+      error => console.log(error),
+      () => {
+
+      }
+    );
+  }
+
+//============Kiem tra THANH VIEN co la thanh vien cua company do hay kho =============
+
+list01_Review:any;
+arr=[];
+  GetListRate(id: String) {
     this.rate.getByIdRecuter(id).subscribe(
       data => {
-        this.job_item = JSON.parse(data._body);
-        console.log("======new=======");
-        console.log(this.job_item);
+        console.log("======list_Review=======");
+        console.log(data);
+        this.list01_Review=data
       },
       error => console.log(error),
       () => {
@@ -150,22 +184,33 @@ export class DetailCompanyComponent implements OnInit {
 
 
 
+
+
+
   //===============Post comment RATE======
 
   Postrate() {
     console.log(this.RateForm.value);
-    /*
-    this.rate.add({}).subscribe(
+    var post = {
+      recruiterid: this.id,
+      candidateid: '595c53fa4fba6c02745ef784',
+      rate: this.RateForm.value.star,
+      title: this.RateForm.value.title,
+      content: this.RateForm.value.title,
+    }
+      console.log(post);
+ 
+    this.rate.add(post).subscribe(
       data => {
-        this.job_item = JSON.parse(data._body);
-        console.log("======new=======");
-        console.log(this.job_item);
+      
+        console.log("======Them Thanh cong=======");
+     
       },
       error => console.log(error),
       () => {
 
       }
-    );*/
+    );
   }
 
 

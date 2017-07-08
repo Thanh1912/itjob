@@ -1,12 +1,12 @@
 <div class="mj_pagetitle">
-  <img src="http://localhost:3000/uploads/forms/image/{{companyitem?.info_recruiter.profileimage}}" alt="profileimage">
+  <img src="http://localhost:3000/uploads/forms/image/{{companyitem[0]?.info_recruiter?.profileimage}}" alt="profileimage">
   <div class="mj_mainheading_overlay"></div>
   <div class="mj_pagetitle_inner">
     <div class="container">
       <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div class="mj_mainheading mj_toppadder80 mj_bottompadder80">
-            <h1>{{companyitem?.info_recruiter.namecompany}}</h1>
+            <h1>{{companyitem[0]?.info_recruiter?.namecompany}}</h1>
           </div>
         </div>
       </div>
@@ -20,30 +20,30 @@
       <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 col-lg-offset-3 col-md-offset-3">
         <div class="mj_resume_heading">
 
-          <img src="http://localhost:3000/uploads/forms/logo/{{companyitem?.info_recruiter.logo}}" class="img-responsive" alt="Logo Company">
-          <h1><span></span> <span>{{companyitem?.info_recruiter.namecompany}}</span></h1>
+          <img src="http://localhost:3000/uploads/forms/logo/{{companyitem[0]?.info_recruiter?.logo}}" class="img-responsive" alt="Logo Company">
+          <h1><span></span> <span>{{companyitem[0]?.info_recruiter?.namecompany}}</span></h1>
           <ul>
             <li>
               <label><i class="fa fa-map-marker"></i>
-             </label > <span style="font-size: 22px;">Address: {{companyitem?.info_recruiter.address}} </span></li>
+             </label > <span style="font-size: 22px;">Address: {{companyitem[0]?.info_recruiter?.address}} </span></li>
 
             <li>
-              <label>Số Lượng: </label><span class="mj_green_text fsize22"> {{companyitem?.infocompanysizes[0].name}} </span>
+              <label>Số Lượng: </label><span class="mj_green_text fsize22"> {{companyitem[0]?.infocompanysizes[0].name}} </span>
             </li>
 
           </ul>
           <ul>
-            <li><a href="{{companyitem?.info_recruiter.website}}"><i  class="fa fa-link"></i> Website</a>
+            <li><a href="{{companyitem[0]?.info_recruiter?.website}}"><i  class="fa fa-link"></i> Website</a>
             </li>
 
-            <li><a href="{{companyitem?.info_recruiter.facebook}}"><i  class="fa fa-facebook"></i>facebook</a>
+            <li><a href="{{companyitem[0]?.info_recruiter?.facebook}}"><i  class="fa fa-facebook"></i>facebook</a>
             </li>
 
             <li>
               <a><i  class="joball "></i>{{countJob}} jobs</a>
             </li>
             <li>
-              <a><label>Quốc Gia: </label>{{companyitem?.infocountry[0].name}} </a>
+              <a><label>Quốc Gia: </label>{{companyitem[0]?.infocountry[0].name}}  <button (click)="checkRate()">cccc</button> </a>
             </li>
           </ul>
         </div>
@@ -61,7 +61,7 @@
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
           <div class="row">
             <div class="mj_resume_changeing mj_bluebg">
-              <a href="#individual" aria-controls="individual" role="tab" data-toggle="tab" aria-expanded="true">Review 224</a>
+              <a href="#individual" aria-controls="individual" role="tab" data-toggle="tab" aria-expanded="true">Review {{count_Review}}</a>
             </div>
           </div>
         </div>
@@ -85,7 +85,7 @@
                     </div>
                     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
                       <div class="mj_detaildiv">
-                        <p [innerHTML]="companyitem?.info_recruiter.introduction">
+                        <p [innerHTML]="companyitem[0]?.info_recruiter?.introduction">
                         </p>
 
                       </div>
@@ -161,25 +161,65 @@
                   <div class="row">
                     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
                       <div class="mj_detaildiv">
-                        <img style="width: 250px;" src="https://preview.ibb.co/b0pYhv/stars.png" alt="stars" border="0">
-                        <h2>4 Star</h2>
+
+                        <h2>{{companyitem[0]?.ratestar}} Star</h2>
+
+                        <div [ngSwitch]="companyitem[0]?.ratestar">
+                          <div *ngSwitchCase="1">
+                            <i class="fa fa-3x fa-star mauvang" aria-hidden="true"></i>
+                            <i class="fa fa-3x fa-star " aria-hidden="true"></i>
+                            <i class="fa fa-3x fa-star " aria-hidden="true"></i>
+                            <i class="fa fa-3x fa-star " aria-hidden="true"></i>
+                            <i class="fa fa-3x add-onfa-star " aria-hidden="true"></i>
+                          </div>
+                          <div *ngSwitchCase="2">
+                            <i class="fa fa-3x fa-star mauvang" aria-hidden="true"></i>
+                            <i class="fa fa-3x fa-star mauvang" aria-hidden="true"></i>
+                            <i class="fa fa-3x fa-star " aria-hidden="true"></i>
+                            <i class="fa fa-3x fa-star " aria-hidden="true"></i>
+                            <i class="fa fa-3x add-onfa-star " aria-hidden="true"></i>
+                          </div>
+                          <div *ngSwitchCase="3">
+                            <i class="fa fa-3x fa-star mauvang" aria-hidden="true"></i>
+                            <i class="fa fa-3x fa-star mauvang" aria-hidden="true"></i>
+                            <i class="fa fa-3x fa-star mauvang" aria-hidden="true"></i>
+                            <i class="fa fa-3x fa-star " aria-hidden="true"></i>
+                            <i class="fa fa-3x add-onfa-star " aria-hidden="true"></i>
+                          </div>
+                          <div *ngSwitchCase="4">
+                            <i class="fa fa-3x fa-star mauvang" aria-hidden="true"></i>
+                            <i class="fa fa-3x fa-star mauvang" aria-hidden="true"></i>
+                            <i class="fa fa-3x fa-star mauvang" aria-hidden="true"></i>
+                            <i class="fa fa-3x fa-star mauvang" aria-hidden="true"></i>
+                            <i class="fa fa-3x add-onfa-star " aria-hidden="true"></i>
+                          </div>
+                          <div *ngSwitchCase="5">
+                            <i class="fa fa-3x fa-star mauvang" aria-hidden="true"></i>
+                            <i class="fa fa-3x fa-star mauvang" aria-hidden="true"></i>
+                            <i class="fa fa-3x fa-star mauvang" aria-hidden="true"></i>
+                            <i class="fa fa-3x fa-star mauvang" aria-hidden="true"></i>
+                            <i class="fa fa-3x add-onfa-star mauvang" aria-hidden="true"></i>
+                          </div>
+
+                        </div>
+
+
+
                       </div>
                     </div>
 
-                    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12" *ngFor="let item of list01_Review">
                       <div class="mj_detaildiv">
                         <h3 class="short-title">
-                          Moi truong lam viec tot nhat VN
+                          {{item.title}}
                         </h3>
                         <blockquote class="mj_blueblockquote">
+
                           <img src="https://preview.ibb.co/b0pYhv/stars.png" style="    width: 100px;" alt="stars" border="0">
-                          <span><i class="fa fa-calendar"></i> Dec 2010   </span>
-                          <p>- Phuc loi rat tot, bao hiem nhan vien + 1 nguoi than
-                            <br>- Luong kha
-                            <br>- Nhieu hoat dong the thao va training ky thuat
-                            <br>- Van hoa rat tot
-                            <br>Bao hiem va luong rat tot, co rat nhieu hoat dong the thao de nhan vien ren luyen the luc
-                            va tinh than</p>
+                          <span><i class="fa fa-calendar"></i>    {{item.createddate|date}}   </span>
+                          <p [innerHTML]="item.content">
+
+                          </p>
                         </blockquote>
                       </div>
                     </div>
@@ -189,20 +229,25 @@
 
 
 
+
+
+
+
+
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                       <div class="mj_postdiv mj_shadow_yellow mj_postpage mj_toppadder50 mj_bottompadder50">
                         <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1">
                           <form [formGroup]="RateForm" (ngSubmit)="Postrate()">
-                       
+
                             <div class="form-group">
                               <label> Title</label>
                               <input type="text" [formControl]="title" name="title" class="form-control" placeholder="Job Title">
                             </div>
-                          
+
                             <div class="form-group">
                               <label>Start</label>
-                            <!--  <span class="select-wrapper">custom-select</span>-->
-                              <select [formControl]="star"  name="Description" class="">
+                              <!--  <span class="select-wrapper">custom-select</span>-->
+                              <select [formControl]="star" name="Description" class="">
                                         <option value='1'>1</option>
                                         <option value='2'>2</option>
                                         <option value='3'>3</option>
@@ -210,15 +255,11 @@
                                         <option value='5'>5</option>
                                     </select>
                             </div>
-                        
-                      
                             <div class="form-group">
                               <label>Description</label>
                               <textarea id="editor1" [formControl]="description" name="Description" class="form-control">                                        &lt;p&gt;Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam &lt;strong&gt;nonummy nibh euismod&lt;/strong&gt; tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim &lt;a href="#"&gt;veniam&lt;/a&gt;, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip.&lt;/p&gt;
                                     </textarea>
                             </div>
-
-
                             <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
                               <div class="row">
                                 <div class="mj_middileborder"></div>
@@ -226,14 +267,11 @@
                             </div>
                             <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 mj_bottompadder20">
                               <div class="row">
-                              <button type="submit" >SUBMIT</button>
+                                <button type="submit" class="btn btn-flat btn-primary  mj_yellowbtn">Post Rate</button>
                               </div>
                             </div>
-
                           </form>
                         </div>
-                      </div>
-                      <div class="mj_showmore"><a href="#" class="mj_showmorebtn mj_bigbtn mj_yellowbtn">Preview <i class="fa fa-angle-right"></i></a>
                       </div>
                     </div>
 

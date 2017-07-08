@@ -94,6 +94,7 @@ var workplacectrl = require('../controllers/workplace.controllers.js');
 // APIs
 
 
+router.route('/checkHire/resume').post(resumectrl.checkHire);
 router.route('/resume').post(resumectrl.insert);
 router.route('/insertCV').post(resumectrl.insertCV);
 router.route('/resume/:id').put(resumectrl.update);

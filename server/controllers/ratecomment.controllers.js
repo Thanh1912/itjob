@@ -25,7 +25,7 @@ var model = require('../models/ratecomment.model.js');
 
     // Get by id recruter
   module.exports.getByidrecruiter = function(req, res) {
-    model.findOne({ recruiterid: req.params.id }, function(err, obj) {
+    model.find({ recruiterid: req.params.id }, function(err, obj) {
       if (err) { return console.error(err); }
       res.json(obj);
     });

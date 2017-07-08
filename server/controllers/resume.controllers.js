@@ -53,10 +53,10 @@ module.exports.jobapplyByidUser = function (req, res) {
 };
 // Update by id
 module.exports.update = function (req, res) {
-    model.findOneAndUpdate({ _id: req.params.id }, req.body, function (err) {
-        if (err) { return console.error(err); }
-        res.sendStatus(200);
-    });
+  model.findOneAndUpdate({ _id: req.params.id }, req.body, function (err) {
+    if (err) { return console.error(err); }
+    res.sendStatus(200);
+  });
 };
 
 module.exports.jobapplyByidJOB = function (req, res) {
@@ -134,6 +134,29 @@ module.exports.getallByIdUser = function (req, res) {
   model.find({ "candidateid": candidate }).sort({ createddate: -1 }).exec(function (err, docs) {
     if (err) throw err;
     res.json(docs);
+  })
+};
+
+
+
+//get all cv theo id_user  ==> LIst pdf
+module.exports.checkHire = function (req, res) {
+ var ObjectId = require('mongoose').Types.ObjectId;
+
+  const candidateid = new ObjectId(req.body.candidateid);
+  const recruiterid =  new ObjectId(req.body.recruiterid);
+
+  model.find({ "candidateid": candidateid, "recruiterid": recruiterid,status:5 }).exec(function (err, docs) {
+    if (err) throw err;
+  
+    if (typeof docs[0] ==='undefined') {//chua thue
+        
+      res.json(0);
+    }else{
+
+    res.json(1);
+    }
+    
   })
 };
 

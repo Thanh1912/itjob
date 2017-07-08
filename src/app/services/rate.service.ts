@@ -25,7 +25,9 @@ export class RateService {
   add(item): Observable<any> {
     return this.http.post(this.Rest_Url + '/api/ratecomment', JSON.stringify(item), this.options);
   }
-
+  checkHire(item:any){
+    return this.http.post(this.Rest_Url + '/api/checkHire/resume', JSON.stringify(item), this.options).map(res => res.json());
+  }
  
 
 
