@@ -203,16 +203,18 @@ module.exports.searchJobTitles = function (req, res) {
   var obj1 = [];
   var obj2 = [];
   var ObjectId = require('mongoose').Types.ObjectId;
-  if (typeof Ksalarybegin !== 'undefined' || Ksalarybegin === "==") {
-    console.log('salarybegin')
+  if (typeof Ksalarybegin !== 'undefined' && Ksalarybegin !== "==" && Ksalarybegin !== "0" ) {
+    console.log(salarybegin+isNaN(Ksalarybegin));
+    if(parseInt(Ksalarybegin)!==0&& isNaN(Ksalarybegin)==false)
     obj2.push({
       salarybegin: {
         $gte: parseInt(Ksalarybegin),
       }
     })
   }
-  if (typeof Ksalaryend !== 'undefined' || Ksalaryend === "==") {
-    console.log('Ksalaryend')
+  if (typeof Ksalaryend !== 'undefined' && Ksalaryend !== "==" && Ksalaryend !== "0") {
+    console.log(Ksalaryend+isNaN(Ksalaryend))
+      if(parseInt(Ksalaryend)!==0&& isNaN(Ksalaryend)==false)
     obj2.push({
       salaryend: {
         $lt: parseInt(Ksalaryend),
@@ -220,25 +222,26 @@ module.exports.searchJobTitles = function (req, res) {
     })
   }
 
-  if (typeof Kdistrictid !== 'undefined' || Kdistrictid === "==") {
+  if (typeof Kdistrictid !== 'undefined' && Kdistrictid !== "==") {
     console.log('Kdistrictid')
     obj2.push({
       districtid: new ObjectId(Kdistrictid)
     })
   }
-  if (typeof Kworkplaceid !== 'undefined' || Kworkplaceid === "==") {
+  console.log(Kworkplaceid)
+  if (typeof Kworkplaceid !== 'undefined' && Kworkplaceid !== "==" ) {
     console.log('Kworkplaceid')
     obj2.push({
       workplaceid: new ObjectId(Kworkplaceid)
     })
   }
-  if (typeof KJobTime !== 'undefined' || KJobTime === "==") {
+  if (typeof KJobTime !== 'undefined' && KJobTime !== "==") {
     console.log('KJobTime')
     obj2.push({
       JobTime: KJobTime
     })
   }
-  if (typeof Kjobcategory !== 'undefined' || Kjobcategory === "==") {
+  if (typeof Kjobcategory !== 'undefined' && Kjobcategory !== "==") {
     console.log('Kjobcategory')
     obj2.push({
       jobcategory: new ObjectId(Kjobcategory)
@@ -255,11 +258,11 @@ module.exports.searchJobTitles = function (req, res) {
         jobcategorydetail: { $in: arr }
       })
   }
-  if (typeof result !== 'undefined' || result === '==') {
+ /* if (typeof result !== 'undefined' || result !== '==') {
     obj2.push(
       { "title": new RegExp(result) }
     )
-  }
+  }*/
   console.log(obj2)
   var ObjectId = require('mongoose').Types.ObjectId;
   model.aggregate([

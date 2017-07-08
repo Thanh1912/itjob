@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { JobService } from '../../services/job.service';
+import { RateService } from '../../services/rate.service';
+import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { CompanyService } from '../../services/company.service';
 import { ActivatedRoute } from '@angular/router';
-import {Location} from '@angular/common';
+import { Location } from '@angular/common';
+import { Router, NavigationEnd } from '@angular/router';
 @Component({
   selector: 'app-detail-company',
   templateUrl: './detail-company.component.html',
@@ -23,22 +26,48 @@ export class DetailCompanyComponent implements OnInit {
   sub: any;
   id: any;
   countJob: String;
-  constructor(private company: CompanyService,private _location: Location, private job: JobService, private route: ActivatedRoute) { }
+  constructor(private builder: FormBuilder, private router: Router, private rate: RateService, private company: CompanyService, private _location: Location, private job: JobService, private route: ActivatedRoute) { }
   companyitem = [];
+  countReView: String;
+  scrollTopChangeRouter() {
+    this.router.events.subscribe((evt) => {
+      if (!(evt instanceof NavigationEnd)) {
+        return;
+      }
+      window.scrollTo(0, 0)
+    });
+  }
+  title = new FormControl('')
+  star = new FormControl('');
+  description = new FormControl('');
+
+  RateForm: FormGroup = this.builder.group({
+    title: this.title,
+    star: this.star,
+    description: this.description
+  });
   ngOnInit() {
+    this.scrollTopChangeRouter();
     this.sub = this.route.params.subscribe(params => {
       this.id = params['id'];
+      this.CountRate(this.id)
     });
     //==============GET============
     this.getdetailCompany();
     this.getcountJobCompany();
     this.get_All_Skill_Company();
     this.get_getjobincompany();
-     //==============GET============
+    //==============GET============
   }
-   backClicked() {
-        this._location.back();
-    }
+  CountReview() {
+    this.countReView = "0";
+  }
+
+
+
+  backClicked() {
+    this._location.back();
+  }
   getcountJobCompany() {
     this.company.count_job_in_Company(this.id).subscribe(
       data => {
@@ -57,8 +86,9 @@ export class DetailCompanyComponent implements OnInit {
   getdetailCompany() {
     this.company.getdetail_companybyid(this.id).subscribe(
       data => {
-        this.companyitem = JSON.parse(data._body)[0];
-        console.log(this.companyitem);
+        this.companyitem = data[0];
+          console.log('SHOWWW');
+        console.log(data);
       },
       error => console.log(error),
       () => {
@@ -66,15 +96,15 @@ export class DetailCompanyComponent implements OnInit {
       }
     );
   }
-  
+
   //===============GET SKILL COMPANY======
 
-skill_item:any
- get_All_Skill_Company() {
+  skill_item: any
+  get_All_Skill_Company() {
     this.company.get_All_Skill_Company(this.id).subscribe(
       data => {
         this.skill_item = JSON.parse(data._body);
-           console.log("======skill_item=======");
+        console.log("======skill_item=======");
         console.log(this.skill_item);
       },
       error => console.log(error),
@@ -83,12 +113,12 @@ skill_item:any
       }
     );
   }
-job_item:any
+  job_item: any
   get_getjobincompany() {
     this.company.getjobincompany(this.id).subscribe(
       data => {
         this.job_item = JSON.parse(data._body);
-           console.log("======new=======");
+        console.log("======new=======");
         console.log(this.job_item);
       },
       error => console.log(error),
@@ -102,13 +132,41 @@ job_item:any
 
 
 
-    //===============Load comment RATE======
+  //===============Load comment RATE======
+
+  CountRate(id: String) {
+    this.rate.getByIdRecuter(id).subscribe(
+      data => {
+        this.job_item = JSON.parse(data._body);
+        console.log("======new=======");
+        console.log(this.job_item);
+      },
+      error => console.log(error),
+      () => {
+
+      }
+    );
+  }
 
 
 
-    //===============Post comment RATE======
+  //===============Post comment RATE======
 
+  Postrate() {
+    console.log(this.RateForm.value);
+    /*
+    this.rate.add({}).subscribe(
+      data => {
+        this.job_item = JSON.parse(data._body);
+        console.log("======new=======");
+        console.log(this.job_item);
+      },
+      error => console.log(error),
+      () => {
 
+      }
+    );*/
+  }
 
 
 

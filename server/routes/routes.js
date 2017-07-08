@@ -108,6 +108,8 @@ router.route('/jobapplyByidJOB/resume/:id').get(resumectrl.jobapplyByidJOB);
 
   
 router.route('/getByidrecruiter/:id').get(ratecommentctrl.getByidrecruiter);
+router.route('/countByidrecruiter/:id').get(ratecommentctrl.countByidJOB);
+
 router.route('/ratecomment').post(ratecommentctrl.insert);
 
 

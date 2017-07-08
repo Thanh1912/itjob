@@ -18,7 +18,7 @@ public Rest_Url:String ='http://localhost:3000';
   }
 
    getdetail_companybyid(id): Observable<any> {
-    return this.http.get(this.Rest_Url+`/api/company/getdetail_company/`+id, this.options);
+    return this.http.get(this.Rest_Url+`/api/company/getdetail_company/`+id, this.options).map(res => res.json());
   }
   count_job_in_Company(id:any): Observable<any> {
     return this.http.get(this.Rest_Url+'/api/count-job-in-Company/'+id).map(res => res.json());

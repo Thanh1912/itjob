@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { JobService } from './../../services/job.service';
 import { JobcategoryService } from './../../services/jobcategory.service';
 import { WorkplaceService } from './../../services/workplace.service';
-
 import { JobcategoryDetailService } from './../../services/jobcategory-detail.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router,NavigationEnd } from '@angular/router';
 import { CapitalizePipe } from '../Pipe/capitalize.pipe';
 import { DatePipe } from '@angular/common';
 import { PagerService } from './../../_services/pager.service';
+
 @Component({
   selector: 'app-search-jobs',
   templateUrl: './search-jobs.component.html',
@@ -25,20 +25,27 @@ import { PagerService } from './../../_services/pager.service';
   ]
 })
 export class SearchJobsComponent implements OnInit {
-   ngAfterViewInit() {
-    // Component views are initialized
-  }
 
+   scrollTopChangeRouter(){
+       this.router.events.subscribe((evt) => {
+            if (!(evt instanceof NavigationEnd)) {
+                return;
+            }
+            window.scrollTo(0, 0)
+        });
+   }
 
   pager: any = {};
   // paged items
   pagedItems: any[];
-  allItems: any;
+
   Showselected: boolean;
   showcus: boolean;
   isdate: boolean;
   from = new Date()
   to = new Date();
+  fromFilter = new Date()
+  toFilter = new Date();
   salaryB: String;
   salaryE: String;
   allItem = [];
@@ -50,8 +57,18 @@ export class SearchJobsComponent implements OnInit {
   }
   changeJOBTIME(value:String){
     this.JobTime=value;
+      this.ChangeListJob();
     
   }
+   resetDateFrom(){
+      this.from=new Date('Sat Mar 24 1900 06:50:39 GMT+0100 (CET)');
+      this.ChangeListJob();
+  }
+  resetDateTo(){
+      this.from=new Date('Sat Mar 24 1900 06:50:39 GMT+0100 (CET)');
+      this.ChangeListJob();
+  }
+
   select() {
     if (this.Showselected == true) {
       this.Showselected = false;
@@ -67,15 +84,24 @@ export class SearchJobsComponent implements OnInit {
       this.isdate = true;
     }
   }
-  setDate(value: number) {
+  setDateFrom(value: Date) {
     //  this.from = 
     //new Date(new Date("2013-02-20T12:01:04.753Z").getTime() - new Date("2013-02-20T12:01:04.753Z").getTime());
     //   this.from= new Date("2013-02-20T12:01:04.753Z");
-    var d = new Date();
-    d.setDate(d.getDate() - value);
-    this.from = d
-    this.datePipe.transform(this.from, 'yyyy-MM-dd');
-    //Date.now() - +(new Date("2013-02-20T12:01:04.753Z"))
+    this.from =value
+    this.fromFilter=value
+  }
+    setDate(value: number) {
+    var myDate = new Date();
+   var dayOfMonth = myDate.getDate();  
+     myDate.setDate(dayOfMonth - 1);  
+    console.log('xuat 5 ago'+myDate.toLocaleString())
+  //  this.from = d;
+   // this.fromFilter=d;
+  }
+   setDateTo(value: Date) {
+    this.to =value
+    this.toFilter=value;
   }
   updateCheckBox() {
     //  document.getElementById('check').checked == true
@@ -106,7 +132,11 @@ export class SearchJobsComponent implements OnInit {
   Unit: String;
   jobcategory_: String;
   Search_title: String;
-  jobcategorydetail_ = []
+  jobcategorydetail_ = [];
+  
+  searchTitle(){
+     this.ChangeListJob() ;
+  }
   ChangeListJob() {
     var salaryB_TMP = this.salaryB;
     var salaryE_TMP = this.salaryE;
@@ -129,7 +159,7 @@ export class SearchJobsComponent implements OnInit {
     if (districtid_TMP === '') {
       districtid_TMP = '=='
     }
-    if (workplaceid_TMP === '') {
+    if (workplaceid_TMP === '0') {
       workplaceid_TMP = '=='
     }
     if (JobTime_TMP === '') {
@@ -141,6 +171,10 @@ export class SearchJobsComponent implements OnInit {
     if (jobcategorydetail_TMP === []) {
       jobcategorydetail_TMP = []
     }
+    if(Ptitle===''){
+      Ptitle="==";
+     console.log('ok')
+    }
     var p = {
       salarybeginP: salaryB_TMP,
       salaryendP: salaryE_TMP,
@@ -150,15 +184,15 @@ export class SearchJobsComponent implements OnInit {
       JobTimeP: JobTime_TMP,
       jobcategoryP: jobcategory_TMP,
       jobcategorydetailP: jobcategorydetail_TMP,
-      titleP:Ptitle
+   //   titleP:Ptitle
     }
     this.job.searchJobTile(
       p
     ).subscribe(
       data => {
-        this.allItems = data;
+        this.allItem = data;
         this.setPage(1);
-        console.log(this.allItems);
+       
       },
       error => console.log(error),
       () => {
@@ -167,6 +201,11 @@ export class SearchJobsComponent implements OnInit {
       );
   }
   ngOnInit() {
+      this.scrollTopChangeRouter();
+    this.workplaceid='0'
+        this.fromFilter=new Date('Sat Mar 24 1900 06:50:39 GMT+0100 (CET)');
+            this.toFilter=new Date('Sat Mar 24 1900 06:50:39 GMT+0100 (CET)');
+    this.Search_title='';
     this.isdate = true;
     this.Showselected = false;
     this.showcus = false;

@@ -34,13 +34,13 @@
                     <form>
                         <div class="col-lg-7 col-md-3 col-sm-3 col-xs-12">
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Category">
+                                <input type="text" name="searchs" [(ngModel)]="Search_title" (change)="searchTitle()" class="form-control" placeholder="Category">
                             </div>
                         </div>
 
                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                             <select (change)="onchangeTP($event.target.value);ChangeListJob()" name="timepass" class="custom-select form-control">
-									<option> Thành Phố</option>
+									<option value='0'> Thành Phố</option>
 									<option  *ngFor="let item of list_all_Workplace" [value]="item._id">{{item.name}}</option>
                                 </select>
                         </div>
@@ -104,10 +104,10 @@
                                                 <li>
                                                     <div class="row">
                                                         <div style="margin-left: -20px;">
-                                                            <input type="date" class="form-control date-left" />
+                                                            <input type="date" (change)="setDateFrom($event.target.value)" class="form-control date-left" />
                                                         </div>
                                                         <div>
-                                                            <input type="date" class="form-control date-right" />
+                                                            <input type="date" (change)="setDateTo($event.target.value)" class="form-control date-right" />
                                                         <button (click)="setCustumer()">x</button>
                                                         </div>
 
@@ -118,8 +118,8 @@
 
                                             <ul class="date-load" *ngIf="isdate==true">
                                                 <li class="input-date">
-                                                    <input (click)="select()" type="text" class="form-control" /> <i class="fa fa-calendar icon-date"
-                                                        aria-hidden="true"></i>
+                                                    <button (click)="select()" type="text" class=" btn btn-flat btn-primary" > <i class="fa fa-calendar icon-date"
+                                                        aria-hidden="true"></i></button>
                                                  {{from|date}}
                                                 
                                                 </li>
@@ -192,7 +192,7 @@
                                 <!--Body model-->
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                                 <aside class="widget widget_tag_cloud">
-                                    <h4 class="widget-title">Catagory </h4>
+                                    <h4 class="widget-title">Catagory</h4>
                                     <a *ngFor="let item of list_all_jobcategory" [routerLink]="['/pages/home/search-jobs', 'catagory',item._id,'all']">{{item.name}}</a>
 
                                 </aside>
@@ -208,7 +208,7 @@
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                     <div class="row">
                         <div class="mj_showjob">
-                            <p>showing <strong>368</strong> job offers</p>
+                            <p>showing <strong>{{allItem.lenght}}</strong> job offers</p>
                         </div>
                     </div>
                 </div>
@@ -216,7 +216,7 @@
             </div>
             <div class="mj_tabcontent mj_bottompadder80">
                 <table class="table table-striped">
-                    <tr *ngFor="let listjob of allItems">
+                    <tr *ngFor="let listjob of allItem|capitalize : Search_title :allItem:fromFilter:toFilter">
                         <td>
                             <div class="mj_liks"><a href="#"><i class="fa fa-heart"></i></a><span>Save this Job</span>
                             </div>
@@ -239,7 +239,7 @@
                             <p>{{listjob.endPost|date}}</p>
                            </tr>
                            <tr>
-                               <p> <i class="fa fa-map-marker"></i>  {{listjob.Infodistrict[0].name}}</p>
+                              <i class="fa fa-map-marker"></i> {{listjob.Infodistrict[0].name}}, {{listjob.Infoworkplace[0].name}}
                            </tr>
                         </td>
 

@@ -44,8 +44,10 @@ export class DetailJobComponent implements OnInit {
   public uploader: FileUploader = new FileUploader({ url: 'http://localhost:3000/api/uploadcv', itemAlias: 'file_cv' });
   //==================UPLOAD CV======================
   ngAfterViewInit() {
-
-
+    window.scrollTo(0, 0);
+  }
+  ngAfterViewChecked() {
+    window.scrollTo(0, 0);
   }
   jobitem: any;
   ngOnInit() {
