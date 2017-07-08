@@ -199,10 +199,9 @@ module.exports.searchJobTitles = function (req, res) {
   var KJobTime = req.body.JobTimeP;
   var Kjobcategory = req.body.jobcategoryP;
   var Kjobcategorydetail = req.body.jobcategorydetailP;
+  result = req.body.titleP;;
   var obj1 = [];
-  var obj2 = [
-
-  ];
+  var obj2 = [];
   var ObjectId = require('mongoose').Types.ObjectId;
   if (typeof Ksalarybegin !== 'undefined' || Ksalarybegin === "==") {
     console.log('salarybegin')
@@ -211,7 +210,6 @@ module.exports.searchJobTitles = function (req, res) {
         $gte: parseInt(Ksalarybegin),
       }
     })
-
   }
   if (typeof Ksalaryend !== 'undefined' || Ksalaryend === "==") {
     console.log('Ksalaryend')
@@ -246,15 +244,21 @@ module.exports.searchJobTitles = function (req, res) {
       jobcategory: new ObjectId(Kjobcategory)
     })
   }
-  if (typeof Kjobcategorydetail !== 'undefined' || typeof array[0] !== 'undefined') {
+  if (typeof Kjobcategorydetail !== 'undefined') {
     console.log('Kjobcategorydetail')
     var arr = [];
     Kjobcategorydetail.forEach(function (value) {
       arr.push(new ObjectId(value))
     });
-    obj2.push({
-      jobcategorydetail: { $in: arr }
-    })
+    if (arr.length != 0)
+      obj2.push({
+        jobcategorydetail: { $in: arr }
+      })
+  }
+  if (typeof result !== 'undefined' || result === '==') {
+    obj2.push(
+      { "title": new RegExp(result) }
+    )
   }
   console.log(obj2)
   var ObjectId = require('mongoose').Types.ObjectId;

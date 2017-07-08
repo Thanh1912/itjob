@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2015 
+Copyright (c) 2015
 ------------------------------------------------------------------
 [Master Stylesheet]
 
@@ -7,7 +7,7 @@ Project:	MeshJobs Multipurpose Responsive HTML Template
 Version:	1.1
 Author: 	DigiSamaritan
 Website: 	digisamaritan.com
-Purchase:	
+Purchase:
 -------------------------------------------------------------------
 
 [Table of contents]
@@ -15,10 +15,10 @@ Purchase:
 1. Body
 2. Preloader / .mj_preloaded
 3. Normal Css/ .mj_toppadder10
-4. Header / .mj_header 
-5. Main Menu / .mj_navmenu 
-6. Sub Menu Css / .mj_navmenu ul li ul.sub_menu 
-7. Main Slider / .mj_slider 
+4. Header / .mj_header
+5. Main Menu / .mj_navmenu
+6. Sub Menu Css / .mj_navmenu ul li ul.sub_menu
+7. Main Slider / .mj_slider
 8. Job List Section / .mj_lightgraytbg
 9. Main Heading Section / .mj_mainheading
 10. Counter Section / .mj_countdiv
@@ -31,7 +31,7 @@ Purchase:
 17. Add Section / .mj_bluebg
 18. Footer /  .mj_footer
 19. Goto Top / .totop
-20. Button Css / .mj_btn 
+20. Button Css / .mj_btn
 21. Custom Check Box And Radio Button / .mj_checkbox, .mj_radiobox
 22. Page Heading With Background Img / .mj_pagetitle
 23. custom select / .select-wrapper
@@ -44,13 +44,13 @@ Purchase:
 29. Gallery Page / #mj_grid .mix
 30. Work Page / .mj_workit
 31. Team Page / .mj_team_filter_menu
-32. Error Page / .mj_error_wrapper 
+32. Error Page / .mj_error_wrapper
 33. Post a Job Page / .mj_postdiv
 34. Post Resume Page / .mj_shadow_blue
 35. Job Detail Page / .mj_social_media_section
 36. Candidate Detail Page / .mj_candidatepage_media .mj_mainbtn
 37. Resume Preview Page / .mj_resume_heading
-38. Cart Page / .woo-cart-table 
+38. Cart Page / .woo-cart-table
 39. Checkout Page / .checkout .form-control
 40. Model Popup Design / .mj_popupdesign
 41. Companies Page / .grid
@@ -1762,7 +1762,7 @@ ul.mj_joblist li a:hover, ul.mj_joblist.nav-tabs > li.active > a, ul.mj_joblist.
 	width:auto;
 }
 .mj_weight_wrapper a img{
-	
+
 }
 .mj_weight_wrapper p{
 	float:left;
@@ -2088,14 +2088,13 @@ ul.mj_joblist li a:hover, ul.mj_joblist.nav-tabs > li.active > a, ul.mj_joblist.
     padding: 15px 0px;
 }
 /*----------- button css end -------*/
-/*---------- jobs page start ----------*/
+/*---------- jobs page start 	position: relative;----------*/
 .mj_mapmarker {
 	float: left;
 	width: 100%;
-	position: relative;
+
 }
 .mj_mapmarker:after {
-    position: absolute;
     content: '';
     background-image: url(../images/mapshadow.png);
     width: 100%;
@@ -4135,7 +4134,7 @@ ol.comment li:after {
 	float:left;
 	width:100%;
 	font-size:13px;
-	margin:10px 0; 
+	margin:10px 0;
 }
 ul.mj_selected_content {
     float: left;
@@ -4174,7 +4173,7 @@ ul.mj_selected_content li a img {
 	background-color:#00bff3 !important;
 	background-image:none !important;
 	border:1px solid #00bff3 !important;
-} 
+}
 .mj_datepicker .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default{
 	color:#111111;
 }
@@ -4242,7 +4241,7 @@ a.mj_removefile {
 .select-wrapper .holder{
 	display: block;
 	margin: 0 35px 0 5px;
-	white-space: nowrap;            
+	white-space: nowrap;
 	overflow: hidden;
 	cursor: pointer;
 	position: relative;
@@ -4253,12 +4252,12 @@ a.mj_removefile {
 .select-wrapper select{
 	margin: 0;
 	position: absolute;
-	z-index: 2;            
+	z-index: 2;
 	cursor: pointer;
 	outline: none;
 	opacity: 0;
 	/* CSS hacks for older browsers */
-	_noFocusLine: expression(this.hideFocus=true); 
+	_noFocusLine: expression(this.hideFocus=true);
 	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
 	filter: alpha(opacity=0);
 	-khtml-opacity: 0;
@@ -4303,7 +4302,7 @@ a.mj_removefile {
 	width:50px;
 	height:50px;
 	line-height:50px;
-	
+
 }
 .mj_remove {
     background-color: #ff0000;
@@ -5634,7 +5633,7 @@ a.mj_removefile {
     background-color: #000;
 	font-size:15px;
 	text-transform:capitalize;
-	padding:12px 40px; 
+	padding:12px 40px;
 	border-radius:5px;
     -webkit-transition: all 0.5s;
     -moz-transition: all 0.5s;
@@ -6198,8 +6197,8 @@ a.mj_removefile {
 	border-radius:5px;
 	border:none;
 	background-color: #f9fafb;
-	background-color: -moz-linear-gradient(top,  #f9fafb 0%, #ffffff 100%); 
-	background-color: -webkit-linear-gradient(top,  #f9fafb 0%,#ffffff 100%); 
+	background-color: -moz-linear-gradient(top,  #f9fafb 0%, #ffffff 100%);
+	background-color: -webkit-linear-gradient(top,  #f9fafb 0%,#ffffff 100%);
 	background-color: linear-gradient(to bottom,  #f9fafb 0%,#ffffff 100%);
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9fafb', endColorstr='#ffffff',GradientType=0 );
 }
@@ -6207,8 +6206,8 @@ a.mj_removefile {
 	outline:none;
 	border:none;
 	background-color: #f9fafb;
-	background-color: -moz-linear-gradient(top,  #f9fafb 0%, #ffffff 100%); 
-	background-color: -webkit-linear-gradient(top,  #f9fafb 0%,#ffffff 100%); 
+	background-color: -moz-linear-gradient(top,  #f9fafb 0%, #ffffff 100%);
+	background-color: -webkit-linear-gradient(top,  #f9fafb 0%,#ffffff 100%);
 	background-color: linear-gradient(to bottom,  #f9fafb 0%,#ffffff 100%);
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9fafb', endColorstr='#ffffff',GradientType=0 );
 }
@@ -6257,9 +6256,9 @@ a.mj_removefile {
 .mj_testimonial_slider{
     min-height: 470px;
 }
-} 
+}
 @media (max-width: 1200px) {
-	
+
 .mj_feature_product_slider .owl-carousel .owl-nav .owl-prev {
     left: 0px;
 }
@@ -7028,7 +7027,7 @@ text-align: center;
     display: none;
 }
 }
- @media (max-width: 625px){ 
+ @media (max-width: 625px){
 .mj_carttable, .mj_carttable thead, .mj_carttable tbody, .mj_carttable th, .mj_carttable td, .mj_carttable tr {
     display: block;
 }
@@ -7082,7 +7081,7 @@ text-align: center;
 	float:right;
 	width:50%;
 }
-} 
+}
 @media (min-width: 480px) and (max-width: 767px) {
 .mj_tabcontent .table tr td h4 a {
     font-size: 16px;
@@ -7263,7 +7262,7 @@ ul.mj_selected_content li a {
     margin-top: -67.5px;
 }
 }
-@media (max-width: 479px){ 
+@media (max-width: 479px){
 ul.mj_joblist li a{
     padding: 10px;
 	font-size: 15px;
@@ -7638,7 +7637,7 @@ font-size: 20px;
 
 }
 
-@media (max-width: 399px){ 
+@media (max-width: 399px){
 .mj_overlay_inner{
     margin-top: -92.5px;
 }
@@ -7666,7 +7665,7 @@ font-size: 20px;
 }
 
 }
-@media (max-width: 319px){ 
+@media (max-width: 319px){
 .mj_videooverlay_inner, .mj_overlay_inner{
 	width:100%;
 	left:0;

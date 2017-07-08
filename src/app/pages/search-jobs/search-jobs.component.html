@@ -11,7 +11,8 @@
     </div>
     <!--===============================-->
 
-    <div class="mj_blog_tags" style="margin-left: 27px;margin-top: -251px;"> <a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-angle-right">Choose Catalog Jobs</i></a>
+    <div class="mj_blog_tags" style="margin-left: 96px;
+    margin-top: -252px; "> <a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-angle-right">Choose Catalog Jobs</i></a>
         <ul>
             <li><a>{{NameCatagory}}/</a>
             </li>
@@ -20,7 +21,8 @@
         </ul>
         <!-- <a class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Choose Catalog Jobs</a>-->
     </div>
-    <aside class="woocommerce widget widget_tag_cloud" style="margin-top: -213px;">
+    <aside class="woocommerce widget widget_tag_cloud" style=" margin-top: -213px;
+    margin-left: 100px;">
         <a *ngFor="let item of list_ById_jobcategory" [routerLink]="['search-jobs', 'catagory', item._id ,'all']">{{item.name}}</a>
     </aside>
 
@@ -37,9 +39,9 @@
                         </div>
 
                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                            <select name="timepass" class="custom-select form-control">
-									<option>Loading Thành Phố</option>
-									<option  *ngFor="let item of list_all_Workplace">{{item.name}}</option>
+                            <select (change)="onchangeTP($event.target.value);ChangeListJob()" name="timepass" class="custom-select form-control">
+									<option> Thành Phố</option>
+									<option  *ngFor="let item of list_all_Workplace" [value]="item._id">{{item.name}}</option>
                                 </select>
                         </div>
                         <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
@@ -75,7 +77,7 @@
                                     </label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                        <select (change)="selectSalaryB($event.target.value)" class="custom-select form-control" name="timepass">
+                                        <select (change)="selectSalaryB($event.target.value);ChangeListJob()" class="custom-select form-control" name="timepass">
 									<option value="0">salary Begin</option>
 									   <option value="100">$300</option>
                                     <option value="500">>$500</option>
@@ -86,7 +88,7 @@
                                 </select>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                        <select (change)="selectSalaryE($event.target.value)" class="custom-select form-control" name="timepass">
+                                        <select (change)="selectSalaryE($event.target.value); ChangeListJob()" class="custom-select form-control" name="timepass">
                                     <option value="0">salary End</option>
                                     <option value="100">$100</option>
                                     <option value="500">$500</option>
@@ -101,11 +103,12 @@
                                             <ul *ngIf="isdate==false">
                                                 <li>
                                                     <div class="row">
-                                                        <div style="margin-left: -20px;" class="col-xs-6">
+                                                        <div style="margin-left: -20px;">
                                                             <input type="date" class="form-control date-left" />
                                                         </div>
-                                                        <div class="col-xs-6">
+                                                        <div>
                                                             <input type="date" class="form-control date-right" />
+                                                        <button (click)="setCustumer()">x</button>
                                                         </div>
 
                                                     </div>
@@ -139,7 +142,7 @@
                                                     <button class="btn btn-warning" (click)="setDate(4)">14 Days </button>
                                                 </li>
                                                 <li class="select-date bounceInLeft" [class.show]="Showselected">
-                                                    <button class="btn btn-warning" (click)="setDate(1)">Custumer </button>
+                                                    <button class="btn btn-warning" (click)="setCustumer()">Custumer </button>
                                                 </li>
 
 
@@ -155,32 +158,27 @@
                     <form class="form-inline">
                         <div class="form-group">
                             <div class="mj_checkbox">
-                                <input type="checkbox" value="1" id="check6" name="checkbox">
-                                <label for="check6"></label>
+                                <input  type="radio" (click)="changeJOBTIME('Freelancer')"  id="check6" name="checkbox">                           
                             </div>
                             <span> Freelancer</span> </div>
                         <div class="form-group">
                             <div class="mj_checkbox">
-                                <input type="checkbox" value="1" id="check2" name="checkbox">
-                                <label for="check2"></label>
+                                <input type="radio" (click)="changeJOBTIME('Full Time')"  id="check2" name="checkbox">                              
                             </div>
                             <span> Full Time</span> </div>
                         <div class="form-group">
                             <div class="mj_checkbox">
-                                <input type="checkbox" value="1" id="check3" name="checkbox">
-                                <label for="check3"></label>
+                                <input type="radio" (click)="changeJOBTIME('Internship')" id="check3" name="checkbox">                     
                             </div>
                             <span> Internship</span> </div>
                         <div class="form-group">
                             <div class="mj_checkbox">
-                                <input type="checkbox" value="1" id="check4" name="checkbox">
-                                <label for="check4"></label>
+                                <input type="radio"  (click)="changeJOBTIME('Part Time')" id="check4" name="checkbox">
                             </div>
                             <span> Part Time</span> </div>
                         <div class="form-group">
                             <div class="mj_checkbox">
-                                <input type="checkbox" value="1" id="check5" name="checkbox">
-                                <label for="check5"></label>
+                                <input type="radio"  (click)="changeJOBTIME('Temporary')" id="check5" name="checkbox">
                             </div>
                             <span> Temporary</span> </div>
                     </form>
@@ -214,14 +212,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                    <div class="row">
-                        <div class="mj_rss_feed">
-                            <p>RSS <i class="fa fa-rss"></i>
-                            </p>
-                        </div>
-                    </div>
-                </div>
+              
             </div>
             <div class="mj_tabcontent mj_bottompadder80">
                 <table class="table table-striped">
@@ -231,17 +222,25 @@
                             </div>
                         </td>
                         <td>
-                            <a href="#"><img src="localhost:3000/uploads/forms/logo/{{listjob.company[0].info_recruiter.logo}}" class="img-responsive" alt="">
+                            <a href="#"><img style="width: 100px;height: 100px;" src="http://localhost:3000/uploads/forms/logo/{{listjob.company[0].info_recruiter.logo}}" class="img-responsive" alt="">
                                 </a>
                         </td>
                         <td>
+                            <tr>
                             <h4><a [routerLink]="['../../../../detail-jobs',listjob._id ]">{{listjob.title}}</a></h4>
+                            </tr>
+                             <tr>
                             <p>{{listjob.title}}</p>
-                            <br>
+                             </tr>
+                            <tr>
                             <p>Posted on: {{listjob.createddate|date}} </p>
-                            <br>
+                            </tr>
+                           <tr>
                             <p>{{listjob.endPost|date}}</p>
-                             <i class="fa fa-map-marker"></i>    <p>{{listjob.Infodistrict[0].name}}</p>
+                           </tr>
+                           <tr>
+                               <p> <i class="fa fa-map-marker"></i>  {{listjob.Infodistrict[0].name}}</p>
+                           </tr>
                         </td>
 
                         <td>
