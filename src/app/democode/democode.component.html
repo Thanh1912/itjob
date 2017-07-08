@@ -1,56 +1,26 @@
-<div class="dynamic-navbar navbar-fixed-top " style="display: block;">
-  <div class="navigation">
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-12 col-sm-8">
-          <h2>
-            <span class="blue">Sales Support Staff –non Sales Target (Female)</span>
-          </h2>
-        </div>
-        <div class="col-xs-12 col-sm-4 center-block">
-          <div class="row">
-            <!-- Create Job Alert -->
-            <div class="col-xs-7">
-              <a class="btn btn-primary btn-outline clickable btn-create-job-alert track-event" data-evt-type="create-job-alert" href="https://www.vietnamworks.com/quan-ly-nghe-nghiep/thong-bao-viec-lam/?fromjob=true&amp;jobid=823254"
-                onclick="return createSimiliarJobAlert();"> Nhận việc làm tương tự
-                                </a>
-            </div>
-            <!--Button Apply-->
-            <div class="col-xs-5">
-              <button type="button" class="btn btn-primary btn-md btn-block track-event" data-evt-type="apply" data-toggle="modal" onclick="initApplyForm();">
-                                    Nộp Đơn
-                                </button>
-                                <button type="button" class="close" data-dismiss="alert">×</button>
-            </div>
-          </div>
-
-
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="navbar navbar-inverse navbar-fixed-left">
+  <a class="navbar-brand" href="#">Brand</a>
+  <ul class="nav navbar-nav">
+   <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
+     <ul class="dropdown-menu" role="menu">
+      <li><a href="#">Sub Menu1</a></li>
+      <li><a href="#">Sub Menu2</a></li>
+      <li><a href="#">Sub Menu3</a></li>
+      <li class="divider"></li>
+      <li><a href="#">Sub Menu4</a></li>
+      <li><a href="#">Sub Menu5</a></li>
+     </ul>
+   </li>
+   <li><a href="#">Link2</a></li>
+   <li><a href="#">Link3</a></li>
+   <li><a href="#">Link4</a></li>
+   <li><a href="#">Link5</a></li>
+  </ul>
 </div>
-
-
-<div class="alert alert-dismissible alert-danger" [@animate]="'fadeOutDown'">
-  <button type="button" class="close" data-dismiss="alert">&times;</button>
-  <strong>Oh snap!</strong> <a href="#" class="alert-link">Change a few things up</a> and try submitting again.
+<div class="container">
+ <div class="row">
+   <h2>Left side Navigation bar (Fixed)</h2>
+   
+   <p>Left side Navigation</p>
+ </div>
 </div>
-<div style="margin-top:20px;height:900px;background-color:blueviolet">
-  <app-comfirm [isShow]="true" (out)="parentget($event)">
-  </app-comfirm>
-  <br>
-  <app-toast [message]="toast.message"></app-toast>
-  <app-rate (out)="getRate($event)"></app-rate>
-  <app-toast></app-toast>
-  Rate: {{Rate}}
-  <button (click)="get()" class="btn btn-primary">GET</button>
-
-
-
-
-
-</div>
-
-<button (click)="set()">
-    setvalue</button>

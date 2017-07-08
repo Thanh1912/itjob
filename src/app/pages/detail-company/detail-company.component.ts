@@ -22,7 +22,7 @@ import { Router, NavigationEnd } from '@angular/router';
   ]
 })
 export class DetailCompanyComponent implements OnInit {
-
+  Check_PostRate: number
   sub: any;
   id: any;
   countJob: String;
@@ -46,13 +46,25 @@ export class DetailCompanyComponent implements OnInit {
     star: this.star,
     description: this.description
   });
+  IDcandidate:String;
   ngOnInit() {
+     this.IDcandidate="";
+        this.Check_PostRate=2;
     this.scrollTopChangeRouter();
     this.sub = this.route.params.subscribe(params => {
       this.id = params['id'];
       this.CountRate(this.id);
       this.GetListRate(this.id);
     });
+
+        if (localStorage.getItem('userId') != null) {
+          this.IDcandidate= localStorage.getItem('userId');
+        
+        this.checkRate();
+         }else{
+            this.Check_PostRate=2;
+         }
+          
     //==============GET============
     this.getdetailCompany();
     this.getcountJobCompany();
@@ -114,7 +126,8 @@ export class DetailCompanyComponent implements OnInit {
       }
     );
   }
-  job_item: any
+  job_item: any;
+
   get_getjobincompany() {
     this.company.getjobincompany(this.id).subscribe(
       data => {
@@ -132,12 +145,13 @@ export class DetailCompanyComponent implements OnInit {
   //===============GET Top JOB OF Company======
 checkRate(){
   var post={
-    candidateid:'595c53fa4fba6c02745ef784',
+    candidateid: this.IDcandidate,
     recruiterid:this.id
   }
       this.rate.checkHire(post).subscribe(
       data => {
-          alert(data)
+            this.Check_PostRate=data;
+            console.log('check'+data)
       },
       error => console.log(error),
       () => {
@@ -190,10 +204,11 @@ arr=[];
   //===============Post comment RATE======
 
   Postrate() {
-    console.log(this.RateForm.value);
+    if( this.Check_PostRate==1){
+ console.log(this.RateForm.value);
     var post = {
       recruiterid: this.id,
-      candidateid: '595c53fa4fba6c02745ef784',
+      candidateid:  this.IDcandidate,
       rate: this.RateForm.value.star,
       title: this.RateForm.value.title,
       content: this.RateForm.value.title,
@@ -208,9 +223,13 @@ arr=[];
       },
       error => console.log(error),
       () => {
-
       }
     );
+  }
+  else{
+    alert('Ban Khong co quyen danh gia ! Ban Phai la thanh vien đã làm việc cua cong ty nay!')
+  }
+   
   }
 
 

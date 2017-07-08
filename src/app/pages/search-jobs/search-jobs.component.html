@@ -118,10 +118,11 @@
 
                                             <ul class="date-load" *ngIf="isdate==true">
                                                 <li class="input-date">
-                                                    <button (click)="select()" type="text" class=" btn btn-flat btn-primary" > <i class="fa fa-calendar icon-date"
+                                                    <button (click)="select()" type="text" class=" btn btn-flat " style="background-color:aliceblue;width:200px;" > <i class="fa fa-calendar "
                                                         aria-hidden="true"></i></button>
                                                  {{from|date}}
-                                                
+                                                 <button (click)="setallDate()" type="text" class=" btn btn-flat " style="background-color:aliceblue;width:200px;" > <i class="fa fa- "
+                                                        aria-hidden="true">Reset</i></button>
                                                 </li>
 
 
@@ -156,6 +157,11 @@
                 </div>
                 <div class="mj_check_filter">
                     <form class="form-inline">
+                          <div class="form-group">
+                            <div class="mj_checkbox">
+                                <input  type="radio" (click)="changeJOBTIME('==')"  id="check6" name="checkbox">                           
+                            </div>
+                            <span> ALL</span> </div>
                         <div class="form-group">
                             <div class="mj_checkbox">
                                 <input  type="radio" (click)="changeJOBTIME('Freelancer')"  id="check6" name="checkbox">                           
@@ -216,7 +222,7 @@
             </div>
             <div class="mj_tabcontent mj_bottompadder80">
                 <table class="table table-striped">
-                    <tr *ngFor="let listjob of allItem|capitalize : Search_title :allItem:fromFilter:toFilter">
+                    <tr *ngFor="let listjob of pagedItems|capitalize : Search_title :allItem:fromFilter:toFilter">
                         <td>
                             <div class="mj_liks"><a href="#"><i class="fa fa-heart"></i></a><span>Save this Job</span>
                             </div>

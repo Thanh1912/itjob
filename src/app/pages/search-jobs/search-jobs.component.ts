@@ -89,19 +89,22 @@ export class SearchJobsComponent implements OnInit {
     //new Date(new Date("2013-02-20T12:01:04.753Z").getTime() - new Date("2013-02-20T12:01:04.753Z").getTime());
     //   this.from= new Date("2013-02-20T12:01:04.753Z");
     this.from =value
-    this.fromFilter=value
+    this.fromFilter=value;
+      this.ChangeListJob() ;
   }
     setDate(value: number) {
     var myDate = new Date();
    var dayOfMonth = myDate.getDate();  
-     myDate.setDate(dayOfMonth - 1);  
-    console.log('xuat 5 ago'+myDate.toLocaleString())
+     myDate.setDate(dayOfMonth - value);  
+    console.log('xuat 5 ago'+myDate)
+      this.ChangeListJob() ;
   //  this.from = d;
    // this.fromFilter=d;
   }
    setDateTo(value: Date) {
     this.to =value
     this.toFilter=value;
+      this.ChangeListJob() ;
   }
   updateCheckBox() {
     //  document.getElementById('check').checked == true
@@ -199,6 +202,10 @@ export class SearchJobsComponent implements OnInit {
 
       }
       );
+  }
+  setallDate(){
+     this.fromFilter=new Date('Sat Mar 24 1900 06:50:39 GMT+0100 (CET)');
+            this.toFilter=new Date('Sat Mar 24 1900 06:50:39 GMT+0100 (CET)');
   }
   ngOnInit() {
       this.scrollTopChangeRouter();
