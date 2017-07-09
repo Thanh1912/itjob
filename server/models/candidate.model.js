@@ -11,7 +11,7 @@ const candidateSchema = new mongoose.Schema({
   jobcategorydetail: [
     { type: Schema.Types.ObjectId, ref: 'jobcategorydetail' },
   ],
-  experience: { type: Schema.Types.ObjectId, ref: 'experience' },
+  experience: { type: String, default: '0' },
   diplomalanguage: [
     { type: Schema.Types.ObjectId, ref: 'diplomalanguage' },
   ],

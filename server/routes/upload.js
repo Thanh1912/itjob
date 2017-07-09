@@ -177,6 +177,13 @@ router.post("/api/uploadcv", function (req, res) {
         console.log(req.file.filename)
         return res.end(req.file.filename);
     });
+    function fileFilter(req, file, cb){
+    const extension = file.mimetype.split('/')[0];
+    if(extension !== 'video'){
+        return cb(new Error('Something went wrong'), false);
+    }
+    cb(null, true);
+};
 ==============================
 */
 

@@ -12,6 +12,13 @@ module.exports.checkResume = function (req, res) {
     });
   })
 };
+  // Count all
+  module.exports.count = function(req, res) {
+   model.count(function(err, count) {
+      if (err) { return console.error(err); }
+      res.json(count);
+    });
+  };
 
 module.exports.jobapplyByidUser = function (req, res) {
 

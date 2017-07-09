@@ -31,7 +31,7 @@
             </select>
             </div>
             <div class="col-md-2">
-  <button class="btn btn-flat btn-primary" (click)="getall()">Refesh</button>
+              <button class="btn btn-flat btn-primary" (click)="getall()">Refesh</button>
 
             </div>
             <!-- /.form-group -->
@@ -116,13 +116,13 @@
                           <div class="row">
                             <div class="col-md-6">
                               <select (change)="onChange($event.target.value,items._id)" name="a" data-placeholder="Application Status" class="col-xs-6 chosen-select-no-single form-control">
-                                    <option value="">Application Status</option>
+                                
                                     <option value="new">New</option>
-                                    <option value="1">Interviewed</option>
-                                    <option value="2">Offer extended</option>
-                                    <option value="3">Hired</option>
-                                    <option value="4">Archived</option>
-                                    <option value="5">Archived</option>
+                                    <option value="1">approve</option>
+                                    <option value="2"> waiting interview</option>
+                                    <option value="3">pass</option>
+                                    <option value="4">fail</option>
+                                    <option value="5">hire</option>
                                     </select>
                             </div>
 
@@ -162,9 +162,11 @@
                                 <i class="fa fa-file-text-o"></i> Fail CV
                               </li>
                               <li *ngSwitchCase="5" style="margin-right: 28px;">
+                                <i class="fa fa-file-text-o"></i>Hired
+                              </li>
+                              <li style="margin-right: 28px;" *ngSwitchDefaul>
                                 <i class="fa fa-file-text-o"></i> Pendding (NEW)
                               </li>
-
 
 
 

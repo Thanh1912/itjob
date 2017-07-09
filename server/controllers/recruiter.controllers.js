@@ -158,7 +158,10 @@ module.exports.gettop10 = function (req, res) {
 };
 // Count all
 module.exports.count_ntd = function (req, res) {
-  model.count(function (err, count) {
+    var ObjectId = require('mongoose').Types.ObjectId;
+  model.count({
+role: 'nhatuyendung'
+  } ,  function (err, count) {
     if (err) { return console.error(err); }
     res.json(count);
   });

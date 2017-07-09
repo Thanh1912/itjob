@@ -1,114 +1,114 @@
-  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="mj_postdiv mj_shadow_blue mj_postpage mj_toppadder50 mj_bottompadder50">
-                    <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1">
-                        <form>
-                            <div class="form-group">
-                                <label>Your Name</label>
-                                <input type="text" class="form-control" placeholder="John Doe">
-                            </div>
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="mj_postdiv mj_shadow_blue mj_postpage mj_toppadder50 mj_bottompadder50">
+        <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1">
+            <form>
+                <div class="form-group">
+                    <label>Mức Lương Mong Muốn</label>
+                    <input type="text" class="form-control" placeholder="John Doe">
+                </div>
 
-                            <div class="form-group">
-                                <label>Your Email Address</label>
-                                <input type="text" class="form-control" placeholder="Email Id">
-                            </div>
-                            <div class="form-group">
-                                <label>Professional Title</label>
-                                <input type="text" class="form-control" placeholder="e.g. “Web Developer”">
-                            </div>
-                            <div class="form-group">
-                                <label>Location</label>
-                                <input type="text" class="form-control" placeholder="e.g. “London, UK”, “New York”, “Houston, TX”">
-                            </div>
-                            <div class="form-group">
-                                <label>Resume Category</label>
-                                <select name="timepass" class="form-control custom-select">
+                <div class="form-group">
+                    <label>Your Email Address</label>
+                    <input type="text" class="form-control" placeholder="Email Id">
+                </div>
+                <div class="form-group">
+                    <label>Professional Title</label>
+                    <input type="text" class="form-control" placeholder="e.g. “Web Developer”">
+                </div>
+                <div class="form-group">
+                    <label>Thành Phố</label>
+                    <select name="timepass" class="form-control custom-select">
                                         <option>Choose a Category</option>
-                                        <option>Design</option>
-                                        <option>web</option>
-                                        <option>development</option>
+                                        <option *ngFor="let itemsthanhpho of list_thanhpho">{{itemsthanhpho.name}}</option>
+                                    
                                     </select>
-                                <a class="a-underline"> select all </a>
-                                <ul class="mj_selected_content">
-                                    <li>
-                                        <a href="#"><img src="assets/images/cross_white.png" alt=""> Design</a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><img src="assets/images/cross_white.png" alt=""> web</a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><img src="assets/images/cross_white.png" alt=""> development</a>
-                                    </li>
-                                </ul>
-                            </div>
+                </div>
+                <div class="form-group">
+                    <label>Quận </label>
+                    <select name="timepass" class="form-control custom-select">
+                                       
+                                         <option *ngFor="let Listitemsquan of list_quan">{{Listitemsquan.name}}</option>
+                                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Resume Category</label>
+                    <select name="timepass" (change)="onchangeSelect($event.target.value)" class="form-control custom-select">
+                                    
+                                       <option *ngFor="let ListCategory of list_Jobcategory" [value]="ListCategory._id">{{ListCategory.name}}</option>
+                                    </select>
+                    <div class="row">
+                        <span class="alist" (click)="add(listdetail._id,listdetail.name)" *ngFor="let listdetail of list_Jobcategory_Detail">{{listdetail.name}}</span>
 
-                            <div class="form-group">
-                                <label>Skills <span>(optionnal)</span>
-                                    </label>
-                                <input type="text" class="form-control" placeholder="Comma separate a list of relevant skills">
-                            </div>
 
-                            <div class="form-group">
-                                <label>Education<span>(optionnal)</span>
-                                    </label>
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="row">
-                                        <div class="mj_education">
-                                            <input type="text" class="form-control" placeholder="School Name">
-                                            <input type="text" class="form-control" placeholder="Qualification(s)">
-                                            <input type="text" class="form-control" placeholder="Start / End Date">
-                                            <textarea class="form-control" rows="5" placeholder="Notes"></textarea>
-                                            <a href="#" class="mj_removefile"><i class="fa fa-times"></i> remove</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div id="i2" class="mj_addurl">+ Add URL
-                                    <span>Optionally provide links to any of your websites or social network profiles.</span>
-                                </div>
-                                <div class="mj_addurldiv" id="divi2">
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" placeholder="Alink to a video about your company">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <input type="button" value="Add New" class="mj_add" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label>Experience<span>(optionnal)</span>
-                                    </label>
-                                <div id="i3" class="mj_addurl">+ Add URL
-                                    <span>Optionally provide links to any of your websites or social network profiles.</span>
-                                </div>
-                                <div class="mj_addurldiv" id="divi3">
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" placeholder="Alink to a video about your company">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <input type="button" value="Add New" class="mj_add" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                    </div>
+                    <a class="a-underline"> select all </a>
 
+                    <div class="row">
+                        <div class="col-lg-6">
                             <div class="form-group">
-                                <label> UPLOAD CV <span>(optionnal)</span>
+                                <input type="text" class="form-control" placeholder="Alink to a video about your company">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <input type="button" value="Add New" class="mj_add">
+                        </div>
+                    </div>
+                    <ul class="mj_selected_content">
+                        <li>
+                            <a *ngFor="let listsubmit of list_Jobcategory_Detail_Submit"><img src="assets/images/cross_white.png" alt="" (click)="removeadd(listsubmit._id,listsubmit.name)">{{listsubmit.name}} </a>
+                        </li>
+
+                    </ul>
+                </div>
+
+                <div class="form-group">
+                    <label>Skills <span>(optionnal)</span>
                                     </label>
-                                <img src="assets/images/envato_logo.png" class="img-responsive" alt="">
+                    <input type="text" class="form-control" placeholder="Comma separate a list of relevant skills">
+                </div>
+
+                <div class="form-group">
+                    <label>Education<span>(optionnal)</span>
+                                    </label>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="row">
+                            <div class="mj_education">
+                                <input type="text" class="form-control" placeholder="School Name">
+                                <input type="text" class="form-control" placeholder="Qualification(s)">
+                                <input type="text" class="form-control" placeholder="Start / End Date">
+                                <textarea class="form-control" rows="5" placeholder="Notes"></textarea>
                                 <a href="#" class="mj_removefile"><i class="fa fa-times"></i> remove</a>
-                                <a href="#" class="mj_mainbtn mj_btngray" data-text="Choose File"><span>choose file</span></a>
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
-                <div class="mj_showmore"><a href="#" class="mj_showmorebtn mj_bigbtn mj_bluebtn">Preview <i class="fa fa-angle-right"></i></a>
+
+                <div class="form-group">
+                    <label>Experience<span>(optionnal)</span>
+                                    </label>
+                    <div class="form-group">
+                        <select name="timepass" class="form-control custom-select">
+                                        <option value="0">Chưa Kinh nghiệm</option>
+                                        <option value="1">1 năm</option>
+                                        <option value="2">2năm</option>
+                                        <option value="3">3 năm</option>
+                                        <option value="4">4 năm</option>
+                                        <option value="5">5 năm</option>
+                                        <option value="6">Trên 5 năm</option>
+                                    </select>
+                    </div>
                 </div>
-            </div>
+
+                <div class="form-group">
+                    <label> UPLOAD CV <span>(optionnal)</span>
+                                    </label>
+
+                    <a href="#" class="mj_removefile"><i class="fa fa-times"></i> remove</a>
+                    <a href="#" class="mj_mainbtn mj_btngray" data-text="Choose File"><span>choose file</span></a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="mj_showmore"><a href="#" class="mj_showmorebtn mj_bigbtn mj_bluebtn">Preview <i class="fa fa-angle-right"></i></a>
+    </div>
+</div>

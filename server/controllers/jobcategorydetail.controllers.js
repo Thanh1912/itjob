@@ -43,7 +43,8 @@ module.exports.get = function (req, res) {
 };
 // Get by id
 module.exports.Categorybyid = function (req, res) {
-  model.find({ _idCategory: req.params.id }, function (err, obj) {
+    var ObjectId = require('mongoose').Types.ObjectId;
+  model.find({ _idCategory: new Object(req.params.id)  }, function (err, obj) {
     if (err) { return console.error(err); }
     res.json(obj);
   });

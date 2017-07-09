@@ -7,7 +7,7 @@
         </div>
 
         <div class="row" *ngIf="isupdateuser==false">
-            <div class="col-lg-8 col-md-8 col-lg-offset-3 col-md-offset-3 col-sm-12 col-xs-12">
+            <div class="col-lg-12 col-md-12   col-sm-12 col-xs-12">
                 <div class="mj_pricingtable mj_yellowtable mj_createaccount_form_wrapper">
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs" role="tablist">
@@ -141,6 +141,12 @@
             </div>
         </div>
         <div class="row" *ngIf="isupdateuser==true">
+         <div class="col-lg-offset-2 col-lg-4 col-sm-offset-0 col-xs-offset-0" style="">
+             <img id="imageprofile" src="http://localhost:3000/uploads/forms/anhdaidien/{{listuser?.profileimage}}" class="img-responsive image-profile mj_testimonial_img"
+                                        alt="Image LOgo">
+                                      <span>  {{listuser?.fullname}}</span>
+         </div>
+
             <app-update-info-user></app-update-info-user>
         </div>
     </div>

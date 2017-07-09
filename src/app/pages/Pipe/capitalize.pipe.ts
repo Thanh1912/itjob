@@ -11,13 +11,13 @@ export class CapitalizePipe implements PipeTransform {
   data1 = []
   transform(value: any, titlesearch?: string, allvalue?: any, begindate?: Date, enddate?: Date): any {
     var begin = new Date(begindate).getTime();
-    var end = new Date(begindate).getTime();
+    var end = new Date(enddate).getTime();
     if (begin !== -2201882961000) {
       //======Search DateTime========
       return allvalue.filter(
         function (item) {
           return (
-            new Date(item.createddate).getTime() < begin
+            new Date(item.createddate).getTime() > begin
           )
             ;
         }
@@ -34,7 +34,7 @@ export class CapitalizePipe implements PipeTransform {
       return allvalue.filter(
         function (item) {
           return (
-            new Date(item.createddate).getTime() > end
+            new Date(item.createddate).getTime() < end
           )
             ;
         }
@@ -51,8 +51,8 @@ export class CapitalizePipe implements PipeTransform {
       return allvalue.filter(
         function (item) {
           return (
-            new Date(item.createddate).getTime() < begin
-          ) && new Date(item.createddate).getTime() > end
+            new Date(item.createddate).getTime() > begin
+          ) && new Date(item.createddate).getTime() < end
             ;
         }
       )

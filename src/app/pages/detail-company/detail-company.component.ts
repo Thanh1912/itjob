@@ -219,6 +219,7 @@ arr=[];
       data => {
       
         console.log("======Them Thanh cong=======");
+        alert('Them Thanh cong')
      
       },
       error => console.log(error),

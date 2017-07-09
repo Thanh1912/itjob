@@ -61,31 +61,36 @@ export class DetailJobComponent implements OnInit {
 
       //cap cv 
       let userId = localStorage.getItem('userId');
-
-      var user1 = {
-        pathresume: response,
-        candidateid: userId,
-        jobid: this.id,
-        recruiterid: this.idRecruter
-      }
-      this.resume.CheckinsertCV(user1).subscribe(
-        data => {
-          //==========Save Resume=====
-          this.resume.save(user1).subscribe(
-            data => {
-              alert('ĐÃ UPLOAD THANH CÔNG CV')
-            },
-            error => console.log(error)
-          );
-          //==========Save Resume=====
-        },
-        error => {
-          alert(JSON.parse(error._body).Messeage)
-          console.log(JSON.parse(error._body).Messeage)
-          console.log(error)
+      if (userId === null) {
+        alert('vui long dang nhap')
+      } else {
+        var user1 = {
+          pathresume: response,
+          candidateid: userId,
+          jobid: this.id,
+          recruiterid: this.idRecruter
         }
+        this.resume.CheckinsertCV(user1).subscribe(
+          data => {
+            //==========Save Resume=====
+            this.resume.save(user1).subscribe(
+              data => {
+                alert('ĐÃ UPLOAD THANH CÔNG CV')
+              },
+              error => console.log(error)
+            );
+            //==========Save Resume=====
+          },
+          error => {
+            alert(JSON.parse(error._body).Messeage)
+            console.log(JSON.parse(error._body).Messeage)
+            console.log(error)
+          }
 
-      );
+        );
+      }
+
+
 
       console.log("ImageUpload: uploaded:", item, status, response);
     };

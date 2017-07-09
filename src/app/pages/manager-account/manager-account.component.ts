@@ -69,9 +69,9 @@ export class ManagerAccountComponent implements OnInit {
     }
   }
 
-//===========Upload Imgage Anh dai dien================
+  //===========Upload Imgage Anh dai dien================
   public uploaderanhdaidien: FileUploader = new FileUploader({ url: 'http://localhost:3000/api/anhdaidien', itemAlias: 'anhdaidien' });
-//===========Upload Imgage Anh dai dien================
+  //===========Upload Imgage Anh dai dien================
 
 
   //========================================
@@ -100,9 +100,9 @@ export class ManagerAccountComponent implements OnInit {
     this.uploaderanhdaidien.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
       console.log("UpLoad :", item, status, response);
       alert('Upload thanh cong');
-      
+
     };
-     //===========/Upload Imgage Anh dai dien================
+    //===========/Upload Imgage Anh dai dien================
 
     //override the onAfterAddingfile property of the uploader so it doesn't authenticate with //credentials.
     this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };

@@ -52,6 +52,7 @@ export class ApplicantComponent implements OnInit {
     this.resume.getalljobapplyByidJOB(id).subscribe(
       data => {
         this.all = data;
+        console.log(data)
         this.setPage(1);
       },
       error => console.log(error),

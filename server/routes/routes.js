@@ -94,6 +94,7 @@ var workplacectrl = require('../controllers/workplace.controllers.js');
 // APIs
 
 
+router.route('/resume/count').get(resumectrl.count);
 router.route('/checkHire/resume').post(resumectrl.checkHire);
 router.route('/resume').post(resumectrl.insert);
 router.route('/insertCV').post(resumectrl.insertCV);
@@ -108,6 +109,8 @@ router.route('/jobapplyByidJOB/resume/:id').get(resumectrl.jobapplyByidJOB);
 
 
   
+  router.route('/UpdateRate/:id').get(ratecommentctrl.UpdateRate);
+  router.route('/demoreduce').get(ratecommentctrl.demoreduce);
 router.route('/getByidrecruiter/:id').get(ratecommentctrl.getByidrecruiter);
 router.route('/countByidrecruiter/:id').get(ratecommentctrl.countByidJOB);
 

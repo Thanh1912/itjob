@@ -30,6 +30,10 @@ export class ResumeService {
   edit(items): Observable<any> {
     return this.http.put(this.Rest_Url + `/api/resume/${items._id}`, JSON.stringify(items), this.options);
   }
+  count(): Observable<any> {
+    return this.http.get(this.Rest_Url + '/api/resume/count').map(res => res.json());
+  }
+
 
 
 }
