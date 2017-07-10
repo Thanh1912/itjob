@@ -23,7 +23,7 @@
     </div>
     <aside class="woocommerce widget widget_tag_cloud" style=" margin-top: -213px;
     margin-left: 100px;">
-        <a *ngFor="let item of list_ById_jobcategory" [routerLink]="['search-jobs', 'catagory', item._id ,'all']">{{item.name}}</a>
+        <a *ngFor="let item of list_ById_jobcategory" [routerLink]="['../../../search-jobs', 'catagory', item._id ,'all']">{{item.name}}</a>
     </aside>
 
     <!--==============================-->
@@ -68,15 +68,15 @@
                 <div class="mj_filter_slider">
                     <form>
 
-                        <div class="col-lg-8 col-md-6 col-sm-6 col-xs-12">
+                        <div class="col-lg-12 col-md-6 col-sm-6 col-xs-12">
                             <div class="row">
                                 <div class="form-group">
-                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
                                         <label>salary:
                                         <span> ${{salaryB}}- ${{salaryE}}</span>
                                     </label>
                                     </div>
-                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
                                         <select (change)="selectSalaryB($event.target.value);ChangeListJob()" class="custom-select form-control" name="timepass">
 									<option value="0">salary Begin</option>
 									   <option value="100">$300</option>
@@ -87,7 +87,7 @@
                                     <option value="10000">>$10000</option>
                                 </select>
                                     </div>
-                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
                                         <select (change)="selectSalaryE($event.target.value); ChangeListJob()" class="custom-select form-control" name="timepass">
                                     <option value="0">salary End</option>
                                     <option value="100">$100</option>
@@ -98,7 +98,7 @@
                                     <option value="10000">$10000</option>
                                 </select>
                                     </div>
-                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                    <div class="col-lg-6 col-md-3 col-sm-3 col-xs-12">
                                         <div style=" position: absolute;z-index: 99;">
                                             <ul *ngIf="isdate==false">
                                                 <li>
@@ -108,7 +108,7 @@
                                                         </div>
                                                         <div>
                                                             <input type="date" (change)="setDateTo($event.target.value)" class="form-control date-right" />
-                                                        <button (click)="setCustumer()">x</button>
+                                                            <button class="btn bnt-danger" (click)="setCustumer()"><i class="fa fa-window-close-o" aria-hidden="true"></i></button>
                                                         </div>
 
                                                     </div>
@@ -116,14 +116,21 @@
                                             </ul>
 
 
-                                            <ul class="date-load" *ngIf="isdate==true">
-                                                <li class="input-date">
-                                                    <button (click)="select()" type="text" class=" btn btn-flat " style="background-color:aliceblue;width:200px;" > <i class="fa fa-calendar "
-                                                        aria-hidden="true"></i></button>
-                                                 {{from|date}}
-                                                 <button (click)="setallDate()" type="text" class=" btn btn-flat " style="background-color:aliceblue;width:200px;" > <i class="fa fa- "
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <button (click)="select()" type="text" class=" btn btn-flat " style="background-color:aliceblue;width:200px;text-align: right;"> <i class="fa fa-calendar "
+                                                        aria-hidden="true"></i></button>                                                    {{from|date}}
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <button (click)="setallDate()" type="text" class=" btn btn-flat " style="background-color:aliceblue;width:200px;"> <i class="fa fa- "
                                                         aria-hidden="true">Reset</i></button>
-                                                </li>
+                                                </div>
+                                            </div>
+
+
+
+                                            <ul class="date-load" *ngIf="isdate==true">
+
 
 
 
@@ -157,34 +164,34 @@
                 </div>
                 <div class="mj_check_filter">
                     <form class="form-inline">
-                          <div class="form-group">
+                        <div class="form-group">
                             <div class="mj_checkbox">
-                                <input  type="radio" (click)="changeJOBTIME('==')"  id="check6" name="checkbox">                           
+                                <input type="radio" (click)="changeJOBTIME('==')" id="check6" name="checkbox">
                             </div>
                             <span> ALL</span> </div>
                         <div class="form-group">
                             <div class="mj_checkbox">
-                                <input  type="radio" (click)="changeJOBTIME('Freelancer')"  id="check6" name="checkbox">                           
+                                <input type="radio" (click)="changeJOBTIME('Freelancer')" id="check6" name="checkbox">
                             </div>
                             <span> Freelancer</span> </div>
                         <div class="form-group">
                             <div class="mj_checkbox">
-                                <input type="radio" (click)="changeJOBTIME('Full Time')"  id="check2" name="checkbox">                              
+                                <input type="radio" (click)="changeJOBTIME('Full Time')" id="check2" name="checkbox">
                             </div>
                             <span> Full Time</span> </div>
                         <div class="form-group">
                             <div class="mj_checkbox">
-                                <input type="radio" (click)="changeJOBTIME('Internship')" id="check3" name="checkbox">                     
+                                <input type="radio" (click)="changeJOBTIME('Internship')" id="check3" name="checkbox">
                             </div>
                             <span> Internship</span> </div>
                         <div class="form-group">
                             <div class="mj_checkbox">
-                                <input type="radio"  (click)="changeJOBTIME('Part Time')" id="check4" name="checkbox">
+                                <input type="radio" (click)="changeJOBTIME('Part Time')" id="check4" name="checkbox">
                             </div>
                             <span> Part Time</span> </div>
                         <div class="form-group">
                             <div class="mj_checkbox">
-                                <input type="radio"  (click)="changeJOBTIME('Temporary')" id="check5" name="checkbox">
+                                <input type="radio" (click)="changeJOBTIME('Temporary')" id="check5" name="checkbox">
                             </div>
                             <span> Temporary</span> </div>
                     </form>
@@ -218,7 +225,7 @@
                         </div>
                     </div>
                 </div>
-              
+
             </div>
             <div class="mj_tabcontent mj_bottompadder80">
                 <table class="table table-striped">
@@ -233,28 +240,28 @@
                         </td>
                         <td>
                             <tr>
-                            <h4><a [routerLink]="['../../../../detail-jobs',listjob._id ]">{{listjob.title}}</a></h4>
+                                <h4><a [routerLink]="['../../../../detail-jobs',listjob._id ]">{{listjob.title}}</a></h4>
                             </tr>
-                             <tr>
-                            <p>{{listjob.title}}</p>
-                             </tr>
                             <tr>
-                            <p>Posted on: {{listjob.createddate|date}} </p>
+                                <p>{{listjob.title}}</p>
                             </tr>
-                           <tr>
-                            <p>{{listjob.endPost|date}}</p>
-                           </tr>
-                           <tr>
-                              <i class="fa fa-map-marker"></i> {{listjob.Infodistrict[0].name}}, {{listjob.Infoworkplace[0].name}}
-                           </tr>
+                            <tr>
+                                <p>Posted on: {{listjob.createddate|date}} </p>
+                            </tr>
+                            <tr>
+                                <p>{{listjob.endPost|date}}</p>
+                            </tr>
+                            <tr>
+                                <i class="fa fa-map-marker"></i> {{listjob.Infodistrict[0].name}}, {{listjob.Infoworkplace[0].name}}
+                            </tr>
                         </td>
 
                         <td>
                             <ul class="list_language" *ngFor="let list_language of listjob.Infokeyword">
                                 <li>{{list_language.name}}</li>
-                             
+
                             </ul>
-                           
+
                             <P>
 
                             </P>
@@ -264,26 +271,26 @@
                         <td><span>{{listjob.salarycompete}}</span>
                         </td>
                     </tr>
-               
+
                 </table>
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 col-lg-offset-4 col-md-offset-4">
-                      <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
-          <li [ngClass]="{disabled:pager.currentPage === 1}">
-            <a (click)="setPage(1)">First</a>
-          </li>
-          <li [ngClass]="{disabled:pager.currentPage === 1}">
-            <a (click)="setPage(pager.currentPage - 1)">Previous</a>
-          </li>
-          <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
-            <a (click)="setPage(page)">{{page}}</a>
-          </li>
-          <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-            <a (click)="setPage(pager.currentPage + 1)">Next</a>
-          </li>
-          <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-            <a (click)="setPage(pager.totalPages)">Last</a>
-          </li>
-        </ul>
+                    <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+                        <li [ngClass]="{disabled:pager.currentPage === 1}">
+                            <a (click)="setPage(1)">First</a>
+                        </li>
+                        <li [ngClass]="{disabled:pager.currentPage === 1}">
+                            <a (click)="setPage(pager.currentPage - 1)">Previous</a>
+                        </li>
+                        <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                            <a (click)="setPage(page)">{{page}}</a>
+                        </li>
+                        <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                            <a (click)="setPage(pager.currentPage + 1)">Next</a>
+                        </li>
+                        <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                            <a (click)="setPage(pager.totalPages)">Last</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>

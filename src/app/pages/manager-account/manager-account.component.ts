@@ -185,8 +185,25 @@ export class ManagerAccountComponent implements OnInit {
 
   }
 
+capnhatpublic(){
+   this.user.edit_user({status:true}).subscribe(
+      data => {
+        alert('Thành Công')
+      },
+      error => console.log(error),
+      () => { }
+    );
+}
 
-
+capnhatPrivate(){
+   this.user.edit_user({status:false}).subscribe(
+      data => {
+        alert('Thành Công')
+      },
+      error => console.log(error),
+      () => { }
+    );
+}
 
   updatePassword() {
     //kiem tra password

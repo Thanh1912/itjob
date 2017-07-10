@@ -4,8 +4,8 @@ import { JobcategoryDetailService } from './../../services/jobcategory-detail.se
 import { JobcategoryService } from './../../services/jobcategory.service';
 import { DistrictService } from './../../services/district.service';
 import { DiplomalanguageService } from './../../services/diplomalanguage.service';
-
-
+import { CandidateService } from '../../services/candidate.service';
+import { Validators, FormGroup, FormBuilder, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-update-info-user',
@@ -25,21 +25,80 @@ import { DiplomalanguageService } from './../../services/diplomalanguage.service
 export class UpdateInfoUserComponent implements OnInit {
   list_Jobcategory_Detail = [];
   list_Jobcategory_Detail_Submit = [];
+  Listdiplomalanguage = [];
+  diplomalanguage_submit = [];
   list_Jobcategory: any;
   list_thanhpho: any;
   list_quan: any;
-  list_language: any;
 
+  experience: String;
+  Category: String
+  workplace1: String
+  dictrict1: String
 
-
-  constructor(private District: DistrictService, private Jobcategory: JobcategoryService, private Jobcategory_Detail: JobcategoryDetailService, private Workplace: WorkplaceService, private JobcategoryDetail: JobcategoryDetailService
+  constructor(private builder: FormBuilder, private Candidate: CandidateService, private District: DistrictService, private Jobcategory: JobcategoryService, private Jobcategory_Detail: JobcategoryDetailService, private Workplace: WorkplaceService, private JobcategoryDetail: JobcategoryDetailService
     , private DiplomalanguageService: DiplomalanguageService) { }
+  mucluong = new FormControl('', [
+    Validators.required,
+  ]);
+  select
 
+  namepro = new FormControl('', [Validators.required]);
+
+  profileForm: FormGroup = this.builder.group({
+    mucluong: this.mucluong,
+    namepro: this.namepro
+  });
+
+
+
+  submitProfile() {
+    console.log(this.profileForm.value);
+    var listpost_Jobcategory_Detail = [];
+    var listpost_diplomalanguage = [];
+    //============Convert=======
+    for (let entry of this.list_Jobcategory_Detail_Submit) {
+      listpost_Jobcategory_Detail.push(entry._id)
+    }
+    for (let entry of this.diplomalanguage_submit) {
+      listpost_diplomalanguage.push(entry._id)
+    }
+    var idd = ""
+    if (localStorage.getItem('userId') != null) {
+      idd = localStorage.getItem('userId');
+      var post = {
+        _id: idd,
+        salary: this.profileForm.value.mucluong,
+        nameprofile: this.profileForm.value.namepro,
+        jobcategory: this.Category,
+        jobcategorydetail: listpost_Jobcategory_Detail,
+        experience: this.experience,
+        diplomalanguage: listpost_diplomalanguage,
+        workplaceid: this.workplace1,
+        districtid: this.dictrict1,
+         status: true
+      }
+      console.log(post);
+      this.Candidate.edit_user(post).subscribe(
+        data => {
+          alert('thanh cong')
+          console.log(data)
+        },
+        error => console.log(error),
+        () => {
+
+        }
+      );
+
+    }
+    //===========================
+
+
+
+  }
   ngOnInit() {
     this.getthanhpho();
-    this.getquan();
     this.getDiplomalanguage();
-
     this.getJobcategory();
   }
 
@@ -56,7 +115,7 @@ export class UpdateInfoUserComponent implements OnInit {
     );
   }
   onchangeSelect(id: any) {
-    alert('ok')
+
     this.Jobcategory_Detail.getallByIdCategory(id).subscribe(
       data => {
         this.list_Jobcategory_Detail = data;
@@ -69,9 +128,8 @@ export class UpdateInfoUserComponent implements OnInit {
     );
 
   }
-
   add(id: String, name: String) {
-    this.list_Jobcategory_Detail= this.list_Jobcategory_Detail.filter(obj => obj._id !== id);
+    this.list_Jobcategory_Detail = this.list_Jobcategory_Detail.filter(obj => obj._id !== id);
     this.list_Jobcategory_Detail_Submit.push(
       {
         _id: id,
@@ -79,8 +137,26 @@ export class UpdateInfoUserComponent implements OnInit {
       }
     )
   }
+  addLang(id: String, name: String) {
+    this.Listdiplomalanguage = this.Listdiplomalanguage.filter(obj => obj._id !== id);
+    this.diplomalanguage_submit.push(
+      {
+        _id: id,
+        name: name
+      }
+    )
+  }
+  removeaddlang(id: String, name: String) {
+    this.diplomalanguage_submit = this.diplomalanguage_submit.filter(obj => obj._id !== id);
+    this.Listdiplomalanguage.push(
+      {
+        _id: id,
+        name: name
+      }
+    )
+  }
   removeadd(id: String, name: String) {
-    this.list_Jobcategory_Detail_Submit= this.list_Jobcategory_Detail_Submit.filter(obj => obj._id !== id);
+    this.list_Jobcategory_Detail_Submit = this.list_Jobcategory_Detail_Submit.filter(obj => obj._id !== id);
     this.list_Jobcategory_Detail.push(
       {
         _id: id,
@@ -95,7 +171,7 @@ export class UpdateInfoUserComponent implements OnInit {
   getDiplomalanguage() {
     this.DiplomalanguageService.getall().subscribe(
       data => {
-        this.list_language = data
+        this.Listdiplomalanguage = data
       },
       error => console.log(error),
       () => {
@@ -105,7 +181,7 @@ export class UpdateInfoUserComponent implements OnInit {
   }
 
   getthanhpho() {
-    this.District.getall().subscribe(
+    this.Workplace.getall().subscribe(
       data => {
         this.list_thanhpho = data
       },
@@ -115,8 +191,11 @@ export class UpdateInfoUserComponent implements OnInit {
     );
   }
 
-  getquan() {
-    this.District.getall().subscribe(
+  changetp(id: String) {
+    var post = {
+      id: id
+    }
+    this.District.getkeyw(post).subscribe(
       data => {
         this.list_quan = data
       },

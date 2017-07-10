@@ -7,12 +7,10 @@ import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { CapitalizePipe } from '../Pipe/capitalize.pipe';
 import { DatePipe } from '@angular/common';
 import { PagerService } from './../../_services/pager.service';
-
 @Component({
-  selector: 'app-search-jobs',
-  templateUrl: './search-jobs.component.html',
-
-  styleUrls: ['../../../assets/css/bootstrap.css', './search-jobs.component.css',
+  selector: 'app-search-profile',
+  templateUrl: './search-profile.component.html',
+   styleUrls: ['../../../assets/css/bootstrap.css', './search-profile.component.css',
     '../../../assets/css/animate.css'
     , '../../../assets/css/style.css'
     , '../../../assets/js/plugins/fancybox/jquery.fancybox.css'
@@ -24,9 +22,9 @@ import { PagerService } from './../../_services/pager.service';
     , '../../../assets/js/plugins/owl/owl.carousel.css'
   ]
 })
-export class SearchJobsComponent implements OnInit {
+export class SearchProfileComponent implements OnInit {
 
-  scrollTopChangeRouter() {
+ scrollTopChangeRouter() {
     this.router.events.subscribe((evt) => {
       if (!(evt instanceof NavigationEnd)) {
         return;
@@ -85,6 +83,9 @@ export class SearchJobsComponent implements OnInit {
     }
   }
   setDateFrom(value: Date) {
+    //  this.from = 
+    //new Date(new Date("2013-02-20T12:01:04.753Z").getTime() - new Date("2013-02-20T12:01:04.753Z").getTime());
+    //   this.from= new Date("2013-02-20T12:01:04.753Z");
     this.from = value
     this.fromFilter = value;
     this.ChangeListJob();
@@ -186,8 +187,6 @@ export class SearchJobsComponent implements OnInit {
       jobcategorydetailP: jobcategorydetail_TMP,
       //   titleP:Ptitle
     }
-    console.log("post do")
-        console.log(p)
     this.job.searchJobTile(
       p
     ).subscribe(
@@ -209,45 +208,14 @@ export class SearchJobsComponent implements OnInit {
   ngOnInit() {
     this.scrollTopChangeRouter();
     this.workplaceid = '0'
-    this.fromFilter = new Date('Sat Mar 24 1900 06:50:39 GMT+0100 (CET)');
-    this.toFilter = new Date('Sat Mar 24 1900 06:50:39 GMT+0100 (CET)');
+   
     this.Search_title = '';
     this.isdate = true;
     this.Showselected = false;
     this.showcus = false;
 
     this.isadvance = true;
-    this.sub = this.route.params.subscribe(params => {
-      this.id = params['id'];
-      this.jobcategory_ = params['id'];
-      this.idDetail = params['id_detail'];
 
-      if (this.id !== "all") {
-        this.getinfoCatagory(this.id);
-        this.ChangeListJob()
-      }
-      this.getjobcategoryByID(this.id);
-
-      if (this.idDetail !== "all") {
-        this.jobcategorydetail_ = [];
-        this.jobcategorydetail_.push(this.idDetail)
-        this.getinfoCatagoryDetail(this.idDetail);
-      }
-      //==============GET ALL ===============
-      if( params['action']==="select-all"&& params['id']==="job"&& params['id_detail']==="all")
-      {
-          this.jobcategory_ ="";
-           this.idDetail="";
-         this.ChangeListJob();
-      }
-      //==========GET CATAGORY ALL=============
-
-
-
-
-      //==========GET CATAGORY By ID DETAIL=============
-
-    });
 
     this.getjobcategory();
     this.getWorkplace();

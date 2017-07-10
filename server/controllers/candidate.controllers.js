@@ -1,14 +1,14 @@
 var mongoose = require('mongoose');
 var model = require('../models/candidate.model.js')
-,passwordHash = require('password-hash'),
-  jwt = require('jsonwebtoken'),  config = require('../config/config');
+  , passwordHash = require('password-hash'),
+  jwt = require('jsonwebtoken'), config = require('../config/config');
 
 // user register
-module.exports.register =function (req, res, next) {
+module.exports.register = function (req, res, next) {
   var user = new model({
-   fullname:req.body.fullname,
+    fullname: req.body.fullname,
     email: req.body.email,
-    profileimage: "anonymous.png" ,
+    profileimage: "anonymous.png",
     password: passwordHash.generate(req.body.password)
   });
 
@@ -19,7 +19,7 @@ module.exports.register =function (req, res, next) {
       console.log(result)
       return res.status(403).json({
         title: 'There was an issue',
-        error: {message: 'The email you entered already exists'}
+        error: { message: 'The email you entered already exists' }
       });
     }
     res.status(200).json({
@@ -30,8 +30,8 @@ module.exports.register =function (req, res, next) {
 };
 // user login
 module.exports.login = function (req, res, next) {
-  console.log('dang login'+req.body.email)
-  model.findOne({email: req.body.email}, function (err, doc) {
+  console.log('dang login' + req.body.email)
+  model.findOne({ email: req.body.email }, function (err, doc) {
     if (err) {
       return res.status(403).json({
         title: 'There was a problem',
@@ -41,90 +41,147 @@ module.exports.login = function (req, res, next) {
     if (!doc) {
       return res.status(403).json({
         title: 'Wrong Email or Password',
-        error: {message: 'Please check if your password or email are correct'}
+        error: { message: 'Please check if your password or email are correct' }
       })
     }
     if (!passwordHash.verify(req.body.password, doc.password)) {
       return res.status(403).json({
         title: 'You cannot log in',
-        error: {message: 'Please check your password or email'}
+        error: { message: 'Please check your password or email' }
       })
     }
-    var token = jwt.sign({user: doc}, config.secret, {expiresIn: config.jwtExpire});
+    var token = jwt.sign({ user: doc }, config.secret, { expiresIn: config.jwtExpire });
     return res.status(200).json({
       message: 'Login Successfull',
       token: token,
       userId: doc._id,
-      username:doc.email,
-      role:doc.role,
-      fullname:doc.fullname,
+      username: doc.email,
+      role: doc.role,
+      fullname: doc.fullname,
     })
   })
 };
 
 
- // Get all
-  module.exports.getAll = function(req, res) {
-      model.find(
-     function(err, model) {
-    if (err) {
-      console.log(err);
-      res.status(400).json(err);
-    } else {
-      console.log('getall', model);
-      res.status(200).json(model);
-    }
+// Get all
+module.exports.getAll = function (req, res) {
+  model.find(
+    function (err, model) {
+      if (err) {
+        console.log(err);
+        res.status(400).json(err);
+      } else {
+        console.log('getall', model);
+        res.status(200).json(model);
+      }
+    });
+};
+
+// Count all
+module.exports.count = function (req, res) {
+  model.count(function (err, count) {
+    if (err) { return console.error(err); }
+    res.json(count);
   });
-  };
+};
 
-  // Count all
-  module.exports.count = function(req, res) {
-   model.count(function(err, count) {
-      if (err) { return console.error(err); }
-      res.json(count);
-    });
-  };
 
-  // Insert
-  module.exports.insert = function(req, res) {
-    const obj = new model(req.body);
-    obj.save(function(err, item)  {
-      if (err) { return console.error(err); }
-      res.status(200).json(item);
-    });
-  };
 
-  // Get by id
-  module.exports.get = function(req, res) {
-    model.findOne({ _id: req.params.id }, function(err, obj) {
-      if (err) { return console.error(err); }
-      res.json(obj);
-    });
-  };
 
-  // Update by id
-  module.exports.update = function(req, res) {
-    model.findOneAndUpdate({ _id: req.params.id }, req.body, function(err) {
-      if (err) { return console.error(err); }
-      res.sendStatus(200);
-    });
-  };
-  
-    // Update by id
-  module.exports.updateImagepro = function(req, res) {
-    update={
-       profileimage: req.body.img
-    }
-    model.findOneAndUpdate({ _id: req.params.id },update , function(err) {
-      if (err) { return console.error(err); }
-      res.sendStatus(200);
-    });
-  };
+// Get by id
+module.exports.topcandidate = function (req, res) {
+  model.aggregate([
 
-  // Delete by id
-  module.exports.delete = function(req, res) {
-    model.findOneAndRemove({ _id: req.params.id },function (err) {
-      if (err) { return console.error(err); }
-      res.sendStatus(200);
-    });
+ { $match: { status: true} },
+   {
+      "$lookup": {
+        "from": "jobcategories",
+        "localField": "jobcategory",
+        "foreignField": "_id",
+        "as": "jobcategories_view"
+      }
+    },
+    {
+      "$lookup": {
+        "from": "diplomalanguages",
+        "localField": "diplomalanguage",
+        "foreignField": "_id",
+        "as": "diplomalanguage_view"
+      }
+    },
+    {
+      "$lookup": {
+        "from": "workplaces",
+        "localField": "workplaceid",
+        "foreignField": "_id",
+        "as": "workplaceid_view"
+      }
+    },
+    {
+      "$lookup": {
+        "from": "districts",
+        "localField": "districtid",
+        "foreignField": "_id",
+        "as": "districtid_view"
+      }
+    },
+    {
+      "$lookup": {
+        "from": "jobcategorydetails",
+        "localField": "jobcategorydetail",
+        "foreignField": "_id",
+        "as": "jobcategorydetail_view"
+      }
+    },
+    { $limit: 10 },
+
+  ]).exec(function (err, docs) {
+    res.json(docs);
+  });
+
+};
+
+
+// Insert
+module.exports.insert = function (req, res) {
+  const obj = new model(req.body);
+  obj.save(function (err, item) {
+    if (err) { return console.error(err); }
+    res.status(200).json(item);
+  });
+};
+
+// Get by id
+module.exports.get = function (req, res) {
+  model.findOne({ _id: req.params.id }, function (err, obj) {
+    if (err) { return console.error(err); }
+    res.json(obj);
+  });
+};
+
+// Update by id
+module.exports.update = function (req, res) {
+  model.findOneAndUpdate({ _id: req.params.id }, req.body, function (err) {
+    if (err) { return console.error(err); }
+    res.sendStatus(200);
+  });
+};
+
+// Update by id
+module.exports.updateImagepro = function (req, res) {
+  update = {
+    profileimage: req.body.img
   }
+  model.findOneAndUpdate({ _id: req.params.id }, update, function (err) {
+    if (err) { return console.error(err); }
+    res.sendStatus(200);
+  });
+};
+
+// Delete by id
+module.exports.delete = function (req, res) {
+  model.findOneAndRemove({ _id: req.params.id }, function (err) {
+    if (err) { return console.error(err); }
+    res.sendStatus(200);
+  });
+}

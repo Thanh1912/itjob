@@ -1,0 +1,192 @@
+<div class="clearfix"></div>
+
+<div class="mj_mapmarker">
+  <div id="map" style="position: relative; overflow: hidden;margin-top: 100px;">
+    <div style="height: 100%; width: 100%; position: absolute; top: 0px; left: 0px; background-color: rgb(229, 227, 223);">
+      <div class="gm-err-container">
+        <div class="gm-err-content">
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--===============================-->
+
+
+
+
+  <!--==============================-->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="mj_top_searchbox">
+          <form>
+            <div class="col-lg-7 col-md-3 col-sm-3 col-xs-12">
+              <div class="form-group">
+                <input type="text" name="searchs" [(ngModel)]="Search_title" (change)="searchTitle()" class="form-control" placeholder="Category">
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+              <select (change)="onchangeTP($event.target.value);ChangeListJob()" name="timepass" class="custom-select form-control">
+									<option value='0'> Thành Phố</option>
+									<option  *ngFor="let item of list_all_Workplace" [value]="item._id">{{item.name}}</option>
+                                </select>
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+              <a href="#" class="mj_mainbtn mj_btnyellow" data-text="search"><span>search</span></a>
+            </div>
+          </form>
+        </div>
+        <div style="    position: absolute;
+    background-color: #9e5959;
+    padding-left: 20px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-right: 10px;
+    color: white;">
+          <a class="search-bottom-link pull-left" style="color:white" (click)="clickav()">Advanced search</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mj_filter_section">
+    <div class="container">
+
+      <div *ngIf="isadvance" class="row">
+        <div class="mj_filter_slider">
+          <form>
+
+            <div class="col-lg-8 col-md-6 col-sm-6 col-xs-12">
+              <div class="row">
+                <div class="form-group">
+                  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                   
+                  <select class="custom-select form-control" name="timepass">
+								     	<option value="0">Skill</option>
+                    </select>
+                  </div>
+                  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                    <select (change)="selectSalaryB($event.target.value);ChangeListJob()" class="custom-select form-control" name="timepass">
+								     	<option value="0">Mức Luong</option>
+                    </select>
+                    <div class="select2-drop select2-display-none muc_luong select2-with-searchbox select2-drop-active select2-drop-above" style="top: 201px; left: 215.5px; width: 278px; display: block;" id="select2-drop">   <div class="select2-search">       <input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" class="select2-input">   </div>   <ul class="select2-results"><li class="select2-results-dept-0 select2-result select2-result-selectable"><div class="select2-result-label">Chọn mức lương</div></li><li class="select2-results-dept-0 select2-result select2-result-selectable"><div class="select2-result-label">Dưới 3 triệu</div></li><li class="select2-results-dept-0 select2-result select2-result-selectable"><div class="select2-result-label">3-5 triệu</div></li><li class="select2-results-dept-0 select2-result select2-result-selectable"><div class="select2-result-label">5-7 triệu</div></li><li class="select2-results-dept-0 select2-result select2-result-selectable"><div class="select2-result-label">7-10 triệu</div></li><li class="select2-results-dept-0 select2-result select2-result-selectable"><div class="select2-result-label">10-12 triệu</div></li><li class="select2-results-dept-0 select2-result select2-result-selectable select2-highlighted"><div class="select2-result-label">12-15 triệu</div></li><li class="select2-results-dept-0 select2-result select2-result-selectable"><div class="select2-result-label">15-20 triệu</div></li><li class="select2-results-dept-0 select2-result select2-result-selectable"><div class="select2-result-label">20-25 triệu</div></li><li class="select2-results-dept-0 select2-result select2-result-selectable"><div class="select2-result-label">25-30 triệu</div></li><li class="select2-results-dept-0 select2-result select2-result-selectable"><div class="select2-result-label">Trên 30 triệu</div></li></ul></div>
+                  </div>
+                  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                    <select class="custom-select form-control" name="timepass">
+								     	<option value="0">So nam Kinh Nghiem</option>
+                    </select>
+                  </div>
+                   <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                    <select class="custom-select form-control" name="timepass">
+								     	<option value="0">Job catagory</option>
+                    </select>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+
+
+        <!-- Modal Catalog -->
+        <div class="modal fade" id="myModal" role="dialog">
+          <div>
+            <div>
+              <div class="modal-body">
+                <!--Body model-->
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <aside class="widget widget_tag_cloud">
+                  <h4 class="widget-title">Catagory</h4>
+                  <a *ngFor="let item of list_all_jobcategory" [routerLink]="['/pages/home/search-jobs', 'catagory',item._id,'all']">{{item.name}}</a>
+
+                </aside>
+                <!--Body Model-->
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <!--End List-->
+      <div class="mj_jobinfo">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+          <div class="row">
+            <div class="mj_showjob">
+              <p>showing <strong>{{allItem.lenght}}</strong> job offers</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="mj_tabcontent mj_bottompadder80">
+        <table class="table table-striped">
+          <tr *ngFor="let listjob of allItem|capitalize : Search_title :allItem:fromFilter:toFilter">
+            <td>
+              <div class="mj_liks"><a href="#"><i class="fa fa-heart"></i></a><span>Save this Job</span>
+              </div>
+            </td>
+            <td>
+              <a href="#"><img style="width: 100px;height: 100px;" src="http://localhost:3000/uploads/forms/logo/{{listjob.company[0].info_recruiter.logo}}" class="img-responsive" alt="">
+                                </a>
+            </td>
+            <td>
+              <tr>
+                <h4><a [routerLink]="['../../../../detail-jobs',listjob._id ]">{{listjob.title}}</a></h4>
+              </tr>
+              <tr>
+                <p>{{listjob.title}}</p>
+              </tr>
+              <tr>
+                <p>Posted on: {{listjob.createddate|date}} </p>
+              </tr>
+              <tr>
+                <p>{{listjob.endPost|date}}</p>
+              </tr>
+              <tr>
+                <i class="fa fa-map-marker"></i> {{listjob.Infodistrict[0].name}}, {{listjob.Infoworkplace[0].name}}
+              </tr>
+            </td>
+
+            <td>
+              <ul class="list_language" *ngFor="let list_language of listjob.Infokeyword">
+                <li>{{list_language.name}}</li>
+
+              </ul>
+
+              <P>
+
+              </P>
+            </td>
+            <td><a href="#" class="mj_btn mj_greenbtn">{{listjob.JobTime}}</a>
+            </td>
+            <td><span>{{listjob.salarycompete}}</span>
+            </td>
+          </tr>
+
+        </table>
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 col-lg-offset-4 col-md-offset-4">
+          <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+            <li [ngClass]="{disabled:pager.currentPage === 1}">
+              <a (click)="setPage(1)">First</a>
+            </li>
+            <li [ngClass]="{disabled:pager.currentPage === 1}">
+              <a (click)="setPage(pager.currentPage - 1)">Previous</a>
+            </li>
+            <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+              <a (click)="setPage(page)">{{page}}</a>
+            </li>
+            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+              <a (click)="setPage(pager.currentPage + 1)">Next</a>
+            </li>
+            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+              <a (click)="setPage(pager.totalPages)">Last</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="clearfix"></div>

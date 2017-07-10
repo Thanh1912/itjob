@@ -199,7 +199,9 @@ module.exports.searchJobTitles = function (req, res) {
   var KJobTime = req.body.JobTimeP;
   var Kjobcategory = req.body.jobcategoryP;
   var Kjobcategorydetail = req.body.jobcategorydetailP;
-  result = req.body.titleP;;
+ var result = req.body.titleP;
+ var dateBegin= req.body.dateBeginP;
+  var dateEnd= req.body.dateEndP;
   var obj1 = [];
   var obj2 = [];
   var ObjectId = require('mongoose').Types.ObjectId;
@@ -258,14 +260,69 @@ module.exports.searchJobTitles = function (req, res) {
         jobcategorydetail: { $in: arr }
       })
   }
- /* if (typeof result !== 'undefined' || result !== '==') {
-    obj2.push(
+   console.log('KKKK'+result)
+  obj2.push(
       { "title": new RegExp(result) }
     )
-  }*/
+      obj2.push({
+          "endPost": {  "$lte":new Date("2017-07-30 10:03:46.000Z") }
+      }
+         
+    )
+   
   console.log(obj2)
   var ObjectId = require('mongoose').Types.ObjectId;
-  model.aggregate([
+  if(obj2.length===0){
+    console.log('rong')
+model.aggregate([
+   
+    {
+      "$lookup": {
+        "from": "districts",
+        "localField": "districtid",
+        "foreignField": "_id",
+        "as": "Infodistrict"
+      },
+    },
+    {
+      "$lookup": {
+        "from": "recruiters",
+        "localField": "recruiterid",
+        "foreignField": "_id",
+        "as": "company"
+      }
+    },
+    {
+      "$lookup": {
+        "from": "jobcategorydetails",
+        "localField": "jobcategorydetail",
+        "foreignField": "_id",
+        "as": "Infokeyword"
+      },
+
+    },
+    {
+      "$lookup": {
+        "from": "jobcategories",
+        "localField": "jobcategory",
+        "foreignField": "_id",
+        "as": "Infojobcategory"
+      }
+    },
+    {
+      "$lookup": {
+        "from": "workplaces",
+        "localField": "workplaceid",
+        "foreignField": "_id",
+        "as": "Infoworkplace"
+      }
+    }
+  ]).exec(function (err, docs) {
+    if (err) throw err;
+    res.json(docs);
+  });
+  }else{
+    model.aggregate([
     {
       $match: {
         $and: obj2
@@ -316,6 +373,8 @@ module.exports.searchJobTitles = function (req, res) {
     if (err) throw err;
     res.json(docs);
   });
+  }
+  
 };
 
 // Get all

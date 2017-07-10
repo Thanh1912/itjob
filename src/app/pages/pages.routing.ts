@@ -11,6 +11,7 @@ import { DetailCompanyComponent } from './detail-company/detail-company.componen
 import { ManagerAccountComponent } from './manager-account/manager-account.component';
 import { ManagerJobApplyComponent } from './manager-job-apply/manager-job-apply.component';
 import { LoginEmployeeComponent } from './login-employee/login-employee.component';
+import { SearchProfileComponent } from './search-profile/search-profile.component';
 export const routes: Routes = [
   /* {
      path: 'login',
@@ -36,6 +37,7 @@ export const routes: Routes = [
       { path: 'home/detail-company/:id', component: DetailCompanyComponent },
       { path: 'Manager-Account', component: ManagerAccountComponent },
       { path: 'Manager-JobApply', component: ManagerJobApplyComponent },
+       { path: 'Search-cadidate', component: SearchProfileComponent },
 
 
     ]

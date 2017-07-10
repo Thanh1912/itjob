@@ -61,8 +61,8 @@
                                         <tr *ngFor="let item of listjobtop">
                                             <td><a href="#"><i class="fa fa-heart"></i></a>
                                             </td>
-                                            <td>
-                                                <a [routerLink]="['detail-company', item.inforCompany[0]._id ]"><img src="assets/images/profilepic1.jpg" class="img-responsive" alt="">
+                                            <td style="width: 120px;">
+                                                <a [routerLink]="['detail-company', item.inforCompany[0]._id ]"><img src="http://localhost:3000/uploads/forms/logo/{{item.inforCompany[0].info_recruiter.logo}}" class="img-responsive" style="width: 80px;height:80px" alt="">
                                                 </a>
                                             </td>
                                             <td>
@@ -74,9 +74,9 @@
                                                 <p>{{item.inforCompany[0].info_recruiter.address}}</p>
                                             </td>
                                             <td>
-                                                <a href="#" class="mj_btn mj_greenbtn">Full Time</a>
+                                                <a href="#" class="mj_btn mj_greenbtn">{{item.JobTime}}</a>
                                             </td>
-                                            <td><span>$45,000</span>
+                                            <td><span>{{item.salarycompete}}</span>
                                             </td>
                                         </tr>
 
@@ -120,7 +120,7 @@
                             <div class="mj_tabcontent mj_toppadder30">
                                 <table class="table table-striped">
                                     <tbody>
-                                        <tr>
+                                        <tr *ngFor="let itemcandidate of listCandidate" >
                                             <td><a href="#"><i class="fa fa-heart"></i></a>
                                             </td>
                                             <td>
@@ -128,17 +128,17 @@
                                                 </a>
                                             </td>
                                             <td>
-                                                <h4><a href="#">UX Designer</a></h4>
+                                                <h4><a href="#"> {{itemcandidate?.nameprofile}} </a></h4>
                                                 <p>Company Inc.</p>
                                             </td>
                                             <td>
                                                 <i class="fa fa-map-marker"></i>
-                                                <p>Boston</p>
+                                                <p> {{itemcandidate.workplaceid_view[0]?.name}},{{itemcandidate.districtid_view[0]?.name}}</p>
                                             </td>
                                             <td>
-                                                <a href="#" class="mj_btn mj_bluebtn">Freelance</a>
+                                                <a  class="mj_btn mj_bluebtn">  {{itemcandidate.jobcategories_view[0]?.name}}</a>
                                             </td>
-                                            <td><span>$20,000</span>
+                                            <td><span>${{itemcandidate?.salary}}</span>
                                             </td>
                                         </tr>
 

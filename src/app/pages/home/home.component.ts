@@ -4,6 +4,7 @@ import { JobService } from '../../services/job.service';
 import { JobcategoryService } from '../../services/jobcategory.service';
 import { JobcategoryDetailService } from '../../services/jobcategory-detail.service';
 import { sliderService } from '../../services/slider.service';
+import { CandidateService } from '../../services/candidate.service';
 
 @Component({
   selector: 'app-home',
@@ -27,7 +28,8 @@ export class HomeComponent implements OnInit {
   Listcompany: any;
   listjobtop: any;
   listslider: any;
-  constructor(private title: Title,private slider: sliderService, private job: JobService, private JobcategoryService: JobcategoryService, private JobcategoryDetailService: JobcategoryDetailService) {
+    listCandidate:any;
+  constructor(   private Candidate: CandidateService, private title: Title,private slider: sliderService, private job: JobService, private JobcategoryService: JobcategoryService, private JobcategoryDetailService: JobcategoryDetailService) {
 
   }
 
@@ -42,6 +44,20 @@ export class HomeComponent implements OnInit {
       () => { }
     );
   }
+
+    getCandidateTop() {
+    this.Candidate.getTop().subscribe(
+      data => {
+        this.listCandidate = data;
+        console.log('====getCandidate====')
+        console.log(data)
+      },
+      error => console.log(error),
+      () => { }
+    );
+  }
+
+
 
 
 
@@ -94,7 +110,8 @@ export class HomeComponent implements OnInit {
     this.getjobcategory();
     this.getjobcategoryD();
     this.gettop12Company();
-    this.getjobTOP()
+    this.getjobTOP();
+    this.getCandidateTop()
     this.title.setTitle('Trang chủ Itjob');
     this.getslider();
     // title.getTitle();

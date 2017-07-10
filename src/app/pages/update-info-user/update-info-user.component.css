@@ -9,3 +9,21 @@
     text-decoration: none;
     margin-top: 10px;
 }
+.namepro{
+    	font-size: 65px;
+    font-family: 'FiraSans-ExtraLight';
+    text-transform: uppercase;
+    font-weight: 100;
+    color: #000000;
+    float: left;
+    width: 100%;
+    margin: 0;
+    padding-bottom: 15px;
+    font-size: 23px;
+}
+
+.imgPro{
+    margin-left: 2px;
+    height: 284px;
+    width: 300px;
+	}

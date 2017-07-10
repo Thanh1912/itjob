@@ -14,12 +14,19 @@ export class CandidateService {
   getdetail(id): Observable<any> {
     return this.http.get(this.Rest_Url+`/api/thanhvien/`+id, this.options);
   }
+  getTop(): Observable<any> {
+    return this.http.get(this.Rest_Url+`/api/topcandidate/`).map(res => res.json());
+  }
     edit_user(user): Observable<any> {
     return this.http.put(this.Rest_Url + `/api/thanhvien/${user._id}`, JSON.stringify(user), this.options);
   }
    savecv(user): Observable<any> {
     return this.http.post(this.Rest_Url + `/api/resume`, JSON.stringify(user), this.options);
   }
+    get(user): Observable<any> {
+    return this.http.get(this.Rest_Url + `/api/thanhvien/${user._id}`, this.options);
+  }
+
   //get resume
 
   //edit password
