@@ -185,3 +185,141 @@ module.exports.delete = function (req, res) {
     res.sendStatus(200);
   });
 }
+//====================Search candidate============================
+// Get 
+module.exports.searchJobTitles = function (req, res) {
+  //get value from post  or 
+  var KKinhNghiem = req.body.KinhNghiemP;
+  var Ksalary = req.body.salaryP;
+  var KUnit = req.body.UnitP;
+  var Kdistrictid = req.body.districtidP;
+  var Kworkplaceid = req.body.workplaceidP;
+  var Kjobcategory = req.body.jobcategoryP;
+  var Kjobcategorydetail = req.body.jobcategorydetailP;
+  var Ktitle = req.body.titleP;
+  var Kexperience = req.body.experienceP;
+  var obj2 = [];
+  var ObjectId = require('mongoose').Types.ObjectId;
+  if (typeof Ksalary !== 'undefined' && Ksalary !== "==" && Ksalary !== "0") {
+    console.log(Ksalary + isNaN(Ksalary));
+    if (parseInt(Ksalary) !== 0 && isNaN(Ksalary) == false)
+      obj2.push({
+        salarybegin: {
+          $gte: parseInt(Ksalary),
+        }
+      })
+  }
+
+
+  if (typeof Kdistrictid !== 'undefined' && Kdistrictid !== "==") {
+    console.log('Kdistrictid')
+    obj2.push({
+      districtid: new ObjectId(Kdistrictid)
+    })
+  }
+  console.log(Kworkplaceid)
+  if (typeof Kworkplaceid !== 'undefined' && Kworkplaceid !== "==") {
+    console.log('Kworkplaceid')
+    obj2.push({
+      workplaceid: new ObjectId(Kworkplaceid)
+    })
+  }
+ 
+  if (typeof Kjobcategory !== 'undefined' && Kjobcategory !== "==") {
+    console.log('Kjobcategory')
+    obj2.push({
+      jobcategory: new ObjectId(Kjobcategory)
+    })
+  }
+  if (typeof Kjobcategorydetail !== 'undefined') {
+    console.log('Kjobcategorydetail')
+    var arr = [];
+    Kjobcategorydetail.forEach(function (value) {
+      arr.push(new ObjectId(value))
+    });
+    if (arr.length != 0)
+      obj2.push({
+        jobcategorydetail: { $in: arr }
+      })
+  }
+  Kdiplomalanguage=req.body.diplomalanguageP;
+    if (typeof Kdiplomalanguage !== 'undefined') {
+    console.log('diplomalanguage')
+    var arr = [];
+    Kdiplomalanguage.forEach(function (value) {
+      arr.push(new ObjectId(value))
+    });
+    if (arr.length != 0)
+      obj2.push({
+        diplomalanguage: { $in: arr }
+      })
+  }
+
+  if (Ktitle !== "==") {
+    obj2.push(
+      { "title": new RegExp(Ktitle) }
+    )
+  }
+    if (Kexperience !== "==") {
+    obj2.push(
+      { "experience": Kexperience }
+    )
+  }
+
+
+  console.log(obj2)
+  var ObjectId = require('mongoose').Types.ObjectId;
+    model.aggregate([
+      {
+        $match: {
+          $and: obj2
+        }
+      },
+      {
+        "$lookup": {
+          "from": "districts",
+          "localField": "districtid",
+          "foreignField": "_id",
+          "as": "Infodistrict"
+        },
+      },
+      {
+        "$lookup": {
+          "from": "diplomalanguages",
+          "localField": "diplomalanguage",
+          "foreignField": "_id",
+          "as": "diploma_language"
+        }
+      },
+      {
+        "$lookup": {
+          "from": "jobcategorydetails",
+          "localField": "jobcategorydetail",
+          "foreignField": "_id",
+          "as": "Infokeyword"
+        },
+
+      },
+      {
+        "$lookup": {
+          "from": "jobcategories",
+          "localField": "jobcategory",
+          "foreignField": "_id",
+          "as": "Infojobcategory"
+        }
+      },
+      {
+        "$lookup": {
+          "from": "workplaces",
+          "localField": "workplaceid",
+          "foreignField": "_id",
+          "as": "Infoworkplace"
+        }
+      }
+    ]).exec(function (err, docs) {
+      if (err) throw err;
+      res.json(docs);
+    });
+ 
+
+};

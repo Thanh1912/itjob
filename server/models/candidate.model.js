@@ -6,7 +6,7 @@ const candidateSchema = new mongoose.Schema({
   password: { type: String, required: true },
   fullname: String,
   nameprofile:String,
-  profileimage: { type: String, default: 'anonymous.png' }, 
+  profileimage: { type: String, default: 'anonymous.png' },
   salary:  { type: Number, default: 0 },
   jobcategory: { type: Schema.Types.ObjectId, ref: 'jobcategory' },
   jobcategorydetail: [
@@ -19,7 +19,8 @@ const candidateSchema = new mongoose.Schema({
   workplaceid:  { type: Schema.Types.ObjectId, ref: 'workplace' },//
   districtid: { type: Schema.Types.ObjectId, ref: 'district' },//
   createddate:{ type: Date, default: Date.now },
-  status:{ type: Boolean, default: false }, 
+  status:{ type: Boolean, default: false },
+  pathcv:{ type: String, default: '' }
 });
 const model = mongoose.model('candidate', candidateSchema);
 module.exports = model;

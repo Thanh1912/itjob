@@ -25,6 +25,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { AuthGuard } from './_guards/index';
 import { AuthGuardAmin } from './_guards/auth_admin.guard';
 import { AuthGuardnhatuyendung } from './_guards/auth_nhatuyendung.guard';
+import { Demo01Component } from './demo01/demo01.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,6 +39,7 @@ import { AuthGuardnhatuyendung } from './_guards/auth_nhatuyendung.guard';
     SearchJobPipe,
     SearchPipe,
     PageNotFoundComponent,
+    Demo01Component,
    // FileSelectDirective
   
   ],

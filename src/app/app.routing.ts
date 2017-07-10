@@ -7,6 +7,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { AuthGuard } from './_guards/index';
 import { AuthGuardAmin } from './_guards/auth_admin.guard';
 import { AuthGuardnhatuyendung } from './_guards/auth_nhatuyendung.guard';
+import { Search2Component } from './search2/search2.component';
 export const routes: Routes = [
   { path: '', redirectTo: 'pages', pathMatch: 'full' },
   {
@@ -48,6 +49,11 @@ export const routes: Routes = [
     loadChildren: 'app/pages_employee/nhatuyendung.module#NhatuyendungModule',
      //  canActivate: [AuthGuardnhatuyendung]
   },
+    {
+    path: 'demo',
+    component: Search2Component
+  },
+  
   { path: '**', component: PageNotFoundComponent }
 
 ];

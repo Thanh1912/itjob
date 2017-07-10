@@ -2,8 +2,6 @@
 var mongoose = require('mongoose');
 var model = require('../models/ratecomment.model.js');
 
-
-
 // Count all
 module.exports.countByidJOB = function (req, res) {
     var ObjectId = require('mongoose').Types.ObjectId;
@@ -62,7 +60,7 @@ var reduce = function(k, v) {
 }
 model.mapReduce(map.toString(), reduce.toString(), {out: 'coll'}, function(e, c) {
                 console.log(c);
-                process.exit(1);            
+                process.exit(1);
 });
 
 };

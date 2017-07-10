@@ -21,7 +21,8 @@ const nhattuyendungSchema = new mongoose.Schema({
   jobcategory: { type: Schema.Types.ObjectId, ref: 'jobcategory' },
   jobcategorydetail: [
     { type: Schema.Types.ObjectId, ref: 'jobcategorydetail' },
-  ]
+  ],
+  status:{ type: Boolean, default: false },
 });
 
 const model = mongoose

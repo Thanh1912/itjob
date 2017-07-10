@@ -233,13 +233,7 @@ export class SearchJobsComponent implements OnInit {
         this.jobcategorydetail_.push(this.idDetail)
         this.getinfoCatagoryDetail(this.idDetail);
       }
-      //==============GET ALL ===============
-      if( params['action']==="select-all"&& params['id']==="job"&& params['id_detail']==="all")
-      {
-          this.jobcategory_ ="";
-           this.idDetail="";
-         this.ChangeListJob();
-      }
+    
       //==========GET CATAGORY ALL=============
 
 

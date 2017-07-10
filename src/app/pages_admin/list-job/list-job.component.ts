@@ -49,7 +49,32 @@ export class ListJobComponent implements OnInit {
     );
   }
 
-
+updateStatusTrue(item:any){
+  var itemPost={
+    _id:item._id,
+    status:true
+  }
+ this.job.edit(itemPost).subscribe(
+      data => {
+        alert('Thanh cong')
+      },
+      error => console.log(error),
+      () => this.isLoading = false
+    );
+}
+updateStatusFalse(item:any){
+  var itemPost={
+    _id:item._id,
+    status:false
+  }
+ this.job.edit(itemPost).subscribe(
+      data => {
+         alert('Thanh cong')
+      },
+      error => console.log(error),
+      () => this.isLoading = false
+    );
+}
   //==============FUNCTION==================
 
   //==============Load first==================
