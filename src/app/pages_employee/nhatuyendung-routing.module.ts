@@ -22,8 +22,8 @@ const adminRoutes: Routes = [
           { path: 'application/:id', component: ApplicantComponent },
           { path: 'company', component: CompanyComponent },
           { path: '', component: DanhSachBaiDangComponent },
-            { path: 'edit-baidang/:id', component: EditBaidangComponent },
-               { path: 'view', component: ViewprofileComponent },
+          { path: 'edit-baidang/:id', component: EditBaidangComponent },
+          { path: 'view', component: ViewprofileComponent },
 
 
         ]

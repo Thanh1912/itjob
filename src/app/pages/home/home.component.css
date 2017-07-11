@@ -48,6 +48,13 @@ margin-top: 34px;
 .text_detail{
 	color: white;
 	font-size: 20px;
+	height: 150px;
+    margin-top: 22px;
+    overflow-y: hidden;
+    background-color: #141a1a;
+    padding-left: 15px;
+    padding-bottom: 10px;
+    opacity: 0.8;
 }
 .btn-detail{
 margin-left: 400px;

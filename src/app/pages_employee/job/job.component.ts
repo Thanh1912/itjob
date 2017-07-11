@@ -89,7 +89,7 @@ export class JobComponent implements OnInit, AfterViewInit {
   }
   ngOnInit() {
     if (localStorage.getItem('userId_ntd') == null) {
-      this.router.navigate(['/nhatuyendung']);
+      this.router.navigate(['/pages_employee']);
     }
     this.id_user = localStorage.getItem('userId_ntd');
     this.jobcategoryDetailService.count().subscribe(

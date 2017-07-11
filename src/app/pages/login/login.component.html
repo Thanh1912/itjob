@@ -22,13 +22,13 @@
                         <h4><i class="icon fa fa-ban"></i> Thông Báo!</h4>
                         {{error}}
                     </div>
-                    <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+                    <form [formGroup]="loginForm" (ngSubmit)="login()">
                         <div class="mj_login_form">
                             <div class="form-group">
-                                <input type="text" placeholder="Username or Email" [(ngModel)]="email" name="uname" class="form-control">
+                                <input type="text" placeholder="Username or Email" [formControl]="email1" name="uname" class="form-control">
                             </div>
                             <div class="form-group">
-                                <input type="password" placeholder="Your Password" [(ngModel)]="pass" name="password" class="form-control">
+                                <input type="password" placeholder="Your Password"  [formControl]="password"  name="password" class="form-control">
                             </div>
                             <div class="row">
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mj_toppadder20">

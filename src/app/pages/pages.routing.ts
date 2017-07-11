@@ -12,6 +12,7 @@ import { ManagerAccountComponent } from './manager-account/manager-account.compo
 import { ManagerJobApplyComponent } from './manager-job-apply/manager-job-apply.component';
 import { LoginEmployeeComponent } from './login-employee/login-employee.component';
 import { SearchProfileComponent } from './search-profile/search-profile.component';
+import { DetailCandidateComponent } from './detail-candidate/detail-candidate.component';
 export const routes: Routes = [
   /* {
      path: 'login',
@@ -38,6 +39,7 @@ export const routes: Routes = [
       { path: 'Manager-Account', component: ManagerAccountComponent },
       { path: 'Manager-JobApply', component: ManagerJobApplyComponent },
        { path: 'Search-cadidate', component: SearchProfileComponent },
+         { path: 'home/detail-cadidate', component: DetailCandidateComponent },
 
 
     ]

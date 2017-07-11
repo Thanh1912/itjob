@@ -30,7 +30,7 @@ export class EditBaidangComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private router: Router, private http: Http, private el: ElementRef, private districtService: DistrictService, private workplaceService: WorkplaceService, private keywordService: KeywordService, private postservice: PostService) {
     this.ckeditorContent = `<p>My HTML</p>`;
-    
+
   }
 
   public uploader: FileUploader = new FileUploader({ url: 'http://localhost:3000/api/uploadpostbaidang', itemAlias: 'file' });
@@ -87,7 +87,7 @@ export class EditBaidangComponent implements OnInit {
 
   ngOnInit() {
       this.ckeditordescriptionwork = `<p>My HTML</p>`;
-    
+
     this.getallDistrict();
     this.sub = this.route.params.subscribe(params => {
       this.id = params['id'];
@@ -218,7 +218,7 @@ export class EditBaidangComponent implements OnInit {
       salarycompete = 'thoathuan';
     }
     if (localStorage.getItem('userId_ntd') == null) {
-      this.router.navigate(['/nhatuyendung']);
+      this.router.navigate(['/pages_employee']);
     }
     var id_user = localStorage.getItem('userId_ntd');
     var key = [];

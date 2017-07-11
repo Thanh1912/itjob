@@ -144,8 +144,7 @@ export class ManagerAccountComponent implements OnInit {
         //map the success function and alert the response
         (success) => {
 
-
-          alert(success._body);
+ 
         },
         (error) => alert(error))
     }

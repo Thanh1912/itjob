@@ -46,9 +46,7 @@ export class DetailJobComponent implements OnInit {
   ngAfterViewInit() {
     window.scrollTo(0, 0);
   }
-  ngAfterViewChecked() {
-    window.scrollTo(0, 0);
-  }
+
   jobitem: any;
   ngOnInit() {
 
@@ -59,7 +57,7 @@ export class DetailJobComponent implements OnInit {
     //able to deal with the server response.
     this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
 
-      //cap cv 
+      //cap cv
       let userId = localStorage.getItem('userId');
       if (userId === null) {
         alert('vui long dang nhap')

@@ -12,7 +12,7 @@ import { PagerService } from './../../_services/pager.service';
 @Component({
   selector: 'app-search-profile',
   templateUrl: './search-profile.component.html',
-   styleUrls: ['../../../assets/css/bootstrap.css', './search-profile.component.css',
+  styleUrls: ['../../../assets/css/bootstrap.css', './search-profile.component.css',
     '../../../assets/css/animate.css'
     , '../../../assets/css/style.css'
     , '../../../assets/js/plugins/fancybox/jquery.fancybox.css'
@@ -26,7 +26,7 @@ import { PagerService } from './../../_services/pager.service';
 })
 export class SearchProfileComponent implements OnInit {
 
- scrollTopChangeRouter() {
+  scrollTopChangeRouter() {
     this.router.events.subscribe((evt) => {
       if (!(evt instanceof NavigationEnd)) {
         return;
@@ -34,75 +34,50 @@ export class SearchProfileComponent implements OnInit {
       window.scrollTo(0, 0)
     });
   }
-  
-  listNamKinhNghiem=[
+
+  listNamKinhNghiem = [
     {
-    value:'0',
-    name:'Mới ra trường'
-  },
-   {
-    value:'1',
-    name:'1 Năm'
-  },
-   {
-    value:'2',
-    name:'2 Năm'
-  },
-   {
-    value:'3',
-    name:'3 Năm'
-  },
-   {
-    value:'4',
-    name:'4 Năm'
-  },
-   {
-    value:'5',
-    name:'5 Năm'
-  }
+      value: '0',
+      name: 'Mới ra trường'
+    },
+    {
+      value: '1',
+      name: '1 Năm'
+    },
+    {
+      value: '2',
+      name: '2 Năm'
+    },
+    {
+      value: '3',
+      name: '3 Năm'
+    },
+    {
+      value: '4',
+      name: '4 Năm'
+    },
+    {
+      value: '5',
+      name: '5 Năm'
+    }
   ];
 
-  listLuong=[
+  listLuong = [
     {
-    value:'-3',
-    name:'Dưới 3 triệu'
-  },
-   {
-    value:'3-5',
-    name:'Dưới 3-5 triệu'
-  },
-   {
-    value:'5-7',
-    name:'Dưới 5-7 triệu'
-  },
-   {
-    value:'7-103',
-    name:'Dưới 7-10 triệu'
-  },
-   {
-    value:'10-12',
-    name:'Dưới 10-12 triệu'
-  },
-   {
-    value:'12-15',
-    name:'Dưới 12-15 triệu'
-  },
-   {
-    value:'15-20',
-    name:'Dưới 15-20 triệu'
-  },
-   {
-    value:'20-25',
-    name:'Dưới 20-25 triệu'
-  },
-   {
-    value:'25-30',
-    name:'Dưới 25-30 triệu'
-  },
-
-   {
-    value:'+30',
-    name:'Trên 30 triệu'
+      value: '-500',
+      name: 'Dưới 500 '
+    },
+    {
+      value: '500-800',
+      name: '500-800'
+    },
+    {
+      value: '1000',
+      name: '1000'
+    },
+    {
+      value: '+1200',
+      name: '>1200'
     }
   ]
   pager: any = {};
@@ -135,7 +110,7 @@ export class SearchProfileComponent implements OnInit {
     }
   }
 
-   setDateFrom(value: Date) {
+  setDateFrom(value: Date) {
     this.from = value
     this.fromFilter = value;
     this.ChangeListJob();
@@ -166,25 +141,72 @@ export class SearchProfileComponent implements OnInit {
     this.ChangeListJob()
   }
   isadvance = false;
-  constructor(private Diplomalanguage:DiplomalanguageService, private candidate: CandidateService,private pagerService: PagerService, private datePipe: DatePipe, private job: JobService, private capitalize: CapitalizePipe, private Workplace: WorkplaceService, private router: Router, private jobcategoryDetailService: JobcategoryDetailService, private jobcategory: JobcategoryService, private route: ActivatedRoute) { }
+  constructor(private Diplomalanguage: DiplomalanguageService, private candidate: CandidateService, private pagerService: PagerService, private datePipe: DatePipe, private job: JobService, private capitalize: CapitalizePipe, private Workplace: WorkplaceService, private router: Router, private jobcategoryDetailService: JobcategoryDetailService, private jobcategory: JobcategoryService, private route: ActivatedRoute) { }
   list_all_jobcategory: any;
   list_ById_jobcategory: any;
   private sub: any;
   idDetail: String;
   workplaceid: String
+
+  //=================||=====================
+  diplomalanguageInput: String;
   Search_title: String;
-   list_all_Workplace: any;
+  jobcategorydetailInput: String;
+  jobcategoryInput: String;
+  experienceInput: String;
+  salaryInput: String;
+
+  list_all_Workplace: any;
   searchTitle() {
     this.ChangeListJob();
   }
   ChangeListJob() {
-    var Ptitle = this.Search_title;
-   
-    this.job.searchJobTile(
-     {}
+    var Ksalary = this.salaryInput;
+    // var Kdistrictid =this.districtidP;
+    var Kworkplaceid = this.workplaceid;
+    var Kjobcategory = this.jobcategoryInput;
+    var Kjobcategorydetail = this.jobcategorydetailInput;
+    var Ktitle = this.Search_title;
+    var Kexperience = this.experienceInput;
+    var Kdiplomalanguage = this.diplomalanguageInput;
+    if (Kworkplaceid === '') {
+      Kworkplaceid = '=='
+    }
+    if (Kjobcategory === '') {
+      Kjobcategory = '=='
+    }
+    if (Kjobcategorydetail === ''&&Kjobcategorydetail!==undefined) {
+       console.log("VV")
+      Kjobcategorydetail = '=='
+    }
+      console.log("Kjobcategorydetail")
+    console.log(Kjobcategorydetail)
+    if (Ktitle === '') {
+      Ktitle = '=='
+    }
+    if (Kdiplomalanguage === '') {
+      Kdiplomalanguage = '=='
+    }
+    if (Kexperience === '') {
+      Kexperience = '=='
+    }
+
+    var post = {
+      salaryP: Ksalary,
+      //  districtidP: Kdistrictid,
+      workplaceidP: Kworkplaceid,
+      jobcategoryP: Kjobcategory,
+      jobcategorydetailP: [Kjobcategorydetail],
+      titleP: Ktitle,
+      experienceP: Kexperience
+    }
+    console.log("post")
+console.log(post)
+    this.candidate.searchCandidate(
+    post
     ).subscribe(
       data => {
-        this.allItem = data;
+        this.list_profile = data;
         this.setPage(1);
 
       },
@@ -209,8 +231,8 @@ export class SearchProfileComponent implements OnInit {
 
     this.getDiplomalanguage();
   }
- 
-list_all_Diplomalanguage:any
+
+  list_all_Diplomalanguage: any
   getDiplomalanguage() {
     this.Diplomalanguage.getall().subscribe(
       data => {
@@ -252,9 +274,9 @@ list_all_Diplomalanguage:any
       return;
     }
     // get pager object from service
-    this.pager = this.pagerService.getPager(this.allItem.length, page);
+    this.pager = this.pagerService.getPager(this.list_profile.length, page);
     // get current page of items
-    this.pagedItems = this.allItem.slice(this.pager.startIndex, this.pager.endIndex + 1);
+    this.pagedItems = this.list_profile.slice(this.pager.startIndex, this.pager.endIndex + 1);
   }
   getjobcategory() {
     this.jobcategory.getall().subscribe(
@@ -267,9 +289,9 @@ list_all_Diplomalanguage:any
       }
     );
   }
- 
-  list_jobcategoryDetail:any;
-  getCatagoryDetail(id:String) {
+
+  list_jobcategoryDetail: any;
+  getCatagoryDetail(id: String) {
     this.jobcategoryDetailService.getallByIdCategory(id).subscribe(
       data => {
         console.log('OJ')
@@ -284,9 +306,9 @@ list_all_Diplomalanguage:any
   }
 
 
-   list_profile=[];
+  list_profile = [];
   getProfile() {
-    var post={
+    var post = {
 
     }
     this.candidate.searchCandidate(post).subscribe(

@@ -249,7 +249,6 @@ module.exports.searchCandidate = function (req, res) {
   //get value from post  or 
  
   var Ksalary = req.body.salaryP;
-  var KUnit = req.body.UnitP;
   var Kdistrictid = req.body.districtidP;
   var Kworkplaceid = req.body.workplaceidP;
   var Kjobcategory = req.body.jobcategoryP;
@@ -472,3 +471,63 @@ var obj2=[]
  
 
 };
+
+
+
+// Get all
+module.exports.detail_Candidate = function (req, res) {
+  model.aggregate([
+    
+    { $match: { _id: new ObjectId(req.params.id) } },
+   {
+      "$lookup": {
+        "from": "jobcategories",
+        "localField": "jobcategory",
+        "foreignField": "_id",
+        "as": "jobcategories_view"
+      }
+    },
+    {
+      "$lookup": {
+        "from": "diplomalanguages",
+        "localField": "diplomalanguage",
+        "foreignField": "_id",
+        "as": "diplomalanguage_view"
+      }
+    },
+    {
+      "$lookup": {
+        "from": "workplaces",
+        "localField": "workplaceid",
+        "foreignField": "_id",
+        "as": "workplaceid_view"
+      }
+    },
+    {
+      "$lookup": {
+        "from": "districts",
+        "localField": "districtid",
+        "foreignField": "_id",
+        "as": "districtid_view"
+      }
+    },
+    {
+      "$lookup": {
+        "from": "jobcategorydetails",
+        "localField": "jobcategorydetail",
+        "foreignField": "_id",
+        "as": "jobcategorydetail_view"
+      }
+    },
+    { $limit: 10 },
+
+  ]).exec(function (err, docs) {
+    res.json(docs);
+  });
+
+
+
+
+
+};
+

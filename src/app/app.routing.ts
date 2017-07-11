@@ -46,7 +46,7 @@ export const routes: Routes = [
   {
     path: 'pages_employee',
     loadChildren: 'app/pages_employee/nhatuyendung.module#NhatuyendungModule',
-     //  canActivate: [AuthGuardnhatuyendung]
+      canActivate: [AuthGuardnhatuyendung]
   },
 
 

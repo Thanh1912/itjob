@@ -39,6 +39,7 @@ export class LoginNtdComponent implements OnInit {
   gohome(){
     this.router.navigate(['/pages'])
   }
+
   login() {
 
     this.loading = true;
@@ -51,7 +52,6 @@ export class LoginNtdComponent implements OnInit {
         // we need these info in order to do stuff later when the user is signed in and verified
         localStorage.setItem('id_token_ntd', data.token);
         localStorage.setItem('userId_ntd', data.userId);
-        alert(data.userId)
         localStorage.setItem('username_ntd', data.fullname);
         localStorage.setItem('currentUserRole', data.role);
 

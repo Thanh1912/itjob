@@ -1,9 +1,10 @@
-import { Component, OnInit, HostBinding } from '@angular/core';
-
+import { Component,HostListener, OnInit, HostBinding } from '@angular/core';
+import { Validators, FormBuilder, FormGroup,FormControl } from '@angular/forms';
 import { AuthService } from "angular2-social-login";
 import { AuthenticationService } from "../../_services/authentication.service";
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+declare var $: any;
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -25,7 +26,27 @@ export class LoginComponent implements OnInit {
   error = '';
   result;
   sub: any;
-  constructor(public _auth: AuthService, private router: Router, private auth: AuthenticationService) { }
+   email1 = new FormControl('', [
+    Validators.required,
+    Validators.minLength(5)
+  ]);
+
+  password = new FormControl('', [Validators.required]);
+
+  loginForm: FormGroup = this.builder.group({
+    email1: this.email1,
+    password: this.password
+  });
+
+
+
+  login1 () {
+    console.log(this.loginForm.value);
+    // Attempt Logging in...
+  }
+  constructor(private builder: FormBuilder,public _auth: AuthService, private router: Router, private auth: AuthenticationService) {
+
+  }
 
   signIn(provider) {
     this.sub = this._auth.login(provider).subscribe(
@@ -97,11 +118,12 @@ export class LoginComponent implements OnInit {
   }
 
   //dang nhap 
-  login(form: NgForm) {
+  login() {
     let user = {
-      email: form.value.email,
-      password: form.value.pass
+      email: this.loginForm.value.email1,
+      password: this.loginForm.value.password,
     }
+    console.log(user)
     this.auth.signin_tv(user)
       .subscribe(
       data => {
@@ -112,7 +134,6 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('fullname', data.fullname);
         localStorage.setItem('username', data.username);
         localStorage.setItem('currentUserRole', data.role);
-        // navigate user to index page of our app
         location.reload();
         this.router.navigate(['']);
         // display toastr success message pop up to inform the user that he logged in successfully

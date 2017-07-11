@@ -76,7 +76,7 @@ export class UpdateInfoUserComponent implements OnInit {
         diplomalanguage: listpost_diplomalanguage,
         workplaceid: this.workplace1,
         districtid: this.dictrict1,
-         status: true
+        status: true
       }
       console.log(post);
       this.Candidate.edit_user(post).subscribe(
@@ -100,6 +100,11 @@ export class UpdateInfoUserComponent implements OnInit {
     this.getthanhpho();
     this.getDiplomalanguage();
     this.getJobcategory();
+
+    if (localStorage.getItem('userId') !== null) {
+      alert(localStorage.getItem('userId'))
+      this.getcandidate(localStorage.getItem('userId'));
+    }
   }
 
   getJobcategory() {
@@ -164,8 +169,40 @@ export class UpdateInfoUserComponent implements OnInit {
       }
     )
   }
+  Load_mucluong: String;
+  Load_namepro: String;
+  Load_Id_Category: String;
+  Load__id_jobcategorydetail=[];
+  Load_Id_workplace: String;
+  Load_diplomalanguage=[];
+  Load_id_dictrict: String;
+  Load_id_experience: String;
 
 
+  getcandidate(id: String) {
+    var post = {
+      _id: id
+    }
+    this.Candidate.get(post).subscribe(
+      data => {
+        console.log('SowS');
+        console.log(data);
+        this.Load_mucluong = data.salary;
+        this.Load_namepro = data.nameprofile
+        this.Load_Id_Category = data.jobcategory
+        this.Load__id_jobcategorydetail = data.jobcategorydetail
+        this.Load_Id_workplace =data.workplaceid
+        this.Load_diplomalanguage =data.diplomalanguage
+        this.Load_id_dictrict = data.districtid
+        this.Load_id_experience = data.experience
+
+      },
+      error => console.log(error),
+      () => {
+
+      }
+    );
+  }
 
 
   getDiplomalanguage() {
@@ -190,7 +227,6 @@ export class UpdateInfoUserComponent implements OnInit {
       }
     );
   }
-
   changetp(id: String) {
     var post = {
       id: id

@@ -31,10 +31,13 @@ export class CandidateService {
     return this.http.post(this.Rest_Url + `/api/resume`, JSON.stringify(user), this.options);
   }
     get(user): Observable<any> {
-    return this.http.get(this.Rest_Url + `/api/thanhvien/${user._id}`, this.options);
+    return this.http.get(this.Rest_Url + `/api/thanhvien/${user._id}`, this.options).map(res => res.json());
   }
 
-  //get resume
+ getdetailCandi(id){
+   return this.http.get(this.Rest_Url + '/api/detail_Candidate/'+id).map(res => res.json());
+   
+ }
 
   //edit password
     EditPassWord(user): Observable<any> {

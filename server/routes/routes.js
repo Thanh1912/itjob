@@ -54,6 +54,7 @@ router.route('/topcandidate').get(candidatectrl.topcandidate);
 router.route('/searchCandidate').post(candidatectrl.searchCandidate);
 router.route('/candidate-suitable').post(candidatectrl.candidate_suitable);
 router.route('/get-All-page/:skip/:limit').get(candidatectrl.getAllpage);
+router.route('/detail_Candidate/:id').get(candidatectrl.detail_Candidate);
 
 
 
@@ -208,6 +209,9 @@ router.route('/getallnewjob').get(postctrl.getalljobs);
 
 
 
+var Likectrl = require('../controllers/like.controllers.js');
 
+router.route('/Like').post(Likectrl.insert);
+router.route('/Like/:id').delete(Likectrl.delete);
 
 module.exports = router;

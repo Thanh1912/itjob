@@ -24,12 +24,12 @@
                 <div class="mj_recent_article">
                     <div class="mj_articleimg"> <img src="http://localhost:3000/uploads/forms/image/{{item.info_recruiter.profileimage}}" class="img-responsive" alt="">
                         <div class="mj_articleoverlay">
-                            <p [routerLink]="['detail-company', item._id ]">{{item.info_recruiter.namecompany}} </p>
+                            <p [routerLink]="['../detail-company', item._id ]">{{item.info_recruiter.namecompany}} </p>
                         </div>
                     </div>
                     <div class="mj_articledata">
                         <div class="col-lg-6">
-                            <img [routerLink]="['detail-company', item._id ]" src="http://localhost:3000/uploads/forms/logo/{{item.info_recruiter.logo}}" width="64" height="62"
+                            <img [routerLink]="['../detail-company', item._id ]" src="http://localhost:3000/uploads/forms/logo/{{item.info_recruiter.logo}}" width="64" height="62"
                                 alt="Image ">
                         </div>
                         <div class="col-lg-6">

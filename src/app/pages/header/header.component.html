@@ -26,7 +26,7 @@
 
                     </ul>
                     <ul class="nav navbar-nav navbar-right mj_right_menu mj_login_menu" *ngIf="islogin==true">
-                        <li class="mj_searchbtn"><a (click)="login()"><i class="fa fa-search"></i></a>
+                       <!-- <li class="mj_searchbtn"><a (click)="login()"><i class="fa fa-search"></i></a>
                             <div class="mj_search_option">
                                 <form>
                                     <div class="form-group">
@@ -38,7 +38,7 @@
                                     </div>
                                 </form>
                             </div>
-                        </li>
+                        </li>-->
                         <li><a  (click)="clickmj_likedetails()"><i class="fa fa-heart"></i><sup>2</sup></a>
                         </li>
                         <li><a  (click)="clickmj_notification_detail()"><i class="fa fa-bell"></i><sup>2</sup></a>
@@ -68,7 +68,7 @@
                     </div>
                   
                     <ul class="nav navbar-nav navbar-right mj_right_menu mj_withoutlogin_menu" *ngIf="islogin==false">
-                        <li class="mj_searchbtn"><a (click)="login()"><i class="fa fa-search"></i></a>
+                       <!-- <li class="mj_searchbtn"><a (click)="login()"><i class="fa fa-search"></i></a>
                             <div class="mj_search_option">
                                 <form>
                                     <div class="form-group">
@@ -80,7 +80,7 @@
                                     </div>
                                 </form>
                             </div>
-                        </li>
+                        </li>-->
 
                         <li
                         ><a routerLink="/pages/register"><i class="fa fa-lock"></i> Sign Up</a>

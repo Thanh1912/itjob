@@ -1,0 +1,27 @@
+.mj_bluebtn, .mj_bluebtn {
+    background-color: #00bff3;
+    color: #fff;
+    text-decoration: none;
+}
+
+.mj_btn {
+   float: left;
+    width: auto;
+    background-color: #8dc63f;
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+    padding: 5px 25px;
+    text-decoration: none;
+    font-size: 13px;
+    border-radius: 10px 10px 10px 0px;
+    text-transform: capitalize;
+    text-decoration: none;
+}
+
+
+.mj_bluebtn, .mj_bluebtn:hover {
+    background-color: #00bff3;
+    color: #fff;
+    text-decoration: none;
+}
