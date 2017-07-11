@@ -17,6 +17,13 @@ export class CandidateService {
   getTop(): Observable<any> {
     return this.http.get(this.Rest_Url+`/api/topcandidate/`).map(res => res.json());
   }
+    getallpage(skip:String,limit:String): Observable<any> {
+    return this.http.get(this.Rest_Url + '/api/get-All-page/'+skip+'/'+limit).map(res => res.json());
+  }
+   searchCandidate(item): Observable<any> {
+    return this.http.post(this.Rest_Url+`/api/searchCandidate/`,JSON.stringify(item), this.options).map(res => res.json());
+  }
+
     edit_user(user): Observable<any> {
     return this.http.put(this.Rest_Url + `/api/thanhvien/${user._id}`, JSON.stringify(user), this.options);
   }

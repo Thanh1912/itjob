@@ -51,8 +51,13 @@ router.route('/company-get-all').get(user_nhatuyendungctrl.getallcompany);
 router.route('/thanhvien/login/').post(candidatectrl.login);
 router.route('/thanhvien/register/').post(candidatectrl.register);
 router.route('/topcandidate').get(candidatectrl.topcandidate);
+router.route('/searchCandidate').post(candidatectrl.searchCandidate);
+router.route('/candidate-suitable').post(candidatectrl.candidate_suitable);
+router.route('/get-All-page/:skip/:limit').get(candidatectrl.getAllpage);
 
-//
+
+
+
 router.route('/thanhvien').get(candidatectrl.getAll);
 router.route('/thanhvien/count').get(candidatectrl.count);
 router.route('/thanhvien').post(candidatectrl.insert);
@@ -177,6 +182,7 @@ var postctrl = require('../controllers/job.controllers.js');
 router.route('/get-All-Skill-Company/:id').get(postctrl.get_All_Skill_Company);
 router.route('/count-job-in-Company/:id').get(postctrl.count_job_in_Company);
 router.route('/job').get(postctrl.getAll);
+router.route('/jobPage/:skip/:limit').get(postctrl.getAllpage);
 router.route('/getjobByID/:id').get(postctrl.get);
 router.route('/gettop10post').get(postctrl.top10post);
 router.route('/job/count').get(postctrl.count);
@@ -189,11 +195,6 @@ router.route('/getDetailjob/:id').get(postctrl.getByIdDetailJob);
 router.route('/gettop12Company').get(postctrl.gettop12Company);
 router.route('/job-in-company/:id').get(postctrl.jobincompany);
 router.route('/job-search-title').post(postctrl.searchJobTitles);
-
-
-
-
-
 
 router.route('/search-job-key').post(postctrl.get_job_key)
 router.route('/search-job-company/:id').get(postctrl.get_job_company)

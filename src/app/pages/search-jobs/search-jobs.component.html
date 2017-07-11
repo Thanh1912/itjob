@@ -14,16 +14,16 @@
     <div class="mj_blog_tags" style="margin-left: 96px;
     margin-top: -252px; "> <a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-angle-right">Choose Catalog Jobs</i></a>
         <ul>
-            <li><a>{{NameCatagory}}/</a>
+            <li><a [routerLink]="['../../../../search-jobs', 'catagory', id ,'all']">{{NameCatagory}}</a>
             </li>
-            <li><a>{{NameCatagoryDetail}}</a>
+            <li><a [routerLink]="['../../../../search-jobs', 'catagory', id ,idDetail]">{{NameCatagoryDetail}}</a>
             </li>
         </ul>
         <!-- <a class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Choose Catalog Jobs</a>-->
     </div>
     <aside class="woocommerce widget widget_tag_cloud" style=" margin-top: -213px;
     margin-left: 100px;">
-        <a *ngFor="let item of list_ById_jobcategory" [routerLink]="['../../../search-jobs', 'catagory', item._id ,'all']">{{item.name}}</a>
+        <a *ngFor="let item of list_ById_jobcategory" [routerLink]="['../../../../search-jobs', 'catagory', id ,item._id]">{{item.name}}</a>
     </aside>
 
     <!--==============================-->
@@ -45,7 +45,7 @@
                                 </select>
                         </div>
                         <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                            <a href="#" class="mj_mainbtn mj_btnyellow" data-text="search"><span>search</span></a>
+                            <a class="mj_mainbtn mj_btnyellow" data-text="search" (click)="searchTitle()"><span>search</span></a>
                         </div>
                     </form>
                 </div>
@@ -100,30 +100,32 @@
                                     </div>
                                     <div class="col-lg-6 col-md-3 col-sm-3 col-xs-12">
                                         <div style=" position: absolute;z-index: 99;">
-                                            <ul *ngIf="isdate==false">
-                                                <li>
-                                                    <div class="row">
-                                                        <div style="margin-left: -20px;">
-                                                            <input type="date" (change)="setDateFrom($event.target.value)" class="form-control date-left" />
-                                                        </div>
-                                                        <div>
-                                                            <input type="date" (change)="setDateTo($event.target.value)" class="form-control date-right" />
-                                                            <button class="btn bnt-danger" (click)="setCustumer()"><i class="fa fa-window-close-o" aria-hidden="true"></i></button>
-                                                        </div>
-
-                                                    </div>
-                                                </li>
-                                            </ul>
 
 
-                                            <div class="row">
-                                                <div class="col-lg-6">
-                                                    <button (click)="select()" type="text" class=" btn btn-flat " style="background-color:aliceblue;width:200px;text-align: right;"> <i class="fa fa-calendar "
-                                                        aria-hidden="true"></i></button>                                                    {{from|date}}
+                                            <div class="row" *ngIf="isdate==false">
+                                                <div class="col-lg-4">
+                                                    <input type="date" (change)="setDateFrom($event.target.value)" class="form-control " />
                                                 </div>
+                                                <div class="col-lg-4">
+                                                    <input type="date" (change)="setDateTo($event.target.value)" class="form-control " />
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <button class="btn bnt-danger" (click)="setCustumer()"><i class="fa fa-window-close-o" aria-hidden="true"></i></button>
+                                                </div>
+                                            </div>
+
+                                            <div class="row" *ngIf="isdate==true">
                                                 <div class="col-lg-6">
+                                                    <button (click)="select()" type="text" class=" btn btn-flat " style="background-color:aliceblue;width:200px;text-align: right;"> {{fromFilter|date}}<i class="fa fa-calendar "
+                                                        aria-hidden="true"></i></button>
+                                                </div>
+                                                <div class="col-lg-3">
                                                     <button (click)="setallDate()" type="text" class=" btn btn-flat " style="background-color:aliceblue;width:200px;"> <i class="fa fa- "
                                                         aria-hidden="true">Reset</i></button>
+                                                </div>
+                                                <div class="col-lg-3">
+                                                    <button (click)="resetall()" type="text" class=" btn btn-flat " style="background-color:aliceblue;width:200px;"> <i class="fa fa- "
+                                                        aria-hidden="true">Reset ALL</i></button>
                                                 </div>
                                             </div>
 
@@ -135,7 +137,7 @@
 
 
                                                 <li class="select-date bounceInLeft" [class.show]="Showselected">
-                                                    <button class="btn btn-warning" (click)="setDate(30)">30 Days</button>
+                                                    <button class="btn btn-warning" (click)="setCustumer()">Custumer </button>
                                                 </li>
                                                 <li class="select-date bounceInLeft" [class.show]="Showselected">
                                                     <button class="btn btn-warning" (click)="setDate(1)">1 Days</button>
@@ -150,8 +152,9 @@
                                                     <button class="btn btn-warning" (click)="setDate(4)">14 Days </button>
                                                 </li>
                                                 <li class="select-date bounceInLeft" [class.show]="Showselected">
-                                                    <button class="btn btn-warning" (click)="setCustumer()">Custumer </button>
+                                                    <button class="btn btn-warning" (click)="setDate(30)">30 Days</button>
                                                 </li>
+
 
 
                                             </ul>
@@ -166,7 +169,7 @@
                     <form class="form-inline">
                         <div class="form-group">
                             <div class="mj_checkbox">
-                                <input type="radio" (click)="changeJOBTIME('==')" id="check6" name="checkbox">
+                                <input type="radio" checked="checked" (click)="changeJOBTIME('==')" id="check6" name="checkbox">
                             </div>
                             <span> ALL</span> </div>
                         <div class="form-group">
@@ -221,7 +224,7 @@
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                     <div class="row">
                         <div class="mj_showjob">
-                            <p>showing <strong>{{allItem.lenght}}</strong> job offers</p>
+                            <p>showing <strong>{{allItem.length}}</strong> job offers</p>
                         </div>
                     </div>
                 </div>
@@ -229,7 +232,7 @@
             </div>
             <div class="mj_tabcontent mj_bottompadder80">
                 <table class="table table-striped">
-                    <tr *ngFor="let listjob of allItem|capitalize : Search_title :allItem:fromFilter:toFilter">
+                    <tr *ngFor="let listjob of allItem |capitalize : Search_title :allItem:fromFilter:toFilter">
                         <td>
                             <div class="mj_liks"><a href="#"><i class="fa fa-heart"></i></a><span>Save this Job</span>
                             </div>
@@ -242,9 +245,7 @@
                             <tr>
                                 <h4><a [routerLink]="['../../../../detail-jobs',listjob._id ]">{{listjob.title}}</a></h4>
                             </tr>
-                            <tr>
-                                <p>{{listjob.title}}</p>
-                            </tr>
+                         
                             <tr>
                                 <p>Posted on: {{listjob.createddate|date}} </p>
                             </tr>
@@ -257,8 +258,8 @@
                         </td>
 
                         <td>
-                            <ul class="list_language" *ngFor="let list_language of listjob.Infokeyword">
-                                <li>{{list_language.name}}</li>
+                            <ul class="list_language" >
+                                <li *ngFor="let list_language of listjob.Infokeyword">{{list_language.name}}</li>
 
                             </ul>
 

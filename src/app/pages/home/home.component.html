@@ -82,11 +82,7 @@
 
                                     </tbody>
                                 </table>
-                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 col-lg-offset-4 col-md-offset-4">
-                                    <div class="mj_showmore">
-                                        <a href="#" class="mj_blackbtn mj_showmorebtn">Show More</a>
-                                    </div>
-                                </div>
+                             
                             </div>
 
                         </div>
@@ -129,7 +125,7 @@
                                             </td>
                                             <td>
                                                 <h4><a href="#"> {{itemcandidate?.nameprofile}} </a></h4>
-                                                <p>Company Inc.</p>
+                                                <p> {{itemcandidate?.experience}}   Năm Kinh Nghiệm</p>
                                             </td>
                                             <td>
                                                 <i class="fa fa-map-marker"></i>
@@ -146,7 +142,7 @@
                                 </table>
                                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 col-lg-offset-4 col-md-offset-4">
                                     <div class="mj_showmore">
-                                        <a href="#" class="mj_blackbtn mj_showmorebtn">Show More</a>
+                                        <a [routerLink]="['../Search-cadidate']" class="mj_blackbtn mj_showmorebtn">Show More</a>
                                     </div>
                                 </div>
                             </div>

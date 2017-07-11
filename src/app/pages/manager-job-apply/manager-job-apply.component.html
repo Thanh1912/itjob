@@ -18,15 +18,13 @@
                 <th>NGÀY </th>
                 <th>Tình Trang</th>
                 <th> NHÀ TUYỂN DỤNG PHẢN HỒI</th>
-                <th>Action</th>
+
               </tr>
               <tr *ngFor="let item of listJOB">
-                <td><a href="#"><i class="fa fa-times"></i></a>
-                </td>
                 <td>
                   <h6>{{item.infojobs[0].title}} </h6>
                   <p>
-                    <label>Resume:</label><button>DOWLOAD RESUME </button></p>
+                    <label>Resume:</label><button >DOWLOAD RESUME </button></p>
 
                 </td>
                 <td> <span *ngFor="let i of item.inforecruiters"> {{i.info_recruiter.namecompany}}</span></td>
@@ -51,8 +49,7 @@
                 <td><span class="fa fa-envelope-o"></span>
                 </td>
 
-                <td><span class="mj_blue_text"><span><a href="javascript:;"><i class="fa fa-heart-o" aria-hidden="true"></i></a></span>                  </span>
-                </td>
+
               </tr>
             </tbody>
           </table>

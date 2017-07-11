@@ -26,6 +26,10 @@ export class JobService {
   getall(): Observable<any> {
     return this.http.get(this.Rest_Url + '/api/job').map(res => res.json());
   }
+    getallpage(skip:String,limit:String): Observable<any> {
+    return this.http.get(this.Rest_Url + '/api/jobPage/'+skip+"/"+limit).map(res => res.json());
+  }
+  
   getjobByID(id:String): Observable<any> {
     return this.http.get(this.Rest_Url + `/api/getjobByID/`+id, this.options).map(res => res.json());
   }

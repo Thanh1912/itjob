@@ -49,6 +49,62 @@ export class SearchJobsComponent implements OnInit {
   salaryB: String;
   salaryE: String;
   allItem = [];
+
+    //==========ngOnInit=============
+
+
+    //===
+  ngOnInit() {
+     this.JobTime = "==";
+    this.scrollTopChangeRouter();
+    this.workplaceid = '0'
+    this.fromFilter = new Date('Sat Mar 24 1900 06:50:39 GMT+0100 (CET)');
+    this.toFilter = new Date('Sat Mar 24 1900 06:50:39 GMT+0100 (CET)');
+    this.Search_title = '';
+    this.isdate = true;
+    this.Showselected = false;
+    this.showcus = false;
+
+    this.isadvance = true;
+    this.sub = this.route.params.subscribe(params => {
+      this.id = params['id'];
+      this.jobcategory_ = params['id'];
+      this.idDetail = params['id_detail'];
+      if (this.id !== "all") {
+        this.getinfoCatagory(this.id);
+        this.ChangeListJob()
+      }
+      this.getjobcategoryByID(this.id);
+      if (this.idDetail !== "all") {
+        this.jobcategorydetail_ = [];
+        this.jobcategorydetail_.push(this.idDetail)
+        this.getinfoCatagoryDetail(this.idDetail);
+      }else{
+         this.NameCatagoryDetail=""
+      }
+    });
+
+    this.getjobcategory();
+    this.getWorkplace();
+  }
+   //==========ngOnInit=============
+    //********* */
+    //===
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   selectSalaryB(value: String) {
     this.salaryB = value;
   }
@@ -57,16 +113,16 @@ export class SearchJobsComponent implements OnInit {
   }
   changeJOBTIME(value: String) {
     this.JobTime = value;
-    this.ChangeListJob();
+    
 
   }
   resetDateFrom() {
     this.from = new Date('Sat Mar 24 1900 06:50:39 GMT+0100 (CET)');
-    this.ChangeListJob();
+    
   }
   resetDateTo() {
     this.from = new Date('Sat Mar 24 1900 06:50:39 GMT+0100 (CET)');
-    this.ChangeListJob();
+    
   }
 
   select() {
@@ -87,21 +143,33 @@ export class SearchJobsComponent implements OnInit {
   setDateFrom(value: Date) {
     this.from = value
     this.fromFilter = value;
-    this.ChangeListJob();
+    
+  }
+  resetall(){
+this.salaryB;
+   this.salaryE;
+    this.fromFilter = new Date('Sat Mar 24 1900 06:50:39 GMT+0100 (CET)');
+    this.toFilter = new Date('Sat Mar 24 1900 06:50:39 GMT+0100 (CET)');
+   this.Unit="";
+ this.districtid="";
+    this.workplaceid="";
+   this.JobTime="";
+ 
+   this.Search_title="";
   }
   setDate(value: number) {
     var myDate = new Date();
     var dayOfMonth = myDate.getDate();
     myDate.setDate(dayOfMonth - value);
     console.log('xuat 5 ago' + myDate)
-    this.ChangeListJob();
+      this.fromFilter=myDate;
     //  this.from = d;
     // this.fromFilter=d;
   }
   setDateTo(value: Date) {
     this.to = value
     this.toFilter = value;
-    this.ChangeListJob();
+    
   }
   updateCheckBox() {
     //  document.getElementById('check').checked == true
@@ -140,6 +208,8 @@ export class SearchJobsComponent implements OnInit {
   ChangeListJob() {
     var salaryB_TMP = this.salaryB;
     var salaryE_TMP = this.salaryE;
+    var fromFilter_TMP = this.fromFilter;
+    var toFilter_TMP = this.toFilter;
     var Unit_TMP = this.Unit;
     var districtid_TMP = this.districtid;
     var workplaceid_TMP = this.workplaceid;
@@ -147,6 +217,15 @@ export class SearchJobsComponent implements OnInit {
     var jobcategory_TMP = this.jobcategory_;
     var jobcategorydetail_TMP = this.jobcategorydetail_;
     var Ptitle = this.Search_title;
+     var tmp1="==";
+      var tmp2="==";
+     if(new Date(this.fromFilter).getTime()!==-2201882961000){
+          tmp1=fromFilter_TMP+"";
+     }
+      if(new Date(this.toFilter).getTime()!==-2201882961000){
+          tmp2=toFilter_TMP+"";
+     }
+     
     if (salaryB_TMP === '') {
       salaryB_TMP = '=='
     }
@@ -165,6 +244,7 @@ export class SearchJobsComponent implements OnInit {
     if (JobTime_TMP === '') {
       JobTime_TMP = '=='
     }
+  
     if (jobcategory_TMP === '') {
       jobcategory_TMP = '=='
     }
@@ -184,7 +264,9 @@ export class SearchJobsComponent implements OnInit {
       JobTimeP: JobTime_TMP,
       jobcategoryP: jobcategory_TMP,
       jobcategorydetailP: jobcategorydetail_TMP,
-      //   titleP:Ptitle
+      titleP:Ptitle,
+      dateBeginP:tmp1,
+      dateEndP:tmp2
     }
     console.log("post do")
         console.log(p)
@@ -206,46 +288,7 @@ export class SearchJobsComponent implements OnInit {
     this.fromFilter = new Date('Sat Mar 24 1900 06:50:39 GMT+0100 (CET)');
     this.toFilter = new Date('Sat Mar 24 1900 06:50:39 GMT+0100 (CET)');
   }
-  ngOnInit() {
-    this.scrollTopChangeRouter();
-    this.workplaceid = '0'
-    this.fromFilter = new Date('Sat Mar 24 1900 06:50:39 GMT+0100 (CET)');
-    this.toFilter = new Date('Sat Mar 24 1900 06:50:39 GMT+0100 (CET)');
-    this.Search_title = '';
-    this.isdate = true;
-    this.Showselected = false;
-    this.showcus = false;
 
-    this.isadvance = true;
-    this.sub = this.route.params.subscribe(params => {
-      this.id = params['id'];
-      this.jobcategory_ = params['id'];
-      this.idDetail = params['id_detail'];
-
-      if (this.id !== "all") {
-        this.getinfoCatagory(this.id);
-        this.ChangeListJob()
-      }
-      this.getjobcategoryByID(this.id);
-
-      if (this.idDetail !== "all") {
-        this.jobcategorydetail_ = [];
-        this.jobcategorydetail_.push(this.idDetail)
-        this.getinfoCatagoryDetail(this.idDetail);
-      }
-    
-      //==========GET CATAGORY ALL=============
-
-
-
-
-      //==========GET CATAGORY By ID DETAIL=============
-
-    });
-
-    this.getjobcategory();
-    this.getWorkplace();
-  }
   setjsonPost() {
 
   }
@@ -310,7 +353,7 @@ export class SearchJobsComponent implements OnInit {
     this.jobcategoryDetailService.get(post).subscribe(
       data => {
         var json = JSON.parse(data._body)
-        this.NameCatagoryDetail = json.name
+        this.NameCatagoryDetail = "/"+json.name
 
       },
       error => console.log(error),

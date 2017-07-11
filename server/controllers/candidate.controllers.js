@@ -61,6 +61,64 @@ module.exports.login = function (req, res, next) {
     })
   })
 };
+// Get all
+module.exports.getAllpage = function (req, res) {
+var skippage=req.params.skip;
+var limitpage=req.params.limit;
+  model.aggregate([
+     { $skip :  parseInt(skippage) },
+    { $limit : parseInt(limitpage) },
+   {
+      "$lookup": {
+        "from": "jobcategories",
+        "localField": "jobcategory",
+        "foreignField": "_id",
+        "as": "jobcategories_view"
+      }
+    },
+    {
+      "$lookup": {
+        "from": "diplomalanguages",
+        "localField": "diplomalanguage",
+        "foreignField": "_id",
+        "as": "diplomalanguage_view"
+      }
+    },
+    {
+      "$lookup": {
+        "from": "workplaces",
+        "localField": "workplaceid",
+        "foreignField": "_id",
+        "as": "workplaceid_view"
+      }
+    },
+    {
+      "$lookup": {
+        "from": "districts",
+        "localField": "districtid",
+        "foreignField": "_id",
+        "as": "districtid_view"
+      }
+    },
+    {
+      "$lookup": {
+        "from": "jobcategorydetails",
+        "localField": "jobcategorydetail",
+        "foreignField": "_id",
+        "as": "jobcategorydetail_view"
+      }
+    },
+    { $limit: 10 },
+
+  ]).exec(function (err, docs) {
+    res.json(docs);
+  });
+
+
+
+
+
+};
 
 
 // Get all
@@ -187,9 +245,9 @@ module.exports.delete = function (req, res) {
 }
 //====================Search candidate============================
 // Get 
-module.exports.searchJobTitles = function (req, res) {
+module.exports.searchCandidate = function (req, res) {
   //get value from post  or 
-  var KKinhNghiem = req.body.KinhNghiemP;
+ 
   var Ksalary = req.body.salaryP;
   var KUnit = req.body.UnitP;
   var Kdistrictid = req.body.districtidP;
@@ -242,8 +300,10 @@ module.exports.searchJobTitles = function (req, res) {
         jobcategorydetail: { $in: arr }
       })
   }
+
   Kdiplomalanguage=req.body.diplomalanguageP;
-    if (typeof Kdiplomalanguage !== 'undefined') {
+     console.log(typeof Kdiplomalanguage)
+    if (typeof Kdiplomalanguage !=='undefined') {
     console.log('diplomalanguage')
     var arr = [];
     Kdiplomalanguage.forEach(function (value) {
@@ -255,17 +315,19 @@ module.exports.searchJobTitles = function (req, res) {
       })
   }
 
-  if (Ktitle !== "==") {
+  if (Ktitle !== "=="&&Ktitle!==undefined) {
     obj2.push(
-      { "title": new RegExp(Ktitle) }
+      { "nameprofile": new RegExp(Ktitle) }
     )
   }
-    if (Kexperience !== "==") {
+    if (Kexperience !== "=="&& Kexperience!==undefined) {
     obj2.push(
       { "experience": Kexperience }
     )
   }
-
+   obj2.push(
+      { "status": true }
+    )
 
   console.log(obj2)
   var ObjectId = require('mongoose').Types.ObjectId;
@@ -274,6 +336,93 @@ module.exports.searchJobTitles = function (req, res) {
         $match: {
           $and: obj2
         }
+      },
+      {
+        "$lookup": {
+          "from": "districts",
+          "localField": "districtid",
+          "foreignField": "_id",
+          "as": "Infodistrict"
+        },
+      },
+      {
+        "$lookup": {
+          "from": "diplomalanguages",
+          "localField": "diplomalanguage",
+          "foreignField": "_id",
+          "as": "diploma_language"
+        }
+      },
+      {
+        "$lookup": {
+          "from": "jobcategorydetails",
+          "localField": "jobcategorydetail",
+          "foreignField": "_id",
+          "as": "Infokeyword"
+        },
+
+      },
+      {
+        "$lookup": {
+          "from": "jobcategories",
+          "localField": "jobcategory",
+          "foreignField": "_id",
+          "as": "Infojobcategory"
+        }
+      },
+      {
+        "$lookup": {
+          "from": "workplaces",
+          "localField": "workplaceid",
+          "foreignField": "_id",
+          "as": "Infoworkplace"
+        }
+      }
+    ]).exec(function (err, docs) {
+      if (err) throw err;
+      res.json(docs);
+    });
+ 
+
+};
+//===========================Tìm Người Theo jobcatalog, keyword-skills========
+module.exports.candidate_suitable = function (req, res) {
+var  Kjobcategory=req.body.jobcategory;
+var Kjobcategorydetail=req.body.jobcategorydetail;
+var obj2=[]
+   if (typeof Kjobcategory !== 'undefined' && Kjobcategory !== "==") {
+    console.log('Kjobcategory')
+    obj2.push({
+      jobcategory: new ObjectId(Kjobcategory)
+    })
+  }
+  if (typeof Kjobcategorydetail !== 'undefined') {
+    var arr = [];
+    Kjobcategorydetail.forEach(function (value) {
+      arr.push(new ObjectId(value))
+    });
+    if (arr.length != 0)
+      obj2.push({
+        jobcategorydetail: { $in: arr }
+      })
+  }
+
+   obj2.push(
+      { "status": true, }
+    )
+
+  console.log(obj2)
+  var ObjectId = require('mongoose').Types.ObjectId;
+    model.aggregate([
+      {
+        $match: {
+          $and: obj2
+        }
+      },
+      {
+     $sort:{
+         "createddate":1
+     }
       },
       {
         "$lookup": {

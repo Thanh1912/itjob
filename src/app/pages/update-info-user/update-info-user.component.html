@@ -3,8 +3,8 @@
         <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1">
             <form [formGroup]="profileForm" (ngSubmit)="submitProfile()">
                 <div class="form-group">
-                    <label>Mức Lương Mong Muốn</label>
-                    <input type="text" [formControl]="mucluong" class="form-control" placeholder="John Doe">
+                    <label>Mức Lương Mong Muốn (USD)</label>
+                    <input type="number" [formControl]="mucluong" class="form-control" placeholder="1000">
                 </div>
 
 

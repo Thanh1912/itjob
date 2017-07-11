@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { JobService } from './../../services/job.service';
 import { JobcategoryService } from './../../services/jobcategory.service';
 import { DiplomalanguageService } from './../../services/diplomalanguage.service';
-
+import { CandidateService } from './../../services/candidate.service';
 import { WorkplaceService } from './../../services/workplace.service';
 import { JobcategoryDetailService } from './../../services/jobcategory-detail.service';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
@@ -166,7 +166,7 @@ export class SearchProfileComponent implements OnInit {
     this.ChangeListJob()
   }
   isadvance = false;
-  constructor(private Diplomalanguage:DiplomalanguageService, private pagerService: PagerService, private datePipe: DatePipe, private job: JobService, private capitalize: CapitalizePipe, private Workplace: WorkplaceService, private router: Router, private jobcategoryDetailService: JobcategoryDetailService, private jobcategory: JobcategoryService, private route: ActivatedRoute) { }
+  constructor(private Diplomalanguage:DiplomalanguageService, private candidate: CandidateService,private pagerService: PagerService, private datePipe: DatePipe, private job: JobService, private capitalize: CapitalizePipe, private Workplace: WorkplaceService, private router: Router, private jobcategoryDetailService: JobcategoryDetailService, private jobcategory: JobcategoryService, private route: ActivatedRoute) { }
   list_all_jobcategory: any;
   list_ById_jobcategory: any;
   private sub: any;
@@ -205,6 +205,7 @@ export class SearchProfileComponent implements OnInit {
     this.isadvance = true;
     this.getjobcategory();
     this.getWorkplace();
+    this.getProfile();
 
     this.getDiplomalanguage();
   }
@@ -240,6 +241,12 @@ list_all_Diplomalanguage:any
     );
   }
 
+
+
+
+
+
+
   setPage(page: number) {
     if (page < 1 || page > this.pager.totalPages) {
       return;
@@ -263,11 +270,9 @@ list_all_Diplomalanguage:any
  
   list_jobcategoryDetail:any;
   getCatagoryDetail(id:String) {
-   var post={
-     _id:id
-   }
-    this.jobcategoryDetailService.getallByIdCategory(post).subscribe(
+    this.jobcategoryDetailService.getallByIdCategory(id).subscribe(
       data => {
+        console.log('OJ')
         this.list_jobcategoryDetail = data;
         console.log(this.list_jobcategoryDetail)
       },
@@ -277,6 +282,26 @@ list_all_Diplomalanguage:any
       }
     );
   }
+
+
+   list_profile=[];
+  getProfile() {
+    var post={
+
+    }
+    this.candidate.searchCandidate(post).subscribe(
+      data => {
+        console.log('List profile')
+        this.list_profile = data;
+        console.log(this.list_profile)
+      },
+      error => console.log(error),
+      () => {
+
+      }
+    );
+  }
+
 
 
 

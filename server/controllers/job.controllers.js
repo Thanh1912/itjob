@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var model = require('../models/job.model.js');
 var keyword = require('../models/jobcategorydetail.model.js');
 var workplace = require('../models/workplace.model.js');
-var _ = require("underscore");
+
 
 //get lien ket bang
 
@@ -36,11 +36,11 @@ module.exports.gettop12Company = function (req, res) {
   })
 };
 
-
+//job hien tai con thoi han 
 module.exports.count_job_in_Company = function (req, res) {
   var ObjectId = require('mongoose').Types.ObjectId;
   model.aggregate([
-    { $match: { recruiterid: new ObjectId(req.params.id) } },
+    { $match: { recruiterid: new ObjectId(req.params.id), endPost: { "$gte": new Date() } } },
     { "$group": { _id: "$recruiterid", count: { $sum: 1 }, recruiterid: { $first: "$recruiterid" } } },
     { $project: { _id: 1, count: 1, recruiterid: 1 } },
   ], function (err, obj) {
@@ -54,7 +54,7 @@ module.exports.count_job_in_Company = function (req, res) {
 module.exports.getByIdDetailJob = function (req, res) {
   var ObjectId = require('mongoose').Types.ObjectId;
   model.aggregate([
-    { $match: { _id: new ObjectId(req.params.id) } },
+    { $match: { _id: new ObjectId(req.params.id), endPost: { "$gte": new Date() }, status: true } },
     {
       "$lookup": {
         "from": "districts",
@@ -110,7 +110,7 @@ module.exports.getByIdDetailJob = function (req, res) {
 module.exports.jobincompany = function (req, res) {
   var ObjectId = require('mongoose').Types.ObjectId;
   model.aggregate([
-    { $match: { recruiterid: new ObjectId(req.params.id) } },
+    { $match: { recruiterid: new ObjectId(req.params.id), endPost: { "$gte": new Date() }, status: true } },
     {
       "$lookup": {
         "from": "recruiters",
@@ -148,6 +148,7 @@ module.exports.jobincompany = function (req, res) {
 function onlyUnique(value, index, self) {
   return self.indexOf(value) === index;
 }
+//var _ = require('underscore');
 //GET SKILL COMPANY
 module.exports.get_All_Skill_Company = function (req, res) {
   var ObjectId = require('mongoose').Types.ObjectId;
@@ -165,21 +166,32 @@ module.exports.get_All_Skill_Company = function (req, res) {
 
   ]).exec(function (err, docs) {
     if (err) throw err;
-    var array = []
+    var array = [];
+    var t = [];
     docs.forEach(function (value) {
-      console.log(value._id);
+
       //====================
       var tmp = [];
       tmp = value.Skills;
+
       tmp.forEach(function (valuetmp) {
-        array.push(valuetmp)
+        t.forEach(function (xuat) {
+          if (xuat === valuetmp) {
+            console.log('co')
+          }
+
+        });
+        console.log(t)
+        array.push(valuetmp);
+        t.push(valuetmp._id
+        )
       })
 
       //============
 
     });
     console.log('===============')
-    console.log(array)
+    // console.log(_.uniq(array));
     var unique_array = array.filter(onlyUnique);
     res.json(unique_array);
   });
@@ -205,8 +217,20 @@ module.exports.searchJobTitles = function (req, res) {
   var obj1 = [];
   var obj2 = [];
   var ObjectId = require('mongoose').Types.ObjectId;
+
+  if (dateBegin !== "==") {
+    obj2.push({
+      "createddate": { "$gte": new Date(dateBegin) }//  <=
+    })
+  }
+  if (dateEnd !== "==") {
+    obj2.push({
+      "createddate": { "$lte": new Date(dateEnd) }//  <=
+    })
+
+  }
   if (typeof Ksalarybegin !== 'undefined' && Ksalarybegin !== "==" && Ksalarybegin !== "0") {
-    console.log(salarybegin + isNaN(Ksalarybegin));
+
     if (parseInt(Ksalarybegin) !== 0 && isNaN(Ksalarybegin) == false)
       obj2.push({
         salarybegin: {
@@ -215,7 +239,7 @@ module.exports.searchJobTitles = function (req, res) {
       })
   }
   if (typeof Ksalaryend !== 'undefined' && Ksalaryend !== "==" && Ksalaryend !== "0") {
-    console.log(Ksalaryend + isNaN(Ksalaryend))
+
     if (parseInt(Ksalaryend) !== 0 && isNaN(Ksalaryend) == false)
       obj2.push({
         salaryend: {
@@ -268,69 +292,125 @@ module.exports.searchJobTitles = function (req, res) {
   }
   dateNow = new Date()
   obj2.push({
-    "endPost": { "$lte": dateNow }//  <=
+    "endPost": { "$gte": dateNow }//  <=
     , "status": true
   })
 
-  console.log(obj2)
-  var ObjectId = require('mongoose').Types.ObjectId;
-    model.aggregate([
-      {
-        $match: {
-          $and: obj2
-        }
-      },
-      {
-        "$lookup": {
-          "from": "districts",
-          "localField": "districtid",
-          "foreignField": "_id",
-          "as": "Infodistrict"
-        },
-      },
-      {
-        "$lookup": {
-          "from": "recruiters",
-          "localField": "recruiterid",
-          "foreignField": "_id",
-          "as": "company"
-        }
-      },
-      {
-        "$lookup": {
-          "from": "jobcategorydetails",
-          "localField": "jobcategorydetail",
-          "foreignField": "_id",
-          "as": "Infokeyword"
-        },
 
-      },
-      {
-        "$lookup": {
-          "from": "jobcategories",
-          "localField": "jobcategory",
-          "foreignField": "_id",
-          "as": "Infojobcategory"
-        }
-      },
-      {
-        "$lookup": {
-          "from": "workplaces",
-          "localField": "workplaceid",
-          "foreignField": "_id",
-          "as": "Infoworkplace"
-        }
+  console.log(obj2);
+
+  var ObjectId = require('mongoose').Types.ObjectId;
+  model.aggregate([
+    {
+      $match: {
+        $and: obj2
       }
-    ]).exec(function (err, docs) {
-      if (err) throw err;
-      res.json(docs);
-    });
- 
+    },
+    {
+      "$lookup": {
+        "from": "districts",
+        "localField": "districtid",
+        "foreignField": "_id",
+        "as": "Infodistrict"
+      },
+    },
+    {
+      "$lookup": {
+        "from": "recruiters",
+        "localField": "recruiterid",
+        "foreignField": "_id",
+        "as": "company"
+      }
+    },
+    {
+      "$lookup": {
+        "from": "jobcategorydetails",
+        "localField": "jobcategorydetail",
+        "foreignField": "_id",
+        "as": "Infokeyword"
+      },
+
+    },
+    {
+      "$lookup": {
+        "from": "jobcategories",
+        "localField": "jobcategory",
+        "foreignField": "_id",
+        "as": "Infojobcategory"
+      }
+    },
+    {
+      "$lookup": {
+        "from": "workplaces",
+        "localField": "workplaceid",
+        "foreignField": "_id",
+        "as": "Infoworkplace"
+      }
+    }
+  ]).exec(function (err, docs) {
+    if (err) throw err;
+    res.json(docs);
+  });
+
 
 };
 
+
+module.exports.getAllpage = function (req, res) {
+var skippage=req.params.skip;
+var limitpage=req.params.limit;
+  model.aggregate([
+     { $skip : skippage },
+    { $limit : limitpage },
+    {
+      "$lookup": {
+        "from": "districts",
+        "localField": "districtid",
+        "foreignField": "_id",
+        "as": "Infodistrict"
+      },
+    },
+    {
+      "$lookup": {
+        "from": "recruiters",
+        "localField": "recruiterid",
+        "foreignField": "_id",
+        "as": "company"
+      }
+    },
+    {
+      "$lookup": {
+        "from": "jobcategorydetails",
+        "localField": "jobcategorydetail",
+        "foreignField": "_id",
+        "as": "Infokeyword"
+      },
+
+    },
+    {
+      "$lookup": {
+        "from": "jobcategories",
+        "localField": "jobcategory",
+        "foreignField": "_id",
+        "as": "Infojobcategory"
+      }
+    },
+    {
+      "$lookup": {
+        "from": "workplaces",
+        "localField": "workplaceid",
+        "foreignField": "_id",
+        "as": "Infoworkplace"
+      }
+    }
+  ]).exec(function (err, docs) {
+    if (err) throw err;
+    res.json(docs);
+  });
+};
 // Get all
 module.exports.getAll = function (req, res) {
+
   model.aggregate([
 
     {
@@ -426,7 +506,7 @@ module.exports.getiduser = function (req, res) {
 
   model.find(
     {
-      'recruiterid': req.params.id
+      'recruiterid': req.params.id, endPost: { "$gte": new Date() }, status: true
     },
     function (err, model) {
       if (err) {
