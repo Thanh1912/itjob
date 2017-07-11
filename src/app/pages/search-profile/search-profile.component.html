@@ -22,13 +22,13 @@
           <form>
             <div class="col-lg-7 col-md-3 col-sm-3 col-xs-12">
               <div class="form-group">
-                <input type="text" name="searchs" [(ngModel)]="Search_title" (change)="searchTitle()" class="form-control" placeholder="Category">
+                <input type="text" name="searchs" [(ngModel)]="Search_title" (change)="searchTitle();ChangeListJob()" class="form-control" placeholder="Category">
               </div>
             </div>
 
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
               <select (change)="onchangeTP($event.target.value);ChangeListJob()" name="timepass" class="custom-select form-control">
-									<option value='0'> Thành Phố</option>
+									<option value=''> Thành Phố</option>
 									<option  *ngFor="let item of list_all_Workplace" [value]="item._id">{{item.name}}</option>
                                 </select>
             </div>
@@ -62,7 +62,7 @@
             
                   <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
                     <select  class="custom-select form-control"  [(ngModel)]="salaryInput" name="timepass">
-								     	<option value="0" >Mức Luong</option>
+								     	<option value="" >Mức Luong</option>
                         	<option *ngFor="let itemL of listLuong" [value]="itemL.value"> {{itemL.name}}</option>
                     </select>
                     
@@ -70,25 +70,28 @@
                   </div>
                   <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
                     <select class="custom-select form-control" [(ngModel)]="experienceInput" name="timepass">
-								     	<option value="-1">So nam Kinh Nghiem</option>
+								     	<option value="">So nam Kinh Nghiem</option>
                        <option *ngFor="let itemnam of listNamKinhNghiem" [value]="itemnam.value"> {{itemnam.name}}</option>
                     </select>
                   </div>
                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
                     <select class="custom-select form-control" [(ngModel)]="jobcategoryInput" (change)="getCatagoryDetail($event.target.value)" name="timepass">
-								     	<option *ngFor="let itemjobc of list_all_jobcategory"  [value]="itemjobc._id">{{itemjobc.name}}</option>
+								        	<option value="" ></option>
+                     	<option *ngFor="let itemjobc of list_all_jobcategory"  [value]="itemjobc._id">{{itemjobc.name}}</option>
                     </select>
                   </div>
                         <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
                    
                   <select class="custom-select form-control" name="timepass" [(ngModel)]="jobcategorydetailInput">
-								     	<option *ngFor="let itemjobcd of list_jobcategoryDetail"  [value]="itemjobcd._id">{{itemjobcd.name}}</option>
+								      	<option value="" ></option>
+                     	<option *ngFor="let itemjobcd of list_jobcategoryDetail"  [value]="itemjobcd._id">{{itemjobcd.name}}</option>
                     </select>
                   </div>
                        <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
                    
                   <select class="custom-select form-control" name="timepass" [(ngModel)]="diplomalanguageInput">
-								     	<option *ngFor="let itemlange of list_all_Diplomalanguage"  [value]="itemlange._id">{{itemlange.name}}</option>
+								   	<option value="" ></option>
+                     	<option *ngFor="let itemlange of list_all_Diplomalanguage"  [value]="itemlange._id">{{itemlange.name}}</option>
                     </select>
                   </div>
 

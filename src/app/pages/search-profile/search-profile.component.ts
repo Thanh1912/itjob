@@ -175,12 +175,17 @@ export class SearchProfileComponent implements OnInit {
     if (Kjobcategory === '') {
       Kjobcategory = '=='
     }
-    if (Kjobcategorydetail === ''&&Kjobcategorydetail!==undefined) {
-       console.log("VV")
-      Kjobcategorydetail = '=='
+    var arr=[]
+    if (Kjobcategorydetail === '' || typeof Kjobcategorydetail==='undefined') {
+     arr = [];
+    // alert('ok')
+    }else{
+       arr.push(Kjobcategorydetail)
     }
-      console.log("Kjobcategorydetail")
-    console.log(Kjobcategorydetail)
+  
+      console.log(typeof Kjobcategorydetail==='undefined')
+        console.log(typeof Kjobcategorydetail==='undefined')
+  
     if (Ktitle === '') {
       Ktitle = '=='
     }
@@ -196,7 +201,7 @@ export class SearchProfileComponent implements OnInit {
       //  districtidP: Kdistrictid,
       workplaceidP: Kworkplaceid,
       jobcategoryP: Kjobcategory,
-      jobcategorydetailP: [Kjobcategorydetail],
+      jobcategorydetailP: arr,
       titleP: Ktitle,
       experienceP: Kexperience
     }
