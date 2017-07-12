@@ -192,11 +192,9 @@ module.exports.topcandidate = function (req, res) {
       }
     },
     { $limit: 10 },
-
   ]).exec(function (err, docs) {
     res.json(docs);
   });
-
 };
 
 
@@ -257,7 +255,12 @@ module.exports.searchCandidate = function (req, res) {
   var Kexperience = req.body.experienceP;
   var obj2 = [];
   var ObjectId = require('mongoose').Types.ObjectId;
-  if (typeof Ksalary !== 'undefined' && Ksalary !== "==" && Ksalary !== "0") {
+
+
+
+
+
+  if (typeof Ksalary !== 'undefined' && Ksalary !== "=="&& Ksalary !== "" && Ksalary !== "0") {
     console.log(Ksalary + isNaN(Ksalary));
     if (parseInt(Ksalary) !== 0 && isNaN(Ksalary) == false)
       obj2.push({
@@ -476,6 +479,7 @@ var obj2=[]
 
 // Get all
 module.exports.detail_Candidate = function (req, res) {
+    var ObjectId = require('mongoose').Types.ObjectId;
   model.aggregate([
     
     { $match: { _id: new ObjectId(req.params.id) } },
@@ -519,7 +523,7 @@ module.exports.detail_Candidate = function (req, res) {
         "as": "jobcategorydetail_view"
       }
     },
-    { $limit: 10 },
+    { $limit: 1 },
 
   ]).exec(function (err, docs) {
     res.json(docs);

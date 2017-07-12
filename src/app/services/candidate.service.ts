@@ -12,35 +12,38 @@ export class CandidateService {
 
   constructor(private http: Http) { }
   getdetail(id): Observable<any> {
-    return this.http.get(this.Rest_Url+`/api/thanhvien/`+id, this.options);
+    return this.http.get(this.Rest_Url + `/api/thanhvien/` + id, this.options);
+  }
+    count(): Observable<any> {
+    return this.http.get(this.Rest_Url + '/api/thanhvien/count').map(res => res.json());
   }
   getTop(): Observable<any> {
-    return this.http.get(this.Rest_Url+`/api/topcandidate/`).map(res => res.json());
+    return this.http.get(this.Rest_Url + `/api/topcandidate/`).map(res => res.json());
   }
-    getallpage(skip:String,limit:String): Observable<any> {
-    return this.http.get(this.Rest_Url + '/api/get-All-page/'+skip+'/'+limit).map(res => res.json());
+  getallpage(skip: String, limit: String): Observable<any> {
+    return this.http.get(this.Rest_Url + '/api/get-All-page/' + skip + '/' + limit).map(res => res.json());
   }
-   searchCandidate(item): Observable<any> {
-    return this.http.post(this.Rest_Url+`/api/searchCandidate/`,JSON.stringify(item), this.options).map(res => res.json());
+  searchCandidate(item): Observable<any> {
+    return this.http.post(this.Rest_Url + `/api/searchCandidate/`, JSON.stringify(item), this.options).map(res => res.json());
   }
 
-    edit_user(user): Observable<any> {
+  edit_user(user): Observable<any> {
     return this.http.put(this.Rest_Url + `/api/thanhvien/${user._id}`, JSON.stringify(user), this.options);
   }
-   savecv(user): Observable<any> {
+  savecv(user): Observable<any> {
     return this.http.post(this.Rest_Url + `/api/resume`, JSON.stringify(user), this.options);
   }
-    get(user): Observable<any> {
+  get(user): Observable<any> {
     return this.http.get(this.Rest_Url + `/api/thanhvien/${user._id}`, this.options).map(res => res.json());
   }
 
- getdetailCandi(id){
-   return this.http.get(this.Rest_Url + '/api/detail_Candidate/'+id).map(res => res.json());
-   
- }
+  getdetailCandi(id) {
+    return this.http.get(this.Rest_Url + '/api/detail_Candidate/' + id).map(res => res.json());
+
+  }
 
   //edit password
-    EditPassWord(user): Observable<any> {
+  EditPassWord(user): Observable<any> {
     return this.http.post(this.Rest_Url + `/api/resume`, JSON.stringify(user), this.options);
   }
 

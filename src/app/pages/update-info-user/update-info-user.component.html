@@ -25,7 +25,7 @@
                     <label>Quận </label>
                     <select name="timepass" class="form-control custom-select" [(ngModel)]="dictrict1" [ngModelOptions]="{standalone: true}">
                                        
-                                         <option *ngFor="let Listitemsquan of list_quan" [value]='Listitemsquan._id' [selected]="Listitemsquan._id==Load_id_dictrict">{{Listitemsquan.name}}</option>
+                                         <option *ngFor="let Listitemsquan of list_quan" [value]='Listitemsquan._id' [selected]="Listitemsquan._id===Load_id_dictrict">{{Listitemsquan.name}}</option>
                                     </select>
                 </div>
                 <div class="form-group">
@@ -33,7 +33,7 @@
                     <select name="timepass" (change)="onchangeSelect($event.target.value)" [(ngModel)]="Category" [ngModelOptions]="{standalone: true}"
                         class="form-control custom-select">
                                     
-                                       <option *ngFor="let ListCategory of list_Jobcategory" [value]="ListCategory._id" [selected]="ListCategory._id==ListCategory">{{ListCategory.name}}</option>
+                                       <option *ngFor="let ListCategory of list_Jobcategory" [value]="ListCategory._id" [selected]="ListCategory._id==Load_Id_Category">{{ListCategory.name}}</option>
                                     </select>
                     <div class="row">
                         <span class="alist" (click)="add(listdetail._id,listdetail.name)" *ngFor="let listdetail of list_Jobcategory_Detail">{{listdetail.name}}</span>
@@ -105,12 +105,12 @@
                     <div class="form-group">
                         <select name="timepass" class="form-control custom-select" [ngModelOptions]="{standalone: true}" [(ngModel)]="experience">
                                         <option value="0" [selected]="0==Load_id_experience">Chưa Kinh nghiệm</option>
-                                        <option value="1">1 năm</option>
-                                        <option value="2">2năm</option>
-                                        <option value="3">3 năm</option>
-                                        <option value="4">4 năm</option>
-                                        <option value="5">5 năm</option>
-                                        <option value="6">Trên 5 năm</option>
+                                        <option value="1" [selected]="1==Load_id_experience">1 năm</option>
+                                        <option value="2" [selected]="2==Load_id_experience">2năm</option>
+                                        <option value="3" [selected]="3==Load_id_experience">3 năm</option>
+                                        <option value="4" [selected]="4==Load_id_experience">4 năm</option>
+                                        <option value="5" [selected]="5==Load_id_experience">5 năm</option>
+                                        <option value="6" [selected]="6==Load_id_experience">Trên 5 năm</option>
                                     </select>
                     </div>
                  

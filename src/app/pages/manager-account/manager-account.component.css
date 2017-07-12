@@ -1,6 +1,35 @@
 .a-underline{
 text-decoration: underline;
 }
+
+.relative {
+    position: relative;
+}
+.upload-resume {
+    -webkit-transition: color .3s;
+    transition: color .3s;
+    cursor: pointer;
+}
+.transparent {
+    opacity: 0;
+}
+.absolute {
+    position: absolute;
+}
+.uploadimg{
+    background-color: #8DC63F;
+    color: white;
+    padding-left: 21px;
+    padding-right: 15px;
+    font-size: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-bottom-left-radius: 2px;
+    border-radius: 50px 50px 50px 50px;
+    -moz-border-radius: 50px 50px 50px 50px;
+    -webkit-border-radius: 51px 50px 50px 50px;
+    border: 0px solid #000000;
+}
 .namepro{
     	font-size: 65px;
     font-family: 'FiraSans-ExtraLight';

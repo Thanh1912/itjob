@@ -19,47 +19,89 @@
     </div>
     <div class="row">
         <div class="mj_articleslider mj_bottompadder50">
-
+            <div *ngIf="pagedItems.length===0">
+                Không tìm thấy !
+            </div>
             <div *ngFor="let item of pagedItems|searchCompany:all:term" class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                 <div class="mj_recent_article">
-                    <div class="mj_articleimg"> <img src="http://localhost:3000/uploads/forms/image/{{item.info_recruiter.profileimage}}" class="img-responsive" alt="">
+                    <div class="mj_articleimg"> <img src="http://localhost:3000/uploads/forms/image/{{item.info_recruiter.profileimage}}" class="img-responsive"
+                            alt="">
                         <div class="mj_articleoverlay">
                             <p [routerLink]="['../detail-company', item._id ]">{{item.info_recruiter.namecompany}} </p>
                         </div>
                     </div>
                     <div class="mj_articledata">
                         <div class="col-lg-6">
-                            <img [routerLink]="['../detail-company', item._id ]" src="http://localhost:3000/uploads/forms/logo/{{item.info_recruiter.logo}}" width="64" height="62"
-                                alt="Image ">
+                            <img [routerLink]="['../detail-company', item._id ]" src="http://localhost:3000/uploads/forms/logo/{{item.info_recruiter.logo}}"
+                                width="64" height="62" alt="Image ">
                         </div>
                         <div class="col-lg-6">
-                            <p> Rate:{{item?.ratestar}}  start</p>
+                            <p> Rate:{{item?.info_recruiter.ratestar}} start</p>
+                            
+                               <div [ngSwitch]="item?.info_recruiter.ratestar">
+                          <div *ngSwitchCase="1">
+                            <i class="fa fa-6x fa-star mauvang" aria-hidden="true"></i>
+                            <i class="fa fa-6x fa-star " aria-hidden="true"></i>
+                            <i class="fa fa-6x fa-star " aria-hidden="true"></i>
+                            <i class="fa fa-6x fa-star " aria-hidden="true"></i>
+                            <i class="fa fa-6x add-onfa-star " aria-hidden="true"></i>
+                          </div>
+                          <div *ngSwitchCase="2">
+                            <i class="fa fa-6x fa-star mauvang" aria-hidden="true"></i>
+                            <i class="fa fa-6x fa-star mauvang" aria-hidden="true"></i>
+                            <i class="fa fa-6x fa-star " aria-hidden="true"></i>
+                            <i class="fa fa-6x fa-star " aria-hidden="true"></i>
+                            <i class="fa fa-6x add-onfa-star " aria-hidden="true"></i>
+                          </div>
+                          <div *ngSwitchCase="3">
+                            <i class="fa fa-6x fa-star mauvang" aria-hidden="true"></i>
+                            <i class="fa fa-6x fa-star mauvang" aria-hidden="true"></i>
+                            <i class="fa fa-6x fa-star mauvang" aria-hidden="true"></i>
+                            <i class="fa fa-6x fa-star " aria-hidden="true"></i>
+                            <i class="fa fa-6x add-onfa-star " aria-hidden="true"></i>
+                          </div>
+                          <div *ngSwitchCase="4">
+                            <i class="fa fa-6x fa-star mauvang" aria-hidden="true"></i>
+                            <i class="fa fa-6x fa-star mauvang" aria-hidden="true"></i>
+                            <i class="fa fa-6x fa-star mauvang" aria-hidden="true"></i>
+                            <i class="fa fa-6x fa-star mauvang" aria-hidden="true"></i>
+                            <i class="fa fa-6x add-onfa-star " aria-hidden="true"></i>
+                          </div>
+                          <div *ngSwitchCase="5">
+                            <i class="fa fa-6x fa-star mauvang" aria-hidden="true"></i>
+                            <i class="fa fa-6x fa-star mauvang" aria-hidden="true"></i>
+                            <i class="fa fa-6x fa-star mauvang" aria-hidden="true"></i>
+                            <i class="fa fa-6x fa-star mauvang" aria-hidden="true"></i>
+                            <i class="fa fa-6x add-onfa-star mauvang" aria-hidden="true"></i>
+                          </div>
+
                         </div>
-                         <span>{{item.info_recruiter.address}}</span>
-                     
                         </div>
+                        <span>{{item.info_recruiter.address}}</span>
+
+                    </div>
                 </div>
             </div>
-          
-      
+
+
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                 <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
-                <li [ngClass]="{disabled:pager.currentPage === 1}">
-                    <a (click)="setPage(1)">First</a>
-                </li>
-                <li [ngClass]="{disabled:pager.currentPage === 1}">
-                    <a (click)="setPage(pager.currentPage - 1)">Previous</a>
-                </li>
-                <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
-                    <a (click)="setPage(page)">{{page}}</a>
-                </li>
-                <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-                    <a (click)="setPage(pager.currentPage + 1)">Next</a>
-                </li>
-                <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-                    <a (click)="setPage(pager.totalPages)">Last</a>
-                </li>
-            </ul>
+                <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+                    <li [ngClass]="{disabled:pager.currentPage === 1}">
+                        <a (click)="setPage(1)">First</a>
+                    </li>
+                    <li [ngClass]="{disabled:pager.currentPage === 1}">
+                        <a (click)="setPage(pager.currentPage - 1)">Previous</a>
+                    </li>
+                    <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                        <a (click)="setPage(page)">{{page}}</a>
+                    </li>
+                    <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                        <a (click)="setPage(pager.currentPage + 1)">Next</a>
+                    </li>
+                    <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                        <a (click)="setPage(pager.totalPages)">Last</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { CandidateService } from '../../services/candidate.service';
+import { Router,ActivatedRoute, NavigationEnd } from '@angular/router';
 @Component({
   selector: 'app-detail-candidate',
   templateUrl: './detail-candidate.component.html',
@@ -18,9 +20,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetailCandidateComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private Candidate:CandidateService,private route:ActivatedRoute) { }
+  id:any;
+  sub:any;
   ngOnInit() {
-  }
+   
+this.sub = this.route.params.subscribe(params => {
+      this.id = params['id'];
+      this.getdetail(this.id);
+      console.log(this.id)
+    });
 
+  }
+  listdetail:any
+  getdetail(id) {
+    this.Candidate.getdetailCandi(id).subscribe(
+      data => {
+        this.listdetail = data[0];
+        console.log("======GET  console.log(data);=======");
+        console.log(data);
+      },
+      error => console.log(error),
+      () => {
+
+      }
+    );
+  }
 }

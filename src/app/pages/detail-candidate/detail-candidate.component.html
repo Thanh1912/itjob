@@ -16,17 +16,17 @@
                                 </div>
                                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
                                     <div class="mj_pageheading mj_toppadder50">
-                                        <h1>J<span>onathan</span> p<span>orter</span></h1>
+                                        <h1> {{listdetail.fullname}}</h1>
                                         <ul>
                                             <li>
                                                 <label><i class="fa fa-map-marker"></i>
-                                                </label><a href="#">San Francisco</a>
+                                                </label><a href="#"> {{listdetail.districtid_view[0].name}},{{listdetail.workplaceid_view[0].name}}</a>
                                             </li>
                                             <li>
-                                                <label>Classification:</label><a href="#">UX / Interaction Designer</a>
+                                                <label>Classification:</label><a href="#"> {{listdetail.jobcategories_view[0].name}}</a>
                                             </li>
                                             <li>
-                                                <label>Hourly Rate: </label><span class="mj_green_text">$40.00/hr</span>
+                                                <label>Hourly Rate: </label><span class="mj_green_text">$ {{listdetail.salary}}/1 month</span>
                                             </li>
                                         </ul>
                                     </div>
@@ -80,18 +80,10 @@
                                 <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
                                     <div class="mj_detaildiv">
                                         <ul class="mj_selected_content">
-                                            <li>
-                                                <a href="#"><img src="assets/images/cross_white.png" alt=""> Design</a>
+                                            <li  *ngFor="let item of listdetail.jobcategorydetail_view">
+                                                <a ><img src="assets/images/cross_white.png" alt=""> {{item.name}}</a>
                                             </li>
-                                            <li>
-                                                <a href="#"><img src="assets/images/cross_white.png" alt=""> Web Designer</a>
-                                            </li>
-                                            <li>
-                                                <a href="#"><img src="assets/images/cross_white.png" alt=""> User Experience</a>
-                                            </li>
-                                            <li>
-                                                <a href="#"><img src="assets/images/cross_white.png" alt=""> developer</a>
-                                            </li>
+                                           
                                         </ul>
                                         <p>Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. </p>
                                         <ul>
@@ -154,26 +146,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mj_bottompadder30">
-                    <div class="mj_about_section mj_toppadder80 mj_bottompadder80">
-                        <div class="row">
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 col-lg-offset-3 col-md-offset-3">
-                                <h1>A<span>bout</span> C<span>andidate</span></h1>
-                                <p>Envato is a bootstrapped Australian company that operates an ecosystem of sites with a global community. We’re passionate about the web, and about enabling creators to make a living doing what they love. At Envato, we make websites that help people from all over the world change the way they earn and learn online.</p>
-                                <ul>
-                                    <li><a href="#"><i class="fa fa-link"></i> Website</a>
-                                    </li>
-                                    <li><a href="#"><i class="fa fa-twitter"></i>Twitter</a>
-                                    </li>
-                                    <li><a href="#"><i class="fa fa-facebook"></i>facebook</a>
-                                    </li>
-                                    <li><a href="#"><i class="fa fa-dribbble"></i>dribbble</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+       
             </div>
         </div>
     </div>

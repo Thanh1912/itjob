@@ -50,7 +50,18 @@ export class UpdateInfoUserComponent implements OnInit {
     namepro: this.namepro
   });
 
+listJobDetail=[]
+    getlistJobDetail() {
+    this.JobcategoryDetail.getall().subscribe(
+      data => {
+        this.listJobDetail = data
+      },
+      error => console.log(error),
+      () => {
 
+      }
+    );
+  }
 
   submitProfile() {
     console.log(this.profileForm.value);
@@ -119,6 +130,8 @@ export class UpdateInfoUserComponent implements OnInit {
       }
     );
   }
+
+
   onchangeSelect(id: any) {
 
     this.Jobcategory_Detail.getallByIdCategory(id).subscribe(
@@ -172,9 +185,9 @@ export class UpdateInfoUserComponent implements OnInit {
   Load_mucluong: String;
   Load_namepro: String;
   Load_Id_Category: String;
-  Load__id_jobcategorydetail=[];
+  Load__id_jobcategorydetail = [];
   Load_Id_workplace: String;
-  Load_diplomalanguage=[];
+  Load_diplomalanguage = [];
   Load_id_dictrict: String;
   Load_id_experience: String;
 
@@ -190,12 +203,52 @@ export class UpdateInfoUserComponent implements OnInit {
         this.Load_mucluong = data.salary;
         this.Load_namepro = data.nameprofile
         this.Load_Id_Category = data.jobcategory
-        this.Load__id_jobcategorydetail = data.jobcategorydetail
-        this.Load_Id_workplace =data.workplaceid
-        this.Load_diplomalanguage =data.diplomalanguage
+            var tmparrDetail = [];
+        tmparrDetail = data.jobcategorydetail;
+        console.log(tmparrDetail)
+        for (let entry0 of this.listJobDetail) {
+          for (let entry00 of tmparrDetail) {
+            if (entry0._id === entry00) {
+              alert('ok')
+              this.list_Jobcategory_Detail_Submit.push({
+                _id: entry0._id,
+                name: entry0.name
+              })
+            }
+          }
+        }
+        this.Load_Id_workplace = data.workplaceid;
+        var tmparr = [];
+        tmparr = data.diplomalanguage;
+
+        for (let entry of this.Listdiplomalanguage) {
+          for (let entry1 of tmparr) {
+            if (entry._id === entry1) {
+              this.diplomalanguage_submit.push({
+                _id: entry._id,
+                name: entry.name
+              })
+
+            }
+          }
+        }
         this.Load_id_dictrict = data.districtid
+        if (data.districtid !== null) {
+          this.getall_District();
+        }
         this.Load_id_experience = data.experience
 
+      },
+      error => console.log(error),
+      () => {
+
+      }
+    );
+  }
+  getall_District() {
+    this.District.getall().subscribe(
+      data => {
+        this.list_quan = data
       },
       error => console.log(error),
       () => {

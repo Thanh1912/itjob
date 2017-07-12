@@ -175,17 +175,17 @@ export class SearchProfileComponent implements OnInit {
     if (Kjobcategory === '') {
       Kjobcategory = '=='
     }
-    var arr=[]
-    if (Kjobcategorydetail === '' || typeof Kjobcategorydetail==='undefined') {
-     arr = [];
-    // alert('ok')
-    }else{
-       arr.push(Kjobcategorydetail)
+    var arr = []
+    if (Kjobcategorydetail === '' || typeof Kjobcategorydetail === 'undefined') {
+      arr = [];
+      // alert('ok')
+    } else {
+      arr.push(Kjobcategorydetail)
     }
-  
-      console.log(typeof Kjobcategorydetail==='undefined')
-        console.log(typeof Kjobcategorydetail==='undefined')
-  
+
+    console.log(typeof Kjobcategorydetail === 'undefined')
+    console.log(typeof Kjobcategorydetail === 'undefined')
+
     if (Ktitle === '') {
       Ktitle = '=='
     }
@@ -205,10 +205,10 @@ export class SearchProfileComponent implements OnInit {
       titleP: Ktitle,
       experienceP: Kexperience
     }
-    console.log("post")
-console.log(post)
+    console.log("DA post")
+    console.log(post)
     this.candidate.searchCandidate(
-    post
+      post
     ).subscribe(
       data => {
         this.list_profile = data;
@@ -224,7 +224,7 @@ console.log(post)
 
   ngOnInit() {
     this.scrollTopChangeRouter();
-    this.workplaceid = '0'
+    this.workplaceid = ''
     this.Search_title = '';
     this.isdate = true;
     this.Showselected = false;

@@ -53,14 +53,22 @@ export class ManagerAccountComponent implements OnInit {
     });
   }
 
+  updateprofile() {
+    if (this.isupdateuser)
+      this.isupdateuser = false;
+    else {
+      this.isupdateuser = true;
+    }
+  }
   clickchangepass() {
 
-    if (this.isupdateuser)
+    if (this.ischangepass)
       this.ischangepass = false;
     else {
       this.ischangepass = true;
     }
   }
+  
   click() {
     if (this.isupdateuser)
       this.isupdateuser = false;
@@ -256,9 +264,10 @@ capnhatPrivate(){
 
   }
   load_detail_user(id) {
-    this.user.getdetail(id).subscribe(
+    this.user.getdetailCandi(id).subscribe(
       data => {
-        this.listuser = JSON.parse(data._body);
+        this.listuser = data[0];
+            console.log('xuat222');
         console.log(this.listuser);
         this.email.setValue(this.listuser.email);
         this.username.setValue(this.listuser.fullname);

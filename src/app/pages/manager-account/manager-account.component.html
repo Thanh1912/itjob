@@ -1,36 +1,176 @@
+<div class="mj_pagetitle2">
+    <div class="mj_pagetitleimg">
+        <img src="assets/images/page_title1.jpg" alt="">
+        <div class="mj_mainheading_overlay"></div>
+    </div>
+    <div class="mj_pagetitle_inner">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="mj_mainheading">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                <div class="mj_joblogo">
+
+                                    <img id="imageprofile" src="http://localhost:3000/uploads/forms/anhdaidien/{{listuser?.profileimage}}" class="img-responsive image-profile mj_testimonial_img"
+                                        alt="">
+                                    <label class="upload-resume relative text-white m-b-none" style=" margin-top: 60px;"> Upload your Image 
+                                     <input style="margin-top: 10px;"class="transparent absolute" name="resumeFile" id="resumeFile" type="file" id="anhdaidien" ng2FileSelect [uploader]="uploaderanhdaidien"/>
+                                            </label>
+
+                                    <button type="button" (click)="uploaderanhdaidien.uploadAll();" *ngIf="uploaderanhdaidien.getNotUploadedItems().length" class="uploadimg c-edit"><i class="fa fa-cloud-upload"></i>Up Load</button>
+                                </div>
+                            </div>
+                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                <div class="mj_pageheading mj_toppadder50">
+                                    <h1>{{listuser?.fullname}}</h1>
+                                    <ul>
+                                        <li>
+                                            <label><i class="fa fa-map-marker"></i>
+                                                </label><a>{{listuser?.districtid_view[0].name}},{{listuser?.workplaceid_view[0].name}}</a>
+                                        </li>
+                                        <li>
+                                            <label><i class="fa fa-map-marker"></i>
+                                                </label><a href="#">{{listuser?.fullname}}</a>
+                                        </li>
+                                        <li>
+                                            <label>Classification:</label><a>{{listuser?.jobcategories_view[0].name}}</a>
+                                        </li>
+                                        <li>
+                                            <label>Hourly Rate: </label><span class="mj_green_text">${{listuser?.salary}}/1 month</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="mj_lightgraytbg mj_bottompadder80">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 col-lg-offset-3 col-md-offset-3">
+                <div class="mj_social_media_section mj_candidatepage_media mj_toppadder40 mj_bottompadder40">
+                    <ul>
+                        <li><a class="mj_mainbtn mj_btnblue" data-text="Contact Candidate" (click)="updateprofile()"><span>Profile Candidate</span></a>
+                        </li>
+                        <li><a class="mj_mainbtn mj_btnred" data-text="Bookmark this Resume" (click)="click()"><span>View Resume</span></a>
+                        </li>
+                    </ul>
+                    <p><a href="http://localhost:3000/uploads/forms/filecv/CV-300617.191153.pdf" download><i class="fa fa-download"></i></a>
+                    </p>
+
+                </div>
+            </div>
+        </div>
+        <div class="row" *ngIf="isupdateuser!==true">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="mj_postdiv mj_jobdetail mj_toppadder50 mj_bottompadder50">
+                    <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                                <label>Overview</label>
+                            </div>
+                            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                                <div class="mj_detaildiv">
+                                    <p>
+
+
+                                        ABC
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mj_toppadder30 mj_bottompadder30">
+                                <div class="mj_divider"></div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                                <label>Skills-Experience</label>
+                            </div>
+                            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                                <div class="mj_detaildiv">
+                                    <ul class="mj_selected_content">
+                                        <li *ngFor="let i of listuser?.jobcategorydetail_view">
+                                            <a>{{i.name}}</a>
+                                        </li>
+
+                                    </ul>
+                                    <ul class="mj_selected_content">
+                                        <li *ngFor="let i1 of listuser?.diplomalanguage_view">
+                                            <a> {{i1.name}}</a>
+                                        </li>
+
+                                    </ul>
+                                    <span> Số năm Kinh Nghiệm: {{ listuser?.experience}}</span>
+                                    <p>Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum.
+                                        Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit
+                                        litterarum formas humanitatis per seacula quarta decima et quinta decima. </p>
+                                    <ul>
+                                        <li>Time honoured communication, leadership and academic traits strengthened through
+                                            Product Assistant position and work presentations</li>
+                                        <li>Used Visual Studio on unix systems to implement real time BlackBerry algorithms</li>
+                                        <li>Thorough presentation, problem solving and leadership skills improved through Product
+                                            Assistant position and project work</li>
+                                        <li>Participated in a team that used CSS, mobile platforms and Oracle Server to improve
+                                            Web Service technologies for heuristic Windows systems</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mj_toppadder30 mj_bottompadder30">
+                                <div class="mj_divider"></div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                                <label>Education</label>
+                            </div>
+                            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                                <div class="mj_detaildiv">
+                                    <span>University of Waterland Waterland, ON</span>
+                                    <blockquote class="mj_blueblockquote">
+                                        <span><i class="fa fa-calendar"></i> Dec 2010 - Sep 2011</span>
+                                        <h5>Honours Co-op BMATH</h5>
+                                        <p>Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id
+                                            quod mazim placerat facer possim assum.</p>
+                                    </blockquote>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mj_toppadder30 mj_bottompadder30">
+                                <div class="mj_divider"></div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
 <div class="mj_lightgraytbg mj_toppadder80 mj_bottompadder80">
     <div class="container">
-        <div class="alert alert-info alert-dismissable" *ngIf="isupdateuser==false">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-            <h4><i class="icon fa fa-info"></i> Alert!</h4>
-            Phú, Bổ sung thông tin hồ sơ của bạn để nhận được nhiều cơ hội phỏng vấn hơn.
-        </div>
-
         <div class="row" *ngIf="isupdateuser==false">
             <div class="col-lg-12 col-md-12   col-sm-12 col-xs-12">
                 <div class="mj_pricingtable mj_yellowtable mj_createaccount_form_wrapper">
-                    <!-- Nav tabs -->
-                    <ul class="nav nav-tabs" role="tablist">
-                        <li role="presentation" class="active"><a href="#company" aria-controls="company" role="tab" data-toggle="tab">Thông tin cá nhân</a>
-                        </li>
-                        <li role="presentation"><a (click)="click()">Profile</a>
-                        </li>
-                    </ul>
+
+
                     <!-- Tab panes -->
                     <div class="tab-content">
                         <div role="tabpanel" class="tab-pane fade in active" id="company" *ngIf="isupdateuser==false">
                             <div class="row">
                                 <div class="col-lg-4">
-                                    <img id="imageprofile" src="http://localhost:3000/uploads/forms/anhdaidien/{{listuser?.profileimage}}" class="img-responsive image-profile mj_testimonial_img"
-                                        alt="Image LOgo">
-
-                                    <input style="margin-top: 10px;" type="file" id="anhdaidien" name="anhdaidien" ng2FileSelect [uploader]="uploaderanhdaidien"
-                                    />
-                                    <button type="button" (click)="uploaderanhdaidien.uploadAll();" *ngIf="uploaderanhdaidien.getNotUploadedItems().length"
-                                        class="btn-primary c-edit"><i class="fa fa-edit"></i>Up Load</button>
                                     <div class="form-group">
-                                        <a id="download-resume-button" class="btn btn-sm btn-default btn-outline" (click)="clickchangepass()"><i class="fa  fa-exchange " ></i> Change  password </a>
-                                        <a id="download-resume-button" href="http://localhost:3000/uploads/forms/filecv/CV-300617.191153.pdf" target="_blank" class="btn btn-sm btn-default btn-outline"><i class="fa fa-fw fa-file-pdf-o"></i> Tải hồ sơ</a>
+                                        <a id="download-resume-button" style="background-color: orange;
+    opacity: 0.7;
+    color: white;" class="btn btn-sm  btn-outline" (click)="clickchangepass()"><i class="fa  fa-exchange " ></i> Change  password </a>
+
+
+                                        <button *ngIf="listuser?.status" class="btn btn-flat btn-primary pull-right" (click)="capnhatPrivate()">Private Profile</button>
+
+
+                                        <button *ngIf="listuser?.status==false" class="btn btn-flat btn-primary pull-right" (click)="capnhatpublic()">Public Profile</button>
+
                                     </div>
                                 </div>
                                 <div class="col-lg-8 col-xs-offset-2">
@@ -66,8 +206,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-
-
                                         </div>
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label" for="passwordnew">RepeatPassWord</label>
@@ -86,6 +224,11 @@
                                         </div>
                                         <button type="submit" [disabled]="!changepasswordForm.valid" class="btn btn-flat btn-primary"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Update</button>
                                     </form>
+
+                                </div>
+                                <div class="col-lg-8 col-xs-offset-2">
+
+
                                     <form class="form-horizontal form-profile" [formGroup]="saveForm" (ngSubmit)="saveinfo()" *ngIf="ischangepass==false">
                                         <div class="form-group">
                                             <label for="inputName" class="col-sm-2 control-label">Name</label>
@@ -114,27 +257,16 @@
                                                 </div>
                                             </div>
                                             <div>
-                                            
-                                                <div *ngIf="listuser?.status">
-                                                        Public 
-                                                          <button class="btn btn-flat btn-primary pull-right" (click)="capnhatPrivate()">Private Profile</button>
-                                                </div>
-                                                <div *ngIf="listuser?.status==false">
-                                                          <button class="btn btn-flat btn-primary pull-right" (click)="capnhatpublic()">Public Profile</button>
-                                                </div>
+
 
                                             </div>
-
-                                           
                                             <button type="submit" class="btn btn-flat btn-primary pull-right" style="margin-right: 20px;">Update</button>
-
                                         </div>
 
                                     </form>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>

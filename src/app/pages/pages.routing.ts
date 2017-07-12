@@ -39,7 +39,7 @@ export const routes: Routes = [
       { path: 'Manager-Account', component: ManagerAccountComponent },
       { path: 'Manager-JobApply', component: ManagerJobApplyComponent },
        { path: 'Search-cadidate', component: SearchProfileComponent },
-         { path: 'home/detail-cadidate', component: DetailCandidateComponent },
+         { path: 'home/detail-cadidate/:id', component: DetailCandidateComponent },
 
 
     ]
