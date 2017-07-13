@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,Input, OnInit } from '@angular/core';
 import { CandidateService } from './../../services/candidate.service';
 import { PagerService } from './../../_services/pager.service';
+import {Location} from '@angular/common';
 @Component({
   selector: 'app-viewprofile',
   templateUrl: './viewprofile.component.html',
@@ -8,12 +9,15 @@ import { PagerService } from './../../_services/pager.service';
 })
 export class ViewprofileComponent implements OnInit {
  // pager object
+ @Input() name:String;
   pager: any = {};
   list=[]
   // paged items
   pagedItems: any[];
-  constructor(private candidate: CandidateService, private pagerService: PagerService) { }
-
+  constructor(private _location: Location,private candidate: CandidateService, private pagerService: PagerService) { }
+ backClicked() {
+        this._location.back();
+    }
   ngOnInit() {
     this.getlistprofile();
     this.getcountprofile();
@@ -30,9 +34,14 @@ getcountprofile() {
   }
 
   
-  ListJob=[]
+  ListJob=[];
+  //jobcategorydetail -jobcategory
   getlistprofile() {
-    this.candidate.getallpage("0", "10").subscribe(
+    var post={
+     jobcategory :'5958ebb27f843a0dd0b5305a',
+      jobcategorydetail:['5958effa7f843a0dd0b53060']
+    };
+    this.candidate.candidate_suitable(post).subscribe(
       data => {
         this.ListJob = data;
         console.log('ListJob')

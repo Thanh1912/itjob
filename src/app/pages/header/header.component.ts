@@ -36,7 +36,7 @@ export class HeaderComponent implements OnInit {
     this.mj_notification_detail = false
     this.islogin = false;
     if (localStorage.getItem('id_token') == null) {
-      localStorage.clear()
+     // localStorage.clear()
     }
     if (this.auth.isLoggedIn() == true) {
       this.islogin = true;

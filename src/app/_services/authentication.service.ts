@@ -134,7 +134,7 @@ export class AuthenticationService {
   }
   isLoggedInE() {
     if (localStorage.getItem('id_token_ntd') == null) {
-      localStorage.clear();
+      //localStorage.clear();
       return false;
     } else
       return true;

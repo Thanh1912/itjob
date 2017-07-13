@@ -25,6 +25,24 @@ export class ListJobComponent implements OnInit {
   constructor(private job: PostService, private pagerService: PagerService) {
 
   }
+  /*
+ActionDuyet(duyet:boolean){
+   this.job.edit({
+     status:duyet
+   }).subscribe(
+      data => {
+        this.listAllJob = data;
+        this.listJob = data;
+           console.log('Show')
+        console.log(data)
+        this.setPage(1);
+      },
+      error => console.log(error),
+      () => this.isLoading = false
+    );
+}
+*/
+
   //==============FUNCTION==================
   setPage(page: number) {
     if (page < 1 || page > this.pager.totalPages) {

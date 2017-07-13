@@ -389,8 +389,29 @@ module.exports.searchCandidate = function (req, res) {
 };
 //===========================Tìm Người Theo jobcatalog, keyword-skills========
 module.exports.candidate_suitable = function (req, res) {
+    var ObjectId = require('mongoose').Types.ObjectId;
 var  Kjobcategory=req.body.jobcategory;
-var Kjobcategorydetail=req.body.jobcategorydetail;
+  var Ksalary = req.body.salaryP;// 
+   var Kexperience = req.body.experienceP;
+var Kjobcategorydetail=req.body.jobcategorydetail;//jobcategorydetail -jobcategory
+console.log(Kjobcategorydetail+"=="+Kjobcategory)
+   if (Kexperience !== "=="&& Kexperience!==undefined) {
+    obj2.push(
+      { "experience": Kexperience }
+    )
+  }
+  
+
+  if (typeof Ksalary !== 'undefined' && Ksalary !== "=="&& Ksalary !== "" && Ksalary !== "0") {
+    console.log(Ksalary + isNaN(Ksalary));
+    if (parseInt(Ksalary) !== 0 && isNaN(Ksalary) == false)
+      obj2.push({
+        salarybegin: {
+          $gte: parseInt(Ksalary),
+        }
+      })
+  }
+
 var obj2=[]
    if (typeof Kjobcategory !== 'undefined' && Kjobcategory !== "==") {
     console.log('Kjobcategory')
@@ -401,8 +422,10 @@ var obj2=[]
   if (typeof Kjobcategorydetail !== 'undefined') {
     var arr = [];
     Kjobcategorydetail.forEach(function (value) {
-      arr.push(new ObjectId(value))
+      arr.push(new ObjectId(value));
+         console.log(value+"==sdfsa")
     });
+ 
     if (arr.length != 0)
       obj2.push({
         jobcategorydetail: { $in: arr }
@@ -427,46 +450,45 @@ var obj2=[]
      }
       },
       {
-        "$lookup": {
-          "from": "districts",
-          "localField": "districtid",
-          "foreignField": "_id",
-          "as": "Infodistrict"
-        },
-      },
-      {
-        "$lookup": {
-          "from": "diplomalanguages",
-          "localField": "diplomalanguage",
-          "foreignField": "_id",
-          "as": "diploma_language"
-        }
-      },
-      {
-        "$lookup": {
-          "from": "jobcategorydetails",
-          "localField": "jobcategorydetail",
-          "foreignField": "_id",
-          "as": "Infokeyword"
-        },
-
-      },
-      {
-        "$lookup": {
-          "from": "jobcategories",
-          "localField": "jobcategory",
-          "foreignField": "_id",
-          "as": "Infojobcategory"
-        }
-      },
-      {
-        "$lookup": {
-          "from": "workplaces",
-          "localField": "workplaceid",
-          "foreignField": "_id",
-          "as": "Infoworkplace"
-        }
+      "$lookup": {
+        "from": "jobcategories",
+        "localField": "jobcategory",
+        "foreignField": "_id",
+        "as": "jobcategories_view"
       }
+    },
+    {
+      "$lookup": {
+        "from": "diplomalanguages",
+        "localField": "diplomalanguage",
+        "foreignField": "_id",
+        "as": "diplomalanguage_view"
+      }
+    },
+    {
+      "$lookup": {
+        "from": "workplaces",
+        "localField": "workplaceid",
+        "foreignField": "_id",
+        "as": "workplaceid_view"
+      }
+    },
+    {
+      "$lookup": {
+        "from": "districts",
+        "localField": "districtid",
+        "foreignField": "_id",
+        "as": "districtid_view"
+      }
+    },
+    {
+      "$lookup": {
+        "from": "jobcategorydetails",
+        "localField": "jobcategorydetail",
+        "foreignField": "_id",
+        "as": "jobcategorydetail_view"
+      }
+    },
     ]).exec(function (err, docs) {
       if (err) throw err;
       res.json(docs);

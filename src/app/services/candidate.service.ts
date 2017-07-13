@@ -46,5 +46,12 @@ export class CandidateService {
   EditPassWord(user): Observable<any> {
     return this.http.post(this.Rest_Url + `/api/resume`, JSON.stringify(user), this.options);
   }
+    //edit password
+   candidate_suitable(post): Observable<any> {
+    return this.http.post(this.Rest_Url + `/api/candidate-suitable`, JSON.stringify(post), this.options).map(res => res.json());
+  }
+
+
+ 
 
 }

@@ -58,7 +58,15 @@ export class JobComponent implements OnInit, AfterViewInit {
   sluongtuyen: String;
   jobcategoryId: String;
   time_end: any;
+  isposted:boolean;
   n = 0;
+  setpost(){
+    if(this.isposted==true){
+      this.isposted=false;
+    }else{
+      this.isposted=true;
+    }
+  }
   onChange1() {
     console.log(this.keyword);
   }
@@ -88,6 +96,7 @@ export class JobComponent implements OnInit, AfterViewInit {
     this.jobtime = value;
   }
   ngOnInit() {
+    this.isposted=false;
     if (localStorage.getItem('userId_ntd') == null) {
       this.router.navigate(['/pages_employee']);
     }
@@ -207,9 +216,7 @@ export class JobComponent implements OnInit, AfterViewInit {
       JobTime: this.jobtime,
       Apllication: this.sluongtuyen,
       jobcategory: this.jobcategoryId,
-      endPost: this.time_end,
-
-
+      endPost: this.time_end
     }
     this.postservice.add(post).subscribe(
       data => {

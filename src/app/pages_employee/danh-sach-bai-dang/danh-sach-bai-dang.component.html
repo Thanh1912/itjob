@@ -4,7 +4,7 @@
     <h1>
       Danh Sách Tin Đăng
     </h1>
-  
+
   </section>
   <!-- Main content -->
   <section class="content">
@@ -13,7 +13,7 @@
       <div class="col-xs-12">
         <div class="box">
           <div class="box-header">
-          
+
           </div>
           <!-- /.box-header -->
           <div class="box-body table-responsive no-padding">
@@ -21,31 +21,39 @@
               <tr>
 
                 <th>Tiêu đề</th>
-                 <th>Ngày start</th>
-                  <th>Ngày End</th>
+                <th>Ngày start</th>
+                <th>Ngày End</th>
                 <th>Action</th>
               </tr>
               <tr *ngFor="let item of list_post">
                 <td>{{item.title}}</td>
 
-                 <td>{{item.createddate | date}}</td>
-
+                <td>{{item.createddate | date}}</td>
+                <td>{{item.endPost | date}}</td>
                 <td>
                   <div class="pull-right">
-                    <a class="btn btn-primary btn-sm btn-flat"   [routerLink]="['/pages_employee/edit-baidang', item._id]"><div class="tools">
+                    <a class="btn btn-primary btn-sm btn-flat" [routerLink]="['/pages_employee/edit-baidang', item._id]">
+                      <div class="tools">
                         <i class="fa fa-edit"></i>
 
-                      </div></a>
-                        <a class="btn btn-primary btn-sm btn-flat"   [routerLink]="['/pages_employee/application', item._id]"><div class="tools">
+                      </div>
+                    </a>
+                    <a class="btn btn-primary btn-sm btn-flat" [routerLink]="['/pages_employee/application', item._id]">
+                      <div class="tools">
                         <i class="fa fa-edit">Show All application </i>
 
-                      </div></a>
-                      <a class="btn btn-danger btn-sm btn-flat" (click)="delete(item)"><div class="tools">
-                        <i class="fa fa-trash-o">Off</i>
-                      </div></a>
-                       <a class="btn btn-primarys btn-sm btn-flat" (click)="delete(item)"><div class="tools">
-                        <i class="fa fa-trash-o">On</i>
-                      </div></a>
+                      </div>
+                    </a>
+                    <a class="btn btn-danger btn-sm btn-flat" *ngIf="item.status==false">
+                      <div class="tools">
+                        <i class="fa fa-minus-circle">Chưa Duyệt</i>
+                      </div>
+                    </a>
+                    <a class="btn btn-primarys btn-sm btn-flat" *ngIf="item.status==true">
+                      <div class="tools">
+                        <i class="fa fa-check-square"> Đã Duyệt</i>
+                      </div>
+                    </a>
                   </div>
                 </td>
               </tr>

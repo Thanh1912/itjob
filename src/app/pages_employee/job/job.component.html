@@ -1,6 +1,6 @@
-<div class="content-wrapper" style="min-height:600px">
+<div class="content-wrapper" style="min-height:600px"*ngIf="isposted==false">
   <!-- Content Header (Page header) -->
-  <section class="content-header">
+  <section class="content-header" >
     <h1>
       Đăng Bài
     </h1>
@@ -145,6 +145,7 @@ kích thước : 1200px : 400px</label>
             <div class="box-footer">
 
               <button type="submit" class="btn btn-primary">Đăng Tuyển</button>
+               <button type="button" class="btn btn-default pull-left" (click)="setpost()">Preview Candidate</button>
             </div>
           </form>
         </div>
@@ -173,7 +174,7 @@ kích thước : 1200px : 400px</label>
         <input id="photo" type="file" />
         <!-- button to trigger the file upload when submitted -->
         <button type="button" class="btn btn-success btn-s" (click)="upload()">
-Upload with method 2
+Upload with method 
 </button>
       </div>
       <div class="modal-footer">
@@ -184,3 +185,4 @@ Upload with method 2
     <!-- /.modal-content -->
   </div>
 </div>
+<app-viewprofile *ngIf="isposted==true" name="t"></app-viewprofile>

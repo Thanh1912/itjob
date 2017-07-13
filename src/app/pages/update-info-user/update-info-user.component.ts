@@ -133,7 +133,7 @@ listJobDetail=[]
 
 
   onchangeSelect(id: any) {
-
+ this.list_Jobcategory_Detail_Submit = [];
     this.Jobcategory_Detail.getallByIdCategory(id).subscribe(
       data => {
         this.list_Jobcategory_Detail = data;
