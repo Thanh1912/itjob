@@ -4,6 +4,8 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { ResumeService } from './../../services/resume.service';
 import { PagerService } from './../../_services/pager.service';
 import { ActivatedRoute } from '@angular/router';
+import { SearchCvPipe }from '../Pipe/search-cv.pipe';
+
 @Component({
   selector: 'app-applicant',
   templateUrl: './applicant.component.html',
@@ -13,16 +15,22 @@ export class ApplicantComponent implements OnInit {
   isedit = false;
   // pager object
   pager: any = {};
-
-  all = []
+  term:string;
+  all = [];
+  filterSelect:any;
   // paged items
   pagedItems: any[];
-
+selectaction:any;
   constructor(private route: ActivatedRoute, private resume: ResumeService, private formBuilder: FormBuilder, private pagerService: PagerService) { }
   id: String;
   private sub: any;
+  onchange(value:string){
+    this.term=value;
+ 
+  }
   ngOnInit() {
-
+    this.selectaction="new";
+      this.term="";
     this.sub = this.route.params.subscribe(params => {
       this.id = params['id'];
       this.getall(this.id)
@@ -67,7 +75,8 @@ export class ApplicantComponent implements OnInit {
   updateStatus(idCV:String,statusUpdate:String){
     var updateI={
       _id: idCV,
-      status:statusUpdate
+      status:statusUpdate,
+      modifieddate:new Date()
     }
      this.resume.edit(updateI).subscribe(
       data => {

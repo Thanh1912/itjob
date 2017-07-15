@@ -10,7 +10,7 @@
 
                 <div class="form-group">
                     <label>Professional Title</label>
-                    <input type="text" class="form-control" [formControl]="namepro"  [value]="Load_namepro" placeholder="e.g. “Web Developer”">
+                    <input type="text" class="form-control" [formControl]="namepro" [value]="Load_namepro" placeholder="e.g. “Web Developer”">
                 </div>
                 <div class="form-group">
                     <label>Thành Phố</label>
@@ -35,12 +35,12 @@
                                     
                                        <option *ngFor="let ListCategory of list_Jobcategory" [value]="ListCategory._id" [selected]="ListCategory._id==Load_Id_Category">{{ListCategory.name}}</option>
                                     </select>
-                    <div class="row">
+                    <div class="row" style="border: 1px solid #F7941D;">
                         <span class="alist" (click)="add(listdetail._id,listdetail.name)" *ngFor="let listdetail of list_Jobcategory_Detail">{{listdetail.name}}</span>
 
 
                     </div>
-                    <a class="a-underline"> select all </a>
+                    <a class="a-underline" > select all </a>
 
                     <div class="row">
                         <div class="col-lg-12">
@@ -50,7 +50,7 @@
                         </div>
 
                     </div>
-                    <ul class="mj_selected_content">
+                    <ul class="mj_selected_content" style="border: 1px solid #F7941D;">
                         <li>
                             <a *ngFor="let listsubmit of list_Jobcategory_Detail_Submit"><img src="assets/images/cross_white.png" alt="" (click)="removeadd(listsubmit._id,listsubmit.name)">{{listsubmit.name}} </a>
                         </li>
@@ -60,7 +60,7 @@
                 <div class="form-group">
                     <label> Skills</label>
 
-                    <div class="row">
+                    <div class="row" style="border: 1px solid #F7941D;">
                         <span class="alist" (click)="addLang(Listdipl._id,Listdipl.name)" *ngFor="let Listdipl of Listdiplomalanguage">{{Listdipl.name}}</span>
                     </div>
                     <a class="a-underline"> select all </a>
@@ -73,7 +73,7 @@
                         </div>
 
                     </div>
-                    <ul class="mj_selected_content">
+                    <ul class="mj_selected_content" style="border: 1px solid #F7941D;">
                         <li>
                             <a *ngFor="let lists of diplomalanguage_submit"><img src="assets/images/cross_white.png" alt="" (click)="removeaddlang(lists._id,lists.name)">{{lists.name}} </a>
                         </li>
@@ -83,22 +83,7 @@
 
 
 
-                <div class="form-group">
-                    <label>Education<span>(optionnal)</span>
-                                    </label>
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="row">
-                            <div class="mj_education">
-                                <input type="text" class="form-control" placeholder="School Name">
-                                <input type="text" class="form-control" placeholder="Qualification(s)">
-                                <input type="text" class="form-control" placeholder="Start / End Date">
-                                <textarea class="form-control" rows="5" placeholder="Notes"></textarea>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+       
                 <div class="form-group">
                     <label>Experience<span>(optionnal)</span>
                                     </label>
@@ -113,10 +98,20 @@
                                         <option value="6" [selected]="6==Load_id_experience">Trên 5 năm</option>
                                     </select>
                     </div>
-                 
+
+                </div>
+                <div class="form-group">
+                    <label>OverView<span>(optionnal)</span>
+                                    </label>
+                    <div class="form-group">
+                        <ckeditor name="ckeditorContent"  [(ngModel)]="overview" [ngModelOptions]="{standalone: true}" (change)="onChangeYeucau($event)" debounce="500">
+                        </ckeditor>
+
+                    </div>
+
                 </div>
 
-            
+
 
                 <div class="mj_showmore"><button type="submit" class="mj_showmorebtn mj_bigbtn mj_bluebtn">Preview <i class="fa fa-angle-right"></i></button>
                 </div>

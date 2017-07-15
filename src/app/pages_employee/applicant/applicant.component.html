@@ -12,17 +12,12 @@
         <div class="box-body">
           <div class="row">
             <div class="col-md-6">
-              <select class="form-control select2" style="width: 100%;">
-              <option selected="selected">SORT</option>
-              <option value="">Newest first</option>
-              <option value="name">Sort by name</option>
-
-            </select>
+            <input type="text" #titleInput (keyup)="onchange(titleInput.value)" placeholder="Nhập Email" class="form-control" >
             </div>
             <!-- /.form-group -->
             <div class="col-md-4">
-              <select class="form-control select2" style="width: 100%;">
-              <option value="new">New</option>
+              <select class="form-control select2" [(ngModel)]="selectaction"  style="width: 100%;">
+              <option value="new" >New</option>
               <option value="1">Approve</option>
               <option value="2">Waiting interview</option>
               <option value="3">Pass </option>
@@ -31,7 +26,7 @@
             </select>
             </div>
             <div class="col-md-2">
-              <button class="btn btn-flat btn-primary" (click)="getall()">Refesh</button>
+              <button class="btn btn-flat btn-primary" (click)="getall(id)">Refesh</button>
 
             </div>
             <!-- /.form-group -->
@@ -42,7 +37,7 @@
       <!--Table -->
 
 
-      <div class="box box-danger" *ngFor="let items of pagedItems">
+      <div class="box box-danger" *ngFor="let items of pagedItems |searchcv :term:all:selectaction">
         <div class="box-header with-border">
           <h3 class="box-title"></h3>
         </div>
@@ -94,11 +89,43 @@
             <div class="col-xs-1">
             </div>
             <div class="col-xs-5">
+                 <div class="col-md-6">
+                              <select (change)="onChange($event.target.value,items._id)"   name="a" data-placeholder="Application Status" class="col-xs-6 chosen-select-no-single form-control">
+                             
+                                    <option value="new" >new</option>
+                                    <option value="1" [selected]="items.status==1">approve</option>
+                                    <option value="2" [selected]="items.status==2"> waiting interview</option>
+                                    <option value="3" [selected]="items.status==3">pass</option>
+                                    <option value="4" [selected]="items.status==4">fail</option>
+                                    <option value="5" [selected]="items.status==5">hire</option>
+                                    </select>
+                            </div>
               <!-- Buttons -->
-              <div class="buttons">
+                 <div class="box-footer clearfix pull-right">
+                            <ul [ngSwitch]="items.status" style="margin-right:78px;display: -webkit-box;">
+                              <li *ngSwitchCase="1" style="margin-right: 28px;">
+                                <i class="fa fa-file-text-o"></i> Approve
+                              </li>
+                              <li *ngSwitchCase="2" style="margin-right: 28px;">
+                                <i class="fa fa-file-text-o"></i> Waiting interview
+                              </li>
+                              <li *ngSwitchCase="3" style="margin-right: 28px;">
+                                <i class="fa fa-file-text-o"></i> Pass CV
+                              </li>
+                              <li *ngSwitchCase="4" style="margin-right: 28px;">
+                                <i class="fa fa-file-text-o"></i> Fail CV
+                              </li>
+                              <li *ngSwitchCase="5" style="margin-right: 28px;">
+                                <i class="fa fa-file-text-o"></i>Hired
+                              </li>
+                              <li style="margin-right: 28px;" *ngSwitchDefaul>
+                                <i class="fa fa-file-text-o"></i> Pendding (NEW)
+                              </li>
 
-                <a data-toggle="modal" data-target="#myModal" class="btn btn-flat btn-primary app-link"><i class="fa fa-plus-circle"></i> Show Details</a>
-              </div>
+                              <li><i class="fa fa-calendar"></i> {{items.modifieddate|date}}</li>
+                            </ul>
+                            <div class="clearfix"></div>
+                          </div>
               <!-- Buttons -->
 
 
@@ -114,17 +141,7 @@
                       <div class="box box-danger">
                         <div class="box-body">
                           <div class="row">
-                            <div class="col-md-6">
-                              <select (change)="onChange($event.target.value,items._id)" name="a" data-placeholder="Application Status" class="col-xs-6 chosen-select-no-single form-control">
-                                
-                                    <option value="new">New</option>
-                                    <option value="1">approve</option>
-                                    <option value="2"> waiting interview</option>
-                                    <option value="3">pass</option>
-                                    <option value="4">fail</option>
-                                    <option value="5">hire</option>
-                                    </select>
-                            </div>
+                         
 
                           </div>
                           <div class="row">
@@ -147,33 +164,7 @@
                               <!-- /.box-body -->
                             </form>
                           </div>
-                          <div class="box-footer clearfix pull-right">
-                            <ul [ngSwitch]="items.status" style="margin-right:78px;display: -webkit-box;">
-                              <li *ngSwitchCase="1" style="margin-right: 28px;">
-                                <i class="fa fa-file-text-o"></i> Approve
-                              </li>
-                              <li *ngSwitchCase="2" style="margin-right: 28px;">
-                                <i class="fa fa-file-text-o"></i> Waiting interview
-                              </li>
-                              <li *ngSwitchCase="3" style="margin-right: 28px;">
-                                <i class="fa fa-file-text-o"></i> Pass CV
-                              </li>
-                              <li *ngSwitchCase="4" style="margin-right: 28px;">
-                                <i class="fa fa-file-text-o"></i> Fail CV
-                              </li>
-                              <li *ngSwitchCase="5" style="margin-right: 28px;">
-                                <i class="fa fa-file-text-o"></i>Hired
-                              </li>
-                              <li style="margin-right: 28px;" *ngSwitchDefaul>
-                                <i class="fa fa-file-text-o"></i> Pendding (NEW)
-                              </li>
-
-
-
-                              <li><i class="fa fa-calendar"></i> {{items.modifieddate}}</li>
-                            </ul>
-                            <div class="clearfix"></div>
-                          </div>
+                     
                         </div>
 
                         <!-- /.box-body -->

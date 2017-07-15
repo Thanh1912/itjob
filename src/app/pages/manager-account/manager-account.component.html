@@ -34,10 +34,16 @@
                                                 </label><a href="#">{{listuser?.fullname}}</a>
                                         </li>
                                         <li>
-                                            <label>Classification:</label><a>{{listuser?.jobcategories_view[0].name}}</a>
+                                            <label>Ngành:</label><a>{{listuser?.jobcategories_view[0].name}}</a>
                                         </li>
                                         <li>
                                             <label>Hourly Rate: </label><span class="mj_green_text">${{listuser?.salary}}/1 month</span>
+                                        </li>
+                                        <li>
+                                            <label>Phone : </label><span class="mj_green_text">${{listuser?.salary}}/1 month</span>
+                                        </li>
+                                         <li>
+                                            <label>Email : </label><span class="mj_green_text">${{listuser?.email}}</span>
                                         </li>
                                     </ul>
                                 </div>
@@ -55,9 +61,9 @@
             <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 col-lg-offset-3 col-md-offset-3">
                 <div class="mj_social_media_section mj_candidatepage_media mj_toppadder40 mj_bottompadder40">
                     <ul>
-                        <li><a class="mj_mainbtn mj_btnblue" data-text="Contact Candidate" (click)="updateprofile()"><span>Profile Candidate</span></a>
+                        <li><a class="mj_mainbtn mj_btnblue" data-text="Profile Candidate" (click)="updateprofile()"><span>Profile Candidate</span></a>
                         </li>
-                        <li><a class="mj_mainbtn mj_btnred" data-text="Bookmark this Resume" (click)="click()"><span>View Resume</span></a>
+                        <li><a class="mj_mainbtn mj_btnred" data-text="View Resume" (click)="click()"><span>View Resume</span></a>
                         </li>
                     </ul>
                     <p><a href="http://localhost:3000/uploads/forms/filecv/CV-300617.191153.pdf" download><i class="fa fa-download"></i></a>
@@ -76,10 +82,8 @@
                             </div>
                             <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
                                 <div class="mj_detaildiv">
-                                    <p>
-
-
-                                        ABC
+                                    <p [innerHTML]="listuser?.overview">
+                                      
                                     </p>
                                 </div>
                             </div>
@@ -104,42 +108,12 @@
 
                                     </ul>
                                     <span> Số năm Kinh Nghiệm: {{ listuser?.experience}}</span>
-                                    <p>Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum.
-                                        Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit
-                                        litterarum formas humanitatis per seacula quarta decima et quinta decima. </p>
-                                    <ul>
-                                        <li>Time honoured communication, leadership and academic traits strengthened through
-                                            Product Assistant position and work presentations</li>
-                                        <li>Used Visual Studio on unix systems to implement real time BlackBerry algorithms</li>
-                                        <li>Thorough presentation, problem solving and leadership skills improved through Product
-                                            Assistant position and project work</li>
-                                        <li>Participated in a team that used CSS, mobile platforms and Oracle Server to improve
-                                            Web Service technologies for heuristic Windows systems</li>
-                                    </ul>
+                                   
                                 </div>
                             </div>
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mj_toppadder30 mj_bottompadder30">
                                 <div class="mj_divider"></div>
                             </div>
-                            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                                <label>Education</label>
-                            </div>
-                            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
-                                <div class="mj_detaildiv">
-                                    <span>University of Waterland Waterland, ON</span>
-                                    <blockquote class="mj_blueblockquote">
-                                        <span><i class="fa fa-calendar"></i> Dec 2010 - Sep 2011</span>
-                                        <h5>Honours Co-op BMATH</h5>
-                                        <p>Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id
-                                            quod mazim placerat facer possim assum.</p>
-                                    </blockquote>
-                                </div>
-                            </div>
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mj_toppadder30 mj_bottompadder30">
-                                <div class="mj_divider"></div>
-                            </div>
-
-
                         </div>
                     </div>
                 </div>
@@ -148,7 +122,7 @@
         </div>
     </div>
 </div>
-<div class="mj_lightgraytbg mj_toppadder80 mj_bottompadder80">
+<div class="mj_lightgraytbg mj_toppadder80 mj_bottompadder80" style="margin-top: -320px;">
     <div class="container">
         <div class="row" *ngIf="isupdateuser==false">
             <div class="col-lg-12 col-md-12   col-sm-12 col-xs-12">

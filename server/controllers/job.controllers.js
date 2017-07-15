@@ -359,9 +359,14 @@ module.exports.searchJobTitles = function (req, res) {
 module.exports.getAllpage = function (req, res) {
 var skippage=req.params.skip;
 var limitpage=req.params.limit;
+var i="5";
+console.log(typeof i);
   model.aggregate([
-     { $skip : skippage },
-    { $limit : limitpage },
+     { $skip :  parseInt(skippage) },
+    { $limit :  parseInt(limitpage) },
+      { $sort :  {
+        
+      } },
     {
       "$lookup": {
         "from": "districts",

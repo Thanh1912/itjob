@@ -9,8 +9,8 @@ import { CompanysizeService } from './../../services/companysize.service';
 import { countryService } from './../../services/country.service';
 import { PostService } from './../../services/post.service';
 import { JobcategoryService } from './../../services/jobcategory.service';
-
-
+import { ViewprofileComponent } from '../viewprofile/viewprofile.component';
+import { CandidateService } from './../../services/candidate.service';
 import { IMultiSelectOption, IMultiSelectSettings } from 'angular-2-dropdown-multiselect';
 import { keyword } from './../../_models/keyword.model';
 import { Router } from '@angular/router';
@@ -30,9 +30,19 @@ interface FileReaderEvent extends Event {
 
 })
 export class JobComponent implements OnInit, AfterViewInit {
-  constructor(private router: Router, private jobcategoryService: JobcategoryService, private http: Http, private el: ElementRef, private districtService: DistrictService, private workplaceService: WorkplaceService, private jobcategoryDetailService: KeywordService, private countryService: countryService, private postservice: PostService) {
+  constructor(private candidate: CandidateService, private profile:   ViewprofileComponent, private router: Router, private jobcategoryService: JobcategoryService, private http: Http, private el: ElementRef, private districtService: DistrictService, private workplaceService: WorkplaceService, private jobcategoryDetailService: KeywordService, private countryService: countryService, private postservice: PostService) {
     this.ckeditorContent = `<p>My HTML</p>`;
   }
+
+//=============================
+
+
+
+
+ada:String
+
+//============================
+
 
   public uploader: FileUploader = new FileUploader({ url: 'http://localhost:3000/api/uploadpostbaidang', itemAlias: 'file' });
   isthoathuan: boolean = false;
@@ -60,7 +70,8 @@ export class JobComponent implements OnInit, AfterViewInit {
   time_end: any;
   isposted:boolean;
   n = 0;
-  setpost(){
+  setpost1(){
+   this.getlistprofile()
     if(this.isposted==true){
       this.isposted=false;
     }else{
@@ -95,7 +106,34 @@ export class JobComponent implements OnInit, AfterViewInit {
   change_jobtime(value) {
     this.jobtime = value;
   }
+ListJob=[];
+  //jobcategorydetail -jobcategory
+  getlistprofile() {
+    var post={
+      jobcategory :'5958ebb27f843a0dd0b5305a',
+    jobcategorydetail:[],
+     salarybegin:'500',
+     salaryend:'',
+     districtid:'',
+     workplaceid:''
+   };
+  
+    this.candidate.candidate_suitable(post).subscribe(
+      data => {
+        this.ListJob = data;
+        console.log('ListJob')
+      
+        console.log(data)
+      },
+      error => console.log(error),
+      () => { }
+    );
+  }
+
+
+  array=[]
   ngOnInit() {
+    this.array=['31231','12312']
     this.isposted=false;
     if (localStorage.getItem('userId_ntd') == null) {
       this.router.navigate(['/pages_employee']);

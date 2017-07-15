@@ -36,11 +36,8 @@
                 </div>
                 <div class="col-xs-6">
                   <div class="form-group">
-                    <label>Đơn Vị * </label>
-                    <select name="donvi" (change)="onchange_dv($event.target.value)" class="form-control">
-                        <option value="VND" selected>VND</option>
-                        <option value="USD">USD</option>
-                      </select>
+                    <label></label>
+                  
                   </div>
                 </div>
               </div>
@@ -65,7 +62,7 @@
               </div>
                <div class="form-group">
                 <label for="exampleInputPassword1">Số Lượng tuyển dụng *</label>
-             <input type="text" name="sluongtuyen" [(ngModel)]="sluongtuyen" >
+             <input type="text"  name="sluongtuyen" [(ngModel)]="sluongtuyen" >
               </div>
               <div class="form-group">
                 <label for="exampleInputPassword1">Mô tả công việc *</label>
@@ -145,7 +142,7 @@ kích thước : 1200px : 400px</label>
             <div class="box-footer">
 
               <button type="submit" class="btn btn-primary">Đăng Tuyển</button>
-               <button type="button" class="btn btn-default pull-left" (click)="setpost()">Preview Candidate</button>
+               <button type="button" class="btn btn-default pull-left" (click)="setpost1()">Preview Candidate</button>
             </div>
           </form>
         </div>
@@ -185,4 +182,4 @@ Upload with method
     <!-- /.modal-content -->
   </div>
 </div>
-<app-viewprofile *ngIf="isposted==true" name="t"></app-viewprofile>
+<app-viewprofile *ngIf="isposted==true"  [ListJob]="ListJob"></app-viewprofile>

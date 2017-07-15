@@ -63,12 +63,12 @@ module.exports.login = function (req, res, next) {
 };
 // Get all
 module.exports.getAllpage = function (req, res) {
-var skippage=req.params.skip;
-var limitpage=req.params.limit;
+  var skippage = req.params.skip;
+  var limitpage = req.params.limit;
   model.aggregate([
-     { $skip :  parseInt(skippage) },
-    { $limit : parseInt(limitpage) },
-   {
+    { $skip: parseInt(skippage) },
+    { $limit: parseInt(limitpage) },
+    {
       "$lookup": {
         "from": "jobcategories",
         "localField": "jobcategory",
@@ -150,8 +150,8 @@ module.exports.count = function (req, res) {
 module.exports.topcandidate = function (req, res) {
   model.aggregate([
 
- { $match: { status: true} },
-   {
+    { $match: { status: true } },
+    {
       "$lookup": {
         "from": "jobcategories",
         "localField": "jobcategory",
@@ -245,8 +245,11 @@ module.exports.delete = function (req, res) {
 // Get 
 module.exports.searchCandidate = function (req, res) {
   //get value from post  or 
- 
+
   var Ksalary = req.body.salaryP;
+
+
+
   var Kdistrictid = req.body.districtidP;
   var Kworkplaceid = req.body.workplaceidP;
   var Kjobcategory = req.body.jobcategoryP;
@@ -260,14 +263,34 @@ module.exports.searchCandidate = function (req, res) {
 
 
 
-  if (typeof Ksalary !== 'undefined' && Ksalary !== "=="&& Ksalary !== "" && Ksalary !== "0") {
-    console.log(Ksalary + isNaN(Ksalary));
-    if (parseInt(Ksalary) !== 0 && isNaN(Ksalary) == false)
-      obj2.push({
-        salarybegin: {
-          $gte: parseInt(Ksalary),
-        }
-      })
+  if (typeof Ksalary !== 'undefined' && Ksalary !== "==" && Ksalary !== "" && Ksalary !== "0") {
+
+
+    console.log(Ksalary)
+    var arr2 = Ksalary.split("-").map(function (val) {
+      return Number(val) + 1;
+    });
+    console.log(arr2);
+    var k = 0;
+    arr2.forEach(function (value) {
+      console.log('ok');
+      console.log(value);
+      if (k == 0) {
+        obj2.push({
+          salarybegin: {
+            $gte: Number(value),
+          }
+        })
+      } else {
+        obj2.push({
+          salarybegin: {
+            $lte: Number(value),
+          }
+        })
+      }
+      k++;
+    });
+
   }
 
 
@@ -284,7 +307,7 @@ module.exports.searchCandidate = function (req, res) {
       workplaceid: new ObjectId(Kworkplaceid)
     })
   }
- 
+
   if (typeof Kjobcategory !== 'undefined' && Kjobcategory !== "==") {
     console.log('Kjobcategory')
     obj2.push({
@@ -303,9 +326,9 @@ module.exports.searchCandidate = function (req, res) {
       })
   }
 
-  Kdiplomalanguage=req.body.diplomalanguageP;
-     console.log(typeof Kdiplomalanguage)
-    if (typeof Kdiplomalanguage !=='undefined') {
+  Kdiplomalanguage = req.body.diplomalanguageP;
+  console.log(typeof Kdiplomalanguage)
+  if (typeof Kdiplomalanguage !== 'undefined') {
     console.log('diplomalanguage')
     var arr = [];
     Kdiplomalanguage.forEach(function (value) {
@@ -317,93 +340,128 @@ module.exports.searchCandidate = function (req, res) {
       })
   }
 
-  if (Ktitle !== "=="&&Ktitle!==undefined) {
+  if (Ktitle !== "==" && Ktitle !== undefined) {
     obj2.push(
       { "nameprofile": new RegExp(Ktitle) }
     )
   }
-    if (Kexperience !== "=="&& Kexperience!==undefined) {
+  if (Kexperience !== "==" && Kexperience !== undefined) {
     obj2.push(
       { "experience": Kexperience }
     )
   }
-   obj2.push(
-      { "status": true }
-    )
+  obj2.push(
+    { "status": true }
+  )
 
   console.log(obj2)
   var ObjectId = require('mongoose').Types.ObjectId;
-    model.aggregate([
-      {
-        $match: {
-          $and: obj2
-        }
-      },
-      {
-        "$lookup": {
-          "from": "districts",
-          "localField": "districtid",
-          "foreignField": "_id",
-          "as": "Infodistrict"
-        },
-      },
-      {
-        "$lookup": {
-          "from": "diplomalanguages",
-          "localField": "diplomalanguage",
-          "foreignField": "_id",
-          "as": "diploma_language"
-        }
-      },
-      {
-        "$lookup": {
-          "from": "jobcategorydetails",
-          "localField": "jobcategorydetail",
-          "foreignField": "_id",
-          "as": "Infokeyword"
-        },
-
-      },
-      {
-        "$lookup": {
-          "from": "jobcategories",
-          "localField": "jobcategory",
-          "foreignField": "_id",
-          "as": "Infojobcategory"
-        }
-      },
-      {
-        "$lookup": {
-          "from": "workplaces",
-          "localField": "workplaceid",
-          "foreignField": "_id",
-          "as": "Infoworkplace"
-        }
+  model.aggregate([
+    {
+      $match: {
+        $and: obj2
       }
-    ]).exec(function (err, docs) {
-      if (err) throw err;
-      res.json(docs);
-    });
- 
+    },
+    {
+      "$lookup": {
+        "from": "districts",
+        "localField": "districtid",
+        "foreignField": "_id",
+        "as": "Infodistrict"
+      },
+    },
+    {
+      "$lookup": {
+        "from": "diplomalanguages",
+        "localField": "diplomalanguage",
+        "foreignField": "_id",
+        "as": "diploma_language"
+      }
+    },
+    {
+      "$lookup": {
+        "from": "jobcategorydetails",
+        "localField": "jobcategorydetail",
+        "foreignField": "_id",
+        "as": "Infokeyword"
+      },
+
+    },
+    {
+      "$lookup": {
+        "from": "jobcategories",
+        "localField": "jobcategory",
+        "foreignField": "_id",
+        "as": "Infojobcategory"
+      }
+    },
+    {
+      "$lookup": {
+        "from": "workplaces",
+        "localField": "workplaceid",
+        "foreignField": "_id",
+        "as": "Infoworkplace"
+      }
+    }
+  ]).exec(function (err, docs) {
+    if (err) throw err;
+    res.json(docs);
+  });
+
 
 };
 //===========================Tìm Người Theo jobcatalog, keyword-skills========
 module.exports.candidate_suitable = function (req, res) {
-    var ObjectId = require('mongoose').Types.ObjectId;
-var  Kjobcategory=req.body.jobcategory;
-  var Ksalary = req.body.salaryP;// 
-   var Kexperience = req.body.experienceP;
-var Kjobcategorydetail=req.body.jobcategorydetail;//jobcategorydetail -jobcategory
-console.log(Kjobcategorydetail+"=="+Kjobcategory)
-   if (Kexperience !== "=="&& Kexperience!==undefined) {
-    obj2.push(
-      { "experience": Kexperience }
-    )
-  }
-  
 
-  if (typeof Ksalary !== 'undefined' && Ksalary !== "=="&& Ksalary !== "" && Ksalary !== "0") {
-    console.log(Ksalary + isNaN(Ksalary));
+
+  var ObjectId = require('mongoose').Types.ObjectId;
+  //mucluong-tinhthanh-quan-moicapnhat
+  var Kjobcategory = req.body.jobcategory;
+  var Ksalarybegin = req.body.salarybegin;// 
+
+
+
+  var Ksalaryend = req.body.salaryend;// 
+  var Kjobcategorydetail = req.body.jobcategorydetail;//jobcategorydetail -jobcategory
+  var Kdistrictid = req.body.districtid;
+  var Kworkplaceid = req.body.workplaceid;
+  var obj2 = []  //array dieu kien and select document
+
+  if (typeof Ksalarybegin !== 'undefined' && Ksalarybegin !== "==" && Ksalarybegin !== "" && Ksalarybegin !== "0") {
+
+    if (parseInt(Ksalarybegin) !== 0 && isNaN(Ksalarybegin) == false)
+      obj2.push({
+        salary: {
+          $gte: parseInt(Ksalarybegin),
+        }
+      })
+  }
+
+
+  if (typeof Ksalaryend !== 'undefined' && Ksalarybegin !== "==" && Ksalaryend !== "" && Ksalaryend !== "0") {
+    if (parseInt(Ksalaryend) !== 0 && isNaN(Ksalaryend) == false)
+      obj2.push({
+        salary: {
+          $lte: parseInt(Ksalaryend),
+        }
+      })
+  }
+
+
+
+  if (typeof Kdistrictid !== 'undefined' && Kdistrictid !== "==" && Kdistrictid !== "" && Kdistrictid !== "0") {
+    obj2.push({
+      districtid: new ObjectId(Kdistrictid)
+    })
+  }
+  if (typeof Kworkplaceid !== 'undefined' && Kworkplaceid !== "==" && Kworkplaceid !== "" && Kworkplaceid !== "0") {
+    obj2.push({
+      workplaceid: new ObjectId(Kworkplaceid)
+    })
+  }
+
+  if (typeof Ksalary !== 'undefined' && Ksalary !== "==" && Ksalary !== "" && Ksalary !== "0") {
+
     if (parseInt(Ksalary) !== 0 && isNaN(Ksalary) == false)
       obj2.push({
         salarybegin: {
@@ -412,44 +470,44 @@ console.log(Kjobcategorydetail+"=="+Kjobcategory)
       })
   }
 
-var obj2=[]
-   if (typeof Kjobcategory !== 'undefined' && Kjobcategory !== "==") {
+
+  if (typeof Kjobcategory !== 'undefined' && Kjobcategory !== "==" && Kjobcategory !== "") {
     console.log('Kjobcategory')
     obj2.push({
       jobcategory: new ObjectId(Kjobcategory)
     })
   }
-  if (typeof Kjobcategorydetail !== 'undefined') {
+  if (typeof Kjobcategorydetail !== 'undefined' && Kjobcategorydetail !== "==" && Kjobcategorydetail !== "") {
     var arr = [];
     Kjobcategorydetail.forEach(function (value) {
       arr.push(new ObjectId(value));
-         console.log(value+"==sdfsa")
+      console.log(value + "==sdfsa")
     });
- 
+
     if (arr.length != 0)
       obj2.push({
         jobcategorydetail: { $in: arr }
       })
   }
 
-   obj2.push(
-      { "status": true, }
-    )
+  obj2.push(
+    { "status": true, }
+  )
 
   console.log(obj2)
   var ObjectId = require('mongoose').Types.ObjectId;
-    model.aggregate([
-      {
-        $match: {
-          $and: obj2
-        }
-      },
-      {
-     $sort:{
-         "createddate":1
-     }
-      },
-      {
+  model.aggregate([
+    {
+      $match: {
+        $and: obj2
+      }
+    },
+    {
+      $sort: {
+        "createddate": 1 //cap nhat moi nhat ho so cua ung vien
+      }
+    },
+    {
       "$lookup": {
         "from": "jobcategories",
         "localField": "jobcategory",
@@ -489,11 +547,11 @@ var obj2=[]
         "as": "jobcategorydetail_view"
       }
     },
-    ]).exec(function (err, docs) {
-      if (err) throw err;
-      res.json(docs);
-    });
- 
+  ]).exec(function (err, docs) {
+    if (err) throw err;
+    res.json(docs);
+  });
+
 
 };
 
@@ -501,11 +559,11 @@ var obj2=[]
 
 // Get all
 module.exports.detail_Candidate = function (req, res) {
-    var ObjectId = require('mongoose').Types.ObjectId;
+  var ObjectId = require('mongoose').Types.ObjectId;
   model.aggregate([
-    
+
     { $match: { _id: new ObjectId(req.params.id) } },
-   {
+    {
       "$lookup": {
         "from": "jobcategories",
         "localField": "jobcategory",

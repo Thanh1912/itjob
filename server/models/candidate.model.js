@@ -12,6 +12,8 @@ const candidateSchema = new mongoose.Schema({
   jobcategorydetail: [
     { type: Schema.Types.ObjectId, ref: 'jobcategorydetail' },
   ],
+  overview:String,
+  phone:{ type: String, default: 'Chưa cập nhật Phone' },
   experience: { type: String, default: '0' },
   diplomalanguage: [
     { type: Schema.Types.ObjectId, ref: 'diplomalanguage' },
@@ -24,3 +26,5 @@ const candidateSchema = new mongoose.Schema({
 });
 const model = mongoose.model('candidate', candidateSchema);
 module.exports = model;
+
+

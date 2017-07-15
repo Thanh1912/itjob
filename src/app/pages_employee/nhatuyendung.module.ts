@@ -25,7 +25,7 @@ import { CandidateService } from './../services/candidate.service';
 import { ResumeService } from './../services/resume.service'
 import { PagerService } from './../_services/pager.service';
 import { ViewprofileComponent } from './viewprofile/viewprofile.component';
-
+import { SearchCvPipe }from './Pipe/search-cv.pipe';
 @NgModule({
   imports: [
     CommonModule,
@@ -42,9 +42,9 @@ import { ViewprofileComponent } from './viewprofile/viewprofile.component';
     ApplicantComponent,
     JobComponent,
     NhatuyendungComponent,
-    PdfViewerComponent, EditBaidangComponent, ViewprofileComponent
+    PdfViewerComponent, EditBaidangComponent, ViewprofileComponent,SearchCvPipe
   ],
- providers: [CandidateService,PagerService,ResumeService,JobcategoryService,QuanliNtdService,KeywordService,WorkplaceService,PostService, DistrictService,countryService,CompanysizeService]
+ providers: [ViewprofileComponent,CandidateService,PagerService,ResumeService,JobcategoryService,QuanliNtdService,KeywordService,WorkplaceService,PostService, DistrictService,countryService,CompanysizeService]
 })
 export class NhatuyendungModule {
 

@@ -65,19 +65,27 @@ export class SearchProfileComponent implements OnInit {
   listLuong = [
     {
       value: '-500',
-      name: 'Dưới 500 '
+      name: '< 500 '
     },
     {
-      value: '500-800',
-      name: '500-800'
+      value: '500-1000',
+      name: '500 - 1000'
     },
     {
-      value: '1000',
-      name: '1000'
+      value: '1000-1500',
+      name: '1000-1500'
     },
     {
-      value: '+1200',
-      name: '>1200'
+      value: '1500-2000',
+      name: '1500-2000'
+    },
+    {
+      value: '2000-3000',
+      name: '2000-3000'
+    },
+    {
+      value: '3000',
+      name: '>3000'
     }
   ]
   pager: any = {};
@@ -189,13 +197,17 @@ export class SearchProfileComponent implements OnInit {
     if (Ktitle === '') {
       Ktitle = '=='
     }
-    if (Kdiplomalanguage === '') {
-      Kdiplomalanguage = '=='
-    }
+    
     if (Kexperience === '') {
       Kexperience = '=='
     }
-
+  var arr2 = []
+    if (Kdiplomalanguage === '' || typeof Kdiplomalanguage === 'undefined') {
+      arr2 = [];
+      // alert('ok')
+    } else {
+      arr2.push(Kdiplomalanguage)
+    }
     var post = {
       salaryP: Ksalary,
       //  districtidP: Kdistrictid,
@@ -203,7 +215,8 @@ export class SearchProfileComponent implements OnInit {
       jobcategoryP: Kjobcategory,
       jobcategorydetailP: arr,
       titleP: Ktitle,
-      experienceP: Kexperience
+      experienceP: Kexperience,
+      diplomalanguageP:arr2
     }
     console.log("DA post")
     console.log(post)

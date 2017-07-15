@@ -44,6 +44,7 @@ import { DatePipe } from '@angular/common';
 import { SearchProfileComponent } from './search-profile/search-profile.component';
 import { ResumePreviewComponent } from './resume-preview/resume-preview.component';
 import { DetailCandidateComponent } from './detail-candidate/detail-candidate.component';
+import { CKEditorModule } from 'ng2-ckeditor';
 let providers = {
   "google": {
     "clientId": "1075668812758-334p3amm6s3h1nsnhlhd0bl0o1qd70t5.apps.googleusercontent.com"    //meanstack
@@ -54,7 +55,7 @@ let providers = {
   }
 };
 @NgModule({
-  imports: [CommonModule, routing, ReactiveFormsModule, FormsModule, Angular2SocialLoginModule],
+  imports: [CommonModule, routing,CKEditorModule, ReactiveFormsModule, FormsModule, Angular2SocialLoginModule],
   declarations: [Pages,
     HomeComponent,
     LoginComponent,

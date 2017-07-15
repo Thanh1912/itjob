@@ -62,34 +62,34 @@
             
                   <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
                     <select  class="custom-select form-control"  [(ngModel)]="salaryInput" name="timepass">
-								     	<option value="" >Mức Luong</option>
+								     	<option value="" selected>Mức Luong</option>
                         	<option *ngFor="let itemL of listLuong" [value]="itemL.value"> {{itemL.name}}</option>
                     </select>
                   </div>
                   <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
                     <select class="custom-select form-control" [(ngModel)]="experienceInput" name="timepass">
-								     	<option value="">So nam Kinh Nghiem</option>
+								     	<option value="" selected>So nam Kinh Nghiem</option>
                        <option *ngFor="let itemnam of listNamKinhNghiem" [value]="itemnam.value"> {{itemnam.name}}</option>
                     </select>
                   </div>
                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
                     <select class="custom-select form-control" [(ngModel)]="jobcategoryInput" (change)="getCatagoryDetail($event.target.value)" name="timepass">
-								        	<option value="" ></option>
+								        	<option value="" selected>Ngành</option>
                      	<option *ngFor="let itemjobc of list_all_jobcategory"  [value]="itemjobc._id">{{itemjobc.name}}</option>
                     </select>
                   </div>
                         <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
                    
                   <select class="custom-select form-control" name="timepass" [(ngModel)]="jobcategorydetailInput">
-								      	<option value="" ></option>
+								      	<option value="" selected>Chuyên Ngành</option>
                      	<option *ngFor="let itemjobcd of list_jobcategoryDetail"  [value]="itemjobcd._id">{{itemjobcd.name}}</option>
                     </select>
                   </div>
                        <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
                    
                   <select class="custom-select form-control" name="timepass" [(ngModel)]="diplomalanguageInput">
-								   	<option value="" ></option>
-                     	<option *ngFor="let itemlange of list_all_Diplomalanguage"  [value]="itemlange._id">{{itemlange.name}}</option>
+								   	<option value="" selected>Skill</option>
+                     	<option *ngFor="let itemlange of list_all_Diplomalanguage"  [(ngModel)]="jobcategorydetailInput"  [value]="itemlange._id">{{itemlange.name}}</option>
                     </select>
                   </div>
 

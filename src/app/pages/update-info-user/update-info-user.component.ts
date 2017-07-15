@@ -23,6 +23,7 @@ import { Validators, FormGroup, FormBuilder, FormControl } from '@angular/forms'
   ]
 })
 export class UpdateInfoUserComponent implements OnInit {
+    ckeditorContent: String;
   list_Jobcategory_Detail = [];
   list_Jobcategory_Detail_Submit = [];
   Listdiplomalanguage = [];
@@ -30,18 +31,21 @@ export class UpdateInfoUserComponent implements OnInit {
   list_Jobcategory: any;
   list_thanhpho: any;
   list_quan: any;
-
+   overview:String;
   experience: String;
   Category: String
   workplace1: String
   dictrict1: String
 
   constructor(private builder: FormBuilder, private Candidate: CandidateService, private District: DistrictService, private Jobcategory: JobcategoryService, private Jobcategory_Detail: JobcategoryDetailService, private Workplace: WorkplaceService, private JobcategoryDetail: JobcategoryDetailService
-    , private DiplomalanguageService: DiplomalanguageService) { }
+    , private DiplomalanguageService: DiplomalanguageService) { 
+this.ckeditorContent=""
+
+    }
   mucluong = new FormControl('', [
     Validators.required,
   ]);
-  select
+  
 
   namepro = new FormControl('', [Validators.required]);
 
@@ -87,6 +91,7 @@ listJobDetail=[]
         diplomalanguage: listpost_diplomalanguage,
         workplaceid: this.workplace1,
         districtid: this.dictrict1,
+        overview: this.overview,
         status: true
       }
       console.log(post);
@@ -104,8 +109,6 @@ listJobDetail=[]
     }
     //===========================
 
-
-
   }
   ngOnInit() {
     this.getthanhpho();
@@ -113,7 +116,7 @@ listJobDetail=[]
     this.getJobcategory();
 
     if (localStorage.getItem('userId') !== null) {
-      alert(localStorage.getItem('userId'))
+  
       this.getcandidate(localStorage.getItem('userId'));
     }
   }
@@ -209,7 +212,7 @@ listJobDetail=[]
         for (let entry0 of this.listJobDetail) {
           for (let entry00 of tmparrDetail) {
             if (entry0._id === entry00) {
-              alert('ok')
+   
               this.list_Jobcategory_Detail_Submit.push({
                 _id: entry0._id,
                 name: entry0.name

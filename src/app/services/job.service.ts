@@ -9,7 +9,6 @@ export class JobService {
   public Rest_Url: String = 'http://localhost:3000';
   private headers = new Headers({ 'Content-Type': 'application/json', 'charset': 'UTF-8' });
   private options = new RequestOptions({ headers: this.headers });
-
   constructor(private http: Http) { }
   //get top  post cong viec 
   gettopjob(): Observable<any> {
@@ -19,19 +18,17 @@ export class JobService {
     return this.http.get(this.Rest_Url + '/api/gettop12Company').map(res => res.json());
   }
   searchJobTile(item): Observable<any> {
-      return this.http.post(this.Rest_Url+'/api/job-search-title', JSON.stringify(item), this.options).map(res => res.json());
-   
+    return this.http.post(this.Rest_Url + '/api/job-search-title', JSON.stringify(item), this.options).map(res => res.json());
   }
 
   getall(): Observable<any> {
     return this.http.get(this.Rest_Url + '/api/job').map(res => res.json());
   }
-    getallpage(skip:String,limit:String): Observable<any> {
-    return this.http.get(this.Rest_Url + '/api/jobPage/'+skip+"/"+limit).map(res => res.json());
+  getallpage(skip: number, limit: number): Observable<any> {
+    return this.http.get(this.Rest_Url + '/api/jobPage/' + skip + "/" + limit).map(res => res.json());
   }
-  
-  getjobByID(id:String): Observable<any> {
-    return this.http.get(this.Rest_Url + `/api/getjobByID/`+id, this.options).map(res => res.json());
+  getjobByID(id: String): Observable<any> {
+    return this.http.get(this.Rest_Url + `/api/getjobByID/` + id, this.options).map(res => res.json());
   }
   getdetailjob(id): Observable<any> {
     return this.http.get(this.Rest_Url + `/api/getDetailjob/` + id, this.options);

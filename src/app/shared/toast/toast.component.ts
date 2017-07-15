@@ -14,3 +14,12 @@ export class ToastComponent {
     setTimeout(() => { this.message.body = ''; }, time);
   }
 }
+
+
+
+/*
+var audio = new Audio();
+audio.src = "http://remote.address.com/example.mp3";
+audio.load();
+audio.play();
+*/
