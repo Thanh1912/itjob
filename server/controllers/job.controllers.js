@@ -103,6 +103,60 @@ module.exports.getByIdDetailJob = function (req, res) {
 };
 
 
+
+module.exports.getByIdDetailJob_admin = function (req, res) {
+  var ObjectId = require('mongoose').Types.ObjectId;
+  model.aggregate([
+    { $match: { _id: new ObjectId(req.params.id) }},
+    {
+      "$lookup": {
+        "from": "districts",
+        "localField": "districtid",
+        "foreignField": "_id",
+        "as": "Infodistrict"
+      },
+    },
+    {
+      "$lookup": {
+        "from": "recruiters",
+        "localField": "recruiterid",
+        "foreignField": "_id",
+        "as": "company"
+      }
+    },
+    {
+      "$lookup": {
+        "from": "jobcategorydetails",
+        "localField": "jobcategorydetail",
+        "foreignField": "_id",
+        "as": "Infokeyword"
+      },
+
+    },
+    {
+      "$lookup": {
+        "from": "jobcategories",
+        "localField": "jobcategory",
+        "foreignField": "_id",
+        "as": "Infojobcategory"
+      }
+    },
+    {
+      "$lookup": {
+        "from": "workplaces",
+        "localField": "workplaceid",
+        "foreignField": "_id",
+        "as": "Infoworkplace"
+      }
+    }
+  ]).exec(function (err, docs) {
+    if (err) throw err;
+    res.json(docs);
+  });
+};
+
+
+
 //==================Get top 10 job By ID RECRUTER=========
 
 
@@ -357,16 +411,18 @@ module.exports.searchJobTitles = function (req, res) {
 
 
 module.exports.getAllpage = function (req, res) {
-var skippage=req.params.skip;
-var limitpage=req.params.limit;
-var i="5";
-console.log(typeof i);
+  var skippage = req.params.skip;
+  var limitpage = req.params.limit;
+
   model.aggregate([
-     { $skip :  parseInt(skippage) },
-    { $limit :  parseInt(limitpage) },
-      { $sort :  {
-        
-      } },
+    { $skip: parseInt(skippage) },
+    { $limit: parseInt(limitpage) },
+    {
+      $sort: {
+        "status": -1//true
+        , "createddate": 1
+      }
+    },
     {
       "$lookup": {
         "from": "districts",
@@ -413,6 +469,288 @@ console.log(typeof i);
     res.json(docs);
   });
 };
+//=============================ADMIN SEARCH =======================
+module.exports.adminsearchAllpage = function (req, res) {
+  var skippage = req.params.skip;
+  var limitpage = req.params.limit;
+  var action = 0;
+  //title job - email- sort active - company
+  var title = req.body.title;
+  var email = req.body.email;
+  var namecopany = req.body.namecopany;
+  var state = req.body.state;
+  obj_condition = [];
+  var k = 0; //kiem tra xem co 1 trong 3 dieu kien search theo title email,namecompany hay ko
+  var arr = [
+    { $skip: parseInt(skippage) },
+    { $limit: parseInt(limitpage) },
+    {
+      "$lookup": {
+        "from": "districts",
+        "localField": "districtid",
+        "foreignField": "_id",
+        "as": "Infodistrict"
+      },
+    },
+    {
+      "$lookup": {
+        "from": "recruiters",
+        "localField": "recruiterid",
+        "foreignField": "_id",
+        "as": "company"
+      }
+    },
+
+    {
+      "$lookup": {
+        "from": "jobcategorydetails",
+        "localField": "jobcategorydetail",
+        "foreignField": "_id",
+        "as": "Infokeyword"
+      },
+
+    },
+    {
+      "$lookup": {
+        "from": "jobcategories",
+        "localField": "jobcategory",
+        "foreignField": "_id",
+        "as": "Infojobcategory"
+      }
+    },
+    {
+      "$lookup": {
+        "from": "workplaces",
+        "localField": "workplaceid",
+        "foreignField": "_id",
+        "as": "Infoworkplace"
+      }
+    }
+  ];
+  if (title !== "" && typeof title !== "undefined") {
+    obj_condition.push(
+      { "title": new RegExp(title) }
+    );
+    k = 1
+  }
+  if (email !== "" && typeof email !== "undefined") {
+    //=====dieu kien cua search theo ten cong ty ====
+    con1 = {
+      "$addFields": {
+        "company": {
+          "$arrayElemAt": [
+            {
+              "$filter": {
+                "input": "$company",
+                "as": "comp",
+                "cond": {
+                  "$eq": ["$$comp.email", new RegExp(email)]
+                }
+              }
+            }, 0
+          ]
+        }
+      }
+    }
+    //=====dieu kien cua search theo ten cong ty ====
+    arr.push(con1)
+  }
+
+  //======bat dau kiem tra add condition vao==============
+  if (k == 1) {
+    con2 =
+      {
+        $match: {
+          $and: obj_condition
+        }
+      }
+    arr.push(con2)
+  }
+  if (state !== "" && typeof state !== "undefined") {
+    var con = {
+      $sort: {
+        "status": state//true
+      }
+    }
+    arr.push(con)
+  }
+
+  if (namecopany !== "" && typeof namecopany !== "undefined") {
+    //=====dieu kien cua search theo ten cong ty ====
+    con1 = {
+      "$addFields": {
+        "company": {
+          "$arrayElemAt": [
+            {
+              "$filter": {
+                "input": "$company",
+                "as": "comp",
+                "cond": {
+                  "$eq": ["$$comp.info_recruiter.namecompany", new RegExp(namecopany)]
+                }
+              }
+            }, 0
+          ]
+        }
+      }
+    }
+    //=====dieu kien cua search theo ten cong ty ====
+    arr.push(con1)
+  }
+
+
+
+
+
+
+
+
+
+
+
+  model.aggregate(arr).exec(function (err, docs) {
+    if (err) throw err;
+    res.json(docs);
+  });
+};
+module.exports.admincountsearchAllpage = function (req, res) {
+  var skippage = req.params.skip;
+  var limitpage = req.params.limit;
+  var action = 0;
+  //title job - email- sort active - company
+  var title = req.body.title;
+  var email = req.body.email;
+  var namecopany = req.body.namecopany;
+  var state = req.body.state;
+  obj_condition = [];
+  var k = 0; //kiem tra xem co 1 trong 3 dieu kien search theo title email,namecompany hay ko
+  var arr = [
+    {
+      "$lookup": {
+        "from": "districts",
+        "localField": "districtid",
+        "foreignField": "_id",
+        "as": "Infodistrict"
+      },
+    },
+    {
+      "$lookup": {
+        "from": "recruiters",
+        "localField": "recruiterid",
+        "foreignField": "_id",
+        "as": "company"
+      }
+    },
+
+    {
+      "$lookup": {
+        "from": "jobcategorydetails",
+        "localField": "jobcategorydetail",
+        "foreignField": "_id",
+        "as": "Infokeyword"
+      },
+
+    },
+    {
+      "$lookup": {
+        "from": "jobcategories",
+        "localField": "jobcategory",
+        "foreignField": "_id",
+        "as": "Infojobcategory"
+      }
+    },
+    {
+      "$lookup": {
+        "from": "workplaces",
+        "localField": "workplaceid",
+        "foreignField": "_id",
+        "as": "Infoworkplace"
+      }
+    }
+  ];
+  if (title !== "" && typeof title !== "undefined") {
+    obj_condition.push(
+      { "title": new RegExp(title) }
+    );
+    k = 1
+  }
+  if (email !== "" && typeof email !== "undefined") {
+    obj_condition.push(
+      { "email": new RegExp(title) }
+    )
+    k = 1
+  }
+  //======bat dau kiem tra add condition vao==============
+  if (k == 1) {
+    con2 =
+      {
+        $match: {
+          $and: obj_condition
+        }
+      }
+    arr.push(con2)
+  }
+  if (state !== "" && typeof state !== "undefined") {
+    var con = {
+      $sort: {
+        "status": state//true
+      }
+    }
+    arr.push(con)
+  }
+
+  if (namecopany !== "" && typeof namecopany !== "undefined") {
+    //=====dieu kien cua search theo ten cong ty ====
+    con1 = {
+      "$addFields": {
+        "company": {
+          "$arrayElemAt": [
+            {
+              "$filter": {
+                "input": "$company",
+                "as": "comp",
+                "cond": {
+                  "$eq": ["$$comp.info_recruiter.namecompany", new RegExp(namecopany)]
+                }
+              }
+            }, 0
+          ]
+        }
+      }
+    }
+    //=====dieu kien cua search theo ten cong ty ====
+    arr.push(con1)
+  }
+  model.aggregate(arr).exec(function (err, docs) {
+    if (err) throw err;
+    res.json(docs);
+  });
+};
+
+
+//============================ADMIN SEARCH=====================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Get all
 module.exports.getAll = function (req, res) {
 
@@ -511,7 +849,7 @@ module.exports.getiduser = function (req, res) {
 
   model.find(
     {
-      'recruiterid': req.params.id, endPost: { "$gte": new Date() }, status: true
+      'recruiterid': req.params.id
     },
     function (err, model) {
       if (err) {

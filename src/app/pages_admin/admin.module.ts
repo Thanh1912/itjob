@@ -37,6 +37,7 @@ import { sliderService } from './../services/slider.service';
 import { JobService } from './../services/job.service';
 import { DiplomalanguageService } from './../services/diplomalanguage.service';
 import { DiplomalanguageComponent } from './diplomalanguage/diplomalanguage.component';
+import { DetailJobComponent } from './detail-job/detail-job.component';
 
 //======================Service=============================
 @NgModule({
@@ -61,7 +62,8 @@ import { DiplomalanguageComponent } from './diplomalanguage/diplomalanguage.comp
     ListJobComponent,
     CatalogJobComponent,
     DuyetntdPipe,
-    DiplomalanguageComponent
+    DiplomalanguageComponent,
+    DetailJobComponent
   ],
    providers: [DiplomalanguageService,JobService,sliderService,JobcategoryService,PostService,ToastComponent,ErrorService,AuthenticationService,PagerService,KeywordService,WorkplaceService, DistrictService,countryService,QuanliThanhvienquantriService,CompanysizeService,QuanliNtdService],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],

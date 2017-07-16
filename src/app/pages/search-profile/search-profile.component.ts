@@ -237,6 +237,7 @@ export class SearchProfileComponent implements OnInit {
 
   ngOnInit() {
     this.scrollTopChangeRouter();
+ 
     this.workplaceid = ''
     this.Search_title = '';
     this.isdate = true;

@@ -27,12 +27,22 @@ export class JobService {
   getallpage(skip: number, limit: number): Observable<any> {
     return this.http.get(this.Rest_Url + '/api/jobPage/' + skip + "/" + limit).map(res => res.json());
   }
+  searchadminjob(item: any, skip: number, limit: number): Observable<any> {
+    return this.http.post(this.Rest_Url + '/api/searchjob-page/' + skip + "/" + limit, JSON.stringify(item), this.options).map(res => res.json());
+  }
+  countsearchadminjob(item: any, skip: number, limit: number): Observable<any> {
+    return this.http.post(this.Rest_Url + '/api/count-searchjob-page/', JSON.stringify(item), this.options).map(res => res.json());
+  }
   getjobByID(id: String): Observable<any> {
     return this.http.get(this.Rest_Url + `/api/getjobByID/` + id, this.options).map(res => res.json());
   }
   getdetailjob(id): Observable<any> {
     return this.http.get(this.Rest_Url + `/api/getDetailjob/` + id, this.options);
   }
+    getdetailjobByIdjob_admin(id): Observable<any> {
+    return this.http.get(this.Rest_Url + `/api/getjobByIDJob-admin/` + id, this.options);
+  }
+  
   //get by id keyword - ngon ngu
   getkeywork_job(list: Array<String>): Observable<any> {
     return this.http.post(this.Rest_Url + `/api/search-job-key`, JSON.stringify(list), this.options);

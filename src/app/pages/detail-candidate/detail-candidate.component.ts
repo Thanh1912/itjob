@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Location } from '@angular/common';
 import { CandidateService } from '../../services/candidate.service';
-import { Router,ActivatedRoute, NavigationEnd } from '@angular/router';
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 @Component({
   selector: 'app-detail-candidate',
   templateUrl: './detail-candidate.component.html',
 
-   styleUrls: ['../../../assets/css/bootstrap.css', './detail-candidate.component.css',
+  styleUrls: ['../../../assets/css/bootstrap.css', './detail-candidate.component.css',
     '../../../assets/css/animate.css'
     , '../../../assets/css/style.css'
     , '../../../assets/js/plugins/fancybox/jquery.fancybox.css'
@@ -20,19 +20,22 @@ import { Router,ActivatedRoute, NavigationEnd } from '@angular/router';
 })
 export class DetailCandidateComponent implements OnInit {
 
-  constructor(private Candidate:CandidateService,private route:ActivatedRoute) { }
-  id:any;
-  sub:any;
+  constructor(private _location: Location, private Candidate: CandidateService, private route: ActivatedRoute) { }
+  id: any;
+  sub: any;
+
   ngOnInit() {
-   
-this.sub = this.route.params.subscribe(params => {
+    this.sub = this.route.params.subscribe(params => {
       this.id = params['id'];
       this.getdetail(this.id);
       console.log(this.id)
     });
 
   }
-  listdetail:any
+  goback() {
+    this._location.back();
+  }
+  listdetail: any
   getdetail(id) {
     this.Candidate.getdetailCandi(id).subscribe(
       data => {

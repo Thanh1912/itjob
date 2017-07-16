@@ -184,7 +184,11 @@ router.route('/get-All-Skill-Company/:id').get(postctrl.get_All_Skill_Company);
 router.route('/count-job-in-Company/:id').get(postctrl.count_job_in_Company);
 router.route('/job').get(postctrl.getAll);
 router.route('/jobPage/:skip/:limit').get(postctrl.getAllpage);
+router.route('/searchjob-page/:skip/:limit').post(postctrl.adminsearchAllpage);
+router.route('/count-searchjob-page').post(postctrl.admincountsearchAllpage);
 router.route('/getjobByID/:id').get(postctrl.get);
+router.route('/getjobByIDJob-admin/:id').get(postctrl.getByIdDetailJob_admin);
+
 router.route('/gettop10post').get(postctrl.top10post);
 router.route('/job/count').get(postctrl.count);
 router.route('/job').post(postctrl.insert);

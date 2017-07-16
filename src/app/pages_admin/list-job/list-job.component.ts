@@ -22,8 +22,51 @@ export class ListJobComponent implements OnInit {
   pagedItems: any[];
   isEditing = false;
   count_all_job: number;
+  action_search = "";
+  action_sort = "";
+  key_search = ""
   //==============VARIABLES==================
   constructor(private job: PostService, private job1: JobService, private pagerService: PagerService) {
+
+  }
+  onchange_action_s(value) {
+    this.action_search = value;
+    alert(value)
+  }
+  onchange_ac(value) {
+    this.action_sort = value;
+    alert(value)
+  }
+  search() {
+    if (this.action_search == "email") {
+
+      var post = {
+        email: this.key_search
+      }
+      this.job1.searchadminjob(post, 0, 10).subscribe(
+        data => {
+          this.listJob = data
+        },
+        error => console.log(error),
+        () => this.isLoading = false
+      );
+    }
+    if (this.action_search == "title") {
+      var postt = {
+        title: this.key_search
+      }
+      this.job1.searchadminjob(postt, 0, 10).subscribe(
+        data => {
+          this.listJob = data
+        },
+        error => console.log(error),
+        () => this.isLoading = false
+      );
+    }
+
+
+
+
 
   }
 
@@ -74,7 +117,8 @@ export class ListJobComponent implements OnInit {
     }
     this.job.edit(itemPost).subscribe(
       data => {
-        alert('Thanh cong')
+        alert('Thanh cong');
+        this.getall(0, 10);
       },
       error => console.log(error),
       () => this.isLoading = false
@@ -88,6 +132,7 @@ export class ListJobComponent implements OnInit {
     this.job.edit(itemPost).subscribe(
       data => {
         alert('Thanh cong')
+        this.getall(0, 10);
       },
       error => console.log(error),
       () => this.isLoading = false

@@ -32,7 +32,7 @@
                                                 <label>Phone : </label><span class="mj_green_text">$ {{listdetail.phone}}</span>
                                             </li>
                                              <li>
-                                                <label>Email : </label><span class="mj_green_text">$ {{listdetail.salary}}/1 month</span>
+                                                <label>Email : </label><span class="mj_green_text" style="text-transform:none"> {{listdetail.email}}</span>
                                             </li>
                                         </ul>
                                     </div>
@@ -50,14 +50,13 @@
                 <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 col-lg-offset-3 col-md-offset-3">
                     <div class="mj_social_media_section mj_candidatepage_media mj_toppadder40 mj_bottompadder40">
                         <ul>
-                            <li><a  class="mj_mainbtn mj_btnblue" data-text="Back"><span>Back</span></a>
+                            <li><a  class="mj_mainbtn mj_btnblue" data-text="Back" (click)="goback()"><span>Back</span></a>
                             </li>
-                            <li><a  class="mj_mainbtn mj_btnred" data-text="View CV"><span>View CV</span></a>
+                            <li><a href="http://localhost:3000/uploads/forms/filecv/{{listdetail?.pathcv}}"  class="mj_mainbtn mj_btnred" data-text="View CV"><span>View CV</span></a>
                             </li>
                         </ul>
-                        <p><a ><i class="fa fa-download">DOWNLOAD CV</i></a>
+                        <p><a href="http://localhost:3000/uploads/forms/filecv/{{listdetail?.pathcv}}" download><i class="fa fa-download" >DOWNLOAD CV</i></a>
                         </p>
-                      
                     </div>
                 </div>
             </div>

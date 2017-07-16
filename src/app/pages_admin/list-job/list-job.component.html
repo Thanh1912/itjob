@@ -7,18 +7,22 @@
     </div>
     <div class="box-body">
       <div class="row">
-        <div class="col-xs-3">
-          <input type="text" class="form-control" placeholder="Search Job">
+        <div class="col-lg-3">
+          <input type="text" class="form-control" [(ngModel)]="key_search" placeholder="Search Job">
         </div>
-        <div class="col-xs-4">
-          <select class="form-control">
-                  <option>Title</option>
-                   <option>Email</option>
-                    <option>Company</option>
+        <div class="col-lg-4">
+          <select class="form-control" (change)="onchange_action_s($event.target.value)">
+                  <option value="title">Title</option>
+                   <option value="email">Email</option>
+                    <option value="cmpany">Company</option>
+           </select>
+          <select class="form-control" (change)="onchange_ac($event.target.value)">
+                  <option value="1">Active</option>
+                   <option value="-1">InActive</option>
            </select>
         </div>
-        <div class="col-xs-5">
-          <button style="margin-top: 0px;" class="btn bg-olive btn-flat margin">Search</button>
+        <div class="col-lg-5">
+          <button style="margin-top: 0px;" class="btn bg-olive btn-flat margin" (click)="search()">Search</button>
         </div>
       </div>
     </div>
@@ -64,14 +68,14 @@
               </tbody>
               <tbody *ngIf="!isEditing">
                 <tr *ngFor="let item of listJob">
-                  <td>{{item.title}}</td>
+                  <td> <a routerLink="/pages/home/detail-job/{{item._id}}">{{item.title}}</a></td>
                   <td>
-                  <img alt="" style="width:100px;height:100px" class="img-responsive" style="width: 80px;height:80px" src="http://localhost:3000/uploads/forms/logo/{{item.company[0].info_recruiter.logo}}">
-                     <a routerLink="/pages/home/detail-company/{{item.recruiterid}}"> {{item.company[0].info_recruiter.namecompany}}</a> 
-                    </td>
+                    <img alt="" style="width:100px;height:100px" class="img-responsive" style="width: 80px;height:80px" src="http://localhost:3000/uploads/forms/logo/{{item.company[0].info_recruiter.logo}}">
+                    <a routerLink="/pages/home/detail-company/{{item.recruiterid}}"> {{item.company[0].info_recruiter.namecompany}}</a>                    {{item.company[0].email}}
+                  </td>
                   <td>{{item.createddate | date}}</td>
                   <td>
-                    <button *ngIf="item.status===false" class="btn btn-sm btn-primary" (click)="updateStatusTrue(item)"><i class="fa fa-pencil"></i> Active</button>                    
+                    <button *ngIf="item.status===false" class="btn btn-sm btn-primary" (click)="updateStatusTrue(item)"><i class="fa fa-pencil"></i> Active</button>
                     <button *ngIf="item.status===true" class="btn btn-sm btn-danger" (click)="updateStatusFalse(item)"><i class="fa fa-trash"></i> InActive</button>
 
                   </td>
