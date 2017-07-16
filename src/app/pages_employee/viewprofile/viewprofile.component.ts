@@ -17,10 +17,10 @@ export class ViewprofileComponent implements OnInit {
     districtid: '',
     workplaceid: ''
   };
+  @Input() daylaname: string;
   @Input() ListJob = [];
-
-
-   @Input() pager: any = {};
+  @Input() conditionJob = {};
+  @Input() pager: any = {};
   list = []
   // paged items
   @Input() pagedItems: any[];
@@ -28,15 +28,21 @@ export class ViewprofileComponent implements OnInit {
   backClicked() {
     this._location.back();
   }
-ngAfterContentInit(){
- this.setPage(1)
-}
+  thongbao() {
+    alert(' change')
+  }
+  ngAfterContentInit() {
+    this.setPage(1);
+  }
+  ngAfterViewInit() {
+    this.setPage(1)
+  }
   ngOnInit() {
-   
+
   }
 
   setPage(page: number) {
-    console.log('pokk')
+
     if (page < 1 || page > this.pager.totalPages) {
       return;
     }

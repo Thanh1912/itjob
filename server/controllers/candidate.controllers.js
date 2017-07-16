@@ -268,22 +268,22 @@ module.exports.searchCandidate = function (req, res) {
 
     console.log(Ksalary)
     var arr2 = Ksalary.split("-").map(function (val) {
-      return Number(val) + 1;
+      return Number(val);
     });
     console.log(arr2);
     var k = 0;
     arr2.forEach(function (value) {
-      console.log('ok');
+      console.log('XUAT'+ 1);
       console.log(value);
       if (k == 0) {
         obj2.push({
-          salarybegin: {
+          salary: {
             $gte: Number(value),
           }
         })
       } else {
         obj2.push({
-          salarybegin: {
+          salary: {
             $lte: Number(value),
           }
         })
@@ -499,7 +499,7 @@ module.exports.candidate_suitable = function (req, res) {
   model.aggregate([
     {
       $match: {
-        $and: obj2
+        $or: obj2
       }
     },
     {

@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ElementRef } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
 
@@ -30,18 +30,18 @@ interface FileReaderEvent extends Event {
 
 })
 export class JobComponent implements OnInit, AfterViewInit {
-  constructor(private candidate: CandidateService, private profile:   ViewprofileComponent, private router: Router, private jobcategoryService: JobcategoryService, private http: Http, private el: ElementRef, private districtService: DistrictService, private workplaceService: WorkplaceService, private jobcategoryDetailService: KeywordService, private countryService: countryService, private postservice: PostService) {
+  constructor(private candidate: CandidateService, private router: Router, private jobcategoryService: JobcategoryService, private http: Http, private el: ElementRef, private districtService: DistrictService, private workplaceService: WorkplaceService, private jobcategoryDetailService: KeywordService, private countryService: countryService, private postservice: PostService) {
     this.ckeditorContent = `<p>My HTML</p>`;
   }
 
-//=============================
+  //=============================
 
 
 
 
-ada:String
 
-//============================
+
+  //============================
 
 
   public uploader: FileUploader = new FileUploader({ url: 'http://localhost:3000/api/uploadpostbaidang', itemAlias: 'file' });
@@ -68,15 +68,36 @@ ada:String
   sluongtuyen: String;
   jobcategoryId: String;
   time_end: any;
-  isposted:boolean;
+  isposted: boolean;
+  daylaname: string;
+  @ViewChild(ViewprofileComponent)
+  private viewprofileComponent: ViewprofileComponent
   n = 0;
-  setpost1(){
-   this.getlistprofile()
-    if(this.isposted==true){
-      this.isposted=false;
-    }else{
-      this.isposted=true;
+  Ipost: any;
+schange(){
+  this.viewprofileComponent.thongbao();
+}
+
+
+
+  setpost1() {
+
+    this.Ipost = {
+      jobcategory: '5958ebc47f843a0dd0b5305c',
+      jobcategorydetail: [],
+      salarybegin: '',
+      salaryend: '',
+      districtid: '',
+      workplaceid: '',
+    };
+
+    this.getlistprofile(this.Ipost);
+    if (this.isposted == true) {
+      this.isposted = false;
+    } else {
+      this.isposted = true;
     }
+
   }
   onChange1() {
     console.log(this.keyword);
@@ -106,23 +127,12 @@ ada:String
   change_jobtime(value) {
     this.jobtime = value;
   }
-ListJob=[];
-  //jobcategorydetail -jobcategory
-  getlistprofile() {
-    var post={
-      jobcategory :'5958ebb27f843a0dd0b5305a',
-    jobcategorydetail:[],
-     salarybegin:'500',
-     salaryend:'',
-     districtid:'',
-     workplaceid:''
-   };
-  
-    this.candidate.candidate_suitable(post).subscribe(
+  ListJob = [];
+  getlistprofile(inputpost) {
+    this.candidate.candidate_suitable(inputpost).subscribe(
       data => {
         this.ListJob = data;
-        console.log('ListJob')
-      
+        console.log('change ListJob')
         console.log(data)
       },
       error => console.log(error),
@@ -131,10 +141,10 @@ ListJob=[];
   }
 
 
-  array=[]
+  array = []
   ngOnInit() {
-    this.array=['31231','12312']
-    this.isposted=false;
+    this.array = ['31231', '12312']
+    this.isposted = false;
     if (localStorage.getItem('userId_ntd') == null) {
       this.router.navigate(['/pages_employee']);
     }
@@ -256,9 +266,20 @@ ListJob=[];
       jobcategory: this.jobcategoryId,
       endPost: this.time_end
     }
+
     this.postservice.add(post).subscribe(
       data => {
-        alert('add thanh cong')
+        alert('add thanh cong');
+        var Ipost = {
+          jobcategory: post.jobcategory,
+          jobcategorydetail: post.jobcategorydetail,
+          salarybegin: post.salarybegin,
+          salaryend: post.salaryend,
+          districtid: post.districtid,
+          workplaceid: post.workplaceid
+        };
+        this.getlistprofile(Ipost);
+        this.setpost1()
       },
       error => console.log(error),
       () => { }

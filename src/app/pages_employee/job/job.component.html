@@ -2,7 +2,8 @@
   <!-- Content Header (Page header) -->
   <section class="content-header" >
     <h1>
-      Đăng Bài
+      Đăng Bài   <input type="text" [(ngModel)]="daylaname"/>
+      <button (click)="schange()">Button</button>
     </h1>
   </section>
   <!-- Main content -->
@@ -142,7 +143,8 @@ kích thước : 1200px : 400px</label>
             <div class="box-footer">
 
               <button type="submit" class="btn btn-primary">Đăng Tuyển</button>
-               <button type="button" class="btn btn-default pull-left" (click)="setpost1()">Preview Candidate</button>
+                  <button type="button" class="btn btn-primary"  (click)="setpost1()">PRE Tuyển</button>
+              
             </div>
           </form>
         </div>
@@ -179,7 +181,7 @@ Upload with method
 
       </div>
     </div>
-    <!-- /.modal-content -->
+    <!-- /.modal-content*ngIf="isposted==true" -->
   </div>
 </div>
-<app-viewprofile *ngIf="isposted==true"  [ListJob]="ListJob"></app-viewprofile>
+<app-viewprofile  [conditionJob]="Ipost" [ListJob]="ListJob"></app-viewprofile>

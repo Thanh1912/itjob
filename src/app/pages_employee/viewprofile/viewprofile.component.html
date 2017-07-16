@@ -1,13 +1,7 @@
 <div class="content-wrapper" style="min-height:600px;">
   <!-- Content Header (Page header) -->
   <section class="content-header">
-    <button class="btn btn-primary" (click)="backClicked()" >BACK</button
-    >
-  
-
-
-    
-
+ {{daylaname}}  {{conditionJob?.jobcategory}}
   </section>
   <!-- Main content -->
   <section class="content">
@@ -28,12 +22,12 @@
               <tr class="table" *ngFor="let list of pagedItems">
 
                 <td>
-                  <a><img style="width: 100px;height: 100px;" src="http://localhost:3000/uploads/forms/anhdaidien/{{list?.profileimage}}" class="img-responsive" alt="">
+                  <a><img routerLink="/pages/home/detail-cadidate/{{list._id}}" style="width: 100px;height: 100px;" src="http://localhost:3000/uploads/forms/anhdaidien/{{list?.profileimage}}" class="img-responsive" alt="">
                                 </a>
                 </td>
                 <td>
                   <tr>
-                    <h4><a>{{list?.nameprofile}}</a></h4>
+                    <h4><a routerLink="/pages/home/detail-cadidate/{{list._id}}">{{list?.nameprofile}}</a></h4>
                   </tr>
 
                   <tr>

@@ -46,10 +46,17 @@ export class DetailJobComponent implements OnInit {
   ngAfterViewInit() {
     window.scrollTo(0, 0);
   }
-
+  islogin:boolean;
+  checklogin() {
+      let userId = localStorage.getItem('userId');
+      if (userId !== null) {
+      this.islogin=true
+      }     
+  }
   jobitem: any;
   ngOnInit() {
-
+      this.islogin=false
+      this.checklogin();
     //=========================UPLOAD CV====================
     //override the onAfterAddingfile property of the uploader so it doesn't authenticate with //credentials.
     this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
@@ -94,9 +101,6 @@ export class DetailJobComponent implements OnInit {
     };
     //=========================UPLOAD CV====================
 
-
-
-
     this.router.events.subscribe((evt) => {
       if (!(evt instanceof NavigationEnd)) {
         return;
@@ -129,6 +133,20 @@ export class DetailJobComponent implements OnInit {
   }
   //===================Load INFO USER======
 
+ /* checkuploadfilecv() {
+    this.resume.(this.id).subscribe(
+      data => {
+        this.jobitem = JSON.parse(data._body)[0];
+        this.idRecruter = this.jobitem.recruiterid
+        console.log(this.jobitem)
+      },
+      error => console.log(error),
+      () => {
+
+      }
+    );
+
+  }*/
   getUSER(id: String) {
     this.user.getdetail(id).subscribe(
       data => {

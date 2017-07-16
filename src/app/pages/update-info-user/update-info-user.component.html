@@ -35,12 +35,13 @@
                                     
                                        <option *ngFor="let ListCategory of list_Jobcategory" [value]="ListCategory._id" [selected]="ListCategory._id==Load_Id_Category">{{ListCategory.name}}</option>
                                     </select>
-                    <div class="row" style="border: 1px solid #F7941D;">
+                    <div class="row" style="    padding-bottom: 10px;
+    padding-left: 10px;border: 1px solid #F7941D;">
                         <span class="alist" (click)="add(listdetail._id,listdetail.name)" *ngFor="let listdetail of list_Jobcategory_Detail">{{listdetail.name}}</span>
 
 
                     </div>
-                    <a class="a-underline" > select all </a>
+                    <a class="a-underline"> select all </a>
 
                     <div class="row">
                         <div class="col-lg-12">
@@ -50,7 +51,8 @@
                         </div>
 
                     </div>
-                    <ul class="mj_selected_content" style="border: 1px solid #F7941D;">
+                    <ul class="mj_selected_content" style="    padding-bottom: 10px;
+    padding-left: 10px;border: 1px solid #F7941D;">
                         <li>
                             <a *ngFor="let listsubmit of list_Jobcategory_Detail_Submit"><img src="assets/images/cross_white.png" alt="" (click)="removeadd(listsubmit._id,listsubmit.name)">{{listsubmit.name}} </a>
                         </li>
@@ -60,7 +62,8 @@
                 <div class="form-group">
                     <label> Skills</label>
 
-                    <div class="row" style="border: 1px solid #F7941D;">
+                    <div class="row" style="    padding-bottom: 10px;
+    padding-left: 10px;border: 1px solid #F7941D;">
                         <span class="alist" (click)="addLang(Listdipl._id,Listdipl.name)" *ngFor="let Listdipl of Listdiplomalanguage">{{Listdipl.name}}</span>
                     </div>
                     <a class="a-underline"> select all </a>
@@ -83,7 +86,7 @@
 
 
 
-       
+
                 <div class="form-group">
                     <label>Experience<span>(optionnal)</span>
                                     </label>
@@ -104,7 +107,8 @@
                     <label>OverView<span>(optionnal)</span>
                                     </label>
                     <div class="form-group">
-                        <ckeditor name="ckeditorContent"  [(ngModel)]="overview" [ngModelOptions]="{standalone: true}" (change)="onChangeYeucau($event)" debounce="500">
+                        <ckeditor name="ckeditorContent" [(ngModel)]="overview" [ngModelOptions]="{standalone: true}" (change)="onChangeYeucau($event)"
+                            debounce="500">
                         </ckeditor>
 
                     </div>

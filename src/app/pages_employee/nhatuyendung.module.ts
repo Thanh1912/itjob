@@ -32,11 +32,12 @@ import { SearchCvPipe }from './Pipe/search-cv.pipe';
     NhatuyendungRoutingModule,
     CKEditorModule,
      FormsModule,
+    // FileSelectDirective,
       MultiselectDropdownModule,
      ReactiveFormsModule,// <-- import the FormsModule before binding with [(ngModel)]
   ],
   declarations: [
-   FileSelectDirective,
+ FileSelectDirective,
     DanhSachBaiDangComponent,
     CompanyComponent,
     ApplicantComponent,
@@ -44,7 +45,7 @@ import { SearchCvPipe }from './Pipe/search-cv.pipe';
     NhatuyendungComponent,
     PdfViewerComponent, EditBaidangComponent, ViewprofileComponent,SearchCvPipe
   ],
- providers: [ViewprofileComponent,CandidateService,PagerService,ResumeService,JobcategoryService,QuanliNtdService,KeywordService,WorkplaceService,PostService, DistrictService,countryService,CompanysizeService]
+ providers: [CandidateService,PagerService,ResumeService,JobcategoryService,QuanliNtdService,KeywordService,WorkplaceService,PostService, DistrictService,countryService,CompanysizeService]
 })
 export class NhatuyendungModule {
 

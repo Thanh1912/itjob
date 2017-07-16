@@ -89,7 +89,7 @@
                     <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1">
                         <div class="row">
                             <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                                <label>Overview</label>
+                                <label>Decription</label>
                             </div>
                             <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
                                 <div class="mj_detaildiv">
@@ -100,7 +100,7 @@
                                 <div class="mj_divider"></div>
                             </div>
                             <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                                <label>What you'll be doing</label>
+                                <label>Technical requirements</label>
                             </div>
                             <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
                                 <div class="mj_detaildiv">
@@ -165,7 +165,7 @@
                             <!-- Tab panes -->
                             <div class="tab-content">
                                 <div role="tabpanel" class="tab-pane fade in active" id="company">
-                                    <form>
+                                    <form *ngIf="islogin">
                                         <div class="mj_createaccount_form">
                                             <div class="form-group">
                                                 <div class="col-lg-6">
@@ -189,21 +189,29 @@
                                             <button type="button" (click)="uploader.uploadAll();" [disabled]="!uploader.getNotUploadedItems().length" class="btn btn-primary">Apply Job!</button>
                                         </div>
                                     </form>
+                                             <form *ngIf="islogin===false">
+                                        <div class="mj_createaccount_form">
+                                            <div class="form-group">
+                                              
+                                                <div class="col-lg-6">
+                                                    <a *ngIf="islogin===false" class="close" data-dismiss="modal" aria-label="Close" routerLink="/pages/login">Vui Lòng đăng nhập để apply CV!</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
                                 <div role="tabpanel" class="tab-pane fade" id="individual">
                                     <form>
                                         <div class="mj_createaccount_form">
-
                                             <div class="form-group">
                                                 <input type="email" name="uremail" placeholder="Email Address" id="uremail" class="form-control">
                                             </div>
                                             <div class="form-group">
                                                 <input type="password"  name="urpassword" placeholder="Password" id="urpassword" class="form-control">
                                             </div>
-                                          
                                         </div>
                                         <div class="mj_pricing_footer">
-                                            <a href="#">Get Started Now!</a>
+                                            <a class="close" data-dismiss="modal" aria-label="Close" routerLink="/pages/login">Get Started Now!</a>
                                         </div>
                                     </form>
                                 </div>

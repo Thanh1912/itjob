@@ -22,7 +22,8 @@
           <form>
             <div class="col-lg-7 col-md-3 col-sm-3 col-xs-12">
               <div class="form-group">
-                <input type="text" name="searchs" [(ngModel)]="Search_title" (change)="searchTitle();ChangeListJob()" class="form-control" placeholder="Category">
+                <input type="text" name="searchs" [(ngModel)]="Search_title" (change)="searchTitle();ChangeListJob()" class="form-control"
+                  placeholder="Category">
               </div>
             </div>
 
@@ -59,9 +60,9 @@
             <div class="col-lg-12 col-md-6 col-sm-6 col-xs-12">
               <div class="row">
                 <div class="form-group">
-            
+
                   <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                    <select  class="custom-select form-control"  [(ngModel)]="salaryInput" name="timepass">
+                    <select class="custom-select form-control" [(ngModel)]="salaryInput" name="timepass">
 								     	<option value="" selected>Mức Luong</option>
                         	<option *ngFor="let itemL of listLuong" [value]="itemL.value"> {{itemL.name}}</option>
                     </select>
@@ -72,22 +73,23 @@
                        <option *ngFor="let itemnam of listNamKinhNghiem" [value]="itemnam.value"> {{itemnam.name}}</option>
                     </select>
                   </div>
-                   <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                    <select class="custom-select form-control" [(ngModel)]="jobcategoryInput" (change)="getCatagoryDetail($event.target.value)" name="timepass">
+                  <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                    <select class="custom-select form-control" [(ngModel)]="jobcategoryInput" (change)="getCatagoryDetail($event.target.value)"
+                      name="timepass">
 								        	<option value="" selected>Ngành</option>
                      	<option *ngFor="let itemjobc of list_all_jobcategory"  [value]="itemjobc._id">{{itemjobc.name}}</option>
                     </select>
                   </div>
-                        <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                   
-                  <select class="custom-select form-control" name="timepass" [(ngModel)]="jobcategorydetailInput">
+                  <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+
+                    <select class="custom-select form-control" name="timepass" [(ngModel)]="jobcategorydetailInput">
 								      	<option value="" selected>Chuyên Ngành</option>
                      	<option *ngFor="let itemjobcd of list_jobcategoryDetail"  [value]="itemjobcd._id">{{itemjobcd.name}}</option>
                     </select>
                   </div>
-                       <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                   
-                  <select class="custom-select form-control" name="timepass" [(ngModel)]="diplomalanguageInput">
+                  <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+
+                    <select class="custom-select form-control" name="timepass" [(ngModel)]="diplomalanguageInput">
 								   	<option value="" selected>Skill</option>
                      	<option *ngFor="let itemlange of list_all_Diplomalanguage"  [(ngModel)]="jobcategorydetailInput"  [value]="itemlange._id">{{itemlange.name}}</option>
                     </select>
@@ -132,14 +134,14 @@
       </div>
       <div class="mj_tabcontent mj_bottompadder80">
         <table class="table table-striped">
-<tr *ngIf="list_profile.length===0">
-   Không tìm thấy Profile!
-</tr>
+          <tr *ngIf="list_profile.length===0">
+            Không tìm thấy Profile!
+          </tr>
 
 
           <tr *ngFor="let list of list_profile">
             <td>
-              <a ><img style="width: 100px;height: 100px;" src="http://localhost:3000/uploads/forms/anhdaidien/{{list.profileimage}}" class="img-responsive" alt="">
+              <a><img routerLink="/pages/home/detail-cadidate/{{list._id}}" style="width: 100px;height: 100px;" src="http://localhost:3000/uploads/forms/anhdaidien/{{list.profileimage}}" class="img-responsive" alt="">
                                 </a>
             </td>
             <td>
@@ -149,18 +151,18 @@
               <tr>
                 <p>Posted on: {{list.createddate|date}} </p>
               </tr>
-             
-               <tr>
-                <p>{{list.experience}}</p>
-              </tr>
-              
+
               <tr>
-                <i class="fa fa-map-marker"></i> {{list.Infodistrict[0].name}}, {{list.Infoworkplace[0].name}}
+                <p> Số năm kinh nghiệm: {{list.experience}}</p>
+              </tr>
+
+              <tr>
+                <i class="fa fa-map-marker"> {{list.Infodistrict[0].name}}, {{list.Infoworkplace[0].name}}</i>
               </tr>
             </td>
 
             <td>
-              <ul >
+              <ul>
                 <li class="list_language" *ngFor="let list_language of list.diploma_language">{{list_language.name}}</li>
               </ul>
 

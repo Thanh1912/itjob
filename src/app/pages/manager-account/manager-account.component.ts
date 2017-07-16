@@ -53,13 +53,8 @@ export class ManagerAccountComponent implements OnInit {
     });
   }
 
-  updateprofile() {
-    if (this.isupdateuser)
-      this.isupdateuser = false;
-    else {
-      this.isupdateuser = true;
-    }
-  }
+  isaction: number;
+  
   clickchangepass() {
 
     if (this.ischangepass)
@@ -68,7 +63,7 @@ export class ManagerAccountComponent implements OnInit {
       this.ischangepass = true;
     }
   }
-  
+
   click() {
     if (this.isupdateuser)
       this.isupdateuser = false;
@@ -88,16 +83,25 @@ export class ManagerAccountComponent implements OnInit {
   constructor(private user: CandidateService, private resume: ResumeService, private builder: FormBuilder, private auth: AuthenticationService, private http: Http, private el: ElementRef) { }
   username = new FormControl('')
   email = new FormControl('')
+  phone= new FormControl('')
   file = new FormControl('')
   saveForm: FormGroup = this.builder.group({
     username: this.username,
     email: this.email,
     file: this.file,
+  phone:this.phone
   });
   listuser: any;
+  change_action(value:number){
+    this.isaction=value
+  }
   ngOnInit() {
     this.isupdateuser = false;
     this.ischangepass = false;
+    this.isaction = 1;
+    //1--view profile
+    //2--edit myacount
+    //3--Edit profile
 
     if (localStorage.getItem('userId') != null) {
       this.load_detail_user(localStorage.getItem('userId'));
@@ -152,7 +156,7 @@ export class ManagerAccountComponent implements OnInit {
         //map the success function and alert the response
         (success) => {
 
- 
+
         },
         (error) => alert(error))
     }
@@ -192,25 +196,25 @@ export class ManagerAccountComponent implements OnInit {
 
   }
 
-capnhatpublic(){
-   this.user.edit_user({status:true}).subscribe(
+  capnhatpublic() {
+    this.user.edit_user({ status: true }).subscribe(
       data => {
         alert('Thành Công')
       },
       error => console.log(error),
       () => { }
     );
-}
+  }
 
-capnhatPrivate(){
-   this.user.edit_user({status:false}).subscribe(
+  capnhatPrivate() {
+    this.user.edit_user({ status: false }).subscribe(
       data => {
         alert('Thành Công')
       },
       error => console.log(error),
       () => { }
     );
-}
+  }
 
   updatePassword() {
     //kiem tra password
@@ -250,6 +254,7 @@ capnhatPrivate(){
       "_id": userId,
       "fullname": this.username.value,
       "email": this.email.value,
+      "phone":this.phone.value
     }
     console.log(userinput);
     //cap nhat thong tin user 
@@ -267,7 +272,7 @@ capnhatPrivate(){
     this.user.getdetailCandi(id).subscribe(
       data => {
         this.listuser = data[0];
-            console.log('xuat222');
+        console.log('xuat222');
         console.log(this.listuser);
         this.email.setValue(this.listuser.email);
         this.username.setValue(this.listuser.fullname);
