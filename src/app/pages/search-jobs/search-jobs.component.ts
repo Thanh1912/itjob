@@ -118,11 +118,13 @@ export class SearchJobsComponent implements OnInit {
     this.fromFilter = value;
 
   }
+  tp:any;
   resetall() {
-    this.salaryB;
-    this.salaryE;
+    this.salaryB= "0";
+    this.salaryE= "0";
     this.fromFilter = new Date('Sat Mar 24 1900 06:50:39 GMT+0100 (CET)');
     this.toFilter = new Date('Sat Mar 24 1900 06:50:39 GMT+0100 (CET)');
+    this.tp = "0";
     this.districtid = "";
     this.workplaceid = "";
     this.JobTime = "";

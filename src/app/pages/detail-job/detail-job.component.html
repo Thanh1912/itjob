@@ -1,5 +1,5 @@
 <app-toast [message]="toast.message"></app-toast>
-<div class="mj_pagetitle2">
+<div *ngIf="isArrayListJobEmpty==false" class="mj_pagetitle2">
     <div class="mj_pagetitleimg">
         <img src="assets/images/page_title1.jpg" alt="">
         <div class="mj_mainheading_overlay"></div>
@@ -12,15 +12,16 @@
                         <div class="row">
                             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                 <div class="mj_joblogo">
-                                    <img src="http://localhost:3000/uploads/forms/logo/{{jobitem?.company[0]?.info_recruiter?.logo}}" class="img-responsive" alt="">
+                                    <img src="http://localhost:3000/uploads/forms/logo/{{jobitem?.company[0]?.info_recruiter?.logo}}" class="img-responsive"
+                                        alt="">
                                 </div>
                             </div>
                             <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
                                 <div class="mj_pageheading mj_toppadder50">
                                     <h3 style="color: white;">{{jobitem?.title}}</h3>
                                     <ul>
-                                      
-                                          <li><a href="#" class="mj_btn mj_greenbtn"><i class="fa fa-map-marker"></i>{{jobitem?.JobTime}}</a>
+
+                                        <li><a href="#" class="mj_btn mj_greenbtn"><i class="fa fa-map-marker"></i>{{jobitem?.JobTime}}</a>
                                         </li>
                                         <li><a href="#" class="mj_btn mj_greenbtn">{{jobitem?.company[0].info_recruiter.address}}</a>
                                         </li>
@@ -61,7 +62,7 @@
         </div>
     </div>
 </div>
-<div class="mj_lightgraytbg mj_bottompadder80">
+<div *ngIf="isArrayListJobEmpty==false" class="mj_lightgraytbg mj_bottompadder80">
     <div class="container">
         <div class="row">
             <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 col-lg-offset-3 col-md-offset-3">
@@ -146,7 +147,7 @@
 
 
 <!-- Modal Apply-->
-<div class="modal fade mj_popupdesign" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div *ngIf="isArrayListJobEmpty==false" class="modal fade mj_popupdesign" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -159,8 +160,7 @@
                             <ul class="nav nav-tabs" role="tablist">
                                 <li role="presentation" class="active"><a href="#company" aria-controls="company" role="tab" data-toggle="tab">Send CV</a>
                                 </li>
-                                <li role="presentation"><a href="#individual" aria-controls="individual" role="tab" data-toggle="tab">Đăng nhập</a>
-                                </li>
+
                             </ul>
 
                             <!-- Tab panes -->
@@ -173,27 +173,28 @@
                                                     <img src="http://localhost:3000/uploads/forms/anhdaidien/{{imageUrl}}" class="img-responsive" alt="">
                                                 </div>
                                                 <div class="col-lg-6">
-                                                    <input type="text" placeholder="Name" [ngModel]="name" id="ur_name" value="{{name}}" disabled="disabled" name="username" class="form-control">
+                                                    <input type="text" placeholder="Name" [ngModel]="name" id="ur_name" value="{{name}}" disabled="disabled" name="username"
+                                                        class="form-control">
                                                 </div>
 
                                             </div>
 
                                             <div class="form-group">
-                                                <input type="text" placeholder="Email" disabled="disabled" [ngModel]="email" id="email"  name="email" value="{{email}}" class="form-control">
+                                                <input type="text" placeholder="Email" disabled="disabled" [ngModel]="email" id="email" name="email" value="{{email}}" class="form-control">
                                             </div>
                                             <div class="form-group">
-                                                <input style="margin-top: 10px;"  name="fileupload" class="form-control" type="file" id="file_cv" name="file_cv" ng2FileSelect [uploader]="uploader"
-                                                />
+                                                <input style="margin-top: 10px;" name="fileupload" class="form-control" type="file" id="file_cv" name="file_cv" ng2FileSelect
+                                                    [uploader]="uploader" />
                                             </div>
                                         </div>
                                         <div class="mj_pricing_footer">
                                             <button type="button" (click)="uploader.uploadAll();" [disabled]="!uploader.getNotUploadedItems().length" class="btn btn-primary">Apply Job!</button>
                                         </div>
                                     </form>
-                                             <form *ngIf="islogin===false">
+                                    <form *ngIf="islogin===false">
                                         <div class="mj_createaccount_form">
                                             <div class="form-group">
-                                              
+
                                                 <div class="col-lg-6">
                                                     <a *ngIf="islogin===false" class="close" data-dismiss="modal" aria-label="Close" routerLink="/pages/login">Vui Lòng đăng nhập để apply CV!</a>
                                                 </div>
@@ -201,21 +202,7 @@
                                         </div>
                                     </form>
                                 </div>
-                                <div role="tabpanel" class="tab-pane fade" id="individual">
-                                    <form>
-                                        <div class="mj_createaccount_form">
-                                            <div class="form-group">
-                                                <input type="email" name="uremail" placeholder="Email Address" id="uremail" class="form-control">
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="password"  name="urpassword" placeholder="Password" id="urpassword" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="mj_pricing_footer">
-                                            <a class="close" data-dismiss="modal" aria-label="Close" routerLink="/pages/login">Get Started Now!</a>
-                                        </div>
-                                    </form>
-                                </div>
+
                             </div>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><img src="assets/images/close.png" alt="">
                                 </button>
@@ -228,3 +215,15 @@
 </div>
 
 <!-- Modal Apply-->
+
+<!-- Modal SHOW HET HAN kHONG TIM THAY -->
+<div class="row-job-alert">
+<h3>Thông báo</h3>
+   
+        <h1 style="font-size:16px;">Job hiện tại hết hạn apply vào - Bạn hãy chọn công việc khác phù hợp</h1>
+       <button class="btn btn-primary" (click)="backClicked()">Back</button>
+
+</div>
+
+
+<!-- Modal SHOW HET HAN kHONG TIM THAY -->

@@ -168,6 +168,13 @@ export class SearchProfileComponent implements OnInit {
   searchTitle() {
     this.ChangeListJob();
   }
+  resetall(){
+    this.diplomalanguageInput="";
+     this.jobcategorydetailInput="";
+      this.jobcategoryInput="";
+       this.experienceInput="";
+        this.salaryInput="";
+  }
   ChangeListJob() {
     var Ksalary = this.salaryInput;
     // var Kdistrictid =this.districtidP;

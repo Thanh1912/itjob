@@ -6,7 +6,7 @@ import { DistrictService } from './../../services/district.service';
 import { DiplomalanguageService } from './../../services/diplomalanguage.service';
 import { CandidateService } from '../../services/candidate.service';
 import { Validators, FormGroup, FormBuilder, FormControl } from '@angular/forms';
-
+import { ToastComponent } from '../shared/toast/toast.component';
 @Component({
   selector: 'app-update-info-user',
   templateUrl: './update-info-user.component.html',
@@ -37,7 +37,7 @@ export class UpdateInfoUserComponent implements OnInit {
   workplace1: String
   dictrict1: String
 
-  constructor(private builder: FormBuilder, private Candidate: CandidateService, private District: DistrictService, private Jobcategory: JobcategoryService, private Jobcategory_Detail: JobcategoryDetailService, private Workplace: WorkplaceService, private JobcategoryDetail: JobcategoryDetailService
+  constructor(private toast:ToastComponent,private builder: FormBuilder, private Candidate: CandidateService, private District: DistrictService, private Jobcategory: JobcategoryService, private Jobcategory_Detail: JobcategoryDetailService, private Workplace: WorkplaceService, private JobcategoryDetail: JobcategoryDetailService
     , private DiplomalanguageService: DiplomalanguageService) { 
 this.ckeditorContent=""
 
@@ -97,7 +97,7 @@ listJobDetail=[]
       console.log(post);
       this.Candidate.edit_user(post).subscribe(
         data => {
-          alert('thanh cong')
+           this.toast.setMessage('you successfully edit profile!', 'success','center');
           console.log(data)
         },
         error => console.log(error),
@@ -111,6 +111,7 @@ listJobDetail=[]
 
   }
   ngOnInit() {
+    
     this.getthanhpho();
     this.getDiplomalanguage();
     this.getJobcategory();

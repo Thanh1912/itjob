@@ -7,7 +7,7 @@ import { ResumeService } from '../../services/resume.service';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
 import { AuthenticationService } from "../../_services/authentication.service";
-import { ToastComponent } from '../../shared/toast/toast.component';
+import { ToastComponent } from '../shared/toast/toast.component';
 declare var $: any;
 interface FileReaderEventTarget extends EventTarget {
   result: string
@@ -47,18 +47,19 @@ export class DetailJobComponent implements OnInit {
   ngAfterViewInit() {
     window.scrollTo(0, 0);
   }
-  islogin:boolean;
+  islogin: boolean;
+  isArrayListJobEmpty: boolean;
   checklogin() {
-      let userId = localStorage.getItem('userId');
-      if (userId !== null) {
-      this.islogin=true
-      }     
+    let userId = localStorage.getItem('userId');
+    if (userId !== null) {
+      this.islogin = true
+    }
   }
   jobitem: any;
   ngOnInit() {
-           this.toast.setMessage('you successfully registered!', 'success');
-      this.islogin=false
-      this.checklogin();
+    this.isArrayListJobEmpty = false
+    this.islogin = false
+    this.checklogin();
     //=========================UPLOAD CV====================
     //override the onAfterAddingfile property of the uploader so it doesn't authenticate with //credentials.
     this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
@@ -69,7 +70,7 @@ export class DetailJobComponent implements OnInit {
       //cap cv
       let userId = localStorage.getItem('userId');
       if (userId === null) {
-        alert('vui long dang nhap')
+        this.toast.setMessage('Please!Login', 'warning', 'left');
       } else {
         var user1 = {
           pathresume: response,
@@ -82,24 +83,18 @@ export class DetailJobComponent implements OnInit {
             //==========Save Resume=====
             this.resume.save(user1).subscribe(
               data => {
-                alert('ĐÃ UPLOAD THANH CÔNG CV')
+                this.toast.setMessage('You successfully CV UPLOAD!', 'success', 'left');
               },
               error => console.log(error)
             );
             //==========Save Resume=====
           },
           error => {
-            alert(JSON.parse(error._body).Messeage)
-            console.log(JSON.parse(error._body).Messeage)
-            console.log(error)
+            this.toast.setMessage(JSON.parse(error._body).Messeage, 'error', 'left');
           }
-
         );
       }
 
-
-
-      console.log("ImageUpload: uploaded:", item, status, response);
     };
     //=========================UPLOAD CV====================
 
@@ -120,12 +115,20 @@ export class DetailJobComponent implements OnInit {
   backClicked() {
     this._location.back();
   }
+
+  //===========GET DETAIL JOB====================
   get() {
     this.job.getdetailjob(this.id).subscribe(
       data => {
-        this.jobitem = JSON.parse(data._body)[0];
-        this.idRecruter = this.jobitem.recruiterid
-        console.log(this.jobitem)
+        if (data.length === 0) {
+          this.isArrayListJobEmpty = true;
+            this.toast.setMessage('Job End Post!', 'warning', 'left');
+        } else {
+          this.jobitem = data;
+          this.idRecruter = this.jobitem.recruiterid
+          console.log(this.jobitem)
+        }
+
       },
       error => console.log(error),
       () => {
@@ -135,20 +138,20 @@ export class DetailJobComponent implements OnInit {
   }
   //===================Load INFO USER======
 
- /* checkuploadfilecv() {
-    this.resume.(this.id).subscribe(
-      data => {
-        this.jobitem = JSON.parse(data._body)[0];
-        this.idRecruter = this.jobitem.recruiterid
-        console.log(this.jobitem)
-      },
-      error => console.log(error),
-      () => {
-
-      }
-    );
-
-  }*/
+  /* checkuploadfilecv() {
+     this.resume.(this.id).subscribe(
+       data => {
+         this.jobitem = JSON.parse(data._body)[0];
+         this.idRecruter = this.jobitem.recruiterid
+         console.log(this.jobitem)
+       },
+       error => console.log(error),
+       () => {
+ 
+       }
+     );
+ 
+   }*/
   getUSER(id: String) {
     this.user.getdetail(id).subscribe(
       data => {

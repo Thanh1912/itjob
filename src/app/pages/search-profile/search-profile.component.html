@@ -64,14 +64,14 @@
                   <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
                     <label>Mức Lương</label>
                     <select class="custom-select form-control" [(ngModel)]="salaryInput" name="timepass">
-								     	
+								     			   	<option value="" selected></option>
                         	<option *ngFor="let itemL of listLuong" [value]="itemL.value"> {{itemL.name}}</option>
                     </select>
                   </div>
                   <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                     <label>So nam Kinh Nghiem</label>
                     <select class="custom-select form-control" [(ngModel)]="experienceInput" name="timepass">
-								     
+								     		   	<option value="" selected></option>
                        <option *ngFor="let itemnam of listNamKinhNghiem" [value]="itemnam.value"> {{itemnam.name}}</option>
                     </select>
                   </div>
@@ -79,14 +79,14 @@
                     <label>Ngành</label>
                     <select class="custom-select form-control" [(ngModel)]="jobcategoryInput" (change)="getCatagoryDetail($event.target.value)"
                       name="timepass">
-								        
+								        		   	<option value="" selected></option>
                      	<option *ngFor="let itemjobc of list_all_jobcategory"  [value]="itemjobc._id">{{itemjobc.name}}</option>
                     </select>
                   </div>
                   <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
                     <label>Chuyên Ngành</label>
                     <select class="custom-select form-control" name="timepass" [(ngModel)]="jobcategorydetailInput">
-								      
+								      		   	<option value="" selected></option>
                      	<option *ngFor="let itemjobcd of list_jobcategoryDetail"  [value]="itemjobcd._id">{{itemjobcd.name}}</option>
                     </select>
                   </div>
@@ -96,6 +96,11 @@
 								   	<option value="" selected></option>
                      	<option *ngFor="let itemlange of list_all_Diplomalanguage"  [(ngModel)]="jobcategorydetailInput"  [value]="itemlange._id">{{itemlange.name}}</option>
                     </select>
+                  </div>
+                      <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                   <button (click)="resetall()" type="text" class=" btn  btn-danger"> <i class="fa times "
+                                                      >Reset all</i></button>
+                 
                   </div>
 
                 </div>
@@ -175,8 +180,7 @@
             </td>
             <td><a href="#" class="mj_btn mj_greenbtn">${{list.salary}}</a>
             </td>
-            <td><span>${{list.salary}}</span>
-            </td>
+          
           </tr>
 
         </table>

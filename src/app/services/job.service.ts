@@ -37,7 +37,7 @@ export class JobService {
     return this.http.get(this.Rest_Url + `/api/getjobByID/` + id, this.options).map(res => res.json());
   }
   getdetailjob(id): Observable<any> {
-    return this.http.get(this.Rest_Url + `/api/getDetailjob/` + id, this.options);
+    return this.http.get(this.Rest_Url + `/api/getDetailjob/` + id, this.options).map(res => res.json());
   }
     getdetailjobByIdjob_admin(id): Observable<any> {
     return this.http.get(this.Rest_Url + `/api/getjobByIDJob-admin/` + id, this.options).map(res => res.json());

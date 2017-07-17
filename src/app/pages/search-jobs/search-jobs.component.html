@@ -34,12 +34,12 @@
                     <form>
                         <div class="col-lg-7 col-md-3 col-sm-3 col-xs-12">
                             <div class="form-group">
-                                <input type="text" name="searchs" [(ngModel)]="Search_title" (change)="searchTitle()" class="form-control" placeholder="Category">
+                                <input type="text" name="searchs" [(ngModel)]="Search_title" (change)="searchTitle()" class="form-control" placeholder="Title of Job">
                             </div>
                         </div>
 
                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                            <select (change)="onchangeTP($event.target.value);ChangeListJob()" name="timepass" class="custom-select form-control">
+                            <select (change)="onchangeTP($event.target.value);ChangeListJob()" name="timepass" [(ngModel)]="tp" class="custom-select form-control">
 									<option value='0'> Thành Phố</option>
 									<option  *ngFor="let item of list_all_Workplace" [value]="item._id">{{item.name}}</option>
                                 </select>
@@ -77,7 +77,8 @@
                                     </label>
                                     </div>
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <select (change)="selectSalaryB($event.target.value);ChangeListJob()" class="custom-select form-control" name="timepass">
+                                        <select (change)="selectSalaryB($event.target.value);ChangeListJob()" [(ngModel)]="salaryB" class="custom-select form-control"
+                                            name="timepass">
 									<option value="0">salary Begin</option>
 									   <option value="100">$300</option>
                                     <option value="500">>$500</option>
@@ -88,7 +89,8 @@
                                 </select>
                                     </div>
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <select (change)="selectSalaryE($event.target.value); ChangeListJob()" class="custom-select form-control" name="timepass">
+                                        <select (change)="selectSalaryE($event.target.value); ChangeListJob()" [(ngModel)]="salaryE" class="custom-select form-control"
+                                            name="timepass">
                                     <option value="0">salary End</option>
                                     <option value="100">$100</option>
                                     <option value="500">$500</option>
@@ -120,11 +122,12 @@
                                                         aria-hidden="true"></i></button>
                                                 </div>
                                                 <div class="col-lg-3">
-                                                    <button (click)="setallDate()" type="text" class=" btn btn-flat " style="background-color:aliceblue;width:200px;"> <i class="fa fa- "
+                                                    <button (click)="setallDate()" type="text" class=" btn btn-flat btn-danger"> <i class="fa fa- "
                                                         aria-hidden="true">Reset Date</i></button>
                                                 </div>
                                                 <div class="col-lg-3">
-                                                    <button (click)="resetall()" type="text" class=" btn btn-flat " style="background-color:aliceblue;width:200px;"> <i class="fa fa- "
+                                                    <button (click)="resetall()" type="text" class=" btn btn-flat btn-danger
+                                                     "> <i class="fa fa- "
                                                         aria-hidden="true">Reset all</i></button>
                                                 </div>
                                             </div>
@@ -233,8 +236,8 @@
             <div class="mj_tabcontent mj_bottompadder80">
                 <table class="table table-striped">
                     <tr *ngIf="allItem.length===0">
-   Không tìm thấy !
-</tr>
+                        Không tìm thấy !
+                    </tr>
                     <tr *ngFor="let listjob of allItem |capitalize : Search_title :allItem:fromFilter:toFilter">
                         <td>
                             <div class="mj_liks"><a href="#"><i class="fa fa-heart"></i></a><span>Save this Job</span>
@@ -248,7 +251,7 @@
                             <tr>
                                 <h4><a [routerLink]="['../../../../detail-jobs',listjob._id ]">{{listjob.title}}</a></h4>
                             </tr>
-                         
+
                             <tr>
                                 <p>Posted on: {{listjob.createddate|date}} </p>
                             </tr>
@@ -261,7 +264,7 @@
                         </td>
 
                         <td>
-                            <ul class="list_language" >
+                            <ul class="list_language">
                                 <li *ngFor="let list_language of listjob.Infokeyword">{{list_language.name}}</li>
 
                             </ul>

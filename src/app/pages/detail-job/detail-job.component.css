@@ -11,3 +11,14 @@
     margin-top: 22px;
     text-transform: capitalize;
 }
+.row-job-alert{
+     background-color: #019CFF;
+    color: white;
+    font-size: 18px;
+    padding-left: 200px;
+    padding-bottom: 30px;
+    padding-top: 20px;
+    padding-right: 275px;
+    height: 600px;
+    text-align: center;
+}

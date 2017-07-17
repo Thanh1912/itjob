@@ -5,6 +5,7 @@ import { ResumeService } from '../../services/resume.service';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
 import { AuthenticationService } from "../../_services/authentication.service";
+import { ToastComponent } from '../shared/toast/toast.component';
 declare var jQuery: any;
 interface FileReaderEventTarget extends EventTarget {
   result: string
@@ -80,7 +81,7 @@ export class ManagerAccountComponent implements OnInit {
   //========================================
   public uploader: FileUploader = new FileUploader({ url: 'http://localhost:3000/api/uploadcv', itemAlias: 'file_cv' });
   imageurl: string = "";
-  constructor(private user: CandidateService, private resume: ResumeService, private builder: FormBuilder, private auth: AuthenticationService, private http: Http, private el: ElementRef) { }
+  constructor(private toast:ToastComponent,private user: CandidateService, private resume: ResumeService, private builder: FormBuilder, private auth: AuthenticationService, private http: Http, private el: ElementRef) { }
   username = new FormControl('')
   email = new FormControl('')
   phone= new FormControl('')
@@ -96,6 +97,7 @@ export class ManagerAccountComponent implements OnInit {
     this.isaction=value
   }
   ngOnInit() {
+       //  this.toast.setMessage('you successfully Update!', 'success','center');
     this.isupdateuser = false;
     this.ischangepass = false;
     this.isaction = 1;
@@ -111,7 +113,7 @@ export class ManagerAccountComponent implements OnInit {
     this.uploaderanhdaidien.onAfterAddingFile = (file) => { file.withCredentials = false; };
     this.uploaderanhdaidien.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
       console.log("UpLoad :", item, status, response);
-      alert('Upload thanh cong');
+    this.toast.setMessage('you successfully Upload!', 'success','left');
 
     };
     //===========/Upload Imgage Anh dai dien================
@@ -131,7 +133,7 @@ export class ManagerAccountComponent implements OnInit {
       console.log(user1)
       this.user.edit_user(user1).subscribe(
         data => {
-          alert('Cap Nhat Thành Công'+response)
+            this.toast.setMessage('you successfully Update!', 'success','center');
         },
         error => console.log(error),
         () => { }
@@ -200,7 +202,7 @@ export class ManagerAccountComponent implements OnInit {
   capnhatpublic() {
     this.user.edit_user({ status: true }).subscribe(
       data => {
-        alert('Thành Công')
+   this.toast.setMessage('you successfully Update!', 'success','center');
       },
       error => console.log(error),
       () => { }
@@ -210,7 +212,7 @@ export class ManagerAccountComponent implements OnInit {
   capnhatPrivate() {
     this.user.edit_user({ status: false }).subscribe(
       data => {
-        alert('Thành Công')
+      this.toast.setMessage('you successfully Update!', 'success','center');
       },
       error => console.log(error),
       () => { }
@@ -233,7 +235,7 @@ export class ManagerAccountComponent implements OnInit {
         //cap nhat thong tin user 
         this.user.edit_user(userinput).subscribe(
           data => {
-            alert('Cap Nhat Thành Công')
+          this.toast.setMessage('you successfully Update!', 'success','center');
           },
           error => console.log(error),
           () => { }
@@ -242,7 +244,8 @@ export class ManagerAccountComponent implements OnInit {
 
       },
       error => {
-        alert('Password is incorrect')
+this.toast.setMessage('Password is incorrect', 'error','left');
+ 
 
       }
       )
@@ -261,7 +264,7 @@ export class ManagerAccountComponent implements OnInit {
     //cap nhat thong tin user 
     this.user.edit_user(userinput).subscribe(
       data => {
-        alert('Thành Công')
+      this.toast.setMessage('you successfully Update Infomation!', 'success','center');
       },
       error => console.log(error),
       () => { }
@@ -273,7 +276,7 @@ export class ManagerAccountComponent implements OnInit {
     this.user.getdetailCandi(id).subscribe(
       data => {
         this.listuser = data[0];
-        console.log('xuat222');
+    
         console.log(this.listuser);
         this.email.setValue(this.listuser.email);
         this.username.setValue(this.listuser.fullname);
