@@ -40,13 +40,14 @@ import { DiplomalanguageComponent } from './diplomalanguage/diplomalanguage.comp
 import { DetailJobComponent } from './detail-job/detail-job.component';
 
 //======================Service=============================
+import { SharedModule } from '../pages/shared/shared.module';
 @NgModule({
   imports: [
     CommonModule,
     AdminRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-
+SharedModule
   ],
   declarations: [
     AdminComponent,

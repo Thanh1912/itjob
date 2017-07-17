@@ -33,7 +33,7 @@ import { PagerService } from './../_services/pager.service';
 import { JobcategoryService } from './../services/jobcategory.service';
 import { WorkplaceService } from './../services/workplace.service';
 import { DistrictService } from './../services/district.service';
-
+import { ToastComponent } from '../shared/toast/toast.component';
 import { sliderService } from './../services/slider.service';
 import { RateService } from './../services/rate.service';
 import { JobcategoryDetailService } from './../services/jobcategory-detail.service';
@@ -45,6 +45,7 @@ import { SearchProfileComponent } from './search-profile/search-profile.componen
 import { ResumePreviewComponent } from './resume-preview/resume-preview.component';
 import { DetailCandidateComponent } from './detail-candidate/detail-candidate.component';
 import { CKEditorModule } from 'ng2-ckeditor';
+import { SharedModule } from './shared/shared.module';
 let providers = {
   "google": {
     "clientId": "1075668812758-334p3amm6s3h1nsnhlhd0bl0o1qd70t5.apps.googleusercontent.com"    //meanstack
@@ -55,7 +56,7 @@ let providers = {
   }
 };
 @NgModule({
-  imports: [CommonModule, routing,CKEditorModule, ReactiveFormsModule, FormsModule, Angular2SocialLoginModule],
+  imports: [CommonModule,SharedModule, routing,CKEditorModule, ReactiveFormsModule, FormsModule, Angular2SocialLoginModule],
   declarations: [Pages,
     HomeComponent,
     LoginComponent,
@@ -84,7 +85,7 @@ let providers = {
     DetailCandidateComponent,
    
   ]
-  , providers: [ DistrictService, DiplomalanguageService,sliderService,RateService,DatePipe,WorkplaceService,CapitalizePipe,SearchPipe,PagerService,JobcategoryDetailService,JobcategoryService,JobService, CompanyService, QuanliNtdService, CandidateService, ResumeService],
+  , providers: [ToastComponent, DistrictService, DiplomalanguageService,sliderService,RateService,DatePipe,WorkplaceService,CapitalizePipe,SearchPipe,PagerService,JobcategoryDetailService,JobcategoryService,JobService, CompanyService, QuanliNtdService, CandidateService, ResumeService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class PagesModule {

@@ -6,7 +6,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { Router, NavigationEnd } from '@angular/router';
 import { PagerService } from './../../_services/pager.service';
-import { Validators, FormBuilder, FormControl,FormGroup } from '@angular/forms';
+import { Validators, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { ToastComponent } from '../shared/toast/toast.component';
 @Component({
   selector: 'app-detail-company',
   templateUrl: './detail-company.component.html',
@@ -20,14 +21,15 @@ import { Validators, FormBuilder, FormControl,FormGroup } from '@angular/forms';
     , '../../../assets/js/plugins/jquery-ui/jquery-ui.css'
     , '../../../assets/js/plugins/bootstrap-slider/bootstrap-slider.css'
     , '../../../assets/js/plugins/owl/owl.carousel.css'
-  ]
+  ],
+  providers: [ToastComponent]
 })
 export class DetailCompanyComponent implements OnInit {
   Check_PostRate: number
   sub: any;
   id: any;
   countJob: String;
-  constructor(private pagerService: PagerService, private builder: FormBuilder, private router: Router, private rate: RateService, private company: CompanyService, private _location: Location, private job: JobService, private route: ActivatedRoute) { }
+  constructor(private toast: ToastComponent, private pagerService: PagerService, private builder: FormBuilder, private router: Router, private rate: RateService, private company: CompanyService, private _location: Location, private job: JobService, private route: ActivatedRoute) { }
   companyitem = [];
   countReView: String;
   // pager object
@@ -60,13 +62,10 @@ export class DetailCompanyComponent implements OnInit {
   ngOnInit() {
     this.IDcandidate = "";
     this.Check_PostRate = 2;
-
     this.sub = this.route.params.subscribe(params => {
       this.id = params['id'];
       this.CountRate(this.id);
       this.GetListRate(this.id);
-
-
     });
 
     if (localStorage.getItem('userId') != null) {
@@ -211,7 +210,7 @@ export class DetailCompanyComponent implements OnInit {
     this.rate.UpdateRate(this.id
     ).subscribe(
       data => {
-        alert('thanh cong')
+        this.toast.setMessage('You successfully Rate Comment!', 'success', 'left');
       },
       error => console.log(error),
       () => {
@@ -232,7 +231,6 @@ export class DetailCompanyComponent implements OnInit {
       console.log(post);
       this.rate.add(post).subscribe(
         data => {
-          alert('thanh cong')
           this.updaterate();
         },
         error => console.log(error),
@@ -241,7 +239,7 @@ export class DetailCompanyComponent implements OnInit {
       );
     }
     else {
-      alert('Ban Khong co quyen danh gia ! Ban Phai la thanh vien đã làm việc cua cong ty nay!')
+      this.toast.setMessage('Ban Khong co quyen danh gia ! Ban Phai la thanh vien đã làm việc cua cong ty nay!', 'warning', 'left');
     }
 
   }

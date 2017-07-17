@@ -1,7 +1,7 @@
+
 import { Component, OnInit } from '@angular/core';
 import { QuanliNtdService} from './../../services/quanli-ntd.service';
-
-
+import { ToastComponent } from './../../pages/shared/toast/toast.component'; 
 @Component({
   selector: 'app-admin-home',
   templateUrl: './admin-home.component.html',
@@ -14,8 +14,9 @@ import { QuanliNtdService} from './../../services/quanli-ntd.service';
 export class AdminHomeComponent implements OnInit {
 sothanhvien:string="0";
 sonhatuyendung:string="0";
-  constructor( private QuanliNtdService :QuanliNtdService ) { }
+  constructor(private toast:ToastComponent, private QuanliNtdService :QuanliNtdService ) { }
   ngOnInit() {
+    this.toast.setMessage('you successfully registered!', 'error','left');
     this.QuanliNtdService.count().subscribe(
       data => this.sonhatuyendung = data,
       error => console.log(error)

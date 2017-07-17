@@ -1,0 +1,115 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+   <button (click)="go()" class="btn btn-primary btn-floating">Back</button>
+ <button (click)="duyet()" class="btn btn-primary btn-floating">Duyệt</button>
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+
+    <!-- Default box -->
+    <div class="box">
+      <div class="box-body">
+
+        <div class="form-group">
+          <label for="exampleInputEmail1"> Conpany   {{list.status}} </label>
+             <p   class="panel-demo"  >
+           {{list.company[0].info_recruiter.namecompany}} -{{list.company[0].email}}
+             </p>
+        </div>
+
+        <div class="form-group">
+          <label for="exampleInputEmail1"> Tiêu Đề   </label> 
+           <p   class="panel-demo"  >
+                  {{list.title}}
+          </p>
+      
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1"> Mức lương   </label> 
+              <p   class="panel-demo"  >
+                 {{list.salarycompete}}
+          </p>
+         
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1"> Mo tả   </label>
+
+          <p   class="panel-demo"  [innerHtml]="list.descriptionwork">
+          </p>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Yêu cầu   </label>
+          <p class="panel-demo" [innerHtml]="list.requirementwork">
+          </p>
+
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">JobTime   </label> 
+              <p   class="panel-demo" style="    display: inline;
+    color: red;
+    padding: .2em .6em .3em;
+    font-size: 103%;
+    font-weight: 700;
+    line-height: 1;
+    color: #e81c1c;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25em;"  >
+          {{list.JobTime}}
+              </p>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Số lượng Tuyển dụng  </label> 
+            <p   class="panel-demo"  >
+          {{list.Apllication}}
+            </p>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Infojobcategory </label>
+            <p   class="panel-demo"  >
+           {{list.Infojobcategory[0].name}}
+            </p>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Infoworkplace </label>
+            <p   class="panel-demo"  >
+           {{list.Infoworkplace[0].name}}
+            </p>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">jobcategorydetail </label>
+          <p>
+            <span class="label label-danger" *ngFor="let i of list?.Infokeyword">{{i.name}}</span>
+          </p>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">End Post  </label>
+          <p   class="panel-demo"  >
+           {{list.endPost|date}}
+           </p>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Create Post   </label>
+            <p   class="panel-demo"  >
+           {{list.createddate|date}}
+            </p>
+        </div>
+
+
+
+
+
+      </div>
+      <!-- /.box-body -->
+
+      <!-- /.box-footer-->
+    </div>
+    <!-- /.box -->
+  </section>
+  <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
