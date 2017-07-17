@@ -15,6 +15,7 @@ import { SliderComponent } from './slider/slider.component';
 import { ListJobComponent } from './list-job/list-job.component';
 import { CatalogJobComponent } from './catalog-job/catalog-job.component';
 import { DiplomalanguageComponent } from './diplomalanguage/diplomalanguage.component';
+import { DetailJobComponent } from './detail-job/detail-job.component';
 const adminRoutes: Routes = [
   {
     path: '',
@@ -27,8 +28,8 @@ const adminRoutes: Routes = [
         children: [
           { path: 'duyet-nha-tuyen-dung', component: DuyetNhaTuyenDungComponent },
           { path: 'quan-li-nganh-nghe', component: QuanLiNganhNgheComponent },
-     //     { path: 'quan-li-dia-diem', component: VitriComponent },
-        //  { path: 'login', component: AdminLoginComponent },
+          //     { path: 'quan-li-dia-diem', component: VitriComponent },
+          //  { path: 'login', component: AdminLoginComponent },
           { path: 'quan-li-thanh-vien', component: QuanLiThanhVienComponent },
           { path: 'companysize', component: CompanysizeComponent },
           { path: 'district', component: DistrictComponent },
@@ -36,9 +37,9 @@ const adminRoutes: Routes = [
           { path: 'country', component: CountryComponent },
           { path: 'add-slider', component: SliderComponent },
           { path: 'List-Job', component: ListJobComponent },
-           { path: 'Catalog-Job', component: CatalogJobComponent },
-            { path: 'Diplomalanguage', component: DiplomalanguageComponent },
-
+          { path: 'Catalog-Job', component: CatalogJobComponent },
+          { path: 'Diplomalanguage', component: DiplomalanguageComponent },
+          { path: 'detail-job/:id', component: DetailJobComponent },
           { path: '', component: AdminHomeComponent }
         ]
       }

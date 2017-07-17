@@ -50,6 +50,8 @@ router.route('/company-get-all').get(user_nhatuyendungctrl.getallcompany);
 //  USER -- THANH VIEN DANG KY DANG NHAP
 router.route('/thanhvien/login/').post(candidatectrl.login);
 router.route('/thanhvien/register/').post(candidatectrl.register);
+router.route('/update_candidate/:id').put(candidatectrl.updateinfo);
+
 router.route('/topcandidate').get(candidatectrl.topcandidate);
 router.route('/searchCandidate').post(candidatectrl.searchCandidate);
 router.route('/candidate-suitable').post(candidatectrl.candidate_suitable);

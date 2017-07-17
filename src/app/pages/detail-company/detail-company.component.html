@@ -92,7 +92,7 @@
                     </div>
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mj_toppadder30 mj_bottompadder30">
                       <div class="mj_divider"></div>
-                    </div>
+                    </div><!--
                     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                       <label>Skills</label>
                     </div>
@@ -100,19 +100,17 @@
                       <div class="mj_detaildiv">
                         <ul class="mj_selected_content">
                           <li *ngFor="let iSkill of skill_item">
-                            <a href="{{iSkill._idCategory}}--{{iSkill._id}}"><img src="assets/images/cross_white.png" alt=""> {{iSkill.name}}</a>
+                            <a href="{{iSkill._idCategory}}--{{iSkill._id}}"> {{iSkill.name}}</a>
                           </li>
 
                         </ul>
 
                       </div>
-                    </div>
+                    </div>-->
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mj_toppadder30 mj_bottompadder30">
                       <div class="mj_divider"></div>
                     </div>
-                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                      <label>Job</label>
-                    </div>
+                
                     <div *ngFor="let ijob of job_item" class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
                       <div class="mj_detaildiv">
                         <span class="jobtitle">{{ijob.title}}</span>
@@ -198,7 +196,7 @@
                             <i class="fa fa-3x fa-star mauvang" aria-hidden="true"></i>
                             <i class="fa fa-3x fa-star mauvang" aria-hidden="true"></i>
                             <i class="fa fa-3x fa-star mauvang" aria-hidden="true"></i>
-                            <i class="fa fa-3x add-onfa-star mauvang" aria-hidden="true"></i>
+                            <i class="fa fa-3x fa-star mauvang" aria-hidden="true"></i>
                           </div>
 
                         </div>
@@ -215,7 +213,45 @@
                         </h3>
                         <blockquote class="mj_blueblockquote">
 
-                          <img src="https://preview.ibb.co/b0pYhv/stars.png" style="    width: 100px;" alt="stars" border="0">
+                       
+                       <div [ngSwitch]="item?.rate">
+                          <div *ngSwitchCase="1">
+                            <i class="fa  fa-star mauvang" aria-hidden="true"></i>
+                            <i class="fa  fa-star " aria-hidden="true"></i>
+                            <i class="fa  fa-star " aria-hidden="true"></i>
+                            <i class="fa  fa-star " aria-hidden="true"></i>
+                            <i class="fa  add-onfa-star " aria-hidden="true"></i>
+                          </div>
+                          <div *ngSwitchCase="2">
+                            <i class="fa  fa-star mauvang" aria-hidden="true"></i>
+                            <i class="fa  fa-star mauvang" aria-hidden="true"></i>
+                            <i class="fa  fa-star " aria-hidden="true"></i>
+                            <i class="fa  fa-star " aria-hidden="true"></i>
+                            <i class="fa  add-onfa-star " aria-hidden="true"></i>
+                          </div>
+                          <div *ngSwitchCase="3">
+                            <i class="fa  fa-star mauvang" aria-hidden="true"></i>
+                            <i class="fa  fa-star mauvang" aria-hidden="true"></i>
+                            <i class="fa  fa-star mauvang" aria-hidden="true"></i>
+                            <i class="fa  fa-star " aria-hidden="true"></i>
+                            <i class="fa  add-onfa-star " aria-hidden="true"></i>
+                          </div>
+                          <div *ngSwitchCase="4">
+                            <i class="fa  fa-star mauvang" aria-hidden="true"></i>
+                            <i class="fa  fa-star mauvang" aria-hidden="true"></i>
+                            <i class="fa  fa-star mauvang" aria-hidden="true"></i>
+                            <i class="fa  fa-star mauvang" aria-hidden="true"></i>
+                            <i class="fa  add-onfa-star " aria-hidden="true"></i>
+                          </div>
+                          <div *ngSwitchCase="5">
+                            <i class="fa  fa-star mauvang" aria-hidden="true"></i>
+                            <i class="fa  fa-star mauvang" aria-hidden="true"></i>
+                            <i class="fa  fa-star mauvang" aria-hidden="true"></i>
+                            <i class="fa  fa-star mauvang" aria-hidden="true"></i>
+                            <i class="fa  fa-star mauvang" aria-hidden="true"></i>
+                          </div>
+
+                        </div>
                           <span><i class="fa fa-calendar"></i>    {{item.createddate|date}}   </span>
                           <p [innerHTML]="item.content">
 
@@ -228,9 +264,9 @@
                     </div>
 
                     <div [ngSwitch]="Check_PostRate">
-                      <span *ngSwitchCase="0" class="mj_blue_text">Ban Khong co quyen danh gia ! Ban Phai la thanh vien đã làm việc cua cong ty nay!</span>
-                      <span *ngSwitchCase="2" class="mj_blue_text">Ban Khong co quyen danh gia !Vui Long dang nhap!</span>
-                      <div *ngSwitchCase="1"  class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                      <span *ngSwitchCase="0" class="mj_blue_text alert-show" style="color:white">Ban Khong co quyen danh gia ! Ban Phai la thanh vien đã làm việc cua cong ty nay!</span>
+                      <span *ngSwitchCase="2" class="mj_blue_text alert-show" style="color:white">Ban Khong co quyen danh gia !Vui Long dang nhap!</span>
+                      <div *ngSwitchCase="1" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="mj_postdiv mj_shadow_yellow mj_postpage mj_toppadder50 mj_bottompadder50">
                           <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1">
                             <form [formGroup]="RateForm" (ngSubmit)="Postrate()">
@@ -272,15 +308,6 @@
                       </div>
 
                     </div>
-
-
-
-
-
-
-
-
-
 
                   </div>
                 </div>

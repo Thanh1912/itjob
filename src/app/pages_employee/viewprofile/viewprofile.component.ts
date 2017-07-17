@@ -25,12 +25,8 @@ export class ViewprofileComponent implements OnInit {
   // paged items
   @Input() pagedItems: any[];
   constructor(private _location: Location, private candidate: CandidateService, private pagerService: PagerService) { }
-  backClicked() {
-    this._location.back();
-  }
-  thongbao() {
-    alert(' change')
-  }
+ 
+
   ngAfterContentInit() {
     this.setPage(1);
   }
@@ -40,9 +36,7 @@ export class ViewprofileComponent implements OnInit {
   ngOnInit() {
 
   }
-
   setPage(page: number) {
-
     if (page < 1 || page > this.pager.totalPages) {
       return;
     }

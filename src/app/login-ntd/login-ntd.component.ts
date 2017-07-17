@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { User } from '../_services/user.model';
 import { AuthenticationService } from '../_services/index';
 import { animateFactory } from '../index';
+import { ToastComponent } from '../shared/toast/toast.component';
 @Component({
   selector: 'app-login-ntd',
   templateUrl: './login-ntd.component.html',
@@ -17,7 +18,7 @@ export class LoginNtdComponent implements OnInit {
   result;
 
   private viewContainerRef: ViewContainerRef;
-  constructor(
+  constructor(public toast: ToastComponent,
     private router: Router,
     private authenticationService: AuthenticationService, viewContainerRef: ViewContainerRef) {
     // You need this small hack in order to catch application root view container ref (ng2-bootstrap)

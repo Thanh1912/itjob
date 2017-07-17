@@ -12,7 +12,7 @@ export const routes: Routes = [
   {
     path: 'pages',
     loadChildren: 'app/pages/pages.module#PagesModule',
-      //  canLoad: [AuthGuard]
+    //  canLoad: [AuthGuard]
   },
   //Login admin
   {
@@ -24,11 +24,11 @@ export const routes: Routes = [
     path: 'login-ntd',
     component: LoginNtdComponent
   },
-   {
+  {
     path: 'democode',
     component: DemocodeComponent
   },
-    //animation
+  //animation
   {
     path: 'animation',
     component: AnimationComponent
@@ -39,14 +39,14 @@ export const routes: Routes = [
   {
     path: 'pages_admin',
     loadChildren: 'app/pages_admin/admin.module#AdminModule',
-        canActivate: [AuthGuardAmin]
+    canActivate: [AuthGuardAmin]
   },
 
   //nha tuyen dung  nhatuyendung.module NhatuyendungModule
   {
     path: 'pages_employee',
     loadChildren: 'app/pages_employee/nhatuyendung.module#NhatuyendungModule',
-      canActivate: [AuthGuardnhatuyendung]
+    canActivate: [AuthGuardnhatuyendung]
   },
 
 

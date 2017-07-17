@@ -16,7 +16,6 @@
                 <th>Công Ty</th>
                 <th>NGÀY LƯU</th>
                 <th>NGÀY </th>
-                <th>Tình Trang</th>
                 <th> NHÀ TUYỂN DỤNG PHẢN HỒI</th>
 
               </tr>
@@ -24,7 +23,7 @@
                 <td>
                   <h6>{{item.infojobs[0].title}} </h6>
                   <p>
-                    <label>Resume:</label><button >DOWLOAD RESUME </button></p>
+                    <label>Resume:</label><a href="http://localhost:3000/uploads/forms/filecv/{{item.pathresume}}" download>DOWLOAD RESUME </a></p>
 
                 </td>
                 <td> <span *ngFor="let i of item.inforecruiters"> {{i.info_recruiter.namecompany}}</span></td>

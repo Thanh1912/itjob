@@ -8,6 +8,16 @@
 .fsize22{
     font-size: 22px;
 }
+.alert-show{
+float: left;
+    padding: 10px 20px;
+    background-color: #00bff3;
+    border-radius: 35px;
+    color: #fff;
+    font-size: 14px;
+    text-transform: capitalize;
+    text-decoration: none;
+}
 .mauvang{
     
     color: yellow

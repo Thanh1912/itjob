@@ -7,6 +7,7 @@ import { ResumeService } from '../../services/resume.service';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
 import { AuthenticationService } from "../../_services/authentication.service";
+import { ToastComponent } from '../../shared/toast/toast.component';
 declare var $: any;
 interface FileReaderEventTarget extends EventTarget {
   result: string
@@ -39,7 +40,7 @@ export class DetailJobComponent implements OnInit {
   imageUrl: String
   idRecruter: String;
   listuser: any;
-  constructor(private resume: ResumeService, private user: CandidateService, private job: JobService, private router: Router, private route: ActivatedRoute, private _location: Location) { }
+  constructor(private toast: ToastComponent, private resume: ResumeService, private user: CandidateService, private job: JobService, private router: Router, private route: ActivatedRoute, private _location: Location) { }
   //==================UPLOAD CV======================
   public uploader: FileUploader = new FileUploader({ url: 'http://localhost:3000/api/uploadcv', itemAlias: 'file_cv' });
   //==================UPLOAD CV======================
@@ -55,6 +56,7 @@ export class DetailJobComponent implements OnInit {
   }
   jobitem: any;
   ngOnInit() {
+           this.toast.setMessage('you successfully registered!', 'success');
       this.islogin=false
       this.checklogin();
     //=========================UPLOAD CV====================

@@ -21,9 +21,11 @@ export class RateService {
   count(id:String): Observable<any> {
     return this.http.get(this.Rest_Url + '/api/countByidrecruiter/'+id).map(res => res.json());
   }
-
+  UpdateRate(id): Observable<any> {
+    return this.http.get(this.Rest_Url + '/api/UpdateRate/'+id).map(res => res.json());
+  }
   add(item): Observable<any> {
-    return this.http.post(this.Rest_Url + '/api/ratecomment', JSON.stringify(item), this.options);
+    return this.http.post(this.Rest_Url + '/api/ratecomment', JSON.stringify(item), this.options).map(res => res.json());
   }
   checkHire(item:any){
     return this.http.post(this.Rest_Url + '/api/checkHire/resume', JSON.stringify(item), this.options).map(res => res.json());

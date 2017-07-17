@@ -74,31 +74,6 @@ export class JobComponent implements OnInit, AfterViewInit {
   private viewprofileComponent: ViewprofileComponent
   n = 0;
   Ipost: any;
-schange(){
-  this.viewprofileComponent.thongbao();
-}
-
-
-
-  setpost1() {
-
-    this.Ipost = {
-      jobcategory: '5958ebc47f843a0dd0b5305c',
-      jobcategorydetail: [],
-      salarybegin: '',
-      salaryend: '',
-      districtid: '',
-      workplaceid: '',
-    };
-
-    this.getlistprofile(this.Ipost);
-    if (this.isposted == true) {
-      this.isposted = false;
-    } else {
-      this.isposted = true;
-    }
-
-  }
   onChange1() {
     console.log(this.keyword);
   }
@@ -110,7 +85,6 @@ schange(){
     this.Donvi = newValue;
     this.Viewsalary = this.salarybegin + "-" + this.salaryend + " " + newValue;
   }
-
   onKeyto() {
     this.Viewsalary = this.salarybegin + "-" + this.salaryend + " " + this.Donvi;
   }
@@ -132,7 +106,6 @@ schange(){
     this.candidate.candidate_suitable(inputpost).subscribe(
       data => {
         this.ListJob = data;
-        console.log('change ListJob')
         console.log(data)
       },
       error => console.log(error),
@@ -272,14 +245,15 @@ schange(){
         alert('add thanh cong');
         var Ipost = {
           jobcategory: post.jobcategory,
-          jobcategorydetail: post.jobcategorydetail,
-          salarybegin: post.salarybegin,
-          salaryend: post.salaryend,
-          districtid: post.districtid,
-          workplaceid: post.workplaceid
+          jobcategorydetail: this.keyword,
+        //  salarybegin: post.salarybegin,
+        //  salaryend: post.salaryend,
+        //  districtid: post.districtid,
+       //   workplaceid: post.workplaceid
         };
+        console.log(Ipost)
         this.getlistprofile(Ipost);
-        this.setpost1()
+   
       },
       error => console.log(error),
       () => { }

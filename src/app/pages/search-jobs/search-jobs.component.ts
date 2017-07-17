@@ -26,14 +26,7 @@ import { PagerService } from './../../_services/pager.service';
 })
 export class SearchJobsComponent implements OnInit {
 
-  scrollTopChangeRouter() {
-    this.router.events.subscribe((evt) => {
-      if (!(evt instanceof NavigationEnd)) {
-        return;
-      }
-      window.scrollTo(0, 0)
-    });
-  }
+ 
 
   pager: any = {};
   // paged items
@@ -49,14 +42,8 @@ export class SearchJobsComponent implements OnInit {
   salaryB: String;
   salaryE: String;
   allItem = [];
-
-    //==========ngOnInit=============
-
-
-    //===
   ngOnInit() {
-     this.JobTime = "==";
-    this.scrollTopChangeRouter();
+    this.JobTime = "==";
     this.workplaceid = '0'
     this.fromFilter = new Date('Sat Mar 24 1900 06:50:39 GMT+0100 (CET)');
     this.toFilter = new Date('Sat Mar 24 1900 06:50:39 GMT+0100 (CET)');
@@ -64,7 +51,6 @@ export class SearchJobsComponent implements OnInit {
     this.isdate = true;
     this.Showselected = false;
     this.showcus = false;
-
     this.isadvance = true;
     this.sub = this.route.params.subscribe(params => {
       this.id = params['id'];
@@ -72,38 +58,25 @@ export class SearchJobsComponent implements OnInit {
       this.idDetail = params['id_detail'];
       if (this.id !== "all") {
         this.getinfoCatagory(this.id);
-        this.ChangeListJob()
+     
       }
       this.getjobcategoryByID(this.id);
       if (this.idDetail !== "all") {
         this.jobcategorydetail_ = [];
         this.jobcategorydetail_.push(this.idDetail)
         this.getinfoCatagoryDetail(this.idDetail);
-      }else{
-         this.NameCatagoryDetail=""
-      }
+      } else {
+        this.NameCatagoryDetail = ""
+      }  
+       this.ChangeListJob()
     });
 
     this.getjobcategory();
     this.getWorkplace();
   }
-   //==========ngOnInit=============
-    //********* */
-    //===
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  //==========ngOnInit=============
+  //********* */
+  //===
 
   selectSalaryB(value: String) {
     this.salaryB = value;
@@ -113,16 +86,16 @@ export class SearchJobsComponent implements OnInit {
   }
   changeJOBTIME(value: String) {
     this.JobTime = value;
-    
+
 
   }
   resetDateFrom() {
     this.from = new Date('Sat Mar 24 1900 06:50:39 GMT+0100 (CET)');
-    
+
   }
   resetDateTo() {
     this.from = new Date('Sat Mar 24 1900 06:50:39 GMT+0100 (CET)');
-    
+
   }
 
   select() {
@@ -143,33 +116,31 @@ export class SearchJobsComponent implements OnInit {
   setDateFrom(value: Date) {
     this.from = value
     this.fromFilter = value;
-    
+
   }
-  resetall(){
-this.salaryB;
-   this.salaryE;
+  resetall() {
+    this.salaryB;
+    this.salaryE;
     this.fromFilter = new Date('Sat Mar 24 1900 06:50:39 GMT+0100 (CET)');
     this.toFilter = new Date('Sat Mar 24 1900 06:50:39 GMT+0100 (CET)');
-   this.Unit="";
- this.districtid="";
-    this.workplaceid="";
-   this.JobTime="";
- 
-   this.Search_title="";
+    this.Unit = "";
+    this.districtid = "";
+    this.workplaceid = "";
+    this.JobTime = "";
+
+    this.Search_title = "";
   }
   setDate(value: number) {
     var myDate = new Date();
     var dayOfMonth = myDate.getDate();
     myDate.setDate(dayOfMonth - value);
-    console.log('xuat 5 ago' + myDate)
-      this.fromFilter=myDate;
-    //  this.from = d;
-    // this.fromFilter=d;
+    this.fromFilter = myDate;
+    
   }
   setDateTo(value: Date) {
     this.to = value
     this.toFilter = value;
-    
+
   }
   updateCheckBox() {
     //  document.getElementById('check').checked == true
@@ -217,15 +188,15 @@ this.salaryB;
     var jobcategory_TMP = this.jobcategory_;
     var jobcategorydetail_TMP = this.jobcategorydetail_;
     var Ptitle = this.Search_title;
-     var tmp1="==";
-      var tmp2="==";
-     if(new Date(this.fromFilter).getTime()!==-2201882961000){
-          tmp1=fromFilter_TMP+"";
-     }
-      if(new Date(this.toFilter).getTime()!==-2201882961000){
-          tmp2=toFilter_TMP+"";
-     }
-     
+    var tmp1 = "==";
+    var tmp2 = "==";
+    if (new Date(this.fromFilter).getTime() !== -2201882961000) {
+      tmp1 = fromFilter_TMP + "";
+    }
+    if (new Date(this.toFilter).getTime() !== -2201882961000) {
+      tmp2 = toFilter_TMP + "";
+    }
+
     if (salaryB_TMP === '') {
       salaryB_TMP = '=='
     }
@@ -244,7 +215,7 @@ this.salaryB;
     if (JobTime_TMP === '') {
       JobTime_TMP = '=='
     }
-  
+
     if (jobcategory_TMP === '') {
       jobcategory_TMP = '=='
     }
@@ -264,17 +235,19 @@ this.salaryB;
       JobTimeP: JobTime_TMP,
       jobcategoryP: jobcategory_TMP,
       jobcategorydetailP: jobcategorydetail_TMP,
-      titleP:Ptitle,
-      dateBeginP:tmp1,
-      dateEndP:tmp2
+      titleP: Ptitle,
+      dateBeginP: tmp1,
+      dateEndP: tmp2
     }
     console.log("post do")
-        console.log(p)
+    console.log(p)
     this.job.searchJobTile(
       p
     ).subscribe(
       data => {
         this.allItem = data;
+        console.log('show all');
+              console.log(data);
         this.setPage(1);
 
       },
@@ -353,7 +326,7 @@ this.salaryB;
     this.jobcategoryDetailService.get(post).subscribe(
       data => {
         var json = JSON.parse(data._body)
-        this.NameCatagoryDetail = "/"+json.name
+        this.NameCatagoryDetail = "/" + json.name
 
       },
       error => console.log(error),

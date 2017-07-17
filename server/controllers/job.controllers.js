@@ -107,7 +107,7 @@ module.exports.getByIdDetailJob = function (req, res) {
 module.exports.getByIdDetailJob_admin = function (req, res) {
   var ObjectId = require('mongoose').Types.ObjectId;
   model.aggregate([
-    { $match: { _id: new ObjectId(req.params.id) }},
+    { $match: { _id: new ObjectId(req.params.id) } },
     {
       "$lookup": {
         "from": "districts",
@@ -199,56 +199,27 @@ module.exports.jobincompany = function (req, res) {
 
 
 
-function onlyUnique(value, index, self) {
-  return self.indexOf(value) === index;
-}
+
 //var _ = require('underscore');
 //GET SKILL COMPANY
 module.exports.get_All_Skill_Company = function (req, res) {
   var ObjectId = require('mongoose').Types.ObjectId;
-
-  model.aggregate([
-    { $match: { recruiterid: new ObjectId(req.params.id) } },
-    {
-      "$lookup": {
-        "from": "jobcategorydetails",
-        "localField": "jobcategorydetail",
-        "foreignField": "_id",
-        "as": "Skills"
-      }
+  model.aggregate(
+    [
+      { $match: { recruiterid: new ObjectId(req.params.id) } },
+      {
+        "$group": {
+          "_id": "$jobcategorydetail",
+          "count": { "$sum": 1 }
+        }
+      },
+       {$lookup: {from: "jobcategorydetail", localField: "jobcategorydetail", foreignField: "_id", as: "details"}},
+    ],
+    function (err, docs) {
+      if (err) console.log(err);
+      console.log(docs);
     }
-
-  ]).exec(function (err, docs) {
-    if (err) throw err;
-    var array = [];
-    var t = [];
-    docs.forEach(function (value) {
-
-      //====================
-      var tmp = [];
-      tmp = value.Skills;
-
-      tmp.forEach(function (valuetmp) {
-        t.forEach(function (xuat) {
-          if (xuat === valuetmp) {
-            console.log('co')
-          }
-
-        });
-        console.log(t)
-        array.push(valuetmp);
-        t.push(valuetmp._id
-        )
-      })
-
-      //============
-
-    });
-    console.log('===============')
-    // console.log(_.uniq(array));
-    var unique_array = array.filter(onlyUnique);
-    res.json(unique_array);
-  });
+  );
 
 };
 
@@ -346,8 +317,8 @@ module.exports.searchJobTitles = function (req, res) {
   }
   dateNow = new Date()
   obj2.push({
-    "endPost": { "$gte": dateNow }//  <=
-    , "status": true
+    "endPost": { "$gte": dateNow }//  <=   
+    , "status": true    //1 -true : -1 false
   })
 
 
@@ -479,6 +450,7 @@ module.exports.adminsearchAllpage = function (req, res) {
   var email = req.body.email;
   var namecopany = req.body.namecopany;
   var state = req.body.state;
+  console.log(state)
   obj_condition = [];
   var k = 0; //kiem tra xem co 1 trong 3 dieu kien search theo title email,namecompany hay ko
   var arr = [
@@ -534,7 +506,7 @@ module.exports.adminsearchAllpage = function (req, res) {
     k = 1
   }
   if (email !== "" && typeof email !== "undefined") {
-    //=====dieu kien cua search theo ten cong ty ====
+    //=====dieu kien cua search theo email====
     con1 = {
       "$addFields": {
         "company": {
@@ -552,7 +524,7 @@ module.exports.adminsearchAllpage = function (req, res) {
         }
       }
     }
-    //=====dieu kien cua search theo ten cong ty ====
+    //=====dieu kien cua search theo email ====
     arr.push(con1)
   }
 
@@ -569,7 +541,7 @@ module.exports.adminsearchAllpage = function (req, res) {
   if (state !== "" && typeof state !== "undefined") {
     var con = {
       $sort: {
-        "status": state//true
+        "status": parseInt(state)//true
       }
     }
     arr.push(con)
@@ -675,10 +647,26 @@ module.exports.admincountsearchAllpage = function (req, res) {
     k = 1
   }
   if (email !== "" && typeof email !== "undefined") {
-    obj_condition.push(
-      { "email": new RegExp(title) }
-    )
-    k = 1
+    //=====dieu kien cua search theo email====
+    con1 = {
+      "$addFields": {
+        "company": {
+          "$arrayElemAt": [
+            {
+              "$filter": {
+                "input": "$company",
+                "as": "comp",
+                "cond": {
+                  "$eq": ["$$comp.email", 'demo-ntd@gmail.com']
+                }
+              }
+            }, 0
+          ]
+        }
+      }
+    }
+    //=====dieu kien cua search theo email ====
+    arr.push(con1)
   }
   //======bat dau kiem tra add condition vao==============
   if (k == 1) {
@@ -691,9 +679,10 @@ module.exports.admincountsearchAllpage = function (req, res) {
     arr.push(con2)
   }
   if (state !== "" && typeof state !== "undefined") {
+    console.log(state)
     var con = {
       $sort: {
-        "status": state//true
+        "status": parseInt(state)//1 true
       }
     }
     arr.push(con)
@@ -723,7 +712,9 @@ module.exports.admincountsearchAllpage = function (req, res) {
   }
   model.aggregate(arr).exec(function (err, docs) {
     if (err) throw err;
-    res.json(docs);
+    console.log(docs.length)
+    console.log(docs.length)
+    res.json(docs.length);
   });
 };
 

@@ -125,12 +125,13 @@ export class ManagerAccountComponent implements OnInit {
       //cap cv 
       let userId = localStorage.getItem('userId');
       var user1 = {
-        pathresume: response,
-        candidateid: userId
+        pathcv: response,
+        _id: userId
       }
-      this.resume.save(user1).subscribe(
+      console.log(user1)
+      this.user.edit_user(user1).subscribe(
         data => {
-          alert('Cap Nhat Thành Công')
+          alert('Cap Nhat Thành Công'+response)
         },
         error => console.log(error),
         () => { }

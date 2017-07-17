@@ -36,42 +36,56 @@ export class ListJobComponent implements OnInit {
   onchange_ac(value) {
     this.action_sort = value;
     alert(value)
+    this.setPage(1);
   }
-  search() {
-    if (this.action_search == "email") {
+  setPage(page: number) {
 
-      var post = {
+
+    var post = {}
+    if (this.action_search == "email") {
+      post = {
         email: this.key_search
       }
-      this.job1.searchadminjob(post, 0, 10).subscribe(
-        data => {
-          this.listJob = data
-        },
-        error => console.log(error),
-        () => this.isLoading = false
-      );
     }
     if (this.action_search == "title") {
-      var postt = {
+      post = {
         title: this.key_search
       }
-      this.job1.searchadminjob(postt, 0, 10).subscribe(
-        data => {
-          this.listJob = data
-        },
-        error => console.log(error),
-        () => this.isLoading = false
-      );
     }
+       if (this.action_sort !== "") {
+      post = {
+        state:  this.action_sort
+      }
+    }
+    console.log(post)
 
 
-
-
+    this.job1.countsearchadminjob(post, 0, 10).subscribe(
+      data => {
+        this.count_all_job = data;
+      
+        if (page < 1 || page > this.pager.totalPages) {
+          return;
+        }
+        var count = this.count_all_job;
+        // get pager object from service
+        this.pager = this.pagerService.getPager(count, page);
+            this.job1.searchadminjob(post, this.pager.startIndex, this.pager.endIndex + 1).subscribe(
+      data => {
+        this.listJob = data
+      },
+      error => console.log(error),
+      () => this.isLoading = false
+    );
+      },
+      error => console.log(error),
+      () => this.isLoading = false
+    );
 
   }
 
-
   //==============FUNCTION==================
+  /*
   setPage(page: number) {
     if (page < 1 || page > this.pager.totalPages) {
       return;
@@ -79,11 +93,13 @@ export class ListJobComponent implements OnInit {
     var count = this.count_all_job;
     // get pager object from service
     this.pager = this.pagerService.getPager(count, page);
+
+
     // get current page of items;
-    this.getall(this.pager.startIndex, this.pager.endIndex + 1)
+    //  this.getall(this.pager.startIndex, this.pager.endIndex + 1)
     // this.listJob = this.listAllJob.slice(this.pager.startIndex, this.pager.endIndex + 1);
   }
-
+*/
   countall() {
     this.job1.countjob().subscribe(
       data => {

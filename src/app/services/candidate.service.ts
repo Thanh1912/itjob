@@ -30,6 +30,10 @@ export class CandidateService {
   edit_user(user): Observable<any> {
     return this.http.put(this.Rest_Url + `/api/thanhvien/${user._id}`, JSON.stringify(user), this.options);
   }
+    update(user): Observable<any> {
+    return this.http.put(this.Rest_Url + `/api/update_candidate/${user._id}`, JSON.stringify(user), this.options);
+  }
+  
   savecv(user): Observable<any> {
     return this.http.post(this.Rest_Url + `/api/resume`, JSON.stringify(user), this.options);
   }

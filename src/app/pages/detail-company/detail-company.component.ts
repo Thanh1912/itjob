@@ -46,25 +46,27 @@ export class DetailCompanyComponent implements OnInit {
     star: this.star,
     description: this.description
   });
-  IDcandidate:String;
+  IDcandidate: String;
   ngOnInit() {
-     this.IDcandidate="";
-        this.Check_PostRate=2;
+    this.IDcandidate = "";
+    this.Check_PostRate = 2;
     this.scrollTopChangeRouter();
     this.sub = this.route.params.subscribe(params => {
       this.id = params['id'];
       this.CountRate(this.id);
       this.GetListRate(this.id);
+      this.updaterate();
+
     });
 
-        if (localStorage.getItem('userId') != null) {
-          this.IDcandidate= localStorage.getItem('userId');
-        
-        this.checkRate();
-         }else{
-            this.Check_PostRate=2;
-         }
-          
+    if (localStorage.getItem('userId') != null) {
+      this.IDcandidate = localStorage.getItem('userId');
+
+      this.checkRate();
+    } else {
+      this.Check_PostRate = 2;
+    }
+
     //==============GET============
     this.getdetailCompany();
     this.getcountJobCompany();
@@ -143,33 +145,33 @@ export class DetailCompanyComponent implements OnInit {
   }
 
   //===============GET Top JOB OF Company======
-checkRate(){
-  var post={
-    candidateid: this.IDcandidate,
-    recruiterid:this.id
-  }
-      this.rate.checkHire(post).subscribe(
+  checkRate() {
+    var post = {
+      candidateid: this.IDcandidate,
+      recruiterid: this.id
+    }
+    this.rate.checkHire(post).subscribe(
       data => {
-            this.Check_PostRate=data;
-            console.log('check'+data)
+        this.Check_PostRate = data;
+        console.log('check' + data)
       },
       error => console.log(error),
       () => {
 
       }
     );
-}
+  }
 
 
   //===============Load comment RATE======
-count_Review:String
+  count_Review: String
   CountRate(id: String) {
     this.rate.count(id).subscribe(
       data => {
 
         console.log("======sdfdsf=======");
         console.log(data);
-        this.count_Review=data
+        this.count_Review = data
       },
       error => console.log(error),
       () => {
@@ -178,16 +180,16 @@ count_Review:String
     );
   }
 
-//============Kiem tra THANH VIEN co la thanh vien cua company do hay kho =============
+  //============Kiem tra THANH VIEN co la thanh vien cua company do hay kho =============
 
-list01_Review:any;
-arr=[];
+  list01_Review: any;
+  arr = [];
   GetListRate(id: String) {
     this.rate.getByIdRecuter(id).subscribe(
       data => {
         console.log("======list_Review=======");
         console.log(data);
-        this.list01_Review=data
+        this.list01_Review = data
       },
       error => console.log(error),
       () => {
@@ -195,42 +197,49 @@ arr=[];
       }
     );
   }
+updaterate(){
+    this.rate.UpdateRate(this.id
+          ).subscribe(
+            data => {
+              alert('thanh cong')
+            },
+            error => console.log(error),
+            () => {
+            }
+          );
+}
 
 
 
 
 
-
-  //===============Post comment RATE======
+  //===============Post comment UpdateRate RATE======
 
   Postrate() {
-    if( this.Check_PostRate==1){
- console.log(this.RateForm.value);
-    var post = {
-      recruiterid: this.id,
-      candidateid:  this.IDcandidate,
-      rate: this.RateForm.value.star,
-      title: this.RateForm.value.title,
-      content: this.RateForm.value.title,
-    }
-      console.log(post);
- 
-    this.rate.add(post).subscribe(
-      data => {
-      
-        console.log("======Them Thanh cong=======");
-        alert('Them Thanh cong')
-     
-      },
-      error => console.log(error),
-      () => {
+    if (this.Check_PostRate == 1) {
+      console.log(this.RateForm.value);
+      var post = {
+        recruiterid: this.id,
+        candidateid: this.IDcandidate,
+        rate: this.RateForm.value.star,
+        title: this.RateForm.value.title,
+        content: this.RateForm.value.title,
       }
-    );
-  }
-  else{
-    alert('Ban Khong co quyen danh gia ! Ban Phai la thanh vien đã làm việc cua cong ty nay!')
-  }
-   
+      console.log(post);
+
+      this.rate.add(post).subscribe(
+        data => {
+          alert('add thanh cong')
+        },
+        error => console.log(error),
+        () => {
+        }
+      );
+    }
+    else {
+      alert('Ban Khong co quyen danh gia ! Ban Phai la thanh vien đã làm việc cua cong ty nay!')
+    }
+
   }
 
 

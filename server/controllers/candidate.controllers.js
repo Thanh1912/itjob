@@ -28,6 +28,13 @@ module.exports.register = function (req, res, next) {
     })
   })
 };
+  // Update by id
+  module.exports.updateinfo = function(req, res) {
+    model.findOneAndUpdate({ _id: req.params.id }, req.body, function(err) {
+      if (err) { return console.error(err); }
+      res.sendStatus(200);
+    });
+  };
 // user login
 module.exports.login = function (req, res, next) {
   console.log('dang login' + req.body.email)
@@ -273,7 +280,7 @@ module.exports.searchCandidate = function (req, res) {
     console.log(arr2);
     var k = 0;
     arr2.forEach(function (value) {
-      console.log('XUAT'+ 1);
+      console.log('XUAT' + 1);
       console.log(value);
       if (k == 0) {
         obj2.push({
@@ -499,7 +506,7 @@ module.exports.candidate_suitable = function (req, res) {
   model.aggregate([
     {
       $match: {
-        $or: obj2
+        $and: obj2
       }
     },
     {
