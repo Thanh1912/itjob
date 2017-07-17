@@ -36,7 +36,7 @@ module.exports.gettop12Company = function (req, res) {
   })
 };
 
-//job hien tai con thoi han 
+//job hien tai con thoi han
 module.exports.count_job_in_Company = function (req, res) {
   var ObjectId = require('mongoose').Types.ObjectId;
   model.aggregate([
@@ -225,12 +225,11 @@ module.exports.get_All_Skill_Company = function (req, res) {
 
 
 
-// Get 
+// Get
 module.exports.searchJobTitles = function (req, res) {
-  //get value from post  or 
+  //get value from post  or
   var Ksalarybegin = req.body.salarybeginP;
   var Ksalaryend = req.body.salaryendP;
-  var KUnit = req.body.UnitP;
   var Kdistrictid = req.body.districtidP;
   var Kworkplaceid = req.body.workplaceidP;
   var KJobTime = req.body.JobTimeP;
@@ -317,7 +316,7 @@ module.exports.searchJobTitles = function (req, res) {
   }
   dateNow = new Date()
   obj2.push({
-    "endPost": { "$gte": dateNow }//  <=   
+    "endPost": { "$gte": dateNow }//  <=
     , "status": true    //1 -true : -1 false
   })
 

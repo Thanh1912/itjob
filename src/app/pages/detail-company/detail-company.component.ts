@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { JobService } from '../../services/job.service';
 import { RateService } from '../../services/rate.service';
-import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { CompanyService } from '../../services/company.service';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { Router, NavigationEnd } from '@angular/router';
+import { PagerService } from './../../_services/pager.service';
+import { Validators, FormBuilder, FormControl,FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-detail-company',
   templateUrl: './detail-company.component.html',
@@ -26,20 +27,29 @@ export class DetailCompanyComponent implements OnInit {
   sub: any;
   id: any;
   countJob: String;
-  constructor(private builder: FormBuilder, private router: Router, private rate: RateService, private company: CompanyService, private _location: Location, private job: JobService, private route: ActivatedRoute) { }
+  constructor(private pagerService: PagerService, private builder: FormBuilder, private router: Router, private rate: RateService, private company: CompanyService, private _location: Location, private job: JobService, private route: ActivatedRoute) { }
   companyitem = [];
   countReView: String;
-  scrollTopChangeRouter() {
-    this.router.events.subscribe((evt) => {
-      if (!(evt instanceof NavigationEnd)) {
-        return;
-      }
-      window.scrollTo(0, 0);
-    });
+  // pager object
+  pager: any = {};
+  job_item = [];
+
+  // paged items
+  pagedItems: any[];
+  setPage(page: number) {
+    if (page < 1 || page > this.pager.totalPages) {
+      return;
+    }
+
+    // get pager object from service
+    this.pager = this.pagerService.getPager(this.job_item.length, page);
+
+    // get current page of items
+    this.pagedItems = this.job_item.slice(this.pager.startIndex, this.pager.endIndex + 1);
   }
-  title = new FormControl('')
-  star = new FormControl('');
-  description = new FormControl('');
+  title = new FormControl('', [Validators.required])
+  star = new FormControl('', [Validators.required])
+  description = new FormControl('', [Validators.required])
 
   RateForm: FormGroup = this.builder.group({
     title: this.title,
@@ -50,12 +60,12 @@ export class DetailCompanyComponent implements OnInit {
   ngOnInit() {
     this.IDcandidate = "";
     this.Check_PostRate = 2;
-    this.scrollTopChangeRouter();
+
     this.sub = this.route.params.subscribe(params => {
       this.id = params['id'];
       this.CountRate(this.id);
       this.GetListRate(this.id);
-      this.updaterate();
+
 
     });
 
@@ -128,12 +138,12 @@ export class DetailCompanyComponent implements OnInit {
       }
     );
   }
-  job_item: any;
 
   get_getjobincompany() {
     this.company.getjobincompany(this.id).subscribe(
       data => {
         this.job_item = JSON.parse(data._body);
+        this.setPage(1)
         console.log("======new=======");
         console.log(this.job_item);
       },
@@ -197,24 +207,18 @@ export class DetailCompanyComponent implements OnInit {
       }
     );
   }
-updaterate(){
+  updaterate() {
     this.rate.UpdateRate(this.id
-          ).subscribe(
-            data => {
-              alert('thanh cong')
-            },
-            error => console.log(error),
-            () => {
-            }
-          );
-}
-
-
-
-
-
+    ).subscribe(
+      data => {
+        alert('thanh cong')
+      },
+      error => console.log(error),
+      () => {
+      }
+      );
+  }
   //===============Post comment UpdateRate RATE======
-
   Postrate() {
     if (this.Check_PostRate == 1) {
       console.log(this.RateForm.value);
@@ -223,13 +227,13 @@ updaterate(){
         candidateid: this.IDcandidate,
         rate: this.RateForm.value.star,
         title: this.RateForm.value.title,
-        content: this.RateForm.value.title,
+        content: this.RateForm.value.description,
       }
       console.log(post);
-
       this.rate.add(post).subscribe(
         data => {
-          alert('add thanh cong')
+          alert('thanh cong')
+          this.updaterate();
         },
         error => console.log(error),
         () => {

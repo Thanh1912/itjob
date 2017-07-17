@@ -21,7 +21,7 @@
               </tr>
               <tr *ngFor="let item of listJOB">
                 <td>
-                  <h6>{{item.infojobs[0].title}} </h6>
+                  <h6>{{item?.infojobs[0]?.title}} </h6>
                   <p>
                     <label>Resume:</label><a href="http://localhost:3000/uploads/forms/filecv/{{item.pathresume}}" download>DOWLOAD RESUME </a></p>
 

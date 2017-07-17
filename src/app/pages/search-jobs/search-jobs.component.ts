@@ -26,7 +26,7 @@ import { PagerService } from './../../_services/pager.service';
 })
 export class SearchJobsComponent implements OnInit {
 
- 
+
 
   pager: any = {};
   // paged items
@@ -58,7 +58,7 @@ export class SearchJobsComponent implements OnInit {
       this.idDetail = params['id_detail'];
       if (this.id !== "all") {
         this.getinfoCatagory(this.id);
-     
+
       }
       this.getjobcategoryByID(this.id);
       if (this.idDetail !== "all") {
@@ -67,7 +67,7 @@ export class SearchJobsComponent implements OnInit {
         this.getinfoCatagoryDetail(this.idDetail);
       } else {
         this.NameCatagoryDetail = ""
-      }  
+      }
        this.ChangeListJob()
     });
 
@@ -123,7 +123,6 @@ export class SearchJobsComponent implements OnInit {
     this.salaryE;
     this.fromFilter = new Date('Sat Mar 24 1900 06:50:39 GMT+0100 (CET)');
     this.toFilter = new Date('Sat Mar 24 1900 06:50:39 GMT+0100 (CET)');
-    this.Unit = "";
     this.districtid = "";
     this.workplaceid = "";
     this.JobTime = "";
@@ -135,7 +134,7 @@ export class SearchJobsComponent implements OnInit {
     var dayOfMonth = myDate.getDate();
     myDate.setDate(dayOfMonth - value);
     this.fromFilter = myDate;
-    
+
   }
   setDateTo(value: Date) {
     this.to = value
@@ -181,7 +180,6 @@ export class SearchJobsComponent implements OnInit {
     var salaryE_TMP = this.salaryE;
     var fromFilter_TMP = this.fromFilter;
     var toFilter_TMP = this.toFilter;
-    var Unit_TMP = this.Unit;
     var districtid_TMP = this.districtid;
     var workplaceid_TMP = this.workplaceid;
     var JobTime_TMP = this.JobTime;
@@ -203,9 +201,7 @@ export class SearchJobsComponent implements OnInit {
     if (salaryE_TMP === '') {
       salaryE_TMP = '=='
     }
-    if (Unit_TMP === '') {
-      Unit_TMP = 'USD'
-    }
+
     if (districtid_TMP === '') {
       districtid_TMP = '=='
     }
@@ -229,7 +225,6 @@ export class SearchJobsComponent implements OnInit {
     var p = {
       salarybeginP: salaryB_TMP,
       salaryendP: salaryE_TMP,
-      UnitP: Unit_TMP,
       districtidP: districtid_TMP,
       workplaceidP: workplaceid_TMP,
       JobTimeP: JobTime_TMP,

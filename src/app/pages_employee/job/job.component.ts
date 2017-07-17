@@ -226,7 +226,6 @@ export class JobComponent implements OnInit, AfterViewInit {
       salarycompete: salarycompete,
       salarybegin: value.salarybegin,
       salaryend: value.salaryend,
-      Unit: this.Donvi,
       descriptionwork: value.descriptionwork,
       requirementwork: value.requirementwork,
       postimage: this.imageurl,//
