@@ -2,12 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { QuanliNtdService } from './../../services/quanli-ntd.service';
-import { ToastComponent } from './../../shared/toast/toast.component';
+
 import { Nhatuyendung } from './../../_models/nhatuyendung';
 import { PagerService } from './../../_services/pager.service';
 import { CompanysizeService } from './../../services/companysize.service';
 import { countryService } from './../../services/country.service';
 import { DuyetntdPipe } from '../../Pipes/duyetntd.pipe';
+  import { ToastComponent } from './../../pages/shared/toast/toast.component'; 
+  
+
 @Component({
   selector: 'app-duyet-nha-tuyen-dung',
   templateUrl: './duyet-nha-tuyen-dung.component.html',
@@ -60,9 +63,9 @@ export class DuyetNhaTuyenDungComponent implements OnInit {
   active = new FormControl('', Validators.required);
   companysizeid = new FormControl('', Validators.required);
   countryid = new FormControl('', Validators.required);
-  constructor(private http: Http,
+  constructor(private toast:ToastComponent,private http: Http,
     private dataService: QuanliNtdService,
-    public toast: ToastComponent,
+
     private formBuilder: FormBuilder, private countryService: countryService, private CompanysizeService: CompanysizeService, private pagerService: PagerService) { }
 
   ngOnInit() {
@@ -144,7 +147,7 @@ export class DuyetNhaTuyenDungComponent implements OnInit {
     this.dataService.add(this.addCatForm.value).subscribe(
       res => {
         this.getCats();
-        // this.toast.setMessage('item added successfully.', 'success');
+         this.toast.setMessage('item added successfully.', 'success','left');
       },
       error => console.log(error)
     );
@@ -159,7 +162,7 @@ export class DuyetNhaTuyenDungComponent implements OnInit {
   cancelEditing() {
     this.isEditing = false;
     this.cat = {};
-    this.toast.setMessage('item editing cancelled.', 'warning');
+
     // reload the cats to reset the editing
     this.getCats();
   }
@@ -169,7 +172,7 @@ export class DuyetNhaTuyenDungComponent implements OnInit {
       res => {
         this.isEditing = false;
         this.cat = cat;
-        this.toast.setMessage('item edited successfully.', 'success');
+    this.toast.setMessage('item edited successfully.', 'success','left');
       },
       error => console.log(error)
     );
@@ -182,7 +185,7 @@ export class DuyetNhaTuyenDungComponent implements OnInit {
         this.isEditing = false;
         this.cat = cat;
         this.getCats();
-        this.toast.setMessage('item edited successfully.', 'success');
+          this.toast.setMessage('item approval successfully.', 'success','left');
       },
       error => console.log(error)
     );
@@ -194,7 +197,7 @@ export class DuyetNhaTuyenDungComponent implements OnInit {
         this.isEditing = false;
         this.cat = cat;
         this.getCats();
-        this.toast.setMessage('item edited successfully.', 'success');
+            this.toast.setMessage('item not approval successfully.', 'success','left');
       },
       error => console.log(error)
     );
@@ -206,7 +209,8 @@ export class DuyetNhaTuyenDungComponent implements OnInit {
         res => {
           const pos = this.cats.map(elem => { return elem._id; }).indexOf(cat._id);
           this.cats.splice(pos, 1);
-          this.toast.setMessage('item deleted successfully.', 'success');
+           this.toast.setMessage('item not deleted successfully.', 'success','left');
+      
         },
         error => console.log(error)
       );

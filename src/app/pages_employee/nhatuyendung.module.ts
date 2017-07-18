@@ -1,5 +1,5 @@
-import { NgModule }       from '@angular/core';
-import { CommonModule }   from '@angular/common';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { DanhSachBaiDangComponent } from './danh-sach-bai-dang/danh-sach-bai-dang.component';
 import { CompanyComponent } from './company/company.component';
 import { ApplicantComponent } from './applicant/applicant.component';
@@ -10,8 +10,8 @@ import { CKEditorModule } from 'ng2-ckeditor';
 import { PdfViewerComponent } from 'ng2-pdf-viewer';
 import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
 import { FileSelectDirective } from 'ng2-file-upload';
-import { FormGroup, FormControl, Validators, FormBuilder }  from '@angular/forms';
-import {FormsModule,ReactiveFormsModule} from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { KeywordService } from './../services/keyword.service';
 import { WorkplaceService } from './../services/workplace.service';
 import { DistrictService } from './../services/district.service';
@@ -25,27 +25,31 @@ import { CandidateService } from './../services/candidate.service';
 import { ResumeService } from './../services/resume.service'
 import { PagerService } from './../_services/pager.service';
 import { ViewprofileComponent } from './viewprofile/viewprofile.component';
-import { SearchCvPipe }from './Pipe/search-cv.pipe';
+import { SearchCvPipe } from './Pipe/search-cv.pipe';
+import { ToastComponent } from './shared/toast/toast.component';
+import { SharedModule } from './shared/shared.module';
 @NgModule({
   imports: [
     CommonModule,
     NhatuyendungRoutingModule,
     CKEditorModule,
-     FormsModule,
+    FormsModule,
     // FileSelectDirective,
-      MultiselectDropdownModule,
-     ReactiveFormsModule,// <-- import the FormsModule before binding with [(ngModel)]
+    MultiselectDropdownModule,
+    SharedModule,
+    ReactiveFormsModule,// <-- import the FormsModule before binding with [(ngModel)]
   ],
   declarations: [
- FileSelectDirective,
+    FileSelectDirective,
     DanhSachBaiDangComponent,
     CompanyComponent,
     ApplicantComponent,
     JobComponent,
     NhatuyendungComponent,
-    PdfViewerComponent, EditBaidangComponent, ViewprofileComponent,SearchCvPipe
+    PdfViewerComponent, EditBaidangComponent, ViewprofileComponent, SearchCvPipe
   ],
- providers: [CandidateService,PagerService,ResumeService,JobcategoryService,QuanliNtdService,KeywordService,WorkplaceService,PostService, DistrictService,countryService,CompanysizeService]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  providers: [ToastComponent,CandidateService, PagerService, ResumeService, JobcategoryService, QuanliNtdService, KeywordService, WorkplaceService, PostService, DistrictService, countryService, CompanysizeService]
 })
 export class NhatuyendungModule {
 

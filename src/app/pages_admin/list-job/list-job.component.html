@@ -1,3 +1,4 @@
+<app-toast [message]="toast.message"></app-toast>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
@@ -10,15 +11,8 @@
         <div class="col-lg-3">
           <input type="text" class="form-control" [(ngModel)]="key_search" placeholder="Search Job">
         </div>
-        <div class="col-lg-2">
-          <select class="form-control" (change)="onchange_action_s($event.target.value)">
-                  <option value="title">Title</option>
-                   <option value="email">Email</option>
-                    <option value="cmpany">Company</option>
-           </select>
-
-        </div>
-        <div class="col-lg-2">
+   
+        <div class="col-lg-4">
 
           <select class="form-control" (change)="onchange_ac($event.target.value)">
                   <option value="1">Active</option>

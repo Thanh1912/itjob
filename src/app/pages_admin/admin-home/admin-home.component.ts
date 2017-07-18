@@ -16,7 +16,7 @@ sothanhvien:string="0";
 sonhatuyendung:string="0";
   constructor(private toast:ToastComponent, private QuanliNtdService :QuanliNtdService ) { }
   ngOnInit() {
-    this.toast.setMessage('you successfully registered!', 'error','left');
+    //this.toast.setMessage('you successfully registered!', 'error','left');
     this.QuanliNtdService.count().subscribe(
       data => this.sonhatuyendung = data,
       error => console.log(error)

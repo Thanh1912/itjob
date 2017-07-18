@@ -1,3 +1,4 @@
+<app-toast [message]="toast.message"></app-toast>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
@@ -18,12 +19,12 @@
           </div>
         </div>
         <!-- *ngIf="!isLoading"-->
-        <div class="card">
+        <div class="card" *ngIf="isadd==false">
           <div class="col-md-6">
             <h4 class="card-header"> ({{cats.length}})</h4>
           </div>
           <div class="col-md-6 ">
-            <a class="pull-right btn-floating waves-effect waves-light btn-large red" style="border-radius: 2px;    border-radius: 200px 200px 200px 200px;
+            <a (click)="setadd()" class="pull-right btn-floating waves-effect waves-light btn-large red" style="border-radius: 2px;    border-radius: 200px 200px 200px 200px;
 -moz-border-radius: 200px 200px 200px 200px;
 -webkit-border-radius: 200px 200px 200px 200px;
 border: 0px solid #000000;"><i class="fa fa-2x fa-plus" style=" margin-top: 9px;
@@ -75,7 +76,7 @@ border: 0px solid #000000;"><i class="fa fa-2x fa-plus" style=" margin-top: 9px;
             </table>
           </div>
         </div>
-        <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+        <ul *ngIf="pager.pages && pager.pages.length&&isadd==false" class="pagination">
           <li [ngClass]="{disabled:pager.currentPage === 1}">
             <a (click)="setPage(1)">First</a>
           </li>
@@ -92,7 +93,8 @@ border: 0px solid #000000;"><i class="fa fa-2x fa-plus" style=" margin-top: 9px;
             <a (click)="setPage(pager.totalPages)">Last</a>
           </li>
         </ul>
-        <div class="card" *ngIf="!isEditing">
+        <div class="card" *ngIf="isadd==true" style="    padding-left: 20px;
+    padding-bottom: 24px;">
           <h4 class="card-header">Add new </h4>
           <div class="card-block">
             <form class="form-inline" [formGroup]="addCatForm" (ngSubmit)="addCat()" style="text-align:center">
@@ -100,7 +102,9 @@ border: 0px solid #000000;"><i class="fa fa-2x fa-plus" style=" margin-top: 9px;
                 <input class="form-control" type="text" name="name" formControlName="name" placeholder="Name">
               </div>
               <button class="btn btn-primary" type="submit" [disabled]="!addCatForm.valid"><i class="fa fa-floppy-o"></i> Add</button>
-            </form>
+           <button class="btn btn-primary"  (click)="setadd()" ><i class="fa fa-floppy-o"></i> Cancel</button>
+          
+          </form>
           </div>
         </div>
 

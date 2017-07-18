@@ -3,6 +3,7 @@ import { Http } from '@angular/http';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { JobcategoryService } from './../../services/jobcategory.service';
 import { PagerService } from './../../_services/pager.service';
+import { ToastComponent } from './../../pages/shared/toast/toast.component';
 @Component({
   selector: 'app-catalog-job',
   templateUrl: './catalog-job.component.html',
@@ -22,8 +23,8 @@ export class CatalogJobComponent implements OnInit {
   isEditing = false;
   addCatForm: FormGroup;
   name = new FormControl('', Validators.required);
-  constructor(private http: Http,
-    private dataService: JobcategoryService, 
+  constructor(private toast: ToastComponent, private http: Http,
+    private dataService: JobcategoryService,
     private formBuilder: FormBuilder, private pagerService: PagerService) { }
   ngOnInit() {
     this.getall();
@@ -43,7 +44,7 @@ export class CatalogJobComponent implements OnInit {
     // get current page of items
     this.pagedItems = this.cats.slice(this.pager.startIndex, this.pager.endIndex + 1);
   }
- 
+
   getall() {
     this.dataService.getall().subscribe(
       data => {
@@ -61,10 +62,7 @@ export class CatalogJobComponent implements OnInit {
       res => {
         const newCat = res.json();
         this.pagedItems.push(newCat);
-        //this.getall()
-        // this.addCatForm.reset();
-    
-        // this.toast.setMessage('item added successfully.', 'success');
+        this.toast.setMessage('item added successfully!', 'success', 'left');
       },
       error => console.log(error)
     );
@@ -89,8 +87,8 @@ export class CatalogJobComponent implements OnInit {
       res => {
         this.isEditing = false;
         this.getall()
-    
-        //   this.toast.setMessage('item edited successfully.', 'success');
+        this.toast.setMessage('item edited successfully!', 'success', 'left');
+
       },
       error => console.log(error)
     );
@@ -102,7 +100,7 @@ export class CatalogJobComponent implements OnInit {
         res => {
           const pos = this.cats.map(elem => { return elem._id; }).indexOf(cat._id);
           this.pagedItems.splice(pos, 1);
-           // this.getall()
+          // this.getall()
           // this.toast.setMessage('item deleted successfully.', 'success');
         },
         error => console.log(error)

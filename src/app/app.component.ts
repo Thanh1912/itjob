@@ -1,10 +1,13 @@
-import { Component } from '@angular/core';
-
+import { Component,OnInit } from '@angular/core';
+import { ToastComponent } from './shared/toast/toast.component';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
 
 })
-export class AppComponent {
-  title = 'app works!';
+export class AppComponent implements OnInit {
+  constructor(private toast:ToastComponent) { }
+   ngOnInit() {
+
+   }
 }

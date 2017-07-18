@@ -16,7 +16,7 @@ export class AuthGuardnhatuyendung implements CanActivate {
     alert("Ban Khong Co Quyen Truy cap vao trang nay Vui Long Dang Nhap!")
      //  this.toastr.error('Ban Khong Co Quyen Truy cap vao trang nay Vui Long Dang Nhap!', 'Error!');
     // not logged in so redirect to login page
-    this.router.navigate(['/login-ntd']);
+    this.router.navigate(['/ntd/login-ntd']);
     return false;
   }
 }

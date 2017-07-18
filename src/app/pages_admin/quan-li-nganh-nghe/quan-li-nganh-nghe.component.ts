@@ -4,6 +4,9 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { KeywordService } from './../../services/keyword.service';
 import { PagerService } from './../../_services/pager.service';
 import { JobcategoryService } from './../../services/jobcategory.service';
+ import { ToastComponent } from './../../pages/shared/toast/toast.component'; 
+  
+
 
 @Component({
   selector: 'app-quan-li-nganh-nghe',
@@ -27,7 +30,7 @@ selectedItem: any
   addCatForm: FormGroup;
   name = new FormControl('', Validators.required);
   _idCategory = new FormControl('', Validators.required);
-  constructor(private http: Http,
+  constructor(private toast:ToastComponent,private http: Http,
     private dataService: KeywordService,
     private Jobcategory: JobcategoryService,
     private formBuilder: FormBuilder, private pagerService: PagerService) { }
@@ -83,6 +86,7 @@ selectedItem: any
     this.dataService.add(this.addCatForm.value).subscribe(
       res => {
         this.getall();
+            this.toast.setMessage('item added successfully.', 'success','left');
       },
       error => console.log(error)
     );
@@ -105,7 +109,7 @@ selectedItem: any
       res => {
         this.isEditing = false;
         this.cat = cat;
-      
+          this.toast.setMessage('item edited successfully.', 'success','left');
       },
       error => console.log(error)
     );
@@ -117,7 +121,7 @@ selectedItem: any
         res => {
           const pos = this.pagedItems.map(elem => { return elem._id; }).indexOf(cat._id);
           this.pagedItems.splice(pos, 1);
-          // this.toast.setMessage('item deleted successfully.', 'success');
+            this.toast.setMessage('item deleted successfully.', 'success','left');
         },
         error => console.log(error)
       );

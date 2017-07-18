@@ -1,13 +1,14 @@
 
 import { Component, OnInit, style } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastComponent } from '../pages/shared/toast/toast.component';
 @Component({
   templateUrl: '/nhatuyendung.component.html',
   styleUrls: ['./styles.css']
 
 })
 export class NhatuyendungComponent implements OnInit {
-  constructor(private router: Router) {
+  constructor(private toast:ToastComponent,private router: Router) {
   }
   username: string;
   islogin: boolean;
@@ -29,7 +30,7 @@ export class NhatuyendungComponent implements OnInit {
   }
   singout() {
     localStorage.clear();
-    this.router.navigate(['/login-ntd']);
+    this.router.navigate(['/ntd/login-ntd']);
   }
 
 }

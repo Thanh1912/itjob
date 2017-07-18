@@ -1,3 +1,4 @@
+<app-toast [message]="toast.message"></app-toast>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
@@ -60,7 +61,7 @@ District
 
 
               </tbody>
-              <tbody *ngIf="isEditing">
+              <tbody >
                 <tr>
                   <td colspan="4">
                     <select [(ngModel)]="id_w" (change)="changeedit($event.target.value)"    class="form-control">

@@ -3,6 +3,9 @@ import { PostService } from './../../services/post.service';
 import { PagerService } from './../../_services/pager.service';
 import { JobService } from './../../services/job.service';
 
+  import { ToastComponent } from './../../pages/shared/toast/toast.component'; 
+  
+
 
 
 
@@ -26,35 +29,30 @@ export class ListJobComponent implements OnInit {
   action_sort = "";
   key_search = ""
   //==============VARIABLES==================
-  constructor(private job: PostService, private job1: JobService, private pagerService: PagerService) {
+  constructor(private toast:ToastComponent,private job: PostService, private job1: JobService, private pagerService: PagerService) {
 
   }
   onchange_action_s(value) {
     this.action_search = value;
-    alert(value)
+
   }
   onchange_ac(value) {
     this.action_sort = value;
-    alert(value)
     this.setPage(1);
   }
   setPage(page: number) {
 
 
     var post = {}
-    if (this.action_search == "email") {
+
+    if (this.action_sort !== "") {
       post = {
-        email: this.key_search
-      }
-    }
-    if (this.action_search == "title") {
-      post = {
+        state: this.action_sort,
         title: this.key_search
       }
-    }
-       if (this.action_sort !== "") {
+    } else {
       post = {
-        state:  this.action_sort
+        title: this.key_search
       }
     }
     console.log(post)
@@ -63,20 +61,20 @@ export class ListJobComponent implements OnInit {
     this.job1.countsearchadminjob(post, 0, 10).subscribe(
       data => {
         this.count_all_job = data;
-      
+
         if (page < 1 || page > this.pager.totalPages) {
           return;
         }
         var count = this.count_all_job;
         // get pager object from service
         this.pager = this.pagerService.getPager(count, page);
-            this.job1.searchadminjob(post, this.pager.startIndex, this.pager.endIndex + 1).subscribe(
-      data => {
-        this.listJob = data
-      },
-      error => console.log(error),
-      () => this.isLoading = false
-    );
+        this.job1.searchadminjob(post, this.pager.startIndex, this.pager.endIndex + 1).subscribe(
+          data => {
+            this.listJob = data
+          },
+          error => console.log(error),
+          () => this.isLoading = false
+        );
       },
       error => console.log(error),
       () => this.isLoading = false
@@ -133,7 +131,7 @@ export class ListJobComponent implements OnInit {
     }
     this.job.edit(itemPost).subscribe(
       data => {
-        alert('Thanh cong');
+          this.toast.setMessage('Edit successfully.', 'success','left');
         this.getall(0, 10);
       },
       error => console.log(error),
@@ -147,7 +145,7 @@ export class ListJobComponent implements OnInit {
     }
     this.job.edit(itemPost).subscribe(
       data => {
-        alert('Thanh cong')
+       this.toast.setMessage('Edit successfully.', 'success','left');
         this.getall(0, 10);
       },
       error => console.log(error),

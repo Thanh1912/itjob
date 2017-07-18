@@ -5,7 +5,7 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { routing } from './app.routing';
 
-import { LoginNtdComponent } from './login-ntd/login-ntd.component';
+
 import { AuthenticationService } from './_services/authentication.service';
 import { ErrorService } from './error/error.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -24,11 +24,10 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { AuthGuard } from './_guards/index';
 import { AuthGuardAmin } from './_guards/auth_admin.guard';
 import { AuthGuardnhatuyendung } from './_guards/auth_nhatuyendung.guard';
-import { Demo01Component } from './demo01/demo01.component';
+
 @NgModule({
   declarations: [
     AppComponent,
-    LoginNtdComponent,
     AnimationComponent,
     DemocodeComponent,
     RateComponent,
@@ -36,7 +35,6 @@ import { Demo01Component } from './demo01/demo01.component';
     SearchJobPipe,
     SearchPipe,
     PageNotFoundComponent,
-    Demo01Component,
    // FileSelectDirective
   
   ],

@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit {
           profileimage: this.user.image
         }
         console.log(user)
-        //login tai khoan 
+        //login tai khoan
         this.auth.signin_tv(user)
           .subscribe(
           data => {
@@ -79,7 +79,7 @@ export class LoginComponent implements OnInit {
             this.auth.signup_tv(user)
               .subscribe(
               data => {
-                //dang nhap lai voi tai khoan 
+                //dang nhap lai voi tai khoan
                 this.auth.signin_tv(user)
                   .subscribe(
                   data => {
@@ -99,7 +99,7 @@ export class LoginComponent implements OnInit {
                     this.error = 'Username or password is incorrect';
                   }
                   )
-                //dang nhap lai voi tai khoan 
+                //dang nhap lai voi tai khoan
               }
               );
             //====tao tai khoan trong database =====
@@ -109,7 +109,7 @@ export class LoginComponent implements OnInit {
     )
   }
   goRecruiter() {
-    this.router.navigateByUrl('/login-ntd');
+    this.router.navigateByUrl('/ntd/login-ntd');
   }
   logout() {
     this._auth.logout().subscribe(
@@ -117,7 +117,7 @@ export class LoginComponent implements OnInit {
     )
   }
 
-  //dang nhap 
+  //dang nhap
   login() {
     let user = {
       email: this.loginForm.value.email1,

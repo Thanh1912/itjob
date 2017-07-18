@@ -3,41 +3,38 @@ import { Router } from '@angular/router';
 import { User } from '../_services/user.model';
 import { AuthenticationService } from '../_services/index';
 import { animateFactory } from '../index';
-import { ToastComponent } from '../shared/toast/toast.component';
+
 @Component({
   selector: 'app-login-ntd',
   templateUrl: './login-ntd.component.html',
   styleUrls: ['./login-ntd.component.css'],
-   animations: [animateFactory(1000, 100)]
+  animations: [animateFactory(1000, 100)]
 })
 export class LoginNtdComponent implements OnInit {
   model: any = {};
   loading = false;
   error = '';
-  errorTitle="";
+  errorTitle = "";
   result;
 
-  private viewContainerRef: ViewContainerRef;
-  constructor(public toast: ToastComponent,
+
+  constructor(
     private router: Router,
-    private authenticationService: AuthenticationService, viewContainerRef: ViewContainerRef) {
-    // You need this small hack in order to catch application root view container ref (ng2-bootstrap)
-    this.viewContainerRef = viewContainerRef;
-    // Breaking change solution for Angular v2.2.x
-    // https://github.com/PointInside/ng2-toastr
+    private authenticationService: AuthenticationService) {
+
 
   }
   ngOnInit() {
     // reset login status
-     if(this.authenticationService.isLoggedInE()){
-       alert('Logined')
-       this.router.navigateByUrl('/pages_employee')
-     }
+    if (this.authenticationService.isLoggedInE()) {
+    
+      this.router.navigateByUrl('/pages_employee')
+    }
   }
-  close(){
-    this.error="";
+  close() {
+    this.error = "";
   }
-  gohome(){
+  gohome() {
     this.router.navigate(['/pages'])
   }
 
@@ -62,7 +59,7 @@ export class LoginNtdComponent implements OnInit {
 
       },
       error => {
-         this.errorTitle=error.title;
+        this.errorTitle = error.title;
         this.error = error.error.message;
         this.loading = false;
       }

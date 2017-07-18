@@ -55,17 +55,17 @@ export class RegisterNtdComponent implements OnInit {
       namecompany: this.myForm.value.namecompany,
       phone: this.myForm.value.phone
     }
- 
+
     this._authService.signup_ntd(user)
       .subscribe(
       data => {
         // after successfull registration, the user is redirected to the login page
-        this._router.navigate(['/login-ntd']);
+        this._router.navigate(['/ntd/login-ntd']);
       }
       );
   }
   gologin() {
-    this.router.navigate(['/login-ntd']);
+    this.router.navigate(['/ntd/login-ntd']);
   }
   // input validator to check if the email entered by the user is actually text in an email form
   emailValidator(control) {

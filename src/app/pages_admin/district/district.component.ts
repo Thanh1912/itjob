@@ -4,6 +4,9 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { DistrictService } from './../../services/district.service';
 import { WorkplaceService } from './../../services/workplace.service';
 import { PagerService } from './../../_services/pager.service';
+import { ToastComponent } from './../../pages/shared/toast/toast.component'; 
+  
+
 @Component({
   selector: 'app-district',
   templateUrl: './district.component.html',
@@ -37,7 +40,7 @@ export class DistrictComponent implements OnInit {
   addCatForm: FormGroup;
   name = new FormControl('', Validators.required);
 
-  constructor(private http: Http,
+  constructor(private toast:ToastComponent,private http: Http,
     private dataService: DistrictService, private workplace: WorkplaceService,
     //    public toast: ToastComponent,
     private formBuilder: FormBuilder, private pagerService: PagerService) { }
@@ -89,10 +92,9 @@ export class DistrictComponent implements OnInit {
       res => {
         const newCat = res.json();
         this.pagedItems.push(newCat);
-        //this.getall()
-        // this.addCatForm.reset();
-       
-        // this.toast.setMessage('item added successfully.', 'success');
+         
+    this.toast.setMessage('item added successfully.', 'success','left');
+
       },
       error => console.log(error)
     );
@@ -121,8 +123,9 @@ export class DistrictComponent implements OnInit {
       res => {
         this.isEditing = false;
         this.getall()
-        alert('item editing cancelled.');
-        //   this.toast.setMessage('item edited successfully.', 'success');
+       
+    this.toast.setMessage('item edited successfully.', 'success','left');
+
       },
       error => console.log(error)
     );
@@ -134,7 +137,7 @@ export class DistrictComponent implements OnInit {
         res => {
           const pos = this.cats.map(elem => { return elem._id; }).indexOf(cat._id);
           this.cats.splice(pos, 1);
-          // this.toast.setMessage('item deleted successfully.', 'success');
+           this.toast.setMessage('item deleted successfully.', 'success','left');
         },
         error => console.log(error)
       );

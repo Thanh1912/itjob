@@ -3,6 +3,7 @@ import { Http } from '@angular/http';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { CompanysizeService } from './../../services/companysize.service';
 import { PagerService } from './../../_services/pager.service';
+import { ToastComponent } from './../../pages/shared/toast/toast.component'; 
 @Component({
   selector: 'app-companysize',
   templateUrl: './companysize.component.html',
@@ -29,7 +30,7 @@ export class CompanysizeComponent implements OnInit {
 
   addCatForm: FormGroup;
   name = new FormControl('', Validators.required);
-  constructor(private http: Http,
+  constructor(private toast:ToastComponent,private http: Http,
     private dataService: CompanysizeService,
     //    public toast: ToastComponent,
     private formBuilder: FormBuilder, private pagerService: PagerService) { }
@@ -70,7 +71,7 @@ export class CompanysizeComponent implements OnInit {
     this.dataService.add(this.addCatForm.value).subscribe(
       res => {
         this.getall();
-       // alert('item added successfully.')
+     this.toast.setMessage('item added successfully.', 'success','left');
         // this.toast.setMessage('item added successfully.', 'success');
       },
       error => console.log(error)
@@ -85,9 +86,7 @@ export class CompanysizeComponent implements OnInit {
   cancelEditing() {
     this.isEditing = false;
     this.cat = {};
- 
-    // this.toast.setMessage('item editing cancelled.', 'warning');
-    // reload the cats to reset the editing
+
     this.getall();
   }
 
@@ -96,8 +95,8 @@ export class CompanysizeComponent implements OnInit {
       res => {
         this.isEditing = false;
         this.cat = cat;
-        alert('item editing cancelled.');
-        //   this.toast.setMessage('item edited successfully.', 'success');
+             this.toast.setMessage('item edit successfully.', 'success','left');
+
       },
       error => console.log(error)
     );
@@ -109,7 +108,8 @@ export class CompanysizeComponent implements OnInit {
         res => {
           const pos = this.cats.map(elem => { return elem._id; }).indexOf(cat._id);
           this.cats.splice(pos, 1);
-          // this.toast.setMessage('item deleted successfully.', 'success');
+           this.toast.setMessage('tem deleted successfully.', 'success','left');
+
         },
         error => console.log(error)
       );

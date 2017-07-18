@@ -22,7 +22,7 @@
                         </li>
                         <li><a routerLink="/pages/home/search-company">Company</a>
                         </li>
-                    
+
 
                     </ul>
                     <ul class="nav navbar-nav navbar-right mj_right_menu mj_login_menu" *ngIf="islogin==true">
@@ -48,14 +48,14 @@
                             </a>
                         </li>
                     </ul>
-         
+
                     <div class="mj_profilediv" *ngIf="mj_profilediv">
                         <ul>
                             <li><a routerLink="/pages/Manager-Account"><i class="fa fa-user"></i> My account</a>
                             </li>
                             <li><a routerLink="/pages/Manager-JobApply"><i class="fa fa-briefcase"></i>manage jobs</a>
                             </li>
-                        
+
                             <li><a routerLink="/pages/Manager-JobApply"><i class="fa fa-heart"></i>saved jobs</a>
                             </li>
 
@@ -63,7 +63,7 @@
                             </li>
                         </ul>
                     </div>
-                  
+
                     <ul class="nav navbar-nav navbar-right mj_right_menu mj_withoutlogin_menu" *ngIf="islogin==false">
                        <!-- <li class="mj_searchbtn"><a (click)="login()"><i class="fa fa-search"></i></a>
                             <div class="mj_search_option">
@@ -86,13 +86,12 @@
                        <ul class="sub_menu">
                                 <li><a style="margin-left:-3px;" routerLink="/admin/login">ADMIN</a>
                                 </li>
-                                <li><a style="margin-left:-3px;" routerLink="/login-ntd">Nhà Tuyển Dụng</a>
-                                </li>
+
                                  <li><a style="margin-left:-3px;" routerLink="/pages/login">Thành Viên</a>
                                 </li>
                             </ul>
                         </li>
-                          <li><a routerLink="/pages/login-employee"><i class="fa  fa-cloud-upload"></i>Đăng Tuyển & Kiếm Nhân Tài</a>
+                          <li><a routerLink="/ntd/login-ntd"><i class="fa  fa-cloud-upload"></i>Đăng Tuyển & Kiếm Nhân Tài</a>
                         </li>
                     </ul>
 

@@ -14,7 +14,6 @@ import { SearchCompanyComponent } from './search-company/search-company.componen
 import { DetailCompanyComponent } from './detail-company/detail-company.component';
 import { ManagerAccountComponent } from './manager-account/manager-account.component';
 import { ManagerJobApplyComponent } from './manager-job-apply/manager-job-apply.component';
-import { LoginEmployeeComponent } from './login-employee/login-employee.component';
 import { Angular2SocialLoginModule } from "angular2-social-login";
 import { Title } from '@angular/platform-browser';
 import { RegisterNtdComponent } from './register-ntd/register-ntd.component';
@@ -69,19 +68,14 @@ let providers = {
     DetailCompanyComponent,
     ManagerAccountComponent,
     ManagerJobApplyComponent,
-    LoginEmployeeComponent,
     RegisterNtdComponent,
     RegisterJobComponent,
   FileSelectDirective,
     UpdateInfoUserComponent,
     SearchCompanyPipe,
-   
     CapitalizePipe,
-   
     SearchProfileComponent,
-   
     ResumePreviewComponent,
-   
     DetailCandidateComponent,
    
   ]
