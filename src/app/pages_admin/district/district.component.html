@@ -27,7 +27,7 @@ District
           </div>
         </div>
         <!-- *ngIf="!isLoading"-->
-        <div class="card" *ngIf="!isEditing">
+        <div class="card" >
           <h4 class="card-header">All ({{cats.length}})</h4>
           <div class="card-block">
             <table class="table table-bordered table-striped">
@@ -57,11 +57,8 @@ District
                 </tr>
 
               </tbody>
-              <tbody>      <!-- pager -->
-
-
-              </tbody>
-              <tbody >
+         
+              <tbody *ngIf="isEditing">
                 <tr>
                   <td colspan="4">
                     <select [(ngModel)]="id_w" (change)="changeedit($event.target.value)"    class="form-control">
