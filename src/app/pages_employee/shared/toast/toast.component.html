@@ -1,0 +1,30 @@
+<div *ngIf="message.body&& message.position=='center'" class="alert alert-{{message.type}} alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <strong>Message:</strong> {{message.body}}
+</div>
+
+
+<div *ngIf="message.body&& message.position=='left' &&message.type!=='close'" class=" lobibox-notify lobibox-notify-{{message.type}} animated-fast fadeInDown"
+  style="width: 400px;    position: absolute;
+    z-index: 99999;">
+  <div class="lobibox-notify-icon-wrapper">
+    <div class="lobibox-notify-icon">
+      <div>
+        <div class="icon-el">
+          <i class="fa fa-times-circle"></i>
+          </div>
+      </div>
+    </div>
+  </div>
+  <div class="lobibox-notify-body">
+    <div class="lobibox-notify-title">
+      <div></div>
+    </div>
+    <div class="lobibox-notify-msg" style="max-height: 60px;position: absolute;">{{message.body}}</div>
+  </div> <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="close()">
+  <span class="lobibox-close">×</span>
+  </button>
+
+</div>
