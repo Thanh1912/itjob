@@ -63,7 +63,7 @@ module.exports.login = function (req, res, next) {
       token: token,
       userId: doc._id,
       username: doc.email,
-      role: doc.role,
+      role: 'thanhvien',
       fullname: doc.fullname,
     })
   })
