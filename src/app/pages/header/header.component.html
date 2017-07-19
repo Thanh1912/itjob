@@ -16,7 +16,7 @@
             <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
                 <div class="collapse navbar-collapse mj_navmenu" id="mj_menu">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a routerLink="/pages/home">home</a>
+                        <li class="active"><a routerLink="/pages/home">Home</a>
                         </li>
                           <li><a routerLink="/pages/Search-cadidate">Candidates</a>
                         </li>
@@ -39,10 +39,10 @@
                                 </form>
                             </div>
                         </li>-->
-                        <li><a  (click)="clickmj_likedetails()"><i class="fa fa-heart"></i><sup>2</sup></a>
+                      <!--  <li><a  (click)="clickmj_likedetails()"><i class="fa fa-heart"></i><sup>2</sup></a>
                         </li>
                         <li><a  (click)="clickmj_notification_detail()"><i class="fa fa-bell"></i><sup>2</sup></a>
-                        </li>
+                        </li>-->
                         <li>
                             <a class="mj_profileimg" (click)="clickmj_profilediv()">{{info?.username|uppercase}}<img style="width:50px;height:50px;" src="http://localhost:3000/uploads/forms/anhdaidien/anonymous.png" alt="user"><i class="fa fa-angle-down"></i>
                             </a>
@@ -64,7 +64,7 @@
                         </ul>
                     </div>
 
-                    <ul class="nav navbar-nav navbar-right mj_right_menu mj_withoutlogin_menu" *ngIf="islogin==false">
+                    <ul class="nav navbar-nav navbar-right mj_right_menu mj_withoutlogin_menu" style=" margin-top: -18px;" *ngIf="islogin==false">
                        <!-- <li class="mj_searchbtn"><a (click)="login()"><i class="fa fa-search"></i></a>
                             <div class="mj_search_option">
                                 <form>
@@ -91,7 +91,7 @@
                                 </li>
                             </ul>
                         </li>
-                          <li><a routerLink="/ntd/login-ntd"><i class="fa  fa-cloud-upload"></i>Đăng Tuyển & Kiếm Nhân Tài</a>
+                          <li><a routerLink="/ntd/login-ntd"><i class="fa  fa-cloud-upload"> Nhà Tuyển Dụng</i>  </a>
                         </li>
                     </ul>
 

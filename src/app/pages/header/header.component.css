@@ -1,4 +1,8 @@
-.mj_navmenu .navbar-right[_ngcontent-c1] {
+.mj_navmenu .navbar-right {
     margin-right: 0;
     margin-top: -17px;
+}
+.mj_navmenu .navbar-right {
+    margin-right: 0;
+    margin-top: -18px;
 }

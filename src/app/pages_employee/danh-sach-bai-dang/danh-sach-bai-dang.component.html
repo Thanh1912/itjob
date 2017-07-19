@@ -38,6 +38,7 @@
 
                       </div>
                     </a>
+                    
                     <a class="btn btn-primary btn-sm btn-flat" [routerLink]="['/pages_employee/application', item._id]">
                       <div class="tools">
                         <i class="fa fa-edit">Show All application </i>
@@ -52,6 +53,12 @@
                     <a class="btn btn-primarys btn-sm btn-flat" *ngIf="item.status==true">
                       <div class="tools">
                         <i class="fa fa-check-square"> Đã Duyệt</i>
+                      </div>
+                    </a>
+                     <a class="btn btn-primary btn-sm btn-flat" (click)="delete(item)">
+                      <div class="tools">
+                        <i class="fa fa-trash"></i>
+   
                       </div>
                     </a>
                   </div>

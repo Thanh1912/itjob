@@ -213,7 +213,7 @@ module.exports.get_All_Skill_Company = function (req, res) {
           "count": { "$sum": 1 }
         }
       },
-       {$lookup: {from: "jobcategorydetail", localField: "jobcategorydetail", foreignField: "_id", as: "details"}},
+      { $lookup: { from: "jobcategorydetail", localField: "jobcategorydetail", foreignField: "_id", as: "details" } },
     ],
     function (err, docs) {
       if (err) console.log(err);
@@ -444,6 +444,10 @@ module.exports.adminsearchAllpage = function (req, res) {
   var skippage = req.params.skip;
   var limitpage = req.params.limit;
   var action = 0;
+  if (parseInt(skippage) == 0 && parseInt(limitpage) == 0) {
+    skippage = "0";
+    limitpage = "10";
+  }
   //title job - email- sort active - company
   var title = req.body.title;
   var email = req.body.email;
@@ -451,7 +455,6 @@ module.exports.adminsearchAllpage = function (req, res) {
   var state = req.body.state;
   console.log(state)
   obj_condition = [];
-  var k = 0; //kiem tra xem co 1 trong 3 dieu kien search theo title email,namecompany hay ko
   var arr = [
     { $skip: parseInt(skippage) },
     { $limit: parseInt(limitpage) },
@@ -502,33 +505,6 @@ module.exports.adminsearchAllpage = function (req, res) {
     obj_condition.push(
       { "title": new RegExp(title) }
     );
-    k = 1
-  }
-  if (email !== "" && typeof email !== "undefined") {
-    //=====dieu kien cua search theo email====
-    con1 = {
-      "$addFields": {
-        "company": {
-          "$arrayElemAt": [
-            {
-              "$filter": {
-                "input": "$company",
-                "as": "comp",
-                "cond": {
-                  "$eq": ["$$comp.email", new RegExp(email)]
-                }
-              }
-            }, 0
-          ]
-        }
-      }
-    }
-    //=====dieu kien cua search theo email ====
-    arr.push(con1)
-  }
-
-  //======bat dau kiem tra add condition vao==============
-  if (k == 1) {
     con2 =
       {
         $match: {
@@ -537,6 +513,10 @@ module.exports.adminsearchAllpage = function (req, res) {
       }
     arr.push(con2)
   }
+
+
+  //======bat dau kiem tra add condition vao==============
+
   if (state !== "" && typeof state !== "undefined") {
     var con = {
       $sort: {
@@ -545,50 +525,20 @@ module.exports.adminsearchAllpage = function (req, res) {
     }
     arr.push(con)
   }
-
-  if (namecopany !== "" && typeof namecopany !== "undefined") {
-    //=====dieu kien cua search theo ten cong ty ====
-    con1 = {
-      "$addFields": {
-        "company": {
-          "$arrayElemAt": [
-            {
-              "$filter": {
-                "input": "$company",
-                "as": "comp",
-                "cond": {
-                  "$eq": ["$$comp.info_recruiter.namecompany", new RegExp(namecopany)]
-                }
-              }
-            }, 0
-          ]
-        }
-      }
-    }
-    //=====dieu kien cua search theo ten cong ty ====
-    arr.push(con1)
-  }
-
-
-
-
-
-
-
-
-
-
-
   model.aggregate(arr).exec(function (err, docs) {
     if (err) throw err;
+    console.log(docs)
     res.json(docs);
   });
 };
 module.exports.admincountsearchAllpage = function (req, res) {
   var skippage = req.params.skip;
   var limitpage = req.params.limit;
+  if (parseInt(skippage) == 0 && parseInt(limitpage) == 0) {
+    skippage = "0";
+    limitpage = "10";
+  }
   var action = 0;
-  //title job - email- sort active - company
   var title = req.body.title;
   var email = req.body.email;
   var namecopany = req.body.namecopany;
@@ -645,34 +595,13 @@ module.exports.admincountsearchAllpage = function (req, res) {
     );
     k = 1
   }
-  if (email !== "" && typeof email !== "undefined") {
-    //=====dieu kien cua search theo email====
-    con1 = {
-      "$addFields": {
-        "company": {
-          "$arrayElemAt": [
-            {
-              "$filter": {
-                "input": "$company",
-                "as": "comp",
-                "cond": {
-                  "$eq": ["$$comp.email", 'demo-ntd@gmail.com']
-                }
-              }
-            }, 0
-          ]
-        }
-      }
-    }
-    //=====dieu kien cua search theo email ====
-    arr.push(con1)
-  }
+
   //======bat dau kiem tra add condition vao==============
   if (k == 1) {
     con2 =
       {
         $match: {
-          $and: obj_condition
+            $and: obj_condition
         }
       }
     arr.push(con2)
@@ -686,33 +615,10 @@ module.exports.admincountsearchAllpage = function (req, res) {
     }
     arr.push(con)
   }
-
-  if (namecopany !== "" && typeof namecopany !== "undefined") {
-    //=====dieu kien cua search theo ten cong ty ====
-    con1 = {
-      "$addFields": {
-        "company": {
-          "$arrayElemAt": [
-            {
-              "$filter": {
-                "input": "$company",
-                "as": "comp",
-                "cond": {
-                  "$eq": ["$$comp.info_recruiter.namecompany", new RegExp(namecopany)]
-                }
-              }
-            }, 0
-          ]
-        }
-      }
-    }
-    //=====dieu kien cua search theo ten cong ty ====
-    arr.push(con1)
-  }
   model.aggregate(arr).exec(function (err, docs) {
     if (err) throw err;
     console.log(docs.length)
-    console.log(docs.length)
+ 
     res.json(docs.length);
   });
 };
@@ -812,7 +718,7 @@ module.exports.get_job_key = function (req, res) {
 
 module.exports.top10post = function (req, res) {
   model.aggregate([
-      { $match: { endPost: { "$gte": new Date() }, status: true } },
+    { $match: { endPost: { "$gte": new Date() }, status: true } },
     {
       "$lookup": {
         "from": "recruiters",

@@ -107,6 +107,19 @@ export class ListJobComponent implements OnInit {
       () => this.isLoading = false
     );
   }
+   delete(item) {
+         if (window.confirm('Are you sure you want to permanently delete this item?')) {
+    this.job.delete(item).subscribe(
+      data => {
+         const pos = this.listJob.map(elem => { return elem._id; }).indexOf(item._id);
+          this.listJob.splice(pos, 1);
+          this.toast.setMessage('Delete successfully.', 'success','left');
+      },
+      error => console.log(error),
+      () => this.isLoading = false
+    );
+         }
+  }
   isloadfirst: boolean;
   getall(start: number, end: number) {
     this.job1.getallpage(start, end).subscribe(
