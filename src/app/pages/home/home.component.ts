@@ -28,8 +28,8 @@ export class HomeComponent implements OnInit {
   Listcompany: any;
   listjobtop: any;
   listslider: any;
-    listCandidate:any;
-  constructor(   private Candidate: CandidateService, private title: Title,private slider: sliderService, private job: JobService, private JobcategoryService: JobcategoryService, private JobcategoryDetailService: JobcategoryDetailService) {
+  listCandidate: any;
+  constructor(private Candidate: CandidateService, private title: Title, private slider: sliderService, private job: JobService, private JobcategoryService: JobcategoryService, private JobcategoryDetailService: JobcategoryDetailService) {
 
   }
 
@@ -45,7 +45,7 @@ export class HomeComponent implements OnInit {
     );
   }
 
-    getCandidateTop() {
+  getCandidateTop() {
     this.Candidate.getTop().subscribe(
       data => {
         this.listCandidate = data;

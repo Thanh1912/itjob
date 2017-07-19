@@ -8,7 +8,7 @@
             <div class="carousel-inner">
 
                 <div [class.active]="i===0" class="item " *ngFor="let item of listslider;let i = index">
-                    <img src="http://localhost:3000/uploads/forms/post/{{item.image}}" alt="Los Angeles" style="width:100%;height: 876px">
+                    <img src="http://localhost:3000/uploads/forms/post/{{item.image}}" alt="Los Angeles" class="img-slider" style="width:100%;height: 876px">
                     <div class="xcarousel-caption set-caption">
                         <a class="carousel-link" href="{{item.link}}">
                             <img class="slide-product-image img-responsive right-margin-40" src="http://localhost:3000/uploads/forms/logo/{{item.icon}} " alt="Dell Inc" align="left"><h1 class="no-top-margin carousel-link add-shadow">
@@ -82,7 +82,7 @@
 
                                     </tbody>
                                 </table>
-                             
+
                             </div>
 
                         </div>
@@ -116,7 +116,7 @@
                             <div class="mj_tabcontent mj_toppadder30">
                                 <table class="table table-striped">
                                     <tbody>
-                                        <tr *ngFor="let itemcandidate of listCandidate" >
+                                        <tr *ngFor="let itemcandidate of listCandidate">
                                             <td><a href="#"><i class="fa fa-heart"></i></a>
                                             </td>
                                             <td>
@@ -125,14 +125,14 @@
                                             </td>
                                             <td>
                                                 <h4><a routerLink="/pages/home/detail-cadidate/{{itemcandidate._id}}"> {{itemcandidate?.nameprofile}} </a></h4>
-                                                <p> {{itemcandidate?.experience}}   Năm Kinh Nghiệm</p>
+                                                <p> {{itemcandidate?.experience}} Năm Kinh Nghiệm</p>
                                             </td>
                                             <td>
                                                 <i class="fa fa-map-marker"></i>
                                                 <p> {{itemcandidate.workplaceid_view[0]?.name}},{{itemcandidate.districtid_view[0]?.name}}</p>
                                             </td>
                                             <td>
-                                                <a  class="mj_btn mj_bluebtn">  {{itemcandidate.jobcategories_view[0]?.name}}</a>
+                                                <a class="mj_btn mj_bluebtn">  {{itemcandidate.jobcategories_view[0]?.name}}</a>
                                             </td>
                                             <td><span>${{itemcandidate?.salary}}</span>
                                             </td>

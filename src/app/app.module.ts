@@ -5,13 +5,12 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { routing } from './app.routing';
 
-
+import { FileSelectDirective } from 'ng2-file-upload';
 import { AuthenticationService } from './_services/authentication.service';
 import { ErrorService } from './error/error.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AnimationComponent } from './animation/animation.component';
 import { DemocodeComponent } from './democode/democode.component';
-import { FileSelectDirective } from 'ng2-file-upload';
 import { RateComponent } from './directive/rate/rate.component';
 import { ComfirmComponent } from './directive/comfirm/comfirm.component';//<======Animation
 import { ToastComponent } from './shared/toast/toast.component';
@@ -45,10 +44,11 @@ import { AuthGuardnhatuyendung } from './_guards/auth_nhatuyendung.guard';
     routing,
     CKEditorModule,
     SharedModule,
+  
     BrowserAnimationsModule  //<======Animation
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [AuthGuardnhatuyendung,AuthGuardAmin,AuthGuard,AuthenticationService, ErrorService, ToastComponent,ComfirmComponent],
+  providers: [AuthGuardnhatuyendung,AuthGuardAmin,AuthGuard,AuthenticationService, ErrorService,ComfirmComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

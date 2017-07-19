@@ -174,6 +174,7 @@ export class SearchProfileComponent implements OnInit {
       this.jobcategoryInput="";
        this.experienceInput="";
         this.salaryInput="";
+        this.ChangeListJob() ;
   }
   ChangeListJob() {
     var Ksalary = this.salaryInput;

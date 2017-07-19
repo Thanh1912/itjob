@@ -5,7 +5,7 @@ import { ResumeService } from './../../services/resume.service';
 import { PagerService } from './../../_services/pager.service';
 import { ActivatedRoute } from '@angular/router';
 import { SearchCvPipe }from '../Pipe/search-cv.pipe';
-import { ToastComponent } from '../shared/toast/toast.component';
+
 @Component({
   selector: 'app-applicant',
   templateUrl: './applicant.component.html',
@@ -21,7 +21,7 @@ export class ApplicantComponent implements OnInit {
   // paged items
   pagedItems: any[];
 selectaction:any;
-  constructor(private toast:ToastComponent,private route: ActivatedRoute, private resume: ResumeService, private formBuilder: FormBuilder, private pagerService: PagerService) { }
+  constructor(private route: ActivatedRoute, private resume: ResumeService, private formBuilder: FormBuilder, private pagerService: PagerService) { }
   id: String;
   private sub: any;
   onchange(value:string){
@@ -32,7 +32,7 @@ selectaction:any;
     this.selectaction="new";
       this.term="";
 
-       this.toast.setMessage('you successfully registered!', 'error','left');
+      // this.toast.setMessage('you successfully registered!', 'error','left');
     this.sub = this.route.params.subscribe(params => {
       this.id = params['id'];
       this.getall(this.id)

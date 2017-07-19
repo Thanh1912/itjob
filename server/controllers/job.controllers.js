@@ -812,6 +812,7 @@ module.exports.get_job_key = function (req, res) {
 
 module.exports.top10post = function (req, res) {
   model.aggregate([
+      { $match: { endPost: { "$gte": new Date() }, status: true } },
     {
       "$lookup": {
         "from": "recruiters",

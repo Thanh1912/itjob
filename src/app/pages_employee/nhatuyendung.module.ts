@@ -26,8 +26,7 @@ import { ResumeService } from './../services/resume.service'
 import { PagerService } from './../_services/pager.service';
 import { ViewprofileComponent } from './viewprofile/viewprofile.component';
 import { SearchCvPipe } from './Pipe/search-cv.pipe';
-import { ToastComponent } from './shared/toast/toast.component';
-import { SharedModule } from './shared/shared.module';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -36,7 +35,7 @@ import { SharedModule } from './shared/shared.module';
     FormsModule,
     // FileSelectDirective,
     MultiselectDropdownModule,
-    SharedModule,
+
     ReactiveFormsModule,// <-- import the FormsModule before binding with [(ngModel)]
   ],
   declarations: [
@@ -46,10 +45,13 @@ import { SharedModule } from './shared/shared.module';
     ApplicantComponent,
     JobComponent,
     NhatuyendungComponent,
-    PdfViewerComponent, EditBaidangComponent, ViewprofileComponent, SearchCvPipe
+    PdfViewerComponent, 
+    EditBaidangComponent, 
+    ViewprofileComponent,
+     SearchCvPipe
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [ToastComponent,CandidateService, PagerService, ResumeService, JobcategoryService, QuanliNtdService, KeywordService, WorkplaceService, PostService, DistrictService, countryService, CompanysizeService]
+  providers: [ CandidateService, PagerService, ResumeService, JobcategoryService, QuanliNtdService, KeywordService, WorkplaceService, PostService, DistrictService, countryService, CompanysizeService]
 })
 export class NhatuyendungModule {
 

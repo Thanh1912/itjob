@@ -140,7 +140,8 @@ export class SliderComponent implements OnInit {
         this.pagerJOB = this.pagerService.getPager(count, page);
         this.job1.searchadminjob(post, this.pagerJOB.startIndex, this.pagerJOB.endIndex + 1).subscribe(
           data => {
-            this.list_Add_Job = data
+            this.list_Add_Job = data;
+            console.log(data)
           },
           error => console.log(error),
           () => this.isLoading = false

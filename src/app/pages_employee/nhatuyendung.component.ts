@@ -1,14 +1,14 @@
 
 import { Component, OnInit, style } from '@angular/core';
 import { Router } from '@angular/router';
-import { ToastComponent } from '../pages/shared/toast/toast.component';
+
 @Component({
   templateUrl: '/nhatuyendung.component.html',
   styleUrls: ['./styles.css']
 
 })
 export class NhatuyendungComponent implements OnInit {
-  constructor(private toast:ToastComponent,private router: Router) {
+  constructor(private router: Router) {
   }
   username: string;
   islogin: boolean;
