@@ -8,10 +8,8 @@ export class AuthGuard implements CanActivate {
   }
   canActivate() {
     this.role = localStorage.getItem('currentUserRole');
-      alert( this.role )
     if (localStorage.getItem('id_token') && this.role == 'thanhvien') {
       // logged in so return true
-  
         this.toast.setMessage('you successfully registered!', 'error');
       return true;
     }
