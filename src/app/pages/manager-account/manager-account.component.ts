@@ -112,8 +112,8 @@ export class ManagerAccountComponent implements OnInit {
     //override the onAfterAddingfile property of the uploader so it doesn't authenticate with //credentials.
     this.uploaderanhdaidien.onAfterAddingFile = (file) => { file.withCredentials = false; };
     this.uploaderanhdaidien.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
-      console.log("UpLoad :", item, status, response);
-    this.toast.setMessage('you successfully Upload!', 'success','left');
+      console.log("UpLoad anh dai dien:", item, status, response);
+    this.toast.setMessage('you successfully Upload Anh dai dien!', 'success','left');
 
     };
     //===========/Upload Imgage Anh dai dien================
@@ -158,8 +158,7 @@ export class ManagerAccountComponent implements OnInit {
         .post('http://localhost:3000/api/uploadcv', formData).map((res: Response) => res.json()).subscribe(
         //map the success function and alert the response
         (success) => {
-
-
+          alert('thanh cong')
         },
         (error) => alert(error))
     }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
+import { JobService } from '../../services/job.service';
 import { CandidateService } from '../../services/candidate.service';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 @Component({
@@ -20,13 +21,13 @@ import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 })
 export class DetailCandidateComponent implements OnInit {
 
-  constructor(private _location: Location, private Candidate: CandidateService, private route: ActivatedRoute) { }
+  constructor( private job:JobService,  private _location: Location, private Candidate: CandidateService, private route: ActivatedRoute) { }
   id: any;
   sub: any;
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
-      this.id = params['id'];
+         this.id = this.job.getIdRouter(params['id']);
       this.getdetail(this.id);
       console.log(this.id)
     });

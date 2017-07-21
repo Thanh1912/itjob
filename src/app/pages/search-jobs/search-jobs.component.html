@@ -212,7 +212,7 @@
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                                 <aside class="widget widget_tag_cloud">
                                     <h4 class="widget-title">Catagory</h4>
-                                    <a *ngFor="let item of list_all_jobcategory" [routerLink]="['/pages/home/search-jobs', 'catagory',item._id,'all']">{{item.name}}</a>
+                                    <a *ngFor="let item of list_all_jobcategory"  style="cursor:pointer" [routerLink]="['/pages/home/search-jobs', 'catagory',item._id,'all']">{{item.name}}</a>
 
                                 </aside>
                                 <!--Body Model-->
@@ -240,16 +240,16 @@
                     </tr>
                     <tr *ngFor="let listjob of allItem |capitalize : Search_title :allItem:fromFilter:toFilter">
                         <td>
-                            <div class="mj_liks"><a href="#"><i class="fa fa-heart"></i></a><span>Save this Job</span>
+                            <div class="mj_liks"><a ><i class="fa fa-heart"></i></a><span>Save this Job</span>
                             </div>
                         </td>
                         <td>
-                            <a href="#"><img style="width: 100px;height: 100px;" src="http://localhost:3000/uploads/forms/logo/{{listjob.company[0].info_recruiter.logo}}" class="img-responsive" alt="">
+                            <a  style="cursor:pointer" (click)="goRouterJob(listjob.title,listjob._id)" style="cursor:pointer" ><img style="width: 100px;height: 100px;" src="http://localhost:3000/uploads/forms/logo/{{listjob.company[0].info_recruiter.logo}}" class="img-responsive" alt="">
                                 </a>
                         </td>
                         <td>
                             <tr>
-                                <h4><a [routerLink]="['../../../../detail-jobs',listjob._id ]">{{listjob.title}}</a></h4>
+                                <h4><a style="cursor:pointer"  style="cursor:pointer" (click)="goRouterJob(listjob.title,listjob._id)">{{listjob.title}}</a></h4>
                             </tr>
 
                             <tr>

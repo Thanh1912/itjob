@@ -2,6 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { CandidateService } from './../../services/candidate.service';
 import { PagerService } from './../../_services/pager.service';
 import { Location } from '@angular/common';
+import { ActivatedRoute, Router } from "@angular/router";
+import { JobService } from "../../services/job.service";
 @Component({
   selector: 'app-viewprofile',
   templateUrl: './viewprofile.component.html',
@@ -24,7 +26,7 @@ export class ViewprofileComponent implements OnInit {
   list = []
   // paged items
   @Input() pagedItems: any[];
-  constructor(private _location: Location, private candidate: CandidateService, private pagerService: PagerService) { }
+  constructor(private job:JobService, private router: Router,private _location: Location, private candidate: CandidateService, private pagerService: PagerService) { }
  
 
   ngAfterContentInit() {
@@ -32,6 +34,11 @@ export class ViewprofileComponent implements OnInit {
   }
   ngAfterViewInit() {
     this.setPage(1)
+  }
+     goRouterCandidate(name, id) {
+    this.router.navigateByUrl(
+      "pages/home/detail-cadidate/" + this.job.bodauTiengViet(name)+"-" + id
+    );
   }
   ngOnInit() {
 

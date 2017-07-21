@@ -497,16 +497,13 @@ module.exports.candidate_suitable = function (req, res) {
       })
   }
 
-  obj2.push(
-    { "status": true, }
-  )
 
   console.log(obj2)
   var ObjectId = require('mongoose').Types.ObjectId;
   model.aggregate([
     {
       $match: {
-        $and: obj2
+        $or: obj2
       }
     },
     {
@@ -556,6 +553,7 @@ module.exports.candidate_suitable = function (req, res) {
     },
   ]).exec(function (err, docs) {
     if (err) throw err;
+    console.log(docs.length)
     res.json(docs);
   });
 

@@ -60,7 +60,6 @@ router.route('/detail_Candidate/:id').get(candidatectrl.detail_Candidate);
 
 
 
-
 router.route('/thanhvien').get(candidatectrl.getAll);
 router.route('/thanhvien/count').get(candidatectrl.count);
 router.route('/thanhvien').post(candidatectrl.insert);
@@ -180,7 +179,7 @@ router.route('/slider/:id').delete(sliderctrl.delete);
 
 var postctrl = require('../controllers/job.controllers.js');
 
-
+router.route('/getdemo2/:title').get(postctrl.demo);
 
 router.route('/get-All-Skill-Company/:id').get(postctrl.get_All_Skill_Company);
 router.route('/count-job-in-Company/:id').get(postctrl.count_job_in_Company);

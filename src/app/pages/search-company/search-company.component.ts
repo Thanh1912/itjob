@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { PagerService } from './../../_services/pager.service';
 import { CompanyService } from '../../services/company.service';
 import { SearchCompanyPipe } from './../search-company.pipe';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
+import { JobService } from './../../services/job.service';
 @Component({
   selector: 'app-search-company',
   templateUrl: './search-company.component.html',
@@ -28,7 +30,7 @@ setvalue(value:string){
   // paged items
   pagedItems: any[];
 
-  constructor(private company: CompanyService,
+  constructor(private job: JobService,   private router: Router,private company: CompanyService,
    private pagerService: PagerService) { }
   listcompany: any;
     all=[];
@@ -58,6 +60,11 @@ setvalue(value:string){
 
     // get current page of items
     this.pagedItems = this.all.slice(this.pager.startIndex, this.pager.endIndex + 1);
+  }
+   goRouterCompany(name, id) {
+    this.router.navigateByUrl(
+      "pages/home/detail-company/" + this.job.bodauTiengViet(name)+"-" + id
+    );
   }
 
 }

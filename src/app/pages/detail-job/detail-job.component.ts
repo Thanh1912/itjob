@@ -105,7 +105,7 @@ export class DetailJobComponent implements OnInit {
       window.scrollTo(0, 0)
     });
     this.sub = this.route.params.subscribe(params => {
-      this.id = params['id'];
+      this.id = this.job.getIdRouter(params['id']);
     });
     this.get();
     if (localStorage.getItem('userId') != null) {
@@ -124,7 +124,7 @@ export class DetailJobComponent implements OnInit {
           this.isArrayListJobEmpty = true;
             this.toast.setMessage('Job End Post!', 'warning', 'left');
         } else {
-          this.jobitem = data;
+          this.jobitem = data[0];
           this.idRecruter = this.jobitem.recruiterid
           console.log(this.jobitem)
         }

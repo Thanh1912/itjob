@@ -61,8 +61,8 @@ export class JobComponent implements OnInit, AfterViewInit {
   salaryend = 0;
   id_workplace = "";
   id_dictrict = "";
-  Donvi = "VND";
-  Viewsalary = "0-0 VND";
+  Donvi = "USD";
+  Viewsalary = "0-0 USD";
   ListJobcategory: any;
   ListJobcategoryDetail: any;
   sluongtuyen: String;

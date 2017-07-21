@@ -135,7 +135,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('username', data.username);
         localStorage.setItem('currentUserRole', data.role);
           
-            alert(localStorage.getItem('id_token'))
+            
         location.reload();
         this.router.navigate(['']);
         // display toastr success message pop up to inform the user that he logged in successfully

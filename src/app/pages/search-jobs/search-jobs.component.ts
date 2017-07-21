@@ -86,8 +86,11 @@ export class SearchJobsComponent implements OnInit {
   }
   changeJOBTIME(value: String) {
     this.JobTime = value;
-
-
+  }
+    goRouterJob(name, id) {
+    this.router.navigateByUrl(
+      "pages/home/detail-jobs/" + this.job.bodauTiengViet(name)+"-" + id
+    );
   }
   resetDateFrom() {
     this.from = new Date('Sat Mar 24 1900 06:50:39 GMT+0100 (CET)');

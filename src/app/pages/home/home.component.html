@@ -62,11 +62,12 @@
                                             <td><a href="#"><i class="fa fa-heart"></i></a>
                                             </td>
                                             <td style="width: 120px;">
-                                                <a [routerLink]="['detail-company', item.inforCompany[0]._id ]"><img src="http://localhost:3000/uploads/forms/logo/{{item.inforCompany[0].info_recruiter.logo}}" class="img-responsive" style="width: 80px;height:80px" alt="">
+                                                <a style="cursor:pointer"  (click)="goRouterJob(item.inforCompany[0].namecompany,item.inforCompany[0]._id)"  [routerLink]="['detail-company', item.inforCompany[0]._id ]"><img src="http://localhost:3000/uploads/forms/logo/{{item.inforCompany[0].info_recruiter.logo}}" class="img-responsive" style="width: 80px;height:80px" alt="">
                                                 </a>
                                             </td>
                                             <td>
-                                                <h4><a [routerLink]="['detail-jobs', item._id ]">{{item.title}}</a></h4>
+                                                <!--[routerLink]="['detail-jobs', Router_filter(item._id) ]"-->
+                                                <h4><a  style="cursor:pointer" (click)="goRouterJob(item.title,item._id)">{{item.title}}</a></h4>
                                                 <p>{{item.inforCompany[0].info_recruiter.namecompany}}</p>
                                             </td>
                                             <td>
@@ -120,11 +121,11 @@
                                             <td><a href="#"><i class="fa fa-heart"></i></a>
                                             </td>
                                             <td>
-                                                <a routerLink="/pages/home/detail-cadidate/{{itemcandidate._id}}"><img style=" width: 80px;" src="http://localhost:3000/uploads/forms/anhdaidien/{{itemcandidate?.profileimage}}" class="img-responsive" alt="">
+                                                <a (click)="goRouterCandidate(itemcandidate.nameprofile,itemcandidate._id)" ><img style=" width: 80px;" src="http://localhost:3000/uploads/forms/anhdaidien/{{itemcandidate?.profileimage}}" class="img-responsive" alt="">
                                                 </a>
                                             </td>
                                             <td>
-                                                <h4><a routerLink="/pages/home/detail-cadidate/{{itemcandidate._id}}"> {{itemcandidate?.nameprofile}} </a></h4>
+                                                <h4><a (click)="goRouterCandidate(itemcandidate.nameprofile,itemcandidate._id)"> {{itemcandidate?.nameprofile}} </a></h4>
                                                 <p> {{itemcandidate?.experience}} Năm Kinh Nghiệm</p>
                                             </td>
                                             <td>

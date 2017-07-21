@@ -1,18 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { PostService } from './../../services/post.service';
-import { PagerService } from './../../_services/pager.service';
-import { JobService } from './../../services/job.service';
+import { Component, OnInit } from "@angular/core";
+import { PostService } from "./../../services/post.service";
+import { PagerService } from "./../../_services/pager.service";
+import { JobService } from "./../../services/job.service";
 
-  import { ToastComponent } from './../../pages/shared/toast/toast.component'; 
-  
+import { ToastComponent } from "./../../pages/shared/toast/toast.component";
 
-
-
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
-  selector: 'app-list-job',
-  templateUrl: './list-job.component.html',
-  styleUrls: ['./list-job.component.css']
+  selector: "app-list-job",
+  templateUrl: "./list-job.component.html",
+  styleUrls: ["./list-job.component.css"]
 })
 export class ListJobComponent implements OnInit {
   //==============VARIABLES ==================
@@ -27,36 +25,41 @@ export class ListJobComponent implements OnInit {
   count_all_job: number;
   action_search = "";
   action_sort = "";
-  key_search = ""
+  key_search = "";
   //==============VARIABLES==================
-  constructor(private toast:ToastComponent,private job: PostService, private job1: JobService, private pagerService: PagerService) {
-
-  }
+  constructor(
+    private router: Router,
+    private toast: ToastComponent,
+    private job: PostService,
+    private job1: JobService,
+    private pagerService: PagerService
+  ) {}
   onchange_action_s(value) {
     this.action_search = value;
-
   }
   onchange_ac(value) {
     this.action_sort = value;
     this.setPage(1);
   }
+  goRouterJob(name, id) {
+    this.router.navigateByUrl(
+      "pages/home/detail-jobs/" + this.job1.bodauTiengViet(name) + "-" + id
+    );
+  }
   setPage(page: number) {
-
-
-    var post = {}
+    var post = {};
 
     if (this.action_sort !== "") {
       post = {
         state: this.action_sort,
         title: this.key_search
-      }
+      };
     } else {
       post = {
         title: this.key_search
-      }
+      };
     }
-    console.log(post)
-
+    console.log(post);
 
     this.job1.countsearchadminjob(post, 0, 10).subscribe(
       data => {
@@ -68,18 +71,19 @@ export class ListJobComponent implements OnInit {
         var count = this.count_all_job;
         // get pager object from service
         this.pager = this.pagerService.getPager(count, page);
-        this.job1.searchadminjob(post, this.pager.startIndex, this.pager.endIndex + 1).subscribe(
-          data => {
-            this.listJob = data
-          },
-          error => console.log(error),
-          () => this.isLoading = false
-        );
+        this.job1
+          .searchadminjob(post, this.pager.startIndex, this.pager.endIndex + 1)
+          .subscribe(
+            data => {
+              this.listJob = data;
+            },
+            error => console.log(error),
+            () => (this.isLoading = false)
+          );
       },
       error => console.log(error),
-      () => this.isLoading = false
+      () => (this.isLoading = false)
     );
-
   }
 
   //==============FUNCTION==================
@@ -101,24 +105,30 @@ export class ListJobComponent implements OnInit {
   countall() {
     this.job1.countjob().subscribe(
       data => {
-        this.count_all_job = data
+        this.count_all_job = data;
       },
       error => console.log(error),
-      () => this.isLoading = false
+      () => (this.isLoading = false)
     );
   }
-   delete(item) {
-         if (window.confirm('Are you sure you want to permanently delete this item?')) {
-    this.job.delete(item).subscribe(
-      data => {
-         const pos = this.listJob.map(elem => { return elem._id; }).indexOf(item._id);
+  delete(item) {
+    if (
+      window.confirm("Are you sure you want to permanently delete this item?")
+    ) {
+      this.job.delete(item).subscribe(
+        data => {
+          const pos = this.listJob
+            .map(elem => {
+              return elem._id;
+            })
+            .indexOf(item._id);
           this.listJob.splice(pos, 1);
-          this.toast.setMessage('Delete successfully.', 'success','left');
-      },
-      error => console.log(error),
-      () => this.isLoading = false
-    );
-         }
+          this.toast.setMessage("Delete successfully.", "success", "left");
+        },
+        error => console.log(error),
+        () => (this.isLoading = false)
+      );
+    }
   }
   isloadfirst: boolean;
   getall(start: number, end: number) {
@@ -128,12 +138,11 @@ export class ListJobComponent implements OnInit {
         this.listJob = data;
         if (this.isloadfirst) {
           this.setPage(1);
-          this.isloadfirst = false
+          this.isloadfirst = false;
         }
-
       },
       error => console.log(error),
-      () => this.isLoading = false
+      () => (this.isLoading = false)
     );
   }
 
@@ -141,37 +150,36 @@ export class ListJobComponent implements OnInit {
     var itemPost = {
       _id: item._id,
       status: true
-    }
+    };
     this.job.edit(itemPost).subscribe(
       data => {
-          this.toast.setMessage('Edit successfully.', 'success','left');
+        this.toast.setMessage("Edit successfully.", "success", "left");
         this.getall(0, 10);
       },
       error => console.log(error),
-      () => this.isLoading = false
+      () => (this.isLoading = false)
     );
   }
   updateStatusFalse(item: any) {
     var itemPost = {
       _id: item._id,
       status: false
-    }
+    };
     this.job.edit(itemPost).subscribe(
       data => {
-       this.toast.setMessage('Edit successfully.', 'success','left');
+        this.toast.setMessage("Edit successfully.", "success", "left");
         this.getall(0, 10);
       },
       error => console.log(error),
-      () => this.isLoading = false
+      () => (this.isLoading = false)
     );
   }
   //==============FUNCTION==================
 
   ngOnInit() {
     this.isloadfirst = true;
-    this.countall()
+    this.countall();
     this.getall(0, 10);
   }
   //==============Load first==================
-
 }

@@ -308,10 +308,10 @@ module.exports.searchJobTitles = function (req, res) {
         jobcategorydetail: { $in: arr }
       })
   }
-  console.log('KKKK' + result)
+
   if (result !== "==") {
     obj2.push(
-      { "title": new RegExp(result) }
+      { "title": {$regex: result, $options: 'i'} }
     )
   }
   dateNow = new Date()
@@ -503,7 +503,7 @@ module.exports.adminsearchAllpage = function (req, res) {
   ];
   if (title !== "" && typeof title !== "undefined") {
     obj_condition.push(
-      { "title": new RegExp(title) }
+      { "title":{$regex: title, $options: 'i'}  }
     );
     con2 =
       {
@@ -591,7 +591,7 @@ module.exports.admincountsearchAllpage = function (req, res) {
   ];
   if (title !== "" && typeof title !== "undefined") {
     obj_condition.push(
-      { "title": new RegExp(title) }
+      { "title": {$regex: title, $options: 'i'} }
     );
     k = 1
   }
@@ -710,6 +710,13 @@ module.exports.get_job_key = function (req, res) {
     res.json(docs);
   });
 
+};
+
+module.exports.demo = function (req, res) {
+  model.find({ title:{$regex: req.params.title, $options: 'i'}}).exec(function (err, docs) {
+    if (err) throw err;
+    res.json(docs);
+  });
 };
 
 

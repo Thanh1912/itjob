@@ -156,8 +156,10 @@ export class SliderComponent implements OnInit {
     if (window.confirm('Are you sure you want to permanently delete this item?')) {
       this.sliderService.delete(cat).subscribe(
         res => {
-          const pos = this.listskider.map(elem => { return elem._id; }).indexOf(cat._id);
-          this.listskider.splice(pos, 1);
+          this.getslider()
+        //  const pos = this.listskider.map(elem => { return elem._id; }).indexOf(cat._id);
+       //   this.listskider.splice(pos, 1);
+
           this.toast.setMessage('item deleted successfully.', 'success', 'left');
         },
         error => console.log(error)
@@ -208,6 +210,7 @@ export class SliderComponent implements OnInit {
 
     this.sliderService.add(inp).subscribe(
       res => {
+        this.getslider();
         this.toast.setMessage('item added Slider successfully.', 'success', 'left');
 
       },

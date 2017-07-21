@@ -63,7 +63,7 @@ export class DetailCompanyComponent implements OnInit {
     this.IDcandidate = "";
     this.Check_PostRate = 2;
     this.sub = this.route.params.subscribe(params => {
-      this.id = params['id'];
+        this.id = this.job.getIdRouter(params['id']);
       this.CountRate(this.id);
       this.GetListRate(this.id);
     });
@@ -87,7 +87,11 @@ export class DetailCompanyComponent implements OnInit {
     this.countReView = "0";
   }
 
-
+  goRouterJob(name, id) {
+    this.router.navigateByUrl(
+      "pages/home/detail-jobs/" + this.job.bodauTiengViet(name)+"-" + id
+    );
+  }
 
   backClicked() {
     this._location.back();
@@ -232,6 +236,7 @@ export class DetailCompanyComponent implements OnInit {
       this.rate.add(post).subscribe(
         data => {
           this.updaterate();
+          this.GetListRate(this.id)
         },
         error => console.log(error),
         () => {
