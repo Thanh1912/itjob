@@ -72,6 +72,7 @@ export class DetailJobComponent implements OnInit {
       if (userId === null) {
         this.toast.setMessage('Please!Login', 'warning', 'left');
       } else {
+       if (status == 200) {
         var user1 = {
           pathresume: response,
           candidateid: userId,
@@ -93,6 +94,9 @@ export class DetailJobComponent implements OnInit {
             this.toast.setMessage(JSON.parse(error._body).Messeage, 'error', 'left');
           }
         );
+      }else{
+          this.toast.setMessage(response, 'error', 'center');
+      }
       }
 
     };

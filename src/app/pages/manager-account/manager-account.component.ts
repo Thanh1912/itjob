@@ -113,7 +113,25 @@ export class ManagerAccountComponent implements OnInit {
     this.uploaderanhdaidien.onAfterAddingFile = (file) => { file.withCredentials = false; };
     this.uploaderanhdaidien.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
       console.log("UpLoad anh dai dien:", item, status, response);
-    this.toast.setMessage('you successfully Upload Anh dai dien!', 'success','left');
+         if (status == 200) {
+        //cap cv 
+      let userId = localStorage.getItem('userId');
+      var user1 = {
+        profileimage: response,
+        _id: userId
+      }
+      console.log(user1)
+      this.user.edit_user(user1).subscribe(
+        data => {
+              this.toast.setMessage('you successfully Upload Anh dai dien!', 'success','center');
+        },
+        error => console.log(error),
+        () => { }
+      );}
+      else{
+         this.toast.setMessage(response, 'error','center');
+      }
+
 
     };
     //===========/Upload Imgage Anh dai dien================
@@ -123,21 +141,17 @@ export class ManagerAccountComponent implements OnInit {
     //overide the onCompleteItem property of the uploader so we are
     //able to deal with the server response.
     this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
-
-      //cap cv 
-      let userId = localStorage.getItem('userId');
-      var user1 = {
-        pathcv: response,
-        _id: userId
+      if (status == 200) {
+        //cap cv
+        let userId = localStorage.getItem("userId");
+        var user1 = { pathcv: response, _id: userId };
+        console.log(user1);
+        this.user.edit_user(user1).subscribe(data => {
+            this.toast.setMessage("you successfully Update!", "success", "center");
+          }, error => console.log(error), () => {});
+      } else {
+        this.toast.setMessage(response, "success", "center");
       }
-      console.log(user1)
-      this.user.edit_user(user1).subscribe(
-        data => {
-            this.toast.setMessage('you successfully Update!', 'success','center');
-        },
-        error => console.log(error),
-        () => { }
-      );
       console.log("ImageUpload: uploaded:", item, status, response);
     };
   }
