@@ -95,7 +95,7 @@ export class DetailJobComponent implements OnInit {
           }
         );
       }else{
-          this.toast.setMessage(response, 'error', 'center');
+          this.toast.setMessage(response, 'error', 'left');
       }
       }
 

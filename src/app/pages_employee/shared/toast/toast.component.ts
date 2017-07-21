@@ -8,7 +8,7 @@ import { Component, Input } from '@angular/core';
 export class ToastComponent {
   @Input() message = { body: '', type: '', position: '' };
 
-  setMessage(body, type, position, time = 4444443000) {
+  setMessage(body, type, position, time = 3000) {
     this.message.body = body;
     this.message.type = type;
     this.message.position = position;
