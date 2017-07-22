@@ -12,27 +12,32 @@
                         <div class="row">
                             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                 <div class="mj_joblogo">
-                                    <img src="http://localhost:3000/uploads/forms/logo/{{jobitem?.company[0]?.info_recruiter?.logo}}" class="img-responsive"
-                                        alt="">
+                                    <img style="width: 180px;height: 180px;" src="http://localhost:3000/uploads/forms/logo/{{jobitem?.company[0]?.info_recruiter?.logo}}"
+                                        class="img-responsive" alt="">
                                 </div>
                             </div>
                             <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-                                <div class="mj_pageheading mj_toppadder50" style="margin-bottom: 63px;">
+                                <div class="mj_pageheading mj_toppadder50" style="    margin-bottom: 100px;">
                                     <h3 style="color: white;">{{jobitem?.title}}</h3>
-                                    <ul>
+                                    <ul style="margin-top: -20px;" class="list_language">
+                                        <li *ngFor="let inf of jobitem?.Infokeyword">
+                                            {{inf.name}}
+                                        </li>
+                                    </ul>
 
-                                        <li><a href="#" class="mj_btn mj_greenbtn"><i class="fa fa-map-marker"></i>{{jobitem?.JobTime}}</a>
+                                    <ul>
+                                        <!--class="mj_btn mj_greenbtn"   class="mj_btn mj_greenbtn"-->
+
+                                        <li><a><i class="fa fa-map-marker"></i>{{jobitem?.JobTime}}</a>
                                         </li>
-                                        <li><a href="#" class="mj_btn mj_greenbtn">{{jobitem?.company[0].info_recruiter.address}}</a>
-                                        </li>
-                                        <li>
-                                            <label>Company:</label><a href="#">{{jobitem?.company[0].info_recruiter.namecompany}}</a>
-                                        </li>
-                                        <li>
-                                            <label>Classification:</label><a href="#">{{jobitem?.company[0].info_recruiter.namecompany}}</a>
+                                        <li><a>{{jobitem?.company[0].info_recruiter.address}}</a>
                                         </li>
                                         <li>
-                                            <label>Salary: </label><span class="mj_green_text mj_greenbtn">{{jobitem?.salarycompete}}</span>
+                                            <label>Company:</label><a style="cursor: pointer;" (click)="goRouterCompany(jobitem?.company[0].info_recruiter.namecompany,jobitem?.company[0]._id)">{{jobitem?.company[0].info_recruiter.namecompany}}</a>
+                                        </li>
+
+                                        <li>
+                                            <label>Salary: </label><span style="    padding: 4px;" class="mj_green_text mj_greenbtn">{{jobitem?.salarycompete}}</span>
                                         </li>
                                         <li>
                                             <label>Cần Tuyển: </label><span class="mj_green_text">{{jobitem?.Apllication}} Applications </span>
@@ -43,15 +48,17 @@
                                         <li>
                                             <label>End Date: </label><span class="mj_green_text"> {{jobitem?.endPost|date}} </span>
                                         </li>
+                                    </ul>
+                                    <ul>
+                                        <li>
+                                            <label>Infomation Company: </label>
+                                        </li>
                                         <li>
                                             <label>Phone: </label><span class="mj_green_text">  {{jobitem?.company[0].info_recruiter.phone}}  </span>
                                         </li>
                                         <li>
                                             <label>Email: </label><span class="mj_green_text">  {{jobitem?.company[0].email}} </span>
                                         </li>
-
-
-
                                     </ul>
                                 </div>
                             </div>
@@ -72,15 +79,11 @@
                         <li><a (click)="backClicked()" class="mj_mainbtn mj_btnyellow" data-text="Back"><span>Back</span></a>
                         </li>
                         <li>
-                            <a href="#" class="mj_mainbtn mj_btnblack" data-text="Apply Job" data-toggle="modal" data-target="#myModal"><span>Apply Job</span></a>
+                            <a class="mj_mainbtn mj_btnblack" data-text="Apply Job" data-toggle="modal" data-target="#myModal"><span>Apply Job</span></a>
                         </li>
                     </ul>
 
-                    <ul class="list_language">
-                        <li *ngFor="let inf of jobitem?.Infokeyword">
-                            {{inf.name}}
-                        </li>
-                    </ul>
+
 
                 </div>
             </div>
@@ -128,7 +131,12 @@
                 <div class="mj_about_section mj_toppadder80 mj_bottompadder80">
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 col-lg-offset-3 col-md-offset-3">
-                            <h1>A<span>bout</span> <span> {{jobitem?.company[0].info_recruiter.namecompany}} </span></h1>
+                            <h1 
+ style="font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;line-height: 27px;
+    float: left;
+    width: 100%;
+    margin: 0px;
+    padding-bottom: 20px;"> <span> About {{jobitem?.company[0].info_recruiter.namecompany}} </span></h1>
                             <p [innerHtml]="jobitem?.company[0].info_recruiter.introduction"> </p>
                             <ul>
                                 <li><a href="{{jobitem?.company[0].info_recruiter.website}}"><i class="fa fa-link"></i> Website</a>
@@ -218,10 +226,10 @@
 
 <!-- Modal SHOW HET HAN kHONG TIM THAY -->
 <div class="row-job-alert">
-<h3>Thông báo</h3>
-   
-        <h1 style="font-size:16px;">Job hiện tại hết hạn apply vào - Bạn hãy chọn công việc khác phù hợp</h1>
-       <button class="btn btn-primary" (click)="backClicked()">Back</button>
+    <h3>Thông báo</h3>
+
+    <h1 style="font-size:16px;">Job hiện tại hết hạn apply vào - Bạn hãy chọn công việc khác phù hợp</h1>
+    <button class="btn btn-primary" (click)="backClicked()">Back</button>
 
 </div>
 

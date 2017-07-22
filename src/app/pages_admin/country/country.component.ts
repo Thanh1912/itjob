@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { countryService } from './../../services/country.service';
 import { PagerService } from './../../_services/pager.service';
 import { ToastComponent } from './../../pages/shared/toast/toast.component'; 
+import { Title } from "@angular/platform-browser";   
 @Component({
   selector: 'app-country',
   templateUrl: './country.component.html',
@@ -25,11 +26,14 @@ export class CountryComponent implements OnInit {
   constructor(private toast:ToastComponent,private http: Http,
     private dataService: countryService,
     //    public toast: ToastComponent,
-    private formBuilder: FormBuilder, private pagerService: PagerService) { }
+    private formBuilder: FormBuilder,
+     private pagerService: PagerService,
+     private title: Title,  
+     ) { }
 
   ngOnInit() {
     this.getall();
-
+ this.title.setTitle("Country Company");
     this.addCatForm = this.formBuilder.group({
       name: this.name
     });

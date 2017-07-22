@@ -22,6 +22,7 @@ import { QuanliNtdService } from './../services/quanli-ntd.service';
 import { EditBaidangComponent } from './edit-baidang/edit-baidang.component';
 import { JobcategoryService } from './../services/jobcategory.service';
 import { CandidateService } from './../services/candidate.service';
+import { JobService } from './../services/job.service';
 import { ResumeService } from './../services/resume.service'
 import { PagerService } from './../_services/pager.service';
 import { ViewprofileComponent } from './viewprofile/viewprofile.component';
@@ -51,7 +52,7 @@ import { SearchCvPipe } from './Pipe/search-cv.pipe';
      SearchCvPipe
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [ CandidateService, PagerService, ResumeService, JobcategoryService, QuanliNtdService, KeywordService, WorkplaceService, PostService, DistrictService, countryService, CompanysizeService]
+  providers: [ JobService,CandidateService, PagerService, ResumeService, JobcategoryService, QuanliNtdService, KeywordService, WorkplaceService, PostService, DistrictService, countryService, CompanysizeService]
 })
 export class NhatuyendungModule {
 

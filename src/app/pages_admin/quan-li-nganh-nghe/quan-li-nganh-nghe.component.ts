@@ -5,7 +5,7 @@ import { KeywordService } from './../../services/keyword.service';
 import { PagerService } from './../../_services/pager.service';
 import { JobcategoryService } from './../../services/jobcategory.service';
  import { ToastComponent } from './../../pages/shared/toast/toast.component'; 
-  
+  import { Title } from "@angular/platform-browser";  
 
 
 @Component({
@@ -33,9 +33,13 @@ selectedItem: any
   constructor(private toast:ToastComponent,private http: Http,
     private dataService: KeywordService,
     private Jobcategory: JobcategoryService,
-    private formBuilder: FormBuilder, private pagerService: PagerService) { }
+    private formBuilder: FormBuilder, private pagerService: PagerService,
+     private title: Title, 
+    
+    ) { }
 
   ngOnInit() {
+      this.title.setTitle("Job Catagory");
     this.getall();
     this.getjobcategory();
     this.addCatForm = this.formBuilder.group({

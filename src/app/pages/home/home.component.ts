@@ -122,13 +122,12 @@ export class HomeComponent implements OnInit {
 
   getvalue(value: any) {}
   ngOnInit() {
-  
     this.getjobcategory();
     this.getjobcategoryD();
     this.gettop12Company();
     this.getjobTOP();
     this.getCandidateTop();
-    this.title.setTitle("Trang chủ Itjob");
+    this.title.setTitle("Trang chủ ");
     this.getslider();
   }
 }

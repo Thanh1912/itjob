@@ -17,12 +17,12 @@
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
           <li class="dropdown tasks-menu open">
-            <a (click)="Gohome()" style="background-color: #d51212;" data-toggle="dropdown" aria-expanded="true">
+            <a (click)="Gohome()" style="background-color: #d51212;cursor: pointer;" data-toggle="dropdown" aria-expanded="true">
                   <i class="fa fa-flag-o"></i>
                   <span>Open JOBIT</span>
                 </a>
           </li>
-          <li class="dropdown user user-menu" *ngIf="islogin">
+          <li class="dropdown user user-menu" *ngIf="islogin" style="cursor: pointer;">
             <!-- Menu Toggle Button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <!-- The user image in the navbar-->

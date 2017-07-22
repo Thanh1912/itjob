@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { JobcategoryService } from './../../services/jobcategory.service';
 import { PagerService } from './../../_services/pager.service';
 import { ToastComponent } from './../../pages/shared/toast/toast.component';
+import { Title } from "@angular/platform-browser";   
 @Component({
   selector: 'app-catalog-job',
   templateUrl: './catalog-job.component.html',
@@ -25,9 +26,12 @@ export class CatalogJobComponent implements OnInit {
   name = new FormControl('', Validators.required);
   constructor(private toast: ToastComponent, private http: Http,
     private dataService: JobcategoryService,
-    private formBuilder: FormBuilder, private pagerService: PagerService) { }
+    private formBuilder: FormBuilder, private pagerService: PagerService,
+    private title: Title,  
+    ) { }
   ngOnInit() {
     this.getall();
+     this.title.setTitle("Catagory Job");
     this.addCatForm = this.formBuilder.group({
       name: this.name,
       workplace: this.selectedItem

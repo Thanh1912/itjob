@@ -9,6 +9,7 @@ import { ActivatedRoute, Router, NavigationEnd } from "@angular/router";
 import { CapitalizePipe } from "../Pipe/capitalize.pipe";
 import { DatePipe } from "@angular/common";
 import { PagerService } from "./../../_services/pager.service";
+import { Title } from "@angular/platform-browser";
 @Component({
   selector: "app-search-profile",
   templateUrl: "./search-profile.component.html",
@@ -159,7 +160,8 @@ export class SearchProfileComponent implements OnInit {
     private router: Router,
     private jobcategoryDetailService: JobcategoryDetailService,
     private jobcategory: JobcategoryService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+      private title: Title
   ) {}
   list_all_jobcategory: any;
   list_ById_jobcategory: any;
@@ -253,6 +255,7 @@ export class SearchProfileComponent implements OnInit {
   }
 
   ngOnInit() {
+   this.title.setTitle("Search Candidate");
     this.scrollTopChangeRouter();
 
     this.workplaceid = "";

@@ -2,7 +2,7 @@ import { Component, AfterViewInit, OnInit, ViewContainerRef, ElementRef } from '
 import { Router } from '@angular/router';
 import { User } from './../../_services/user.model';
 import { AuthenticationService } from './../../_services/authentication.service';
-
+import { Title } from "@angular/platform-browser";   
 @Component({
   selector: 'app-admin-login',
   templateUrl: './admin-login.component.html',
@@ -18,7 +18,9 @@ export class AdminLoginComponent implements OnInit {
   private viewContainerRef: ViewContainerRef;
   constructor(
     private router: Router,
-    private authenticationService: AuthenticationService) {
+    private authenticationService: AuthenticationService,
+    private title: Title, 
+    ) {
   }
   isclose = false;
   close() {
@@ -26,6 +28,7 @@ export class AdminLoginComponent implements OnInit {
   }
   ngOnInit() {
     // reset login status
+      this.title.setTitle("Login Admin");
     this.authenticationService.logout();
   }
   gohome() {

@@ -52,7 +52,7 @@ export class LoginNtdComponent implements OnInit {
         localStorage.setItem('userId_ntd', data.userId);
         localStorage.setItem('username_ntd', data.fullname);
         localStorage.setItem('currentUserRole', data.role);
-
+         location.reload();
         // navigate user to index page of our app
         this.router.navigate(['/pages_employee']);
         // display toastr success message pop up to inform the user that he logged in successfully

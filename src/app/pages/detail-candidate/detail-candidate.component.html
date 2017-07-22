@@ -5,7 +5,7 @@
         </div>
         <div class="mj_pagetitle_inner">
             <div class="container">
-                <div class="row">
+                <div class="row" style="    margin-bottom: 100px;">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="mj_mainheading">
                             <div class="row">
@@ -16,23 +16,23 @@
                                 </div>
                                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
                                     <div class="mj_pageheading mj_toppadder50">
-                                        <h1> {{listdetail.fullname}}</h1>
+                                        <h1> {{listdetail?.fullname}}</h1>
                                         <ul>
                                             <li>
                                                 <label><i class="fa fa-map-marker"></i>
-                                                </label><a > {{listdetail.districtid_view[0].name}},{{listdetail.workplaceid_view[0].name}}</a>
+                                                </label><a > {{listdetail?.districtid_view[0].name}},{{listdetail?.workplaceid_view[0].name}}</a>
                                             </li>
                                             <li>
-                                                <label>Ngành:</label><a > {{listdetail.jobcategories_view[0].name}}</a>
+                                                <label>Ngành:</label><a > {{listdetail?.jobcategories_view[0].name}}</a>
                                             </li>
                                             <li>
-                                                <label>Hourly Rate: </label><span class="mj_green_text">$ {{listdetail.salary}}/1 month</span>
+                                                <label>Hourly Rate: </label><span class="mj_green_text">$ {{listdetail?.salary}}/1 month</span>
                                             </li>
                                              <li>
-                                                <label>Phone : </label><span class="mj_green_text">$ {{listdetail.phone}}</span>
+                                                <label>Phone : </label><span class="mj_green_text">$ {{listdetail?.phone}}</span>
                                             </li>
                                              <li>
-                                                <label>Email : </label><span class="mj_green_text" style="text-transform:none"> {{listdetail.email}}</span>
+                                                <label>Email : </label><span class="mj_green_text" style="text-transform:none"> {{listdetail?.email}}</span>
                                             </li>
                                         </ul>
                                     </div>
@@ -70,7 +70,7 @@
                                 </div>
                                 <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
                                 <div class="mj_detaildiv">
-                                        <p [innerHTML]="listdetail.overview"></p>
+                                        <p [innerHTML]="listdetail?.overview"></p>
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mj_toppadder30 mj_bottompadder30">
@@ -82,7 +82,7 @@
                                 <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
                                     <div class="mj_detaildiv">
                                         <ul class="mj_selected_content">
-                                            <li  *ngFor="let item of listdetail.jobcategorydetail_view">
+                                            <li  *ngFor="let item of listdetail?.jobcategorydetail_view">
                                                 <a > {{item.name}}</a>
                                             </li>
                                            

@@ -8,6 +8,7 @@ import { Router, NavigationEnd } from '@angular/router';
 import { PagerService } from './../../_services/pager.service';
 import { Validators, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ToastComponent } from '../shared/toast/toast.component';
+import { Title } from "@angular/platform-browser";  
 @Component({
   selector: 'app-detail-company',
   templateUrl: './detail-company.component.html',
@@ -29,7 +30,7 @@ export class DetailCompanyComponent implements OnInit {
   sub: any;
   id: any;
   countJob: String;
-  constructor(private toast: ToastComponent, private pagerService: PagerService, private builder: FormBuilder, private router: Router, private rate: RateService, private company: CompanyService, private _location: Location, private job: JobService, private route: ActivatedRoute) { }
+  constructor( private title1: Title,   private toast: ToastComponent, private pagerService: PagerService, private builder: FormBuilder, private router: Router, private rate: RateService, private company: CompanyService, private _location: Location, private job: JobService, private route: ActivatedRoute) { }
   companyitem = [];
   countReView: String;
   // pager object
@@ -60,12 +61,14 @@ export class DetailCompanyComponent implements OnInit {
   });
   IDcandidate: String;
   ngOnInit() {
+
     this.IDcandidate = "";
     this.Check_PostRate = 2;
     this.sub = this.route.params.subscribe(params => {
         this.id = this.job.getIdRouter(params['id']);
       this.CountRate(this.id);
       this.GetListRate(this.id);
+        
     });
 
     if (localStorage.getItem('userId') != null) {
@@ -115,6 +118,7 @@ export class DetailCompanyComponent implements OnInit {
     this.company.getdetail_companybyid(this.id).subscribe(
       data => {
         this.companyitem = data;
+          this.title1.setTitle(this.companyitem[0].info_recruiter.namecompany);
         console.log("======GET COMPANY=======");
         console.log(data);
       },

@@ -1,11 +1,24 @@
-import { Component, OnInit, Renderer, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import {
+  Component,
+  OnInit,
+  Renderer,
+  ViewChild,
+  ElementRef,
+  AfterViewInit
+} from "@angular/core";
+import {
+  FormGroup,
+  FormControl,
+  FormBuilder,
+  Validators
+} from "@angular/forms";
 import { AuthenticationService } from "../../_services/authentication.service";
-import { Router } from '@angular/router';
+import { Router } from "@angular/router";
+import { Title } from "@angular/platform-browser";
 @Component({
-  selector: 'app-register-ntd',
-  templateUrl: './register-ntd.component.html',
-  styleUrls: ['./register-ntd.component.css']
+  selector: "app-register-ntd",
+  templateUrl: "./register-ntd.component.html",
+  styleUrls: ["./register-ntd.component.css"]
 })
 export class RegisterNtdComponent implements OnInit {
   myForm: FormGroup;
@@ -15,21 +28,32 @@ export class RegisterNtdComponent implements OnInit {
   phone: FormControl;
   namecompany: FormControl;
 
-
-  @ViewChild('userEmail') userEmail: ElementRef;
-  constructor(private _fb: FormBuilder, private router: Router, private _authService: AuthenticationService,
-    private _router: Router, private renderer: Renderer) {
-  }
+  @ViewChild("userEmail") userEmail: ElementRef;
+  constructor(
+    private title: Title,
+    private _fb: FormBuilder,
+    private router: Router,
+    private _authService: AuthenticationService,
+    private _router: Router,
+    private renderer: Renderer
+  ) {}
   ngOnInit() {
-    // if the user tries to hit the register page, first we check if he is logged in or not, if he is then we redirect him to the form page
-   /* if (this._authService.isLoggedIn()) {
-      this._router.navigateByUrl('/form');
-    }*/
-    this.email = new FormControl('', [Validators.required, this.emailValidator]);
-    this.password = new FormControl('', [Validators.required, Validators.minLength(6)]);
-    this.fullname = new FormControl('', [Validators.required]);
-    this.phone = new FormControl('', [Validators.required, Validators.minLength(6)]);
-    this.namecompany = new FormControl('', [Validators.required]);
+    this.title.setTitle("Register Employee");
+
+    this.email = new FormControl("", [
+      Validators.required,
+      this.emailValidator
+    ]);
+    this.password = new FormControl("", [
+      Validators.required,
+      Validators.minLength(6)
+    ]);
+    this.fullname = new FormControl("", [Validators.required]);
+    this.phone = new FormControl("", [
+      Validators.required,
+      Validators.minLength(6)
+    ]);
+    this.namecompany = new FormControl("", [Validators.required]);
 
     this.myForm = this._fb.group({
       email: this.email,
@@ -41,7 +65,11 @@ export class RegisterNtdComponent implements OnInit {
   }
   ngAfterViewInit() {
     setTimeout(() => {
-      this.renderer.invokeElementMethod(this.userEmail.nativeElement, 'focus', []);
+      this.renderer.invokeElementMethod(
+        this.userEmail.nativeElement,
+        "focus",
+        []
+      );
     }, 50);
   }
 
@@ -54,18 +82,15 @@ export class RegisterNtdComponent implements OnInit {
       email: this.myForm.value.email,
       namecompany: this.myForm.value.namecompany,
       phone: this.myForm.value.phone
-    }
+    };
 
-    this._authService.signup_ntd(user)
-      .subscribe(
-      data => {
-        // after successfull registration, the user is redirected to the login page
-        this._router.navigate(['/ntd/login-ntd']);
-      }
-      );
+    this._authService.signup_ntd(user).subscribe(data => {
+      // after successfull registration, the user is redirected to the login page
+      this._router.navigate(["/ntd/login-ntd"]);
+    });
   }
   gologin() {
-    this.router.navigate(['/ntd/login-ntd']);
+    this.router.navigate(["/ntd/login-ntd"]);
   }
   // input validator to check if the email entered by the user is actually text in an email form
   emailValidator(control) {

@@ -2,11 +2,9 @@ import { Component, OnInit } from "@angular/core";
 import { PostService } from "./../../services/post.service";
 import { PagerService } from "./../../_services/pager.service";
 import { JobService } from "./../../services/job.service";
-
 import { ToastComponent } from "./../../pages/shared/toast/toast.component";
-
 import { ActivatedRoute, Router } from "@angular/router";
-
+import { Title } from "@angular/platform-browser";  
 @Component({
   selector: "app-list-job",
   templateUrl: "./list-job.component.html",
@@ -32,7 +30,8 @@ export class ListJobComponent implements OnInit {
     private toast: ToastComponent,
     private job: PostService,
     private job1: JobService,
-    private pagerService: PagerService
+    private pagerService: PagerService,
+     private title: Title,  
   ) {}
   onchange_action_s(value) {
     this.action_search = value;
@@ -44,6 +43,11 @@ export class ListJobComponent implements OnInit {
   goRouterJob(name, id) {
     this.router.navigateByUrl(
       "pages/home/detail-jobs/" + this.job1.bodauTiengViet(name) + "-" + id
+    );
+  }
+   goRouterCompany(name, id) {
+    this.router.navigateByUrl(
+      "pages/home/detail-company/" + this.job1.bodauTiengViet(name) + "-" + id
     );
   }
   setPage(page: number) {
@@ -174,9 +178,11 @@ export class ListJobComponent implements OnInit {
       () => (this.isLoading = false)
     );
   }
+  
   //==============FUNCTION==================
 
   ngOnInit() {
+     this.title.setTitle("Admin Manager Job");
     this.isloadfirst = true;
     this.countall();
     this.getall(0, 10);

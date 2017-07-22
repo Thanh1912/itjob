@@ -1,27 +1,34 @@
-import { Component, OnInit } from '@angular/core';
-import { Http } from '@angular/http';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { CompanysizeService } from './../../services/companysize.service';
-import { PagerService } from './../../_services/pager.service';
-import { ToastComponent } from './../../pages/shared/toast/toast.component'; 
+import { Component, OnInit } from "@angular/core";
+import { Http } from "@angular/http";
+import {
+  FormGroup,
+  FormControl,
+  Validators,
+  FormBuilder
+} from "@angular/forms";
+import { CompanysizeService } from "./../../services/companysize.service";
+import { PagerService } from "./../../_services/pager.service";
+import { ToastComponent } from "./../../pages/shared/toast/toast.component";
+import { Title } from "@angular/platform-browser";
 @Component({
-  selector: 'app-companysize',
-  templateUrl: './companysize.component.html',
-   styleUrls: ['./companysize.component.css','../../../assets/Back-end/bootstrap/css/bootstrap.min.css',
-  
-    '../../../assets/Back-end/dist/css/AdminLTE.css',
-    '../../../assets/Back-end/dist/css/skins/skin-blue.min.css',
-    '../../../assets/Back-end/plugins/ionslider/ion.rangeSlider.css',
-    '../../../assets/Back-end/plugins/ionslider/ion.rangeSlider.skinNice.css']
+  selector: "app-companysize",
+  templateUrl: "./companysize.component.html",
+  styleUrls: [
+    "./companysize.component.css",
+    "../../../assets/Back-end/bootstrap/css/bootstrap.min.css",
+
+    "../../../assets/Back-end/dist/css/AdminLTE.css",
+    "../../../assets/Back-end/dist/css/skins/skin-blue.min.css",
+    "../../../assets/Back-end/plugins/ionslider/ion.rangeSlider.css",
+    "../../../assets/Back-end/plugins/ionslider/ion.rangeSlider.skinNice.css"
+  ]
 })
 export class CompanysizeComponent implements OnInit {
-
-   // pager object
+  // pager object
   pager: any = {};
 
   // paged items
   pagedItems: any[];
-
 
   cats = [];
   isLoading = true;
@@ -29,19 +36,24 @@ export class CompanysizeComponent implements OnInit {
   isEditing = false;
 
   addCatForm: FormGroup;
-  name = new FormControl('', Validators.required);
-  constructor(private toast:ToastComponent,private http: Http,
+  name = new FormControl("", Validators.required);
+  constructor(
+    private toast: ToastComponent,
+    private http: Http,
     private dataService: CompanysizeService,
     //    public toast: ToastComponent,
-    private formBuilder: FormBuilder, private pagerService: PagerService) { }
+    private formBuilder: FormBuilder,
+    private pagerService: PagerService,
+    private title: Title
+  ) {}
 
   ngOnInit() {
+     this.title.setTitle("CompanySize");
     this.getall();
 
     this.addCatForm = this.formBuilder.group({
       name: this.name
     });
-
   }
 
   setPage(page: number) {
@@ -53,25 +65,28 @@ export class CompanysizeComponent implements OnInit {
     this.pager = this.pagerService.getPager(this.cats.length, page);
 
     // get current page of items
-    this.pagedItems = this.cats.slice(this.pager.startIndex, this.pager.endIndex + 1);
+    this.pagedItems = this.cats.slice(
+      this.pager.startIndex,
+      this.pager.endIndex + 1
+    );
   }
   getall() {
     this.dataService.getall().subscribe(
       data => {
-        this.cats = data
+        this.cats = data;
         this.setPage(1);
       },
       error => console.log(error),
-      () => this.isLoading = false
+      () => (this.isLoading = false)
     );
   }
 
   addCat() {
-    console.log(this.addCatForm.value)
+    console.log(this.addCatForm.value);
     this.dataService.add(this.addCatForm.value).subscribe(
       res => {
         this.getall();
-     this.toast.setMessage('item added successfully.', 'success','left');
+        this.toast.setMessage("item added successfully.", "success", "left");
         // this.toast.setMessage('item added successfully.', 'success');
       },
       error => console.log(error)
@@ -95,25 +110,28 @@ export class CompanysizeComponent implements OnInit {
       res => {
         this.isEditing = false;
         this.cat = cat;
-             this.toast.setMessage('item edit successfully.', 'success','left');
-
+        this.toast.setMessage("item edit successfully.", "success", "left");
       },
       error => console.log(error)
     );
   }
 
   deleteCat(cat) {
-    if (window.confirm('Are you sure you want to permanently delete this item?')) {
+    if (
+      window.confirm("Are you sure you want to permanently delete this item?")
+    ) {
       this.dataService.delete(cat).subscribe(
         res => {
-          const pos = this.cats.map(elem => { return elem._id; }).indexOf(cat._id);
+          const pos = this.cats
+            .map(elem => {
+              return elem._id;
+            })
+            .indexOf(cat._id);
           this.cats.splice(pos, 1);
-           this.toast.setMessage('tem deleted successfully.', 'success','left');
-
+          this.toast.setMessage("tem deleted successfully.", "success", "left");
         },
         error => console.log(error)
       );
     }
   }
-
 }

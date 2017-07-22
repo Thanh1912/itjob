@@ -2,6 +2,7 @@ import {Component,ViewContainerRef, OnInit, Renderer, ViewChild, ElementRef, Aft
 import {FormGroup, FormControl, FormBuilder, Validators} from '@angular/forms';
 import { AuthenticationService } from "../../_services/authentication.service";
 import {Router} from '@angular/router';
+import { Title } from "@angular/platform-browser"; 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -18,7 +19,7 @@ import {Router} from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private _fb: FormBuilder, private _authService: AuthenticationService,
+  constructor( private title: Title,private _fb: FormBuilder, private _authService: AuthenticationService,
               private _router: Router) {
        
 
@@ -30,6 +31,7 @@ export class RegisterComponent implements OnInit {
  
    //=================Register  WORKs==================
   ngOnInit() {
+     this.title.setTitle("Register");
     /*if (this._authService.isLoggedIn()) {
       this._router.navigateByUrl('/');
     }*/

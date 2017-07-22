@@ -55,7 +55,7 @@ let providers = {
   }
 };
 @NgModule({
-  imports: [CommonModule,SharedModule, routing,CKEditorModule, ReactiveFormsModule, FormsModule, Angular2SocialLoginModule],
+  imports: [CommonModule,SharedModule, routing,CKEditorModule, ReactiveFormsModule, FormsModule, Angular2SocialLoginModule ,],
   declarations: [Pages,
     HomeComponent,
     LoginComponent,
@@ -70,7 +70,7 @@ let providers = {
     ManagerJobApplyComponent,
     RegisterNtdComponent,
     RegisterJobComponent,
-  FileSelectDirective,
+FileSelectDirective,
     UpdateInfoUserComponent,
     SearchCompanyPipe,
     CapitalizePipe,

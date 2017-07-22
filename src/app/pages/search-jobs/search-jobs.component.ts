@@ -7,7 +7,7 @@ import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { CapitalizePipe } from '../Pipe/capitalize.pipe';
 import { DatePipe } from '@angular/common';
 import { PagerService } from './../../_services/pager.service';
-
+import { Title } from "@angular/platform-browser"; 
 @Component({
   selector: 'app-search-jobs',
   templateUrl: './search-jobs.component.html',
@@ -43,6 +43,7 @@ export class SearchJobsComponent implements OnInit {
   salaryE: String;
   allItem = [];
   ngOnInit() {
+   
     this.JobTime = "==";
     this.workplaceid = '0'
     this.fromFilter = new Date('Sat Mar 24 1900 06:50:39 GMT+0100 (CET)');
@@ -65,6 +66,7 @@ export class SearchJobsComponent implements OnInit {
         this.jobcategorydetail_ = [];
         this.jobcategorydetail_.push(this.idDetail)
         this.getinfoCatagoryDetail(this.idDetail);
+          this.title.setTitle("Search Job "+ this.NameCatagoryDetail);
       } else {
         this.NameCatagoryDetail = ""
       }
@@ -131,8 +133,8 @@ export class SearchJobsComponent implements OnInit {
     this.districtid = "";
     this.workplaceid = "";
     this.JobTime = "";
-
     this.Search_title = "";
+    this.ChangeListJob() ;
   }
   setDate(value: number) {
     var myDate = new Date();
@@ -161,7 +163,7 @@ export class SearchJobsComponent implements OnInit {
     this.ChangeListJob()
   }
   isadvance = false;
-  constructor(private pagerService: PagerService, private datePipe: DatePipe, private job: JobService, private capitalize: CapitalizePipe, private Workplace: WorkplaceService, private router: Router, private jobcategoryDetailService: JobcategoryDetailService, private jobcategory: JobcategoryService, private route: ActivatedRoute) { }
+  constructor( private title: Title, private pagerService: PagerService, private datePipe: DatePipe, private job: JobService, private capitalize: CapitalizePipe, private Workplace: WorkplaceService, private router: Router, private jobcategoryDetailService: JobcategoryDetailService, private jobcategory: JobcategoryService, private route: ActivatedRoute) { }
   list_all_jobcategory: any;
   list_ById_jobcategory: any;
   private sub: any;
@@ -176,7 +178,7 @@ export class SearchJobsComponent implements OnInit {
   jobcategory_: String;
   Search_title: String;
   jobcategorydetail_ = [];
-
+listPost={};
   searchTitle() {
     this.ChangeListJob();
   }
@@ -227,7 +229,7 @@ export class SearchJobsComponent implements OnInit {
       Ptitle = "==";
       console.log('ok')
     }
-    var p = {
+    this.listPost = {
       salarybeginP: salaryB_TMP,
       salaryendP: salaryE_TMP,
       districtidP: districtid_TMP,
@@ -240,9 +242,9 @@ export class SearchJobsComponent implements OnInit {
       dateEndP: tmp2
     }
     console.log("post do")
-    console.log(p)
+    console.log(  this.listPost)
     this.job.searchJobTile(
-      p
+        this.listPost
     ).subscribe(
       data => {
         this.allItem = data;
@@ -310,7 +312,8 @@ export class SearchJobsComponent implements OnInit {
     this.jobcategory.get(put).subscribe(
       data => {
         var json = JSON.parse(data._body)
-        this.NameCatagory = json.name
+        this.NameCatagory = json.name;
+         this.title.setTitle("Search Job - "+ this.NameCatagory);
       },
       error => console.log(error),
       () => {
@@ -327,7 +330,7 @@ export class SearchJobsComponent implements OnInit {
       data => {
         var json = JSON.parse(data._body)
         this.NameCatagoryDetail = "/" + json.name
-
+   this.title.setTitle("Search Job - "+ this.NameCatagory+"-"+ json.name);
       },
       error => console.log(error),
       () => {

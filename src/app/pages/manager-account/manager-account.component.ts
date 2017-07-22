@@ -1,14 +1,20 @@
-import { Component, OnInit, AfterViewInit, ElementRef } from '@angular/core';
-import { Http, Response } from '@angular/http';
-import { CandidateService } from '../../services/candidate.service';
-import { ResumeService } from '../../services/resume.service';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
+import { Component, OnInit, AfterViewInit, ElementRef } from "@angular/core";
+import { Http, Response } from "@angular/http";
+import { CandidateService } from "../../services/candidate.service";
+import { ResumeService } from "../../services/resume.service";
+import {
+  FormGroup,
+  FormControl,
+  FormBuilder,
+  Validators
+} from "@angular/forms";
+import { FileUploader } from "ng2-file-upload/ng2-file-upload";
 import { AuthenticationService } from "../../_services/authentication.service";
-import { ToastComponent } from '../shared/toast/toast.component';
+import { ToastComponent } from "../shared/toast/toast.component";
+import { Title } from "@angular/platform-browser";
 declare var jQuery: any;
 interface FileReaderEventTarget extends EventTarget {
-  result: string
+  result: string;
 }
 
 interface FileReaderEvent extends Event {
@@ -16,88 +22,98 @@ interface FileReaderEvent extends Event {
   getMessage(): string;
 }
 @Component({
-  selector: 'app-manager-account',
-  templateUrl: './manager-account.component.html',
-  styleUrls: ['../../../assets/css/bootstrap.css', './manager-account.component.css',
-    '../../../assets/css/animate.css'
-    , '../../../assets/css/style.css'
-    , '../../../assets/js/plugins/fancybox/jquery.fancybox.css'
-    , '../../../assets/js/plugins/rsslider/settings.css'
-    , '../../../assets/js/plugins/rsslider/layers.css'
-    , '../../../assets/js/plugins/rsslider/navigation.css'
-    , '../../../assets/js/plugins/jquery-ui/jquery-ui.css'
-    , '../../../assets/js/plugins/bootstrap-slider/bootstrap-slider.css'
-    , '../../../assets/js/plugins/owl/owl.carousel.css'
+  selector: "app-manager-account",
+  templateUrl: "./manager-account.component.html",
+  styleUrls: [
+    "../../../assets/css/bootstrap.css",
+    "./manager-account.component.css",
+    "../../../assets/css/animate.css",
+    "../../../assets/css/style.css",
+    "../../../assets/js/plugins/fancybox/jquery.fancybox.css",
+    "../../../assets/js/plugins/rsslider/settings.css",
+    "../../../assets/js/plugins/rsslider/layers.css",
+    "../../../assets/js/plugins/rsslider/navigation.css",
+    "../../../assets/js/plugins/jquery-ui/jquery-ui.css",
+    "../../../assets/js/plugins/bootstrap-slider/bootstrap-slider.css",
+    "../../../assets/js/plugins/owl/owl.carousel.css"
   ]
 })
 export class ManagerAccountComponent implements OnInit {
   isupdateuser: boolean;
   ischangepass: boolean;
-  //Javascript load image preview when upload image 
+  //Javascript load image preview when upload image
   ngAfterViewInit() {
-
     function readURL(input) {
-
       if (input.files && input.files[0]) {
         var reader = new FileReader();
-        reader.onload = function (fre: FileReaderEvent) {
+        reader.onload = function(fre: FileReaderEvent) {
           //   var data = JSON.parse();
-          jQuery('#imageprofile').attr('src', fre.target.result);
+          jQuery("#imageprofile").attr("src", fre.target.result);
           // alert(jQuery('#blah').height() + "size: " + jQuery('#blah').width());
-
-        }
+        };
         reader.readAsDataURL(input.files[0]);
       }
     }
-    jQuery("#anhdaidien").change(function () {
+    jQuery("#anhdaidien").change(function() {
       readURL(this);
     });
   }
 
   isaction: number;
-  
-  clickchangepass() {
 
-    if (this.ischangepass)
-      this.ischangepass = false;
+  clickchangepass() {
+    if (this.ischangepass) this.ischangepass = false;
     else {
       this.ischangepass = true;
     }
   }
 
   click() {
-    if (this.isupdateuser)
-      this.isupdateuser = false;
+    if (this.isupdateuser) this.isupdateuser = false;
     else {
       this.isupdateuser = true;
     }
   }
 
   //===========Upload Imgage Anh dai dien================
-  public uploaderanhdaidien: FileUploader = new FileUploader({ url: 'http://localhost:3000/api/anhdaidien', itemAlias: 'anhdaidien' });
+  public uploaderanhdaidien: FileUploader = new FileUploader({
+    url: "http://localhost:3000/api/anhdaidien",
+    itemAlias: "anhdaidien"
+  });
   //===========Upload Imgage Anh dai dien================
 
-
   //========================================
-  public uploader: FileUploader = new FileUploader({ url: 'http://localhost:3000/api/uploadcv', itemAlias: 'file_cv' });
+  public uploader: FileUploader = new FileUploader({
+    url: "http://localhost:3000/api/uploadcv",
+    itemAlias: "file_cv"
+  });
   imageurl: string = "";
-  constructor(private toast:ToastComponent,private user: CandidateService, private resume: ResumeService, private builder: FormBuilder, private auth: AuthenticationService, private http: Http, private el: ElementRef) { }
-  username = new FormControl('')
-  email = new FormControl('')
-  phone= new FormControl('')
-  file = new FormControl('')
+  constructor(
+    private title: Title,
+    private toast: ToastComponent,
+    private user: CandidateService,
+    private resume: ResumeService,
+    private builder: FormBuilder,
+    private auth: AuthenticationService,
+    private http: Http,
+    private el: ElementRef
+  ) {}
+  username = new FormControl("");
+  email = new FormControl("");
+  phone = new FormControl("");
+  file = new FormControl("");
   saveForm: FormGroup = this.builder.group({
     username: this.username,
     email: this.email,
     file: this.file,
-  phone:this.phone
+    phone: this.phone
   });
   listuser: any;
-  change_action(value:number){
-    this.isaction=value
+  change_action(value: number) {
+    this.isaction = value;
   }
   ngOnInit() {
-       //  this.toast.setMessage('you successfully Update!', 'success','center');
+    this.title.setTitle("Manager Account");
     this.isupdateuser = false;
     this.ischangepass = false;
     this.isaction = 1;
@@ -105,50 +121,74 @@ export class ManagerAccountComponent implements OnInit {
     //2--edit myacount
     //3--Edit profile
 
-    if (localStorage.getItem('userId') != null) {
-      this.load_detail_user(localStorage.getItem('userId'));
+    if (localStorage.getItem("userId") != null) {
+      this.load_detail_user(localStorage.getItem("userId"));
     }
     //===========Upload Imgage Anh dai dien================
     //override the onAfterAddingfile property of the uploader so it doesn't authenticate with //credentials.
-    this.uploaderanhdaidien.onAfterAddingFile = (file) => { file.withCredentials = false; };
-    this.uploaderanhdaidien.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
+    this.uploaderanhdaidien.onAfterAddingFile = file => {
+      file.withCredentials = false;
+    };
+    this.uploaderanhdaidien.onCompleteItem = (
+      item: any,
+      response: any,
+      status: any,
+      headers: any
+    ) => {
       console.log("UpLoad anh dai dien:", item, status, response);
-         if (status == 200) {
-        //cap cv 
-      let userId = localStorage.getItem('userId');
-      var user1 = {
-        profileimage: response,
-        _id: userId
+      if (status == 200) {
+        //cap cv
+        let userId = localStorage.getItem("userId");
+        var user1 = {
+          profileimage: response,
+          _id: userId
+        };
+        console.log(user1);
+        this.user.edit_user(user1).subscribe(
+          data => {
+            this.toast.setMessage(
+              "you successfully Upload Anh dai dien!",
+              "success",
+              "center"
+            );
+          },
+          error => console.log(error),
+          () => {}
+        );
+      } else {
+        this.toast.setMessage(response, "error", "center");
       }
-      console.log(user1)
-      this.user.edit_user(user1).subscribe(
-        data => {
-              this.toast.setMessage('you successfully Upload Anh dai dien!', 'success','center');
-        },
-        error => console.log(error),
-        () => { }
-      );}
-      else{
-         this.toast.setMessage(response, 'error','center');
-      }
-
-
     };
     //===========/Upload Imgage Anh dai dien================
 
     //override the onAfterAddingfile property of the uploader so it doesn't authenticate with //credentials.
-    this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
+    this.uploader.onAfterAddingFile = file => {
+      file.withCredentials = false;
+    };
     //overide the onCompleteItem property of the uploader so we are
     //able to deal with the server response.
-    this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
+    this.uploader.onCompleteItem = (
+      item: any,
+      response: any,
+      status: any,
+      headers: any
+    ) => {
       if (status == 200) {
         //cap cv
         let userId = localStorage.getItem("userId");
         var user1 = { pathcv: response, _id: userId };
         console.log(user1);
-        this.user.edit_user(user1).subscribe(data => {
-            this.toast.setMessage("you successfully Update!", "success", "center");
-          }, error => console.log(error), () => {});
+        this.user.edit_user(user1).subscribe(
+          data => {
+            this.toast.setMessage(
+              "you successfully Update!",
+              "success",
+              "center"
+            );
+          },
+          error => console.log(error),
+          () => {}
+        );
       } else {
         this.toast.setMessage(response, "success", "center");
       }
@@ -157,47 +197,49 @@ export class ManagerAccountComponent implements OnInit {
   }
   upload() {
     //locate the file element meant for the file upload.
-    let inputEl: HTMLInputElement = this.el.nativeElement.querySelector('#file_cv');
+    let inputEl: HTMLInputElement = this.el.nativeElement.querySelector(
+      "#file_cv"
+    );
     //get the total amount of files attached to the file input.
     let fileCount: number = inputEl.files.length;
     //create a new fromdata instance
     let formData = new FormData();
     //check if the filecount is greater than zero, to be sure a file was selected.
-    if (fileCount > 0) { // a file was selected
+    if (fileCount > 0) {
+      // a file was selected
       //append the key name 'photo' with the first file in the element
-      formData.append('file_cv', inputEl.files.item(0));
+      formData.append("file_cv", inputEl.files.item(0));
       //call the angular http method
       this.http
         //post the form data to the url defined above and map the response. Then subscribe //to initiate the post. if you don't subscribe, angular wont post.
-        .post('http://localhost:3000/api/uploadcv', formData).map((res: Response) => res.json()).subscribe(
-        //map the success function and alert the response
-        (success) => {
-          alert('thanh cong')
-        },
-        (error) => alert(error))
+        .post("http://localhost:3000/api/uploadcv", formData)
+        .map((res: Response) => res.json())
+        .subscribe(
+          //map the success function and alert the response
+          success => {
+            alert("thanh cong");
+          },
+          error => alert(error)
+        );
     }
   }
-  passwordnew = new FormControl('', [
+  passwordnew = new FormControl("", [
     Validators.required,
-    Validators.minLength(5),
-
+    Validators.minLength(5)
   ]);
-  passwordrepeate = new FormControl('', [
+  passwordrepeate = new FormControl("", [
     Validators.required,
-    Validators.minLength(5),
-
+    Validators.minLength(5)
   ]);
 
-  passwordold = new FormControl('', [
+  passwordold = new FormControl("", [
     Validators.required,
-    Validators.minLength(5),
-
+    Validators.minLength(5)
   ]);
 
   changepasswordForm: FormGroup = this.builder.group({
     passwordnew: this.passwordnew,
-    passwordold: this.passwordold,
-
+    passwordold: this.passwordold
   });
   errrorcheck: String;
   passwordMatch() {
@@ -209,97 +251,92 @@ export class ManagerAccountComponent implements OnInit {
     }
     this.errrorcheck = "No Match";
     return false;
-
   }
 
   capnhatpublic() {
     this.user.edit_user({ status: true }).subscribe(
       data => {
-   this.toast.setMessage('you successfully Update!', 'success','center');
+        this.toast.setMessage("you successfully Update!", "success", "center");
       },
       error => console.log(error),
-      () => { }
+      () => {}
     );
   }
 
   capnhatPrivate() {
     this.user.edit_user({ status: false }).subscribe(
       data => {
-      this.toast.setMessage('you successfully Update!', 'success','center');
+        this.toast.setMessage("you successfully Update!", "success", "center");
       },
       error => console.log(error),
-      () => { }
+      () => {}
     );
   }
 
   updatePassword() {
     //kiem tra password
     var user = {
-      _id: localStorage.getItem('userId'),
+      _id: localStorage.getItem("userId")
       //  password: this.fchangepass.value.passw
-    }
+    };
     var userinput = {
       //  password: this.fchangepass.value.passnew
-    }
-    this.auth.signin_tv(user)
-      .subscribe(
+    };
+    this.auth.signin_tv(user).subscribe(
       data => {
         //update password
-        //cap nhat thong tin user 
+        //cap nhat thong tin user
         this.user.edit_user(userinput).subscribe(
           data => {
-          this.toast.setMessage('you successfully Update!', 'success','center');
+            this.toast.setMessage(
+              "you successfully Update!",
+              "success",
+              "center"
+            );
           },
           error => console.log(error),
-          () => { }
+          () => {}
         );
-
-
       },
       error => {
-this.toast.setMessage('Password is incorrect', 'error','left');
- 
-
+        this.toast.setMessage("Password is incorrect", "error", "left");
       }
-      )
+    );
   }
 
-
   saveinfo() {
-    let userId = localStorage.getItem('userId');
+    let userId = localStorage.getItem("userId");
     var userinput = {
-      "_id": userId,
-      "fullname": this.username.value,
-      "email": this.email.value,
-      "phone":this.phone.value
-    }
+      _id: userId,
+      fullname: this.username.value,
+      email: this.email.value,
+      phone: this.phone.value
+    };
     console.log(userinput);
-    //cap nhat thong tin user 
+    //cap nhat thong tin user
     this.user.edit_user(userinput).subscribe(
       data => {
-      this.toast.setMessage('you successfully Update Infomation!', 'success','center');
+        this.toast.setMessage(
+          "you successfully Update Infomation!",
+          "success",
+          "center"
+        );
       },
       error => console.log(error),
-      () => { }
+      () => {}
     );
-
-
   }
   load_detail_user(id) {
     this.user.getdetailCandi(id).subscribe(
       data => {
         this.listuser = data[0];
-    
+
         console.log(this.listuser);
         this.email.setValue(this.listuser.email);
         this.username.setValue(this.listuser.fullname);
       },
       error => console.log(error),
-      () => { }
+      () => {}
     );
   }
-
-
-
-
 }

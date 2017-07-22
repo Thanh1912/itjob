@@ -62,12 +62,12 @@
                                             <td><a href="#"><i class="fa fa-heart"></i></a>
                                             </td>
                                             <td style="width: 120px;">
-                                                <a style="cursor:pointer"  (click)="goRouterJob(item.inforCompany[0].namecompany,item.inforCompany[0]._id)"  [routerLink]="['detail-company', item.inforCompany[0]._id ]"><img src="http://localhost:3000/uploads/forms/logo/{{item.inforCompany[0].info_recruiter.logo}}" class="img-responsive" style="width: 80px;height:80px" alt="">
+                                                <a style="cursor:pointer" (click)="goRouterJob(item.inforCompany[0].namecompany,item.inforCompany[0]._id)" [routerLink]="['detail-company', item.inforCompany[0]._id ]"><img src="http://localhost:3000/uploads/forms/logo/{{item.inforCompany[0].info_recruiter.logo}}" class="img-responsive" style="width: 80px;height:80px" alt="">
                                                 </a>
                                             </td>
                                             <td>
                                                 <!--[routerLink]="['detail-jobs', Router_filter(item._id) ]"-->
-                                                <h4><a  style="cursor:pointer" (click)="goRouterJob(item.title,item._id)">{{item.title}}</a></h4>
+                                                <h4><a style="cursor:pointer" (click)="goRouterJob(item.title,item._id)">{{item.title}}</a></h4>
                                                 <p>{{item.inforCompany[0].info_recruiter.namecompany}}</p>
                                             </td>
                                             <td>
@@ -121,7 +121,7 @@
                                             <td><a href="#"><i class="fa fa-heart"></i></a>
                                             </td>
                                             <td>
-                                                <a (click)="goRouterCandidate(itemcandidate.nameprofile,itemcandidate._id)" ><img style=" width: 80px;" src="http://localhost:3000/uploads/forms/anhdaidien/{{itemcandidate?.profileimage}}" class="img-responsive" alt="">
+                                                <a (click)="goRouterCandidate(itemcandidate.nameprofile,itemcandidate._id)"><img style=" width: 80px;" src="http://localhost:3000/uploads/forms/anhdaidien/{{itemcandidate?.profileimage}}" class="img-responsive" alt="">
                                                 </a>
                                             </td>
                                             <td>
@@ -165,7 +165,7 @@
         <div class="row">
             <div *ngFor="let item01 of Listcompany" class="col-lg-3 col-md-3 col-sm-4 col-xs-12 mj_bottompadder50">
                 <div class="mj_clientlogo">
-                    <a [routerLink]="['./detail-company',item01?.info[0]._id]"><img src="http://localhost:3000/uploads/forms/logo/{{item01?.info[0].info_recruiter.logo}}" class="img-responsive log0" alt="">
+                    <a  style="cursor:pointer" (click)="goRouterCompany(item01?.info[0].info_recruiter.namecompany,item01?.info[0]._id)" ><img src="http://localhost:3000/uploads/forms/logo/{{item01?.info[0].info_recruiter.logo}}" class="img-responsive log0" alt="">
                         <span>{{item01?.count}}</span>
                         </a>
                 </div>

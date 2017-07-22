@@ -156,6 +156,11 @@ export class DetailJobComponent implements OnInit {
      );
  
    }*/
+   goRouterCompany(name, id) {
+    this.router.navigateByUrl(
+      "pages/home/detail-company/" + this.job.bodauTiengViet(name)+"-" + id
+    );
+  }
   getUSER(id: String) {
     this.user.getdetail(id).subscribe(
       data => {
