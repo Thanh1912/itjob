@@ -181,7 +181,7 @@ export class ManagerAccountComponent implements OnInit {
         this.user.edit_user(user1).subscribe(
           data => {
             this.toast.setMessage(
-              "you successfully Update!",
+              "you successfully Updateddd",
               "success",
               "center"
             );
@@ -330,10 +330,10 @@ export class ManagerAccountComponent implements OnInit {
     this.user.getdetailCandi(id).subscribe(
       data => {
         this.listuser = data[0];
-
         console.log(this.listuser);
         this.email.setValue(this.listuser.email);
         this.username.setValue(this.listuser.fullname);
+        this.phone.setValue(this.listuser.phone);
       },
       error => console.log(error),
       () => {}

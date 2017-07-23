@@ -15,7 +15,7 @@
 
                                     <img id="imageprofile" style="width: 245px;height: 245px;" src="http://localhost:3000/uploads/forms/anhdaidien/{{listuser?.profileimage}}" class="img-responsive image-profile mj_testimonial_img"
                                         alt="">
-                                    <label class="upload-resume relative text-white m-b-none" style=" margin-top: 60px;"> Upload your Image 
+                                    <label class="upload-resume relative text-white m-b-none" style=" margin-top: 60px;"> Upload your Image
                                      <input style="margin-top: 10px;"class="transparent absolute" name="resumeFile" id="resumeFile" type="file" id="anhdaidien" ng2FileSelect [uploader]="uploaderanhdaidien"/>
                                             </label>
 
@@ -71,7 +71,7 @@
                         <li><a class="mj_mainbtn mj_btnred" *ngIf="isaction===1" data-text="View Resume" (click)="click()"><span>View Resume</span></a>
                         </li>
                     </ul>
-                    <p><a href="http://localhost:3000/uploads/forms/filecv/CV-300617.191153.pdf" download><i class="fa fa-download"></i></a>
+                    <p><a href="http://localhost:3000/uploads/forms/filecv/{{listuser?.pathcv}}" download><i class="fa fa-download"></i></a>
                     </p>
 
                 </div>
@@ -150,7 +150,7 @@
     color: white;" class="btn btn-sm  btn-outline" (click)="clickchangepass()"><i class="fa  fa-exchange " ></i> Change  password </a>
 
 
-                                       
+
                                     </div>
                                 </div>
                                 <div class="col-lg-8 col-xs-offset-2">
