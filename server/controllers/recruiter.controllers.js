@@ -282,6 +282,9 @@ module.exports.searchCompanyTitles = function (req, res) {
 
 // Update by id
 module.exports.update_amdin = function (req, res) {
+     req.body.password=passwordHash.generate(req.body.password);
+     console.log(  req.body)
+     console.log( req.body.password)
   model.findOneAndUpdate({ _id: req.params.id, }, req.body, function (err) {
     if (err) { return console.error(err); }
     res.sendStatus(200);
