@@ -22,7 +22,7 @@ import {
 } from "angular-2-dropdown-multiselect";
 import { keyword } from "./../../_models/keyword.model";
 import { Router } from "@angular/router";
-import { Title } from "@angular/platform-browser";  
+import { Title } from "@angular/platform-browser";
 declare var jQuery: any;
 interface FileReaderEventTarget extends EventTarget {
   result: string;
@@ -38,6 +38,8 @@ interface FileReaderEvent extends Event {
   styleUrls: ["./job.component.css"]
 })
 export class JobComponent implements OnInit, AfterViewInit {
+  @ViewChild(ViewprofileComponent)
+  private viewprofileComponent: ViewprofileComponent;
   constructor(
     private candidate: CandidateService,
     private router: Router,
@@ -49,9 +51,12 @@ export class JobComponent implements OnInit, AfterViewInit {
     private jobcategoryDetailService: KeywordService,
     private countryService: countryService,
     private postservice: PostService,
-     private title: Title,  
+    private _title: Title
   ) {
     this.ckeditorContent = `<p>My HTML</p>`;
+  }
+  click() {
+    this.viewprofileComponent.test();
   }
 
   public uploader: FileUploader = new FileUploader({
@@ -83,9 +88,7 @@ export class JobComponent implements OnInit, AfterViewInit {
   time_end: any;
   isposted: boolean;
   daylaname: string;
-  @ViewChild(ViewprofileComponent)
-  private viewprofileComponent: ViewprofileComponent;
-  n = 0;
+  @ViewChild(ViewprofileComponent) n = 0;
   Ipost: any;
   onChange1() {
     console.log(this.keyword);
@@ -127,7 +130,7 @@ export class JobComponent implements OnInit, AfterViewInit {
   array = [];
   ngOnInit() {
     this.array = ["", ""];
-       this.title.setTitle("Post Job");
+    this._title.setTitle("Post Job");
     this.isposted = false;
     if (localStorage.getItem("userId_ntd") == null) {
       this.router.navigate(["/pages_employee"]);
@@ -269,6 +272,7 @@ export class JobComponent implements OnInit, AfterViewInit {
         };
         console.log(Ipost);
         this.getlistprofile(Ipost);
+        this.click();
       },
       error => console.log(error),
       () => {}
