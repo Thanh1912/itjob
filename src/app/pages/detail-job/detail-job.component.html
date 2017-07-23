@@ -1,6 +1,7 @@
 <app-toast [message]="toast.message"></app-toast>
 <div *ngIf="isArrayListJobEmpty==false" class="mj_pagetitle2">
     <div class="mj_pagetitleimg">
+             
         <img src="assets/images/page_title1.jpg" alt="">
         <div class="mj_mainheading_overlay"></div>
     </div>
@@ -113,11 +114,10 @@
                                 </div>
                             </div>
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mj_toppadder30 mj_bottompadder30">
-                                <div class="mj_divider"></div>
+                                <div class="mj_divider">
+                                       <img src="http://localhost:3000/uploads/forms/post/{{jobitem?.postimage}}" alt="">
+                                </div>
                             </div>
-
-
-
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mj_toppadder30 mj_bottompadder30">
                                 <div class="mj_divider"></div>
                             </div>

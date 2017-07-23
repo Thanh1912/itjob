@@ -200,6 +200,9 @@ router.route('/getpost/:id').get(postctrl.getiduser);
 router.route('/getDetailjob/:id').get(postctrl.getByIdDetailJob);
 router.route('/gettop12Company').get(postctrl.gettop12Company);
 router.route('/job-in-company/:id').get(postctrl.jobincompany);
+
+
+
 router.route('/job-search-title').post(postctrl.searchJobTitles);
 
 router.route('/search-job-key').post(postctrl.get_job_key)

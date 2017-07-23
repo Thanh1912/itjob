@@ -239,12 +239,13 @@
                         Không tìm thấy !
                     </tr>
                     <tr *ngFor="let listjob of allItem |capitalize : Search_title :allItem:fromFilter:toFilter">
+                     
                         <td>
-                            <div class="mj_liks"><a ><i class="fa fa-heart"></i></a><span>Save this Job</span>
-                            </div>
-                        </td>
-                        <td>
-                            <a  style="cursor:pointer" (click)="goRouterJob(listjob.title,listjob._id)" style="cursor:pointer" ><img style="width: 100px;height: 100px;" src="http://localhost:3000/uploads/forms/logo/{{listjob.company[0].info_recruiter.logo}}" class="img-responsive" alt="">
+                            <a  style="cursor:pointer" (click)="goRouterJob(listjob.title,listjob._id)" 
+                            style="cursor:pointer" >
+                            <img style="width: 100px;height: 100px;" 
+                            src="http://localhost:3000/uploads/forms/logo/{{listjob.company[0].info_recruiter.logo}}"
+                             class="img-responsive" alt="">
                                 </a>
                         </td>
                         <td>

@@ -23,6 +23,9 @@ export class JobService {
       .get(this.Rest_Url + "/api/gettop12Company")
       .map(res => res.json());
   }
+
+
+  
   searchJobTile(item): Observable<any> {
     return this.http
       .post(

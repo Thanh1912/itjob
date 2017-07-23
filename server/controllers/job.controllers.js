@@ -375,8 +375,6 @@ module.exports.searchJobTitles = function (req, res) {
     if (err) throw err;
     res.json(docs);
   });
-
-
 };
 
 

@@ -24,7 +24,7 @@
                 <input type="text" class="form-control" [(ngModel)]="title" name="title" placeholder="" required>
               </div>
               <div class="form-group">
-                <div class="col-xs-6">
+                <div class="col-xs-12">
                   <div class="form-group">
                     <label>Mức lương *  </label>
                     <select [(ngModel)]="select_Luong" name="select" name="select_Luong" (ngModelChange)="onChange($event)" class="form-control">
@@ -34,12 +34,7 @@
                   </div>
 
                 </div>
-                <div class="col-xs-6">
-                  <div class="form-group">
-                    <label></label>
-                  
-                  </div>
-                </div>
+              
               </div>
               <div class="form-group" *ngIf="select_Luong=='false'">
                 <label for="">Mức lương Từ *</label>
