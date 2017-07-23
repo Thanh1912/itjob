@@ -55,7 +55,10 @@ export class AuthenticationService {
     return this.http.post(this.Rest_Urlntd+'register/', body, {headers: headers})
       .map(response => response.json())
       .catch((error: Response) => {
+        alert('Email existed!')
+        console.log(error.json())
         this.errorService.handleError(error.json());
+
         return Observable.throw(error.json());
       });
     }

@@ -12,7 +12,7 @@ import { PostService } from "../../services/post.service";
 import { PagerService } from "./../../_services/pager.service";
 import { FileUploader } from "ng2-file-upload/ng2-file-upload";
 import { ToastComponent } from "./../../pages/shared/toast/toast.component";
-import { Title } from "@angular/platform-browser";  
+import { Title } from "@angular/platform-browser";
 declare var jQuery: any;
 interface FileReaderEventTarget extends EventTarget {
   result: string;
@@ -83,10 +83,10 @@ export class SliderComponent implements OnInit {
     private sliderService: sliderService,
     private Job: JobService,
     private pagerService: PagerService,
-     private _title: Title,  
+    private _title: Title
   ) {}
   ngOnInit() {
-     this._title.setTitle("Manager Slider");
+    this._title.setTitle("Manager Slider");
     this.getallJobslider();
     this.getslider();
     this.setPageJOB(1);
@@ -114,11 +114,7 @@ export class SliderComponent implements OnInit {
         this.ImageUrls = response;
       } else {
         this.ImageUrls = "";
-          this.toast.setMessage(
-            response,
-            "error",
-            "left"
-          );
+        this.toast.setMessage(response, "error", "left");
       }
 
       console.log(this.ImageUrls);
@@ -225,8 +221,12 @@ export class SliderComponent implements OnInit {
         this.ImageUrls = data[0].postimage;
         this.IconUrls = data[0].company[0].info_recruiter.logo;
         this.idjob = data[0]._id;
+         console.log(data[0])
         this.Link.setValue(
-          "http://localhost:4200/pages/home/detail-jobs/" + data[0]._id
+          "http://localhost:4200/pages/home/detail-jobs/" +
+            this.Job.bodauTiengViet( data[0].title) +
+            "-" +
+            data[0]._id   
         );
         this.descriptionwork.setValue(data[0].descriptionwork);
       },
