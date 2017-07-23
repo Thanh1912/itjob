@@ -36,6 +36,9 @@ export class LoginComponent implements OnInit {
   error = "";
   result;
   sub: any;
+   ngAfterContentInit() {
+    $("div").removeClass("modal-backdrop");
+  }
   email1 = new FormControl("", [Validators.required, Validators.minLength(5)]);
 
   password = new FormControl("", [Validators.required]);
