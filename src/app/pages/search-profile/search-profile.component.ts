@@ -36,7 +36,9 @@ export class SearchProfileComponent implements OnInit {
       window.scrollTo(0, 0);
     });
   }
-
+  ngAfterViewInit() {
+    window.scrollTo(0, 0);
+  }
   listNamKinhNghiem = [
     {
       value: "0",

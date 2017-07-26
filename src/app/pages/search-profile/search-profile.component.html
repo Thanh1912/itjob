@@ -62,21 +62,23 @@
                 <div class="form-group">
 
                   <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                    <label>Mức Lương</label>
+                    <label>Salary
+</label>
                     <select class="custom-select form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="salaryInput" name="timepass">
 								     			   	<option value="" selected></option>
                         	<option *ngFor="let itemL of listLuong" [value]="itemL.value"> {{itemL.name}}</option>
                     </select>
                   </div>
                   <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                    <label>So nam Kinh Nghiem</label>
+                    <label>Experience
+</label>
                     <select class="custom-select form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="experienceInput" name="timepass">
 								     		   	<option value="" selected></option>
                        <option *ngFor="let itemnam of listNamKinhNghiem" [value]="itemnam.value"> {{itemnam.name}}</option>
                     </select>
                   </div>
                   <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                    <label>Ngành</label>
+                    <label>Jobcatagory</label>
                     <select class="custom-select form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="jobcategoryInput" (change)="getCatagoryDetail($event.target.value)"
                       name="timepass">
 								        		   	<option value="" selected></option>
@@ -84,7 +86,7 @@
                     </select>
                   </div>
                   <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                    <label>Chuyên Ngành</label>
+                    <label>Jobcatagory Detail</label>
                     <select class="custom-select form-control" name="timepass" [ngModelOptions]="{standalone: true}" [(ngModel)]="jobcategorydetailInput">
 								      		   	<option value="" selected></option>
                      	<option *ngFor="let itemjobcd of list_jobcategoryDetail"  [value]="itemjobcd._id">{{itemjobcd.name}}</option>

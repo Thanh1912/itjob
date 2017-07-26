@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { JobService } from './../../services/job.service';
-import { JobcategoryService } from './../../services/jobcategory.service';
-import { WorkplaceService } from './../../services/workplace.service';
-import { JobcategoryDetailService } from './../../services/jobcategory-detail.service';
-import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
-import { CapitalizePipe } from '../Pipe/capitalize.pipe';
-import { DatePipe } from '@angular/common';
-import { PagerService } from './../../_services/pager.service';
-import { Title } from "@angular/platform-browser"; 
+import { Component, OnInit } from "@angular/core";
+import { JobService } from "./../../services/job.service";
+import { JobcategoryService } from "./../../services/jobcategory.service";
+import { WorkplaceService } from "./../../services/workplace.service";
+import { JobcategoryDetailService } from "./../../services/jobcategory-detail.service";
+import { ActivatedRoute, Router, NavigationEnd } from "@angular/router";
+import { CapitalizePipe } from "../Pipe/capitalize.pipe";
+import { DatePipe } from "@angular/common";
+import { PagerService } from "./../../_services/pager.service";
+import { Title } from "@angular/platform-browser";
 @Component({
   selector: "app-search-jobs",
   templateUrl: "./search-jobs.component.html",
@@ -41,6 +41,10 @@ export class SearchJobsComponent implements OnInit {
   salaryB: String;
   salaryE: String;
   allItem = [];
+
+  ngAfterViewInit() {
+    window.scrollTo(0, 0);
+  }
   ngOnInit() {
     this.JobTime = "==";
     this.workplaceid = "0";
@@ -246,6 +250,7 @@ export class SearchJobsComponent implements OnInit {
         console.log("show all");
         console.log(data);
         this.setPage(1);
+        console.log(this.pagedItems);
       },
       error => console.log(error),
       () => {}

@@ -59,8 +59,7 @@
                                 <table class="table table-striped">
                                     <tbody>
                                         <tr *ngFor="let item of listjobtop">
-                                            <td><a href="#"><i class="fa fa-heart"></i></a>
-                                            </td>
+                                           
                                             <td style="width: 120px;">
                                                 <a style="cursor:pointer" (click)="goRouterJob(item.inforCompany[0].namecompany,item.inforCompany[0]._id)" [routerLink]="['detail-company', item.inforCompany[0]._id ]"><img src="http://localhost:3000/uploads/forms/logo/{{item.inforCompany[0].info_recruiter.logo}}" class="img-responsive" style="width: 80px;height:80px" alt="">
                                                 </a>
@@ -118,8 +117,7 @@
                                 <table class="table table-striped">
                                     <tbody>
                                         <tr *ngFor="let itemcandidate of listCandidate">
-                                            <td><a href="#"><i class="fa fa-heart"></i></a>
-                                            </td>
+                                           
                                             <td>
                                                 <a (click)="goRouterCandidate(itemcandidate.nameprofile,itemcandidate._id)"><img style=" width: 80px;" src="http://localhost:3000/uploads/forms/anhdaidien/{{itemcandidate?.profileimage}}" class="img-responsive" alt="">
                                                 </a>

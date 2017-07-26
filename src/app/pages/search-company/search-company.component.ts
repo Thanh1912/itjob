@@ -24,6 +24,9 @@ import { Title } from "@angular/platform-browser";
   ]
 })
 export class SearchCompanyComponent implements OnInit {
+    ngAfterViewInit() {
+    window.scrollTo(0, 0);
+  }
   // pager object
   pager: any = {};
   term: String;

@@ -32,7 +32,9 @@ export class DetailCandidateComponent implements OnInit {
   ) {}
   id: any;
   sub: any;
-
+  ngAfterViewInit() {
+    window.scrollTo(0, 0);
+  }
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       this.id = this.job.getIdRouter(params["id"]);

@@ -41,6 +41,8 @@ interface FileReaderEvent extends Event {
   ]
 })
 export class DetailJobComponent implements OnInit {
+
+
   sub: any;
   id: any;
   name: String;

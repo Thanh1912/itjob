@@ -26,6 +26,9 @@ import { Title } from "@angular/platform-browser";
   providers: [ToastComponent]
 })
 export class DetailCompanyComponent implements OnInit {
+    ngAfterViewInit() {
+    window.scrollTo(0, 0);
+  }
   Check_PostRate: number
   sub: any;
   id: any;

@@ -40,7 +40,7 @@
 
                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                             <select (change)="onchangeTP($event.target.value);ChangeListJob()" name="timepass" [(ngModel)]="tp" class="custom-select form-control">
-									<option value='0'> Thành Phố</option>
+									<option value='0'> City</option>
 									<option  *ngFor="let item of list_all_Workplace" [value]="item._id">{{item.name}}</option>
                                 </select>
                         </div>
@@ -212,7 +212,7 @@
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                                 <aside class="widget widget_tag_cloud">
                                     <h4 class="widget-title">Catagory</h4>
-                                    <a *ngFor="let item of list_all_jobcategory"  style="cursor:pointer" [routerLink]="['/pages/home/search-jobs', 'catagory',item._id,'all']">{{item.name}}</a>
+                                    <a *ngFor="let item of list_all_jobcategory" style="cursor:pointer" [routerLink]="['/pages/home/search-jobs', 'catagory',item._id,'all']">{{item.name}}</a>
 
                                 </aside>
                                 <!--Body Model-->
@@ -236,13 +236,12 @@
             <div class="mj_tabcontent mj_bottompadder80">
                 <table class="table table-striped">
                     <tr *ngIf="allItem.length===0">
-                        Không tìm thấy !
+                        No found job !
                     </tr>
-                    <tr *ngFor="let listjob of allItem |capitalize : Search_title :allItem:fromFilter:toFilter">
-                     
+                    <tr *ngFor="let listjob of pagedItems |capitalize : Search_title :allItem:fromFilter:toFilter">
+
                         <td>
-                            <a  style="cursor:pointer" (click)="goRouterJob(listjob.title,listjob._id)" 
-                            style="cursor:pointer" >
+                            <a style="cursor:pointer" (click)="goRouterJob(listjob.title,listjob._id)" style="cursor:pointer">
                             <img style="width: 100px;height: 100px;" 
                             src="http://localhost:3000/uploads/forms/logo/{{listjob.company[0].info_recruiter.logo}}"
                              class="img-responsive" alt="">
@@ -250,7 +249,7 @@
                         </td>
                         <td>
                             <tr>
-                                <h4><a style="cursor:pointer"  style="cursor:pointer" (click)="goRouterJob(listjob.title,listjob._id)">{{listjob.title}}</a></h4>
+                                <h4><a style="cursor:pointer" style="cursor:pointer" (click)="goRouterJob(listjob.title,listjob._id)">{{listjob.title}}</a></h4>
                             </tr>
 
                             <tr>
